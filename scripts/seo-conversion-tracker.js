@@ -13,6 +13,32 @@
   'use strict';
 
   window.dataLayer = window.dataLayer || [];
+  
+  // Google Analytics 4 - Appiex
+  var ga4Id = 'G-DF198MPZGT';
+
+  var excludedPage =
+    /^\/(?:admin|login|profile|gaming|collections|resume|rafsan_page|scratch_cuberto_live)(?:\/|\.html$|$)/i
+      .test(window.location.pathname);
+
+  // Homepage already initializes GA4.
+  if (!excludedPage && typeof window.gtag !== 'function') {
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag('js', new Date());
+    window.gtag('config', ga4Id);
+
+    var ga4Script = document.createElement('script');
+    ga4Script.async = true;
+    ga4Script.src =
+      'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+
+    document.head.appendChild(ga4Script);
+  }
+
+  
 
   function trackConversionEvent(eventName, params) {
     var safeParams = Object.assign(
@@ -23,16 +49,18 @@
       params || {}
     );
 
-    try {
-      window.dataLayer.push(
-        Object.assign({ event: eventName }, safeParams)
-      );
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', eventName, safeParams);
-      }
-    } catch (e) {
-      // Fail silently to avoid disrupting user interaction
-    }
+    
+try {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', eventName, safeParams);
+  } else {
+    window.dataLayer.push(
+      Object.assign({ event: eventName }, safeParams)
+    );
+  }
+} catch (e) {
+  // Do not interrupt the website if tracking fails.
+}
   }
 
   function initConversionTracking() {
@@ -95,7 +123,7 @@
         if (href.indexOf('mailto:') === 0) {
           trackConversionEvent('click_email', {
             link_url: href.replace(/\?.*$/, ''),
-            cta_text: text || 'Email Link'
+            link_type: 'email',
           });
           return;
         }
