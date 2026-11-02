@@ -120,13 +120,14 @@ try {
         var id = link.id || '';
 
         // click_email
-        if (href.indexOf('mailto:') === 0) {
-          trackConversionEvent('click_email', {
-            link_url: href.replace(/\?.*$/, ''),
-            link_type: 'email',
-          });
-          return;
-        }
+     
+if (href.indexOf('mailto:') === 0) {
+  trackConversionEvent('click_email', {
+    link_type: 'email',
+    cta_text: text || 'Email Link'
+  });
+  return;
+}
 
         // click_whatsapp
         if (
