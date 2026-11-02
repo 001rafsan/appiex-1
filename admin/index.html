@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appiex Admin OS — Control Panel & Subscriptions</title>
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+    <meta name="description" content="Minimalist command center & control panel for Appiex digital engineering — subscriptions, system analytics, SEO, CRM pipeline, and content studio." />
+    <meta property="og:title" content="Appiex Admin OS — Control Panel & Subscriptions" />
+    <meta property="og:description" content="Minimalist command center & control panel for Appiex digital engineering — subscriptions, system analytics, SEO, CRM pipeline, and content studio." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Check admin authorization early to avoid flash of gate for authed sessions
+      (function() {
+        var AUTH_KEY = 'appiex_admin_authed';
+        try {
+          if (sessionStorage.getItem(AUTH_KEY) === 'rtx5090_verified' || localStorage.getItem(AUTH_KEY) === 'rtx5090_verified') {
+            document.documentElement.classList.add('admin-authorized');
+          }
+        } catch(e) {}
+      })();
+
+      // Compatibility shim for browser extensions/iframes that reassign window.fetch
+      (function() {
+        try {
+          var _origFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : undefined;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _origFetch;
+            },
+            set: function(val) {
+              _origFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var _f = window.fetch;
+            Object.defineProperty(window, 'fetch', {
+              value: _f,
+              writable: true,
+              configurable: true,
+              enumerable: true
+            });
+          } catch (err) {}
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/admin/assets/index-Cv8Jj2gc.js?v=20261029_live_v5"></script>
+    <link rel="stylesheet" crossorigin href="/admin/assets/index-Bp4O11Jc.css">
+
+    <style>
+      /* Admin Security Gate Styles */
+      html.admin-authorized #admin-auth-gate {
+        display: none !important;
+      }
+      html:not(.admin-authorized) #admin-lock-pill {
+        display: none !important;
+      }
+      #admin-auth-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 9999999;
+        background: #030712;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        color: #f8fafc;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      #admin-auth-gate.gate-closing {
+        opacity: 0;
+        transform: scale(1.03);
+        pointer-events: none;
+      }
+      .gate-bg-spotlight {
+        position: absolute;
+        top: -20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 600px;
+        background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.28) 0%, rgba(15, 23, 42, 0) 70%);
+        filter: blur(80px);
+        pointer-events: none;
+      }
+      .gate-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
+        -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
+        pointer-events: none;
+      }
+      .gate-card-wrapper {
+        perspective: 1200px;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 440px;
+        padding: 16px;
+      }
+      .gate-card {
+        background: rgba(11, 17, 32, 0.85);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        padding: 40px 32px 32px 32px;
+        box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.9), 0 0 60px -15px rgba(225, 29, 72, 0.22);
+        transform-style: preserve-3d;
+        transition: transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+        text-align: center;
+      }
+      .gate-card.shake {
+        animation: gateShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+      .gate-card.granted {
+        border-color: rgba(16, 185, 129, 0.6) !important;
+        box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.9), 0 0 70px -10px rgba(16, 185, 129, 0.4) !important;
+      }
+      @keyframes gateShake {
+        10%, 90% { transform: translate3d(-3px, 0, 0); }
+        20%, 80% { transform: translate3d(5px, 0, 0); }
+        30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+        40%, 60% { transform: translate3d(6px, 0, 0); }
+      }
+      .gate-icon-badge {
+        width: 68px;
+        height: 68px;
+        margin: 0 auto 20px auto;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%);
+        border: 1px solid rgba(225, 29, 72, 0.5);
+        box-shadow: 0 0 30px rgba(225, 29, 72, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fb7185;
+        position: relative;
+      }
+      .gate-icon-badge::after {
+        content: '';
+        position: absolute;
+        inset: -3px;
+        border-radius: 23px;
+        border: 1px dashed rgba(225, 29, 72, 0.4);
+        animation: spinSlow 20s linear infinite;
+      }
+      @keyframes spinSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .gate-input-box {
+        position: relative;
+        text-align: left;
+        margin-top: 24px;
+      }
+      .gate-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 46px 14px 44px;
+        background: rgba(3, 7, 18, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        color: #ffffff;
+        font-size: 15px;
+        font-family: 'JetBrains Mono', monospace;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+      .gate-input:focus {
+        border-color: #f43f5e;
+        box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.2), 0 0 20px rgba(244, 63, 94, 0.25);
+        background: rgba(3, 7, 18, 0.95);
+      }
+      .gate-input.error {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+      }
+      .gate-btn {
+        width: 100%;
+        margin-top: 20px;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+      .gate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 35px -5px rgba(225, 29, 72, 0.65);
+        background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+      }
+      .gate-btn:active {
+        transform: translateY(0);
+      }
+      .gate-btn.btn-granted {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.5) !important;
+      }
+      #admin-lock-pill {
+        position: fixed;
+        top: 14px;
+        right: 20px;
+        z-index: 999999;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 16px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
+        color: #e2e8f0;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s ease;
+      }
+      #admin-lock-pill:hover {
+        background: rgba(225, 29, 72, 0.9);
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        box-shadow: 0 10px 28px rgba(225, 29, 72, 0.4);
+      }
+    </style>
+  </head>
+  <body class="bg-[#0B0D10] text-slate-100 antialiased selection:bg-rose-500/20 selection:text-rose-600">
+    <!-- Floating Lock Button for Authenticated Admin -->
+    <button id="admin-lock-pill" onclick="lockAdminSession()" title="Lock Admin Session">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      <span>Lock Admin</span>
+    </button>
+
+    <!-- Admin Authentication Gate -->
+    <div id="admin-auth-gate">
+      <div class="gate-bg-spotlight"></div>
+      <div class="gate-bg-grid"></div>
+
+      <div class="gate-card-wrapper" id="gateCardWrapper">
+        <div class="gate-card" id="gateCard">
+          <div class="gate-icon-badge">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <circle cx="12" cy="11" r="2.5"/>
+              <path d="M12 13.5V16"/>
+            </svg>
+          </div>
+
+          <div style="display:inline-block; padding: 4px 12px; border-radius: 9999px; background: rgba(225, 29, 72, 0.15); border: 1px solid rgba(225, 29, 72, 0.35); color: #fb7185; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">
+            Authorized Access Only
+          </div>
+
+          <h1 style="color: #ffffff; font-size: 24px; font-weight: 800; margin: 14px 0 6px 0; letter-spacing: -0.02em;">
+            Appiex Admin OS
+          </h1>
+          <p style="color: #94a3b8; font-size: 13px; margin: 0 0 22px 0; line-height: 1.5;">
+            Enter administrator master password to unlock command center & telemetry
+          </p>
+
+          <form id="gateForm" onsubmit="handleAdminAuth(event)" autocomplete="off">
+            <div class="gate-input-box">
+              <label for="adminAuthInput" style="display: block; font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">
+                Master Password
+              </label>
+
+              <div style="position: relative; display: flex; align-items: center;">
+                <svg style="position: absolute; left: 14px; color: #64748b; pointer-events: none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+
+                <input
+                  type="password"
+                  id="adminAuthInput"
+                  class="gate-input"
+                  placeholder="Enter password"
+                  autocomplete="current-password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  id="togglePasswordBtn"
+                  onclick="togglePasswordVisibility()"
+                  style="position: absolute; right: 12px; background: none; border: none; color: #64748b; cursor: pointer; padding: 6px; display: flex; align-items: center; justify-content: center; transition: color 0.2s;"
+                  title="Show/Hide Password"
+                >
+                  <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+
+              <div id="gateError" style="display: none; margin-top: 10px; padding: 10px 14px; border-radius: 10px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; font-size: 12px; font-weight: 600; text-align: left; align-items: center; gap: 8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="15" y1="9" x2="9" y2="15"></line>
+                  <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                <span>Incorrect password. Access denied.</span>
+              </div>
+            </div>
+
+            <button type="submit" id="gateSubmitBtn" class="gate-btn">
+              <span id="gateBtnText">Authenticate & Enter</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </form>
+
+          <div style="margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #64748b; font-size: 11px;">
+            <span>🛡️ Hardware Key / Encrypted Session</span>
+            <span>•</span>
+            <span>v4.2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive script for 3D card tilt, authentication verification & session handling -->
+    <script>
+      (function() {
+        var AUTH_KEY = 'appiex_admin_authed';
+        var REQUIRED_PASS = 'rtx5090';
+
+        window.lockAdminSession = function() {
+          try {
+            sessionStorage.removeItem(AUTH_KEY);
+            localStorage.removeItem(AUTH_KEY);
+          } catch(e) {}
+          window.location.reload();
+        };
+
+        window.togglePasswordVisibility = function() {
+          var inp = document.getElementById('adminAuthInput');
+          var eye = document.getElementById('eyeIcon');
+          if (!inp) return;
+          if (inp.type === 'password') {
+            inp.type = 'text';
+            eye.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+          } else {
+            inp.type = 'password';
+            eye.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+          }
+        };
+
+        // 3D Card Hover Tilt Effect
+        var cardWrapper = document.getElementById('gateCardWrapper');
+        var card = document.getElementById('gateCard');
+        if (cardWrapper && card) {
+          cardWrapper.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            var rotateX = (-y / rect.height) * 14;
+            var rotateY = (x / rect.width) * 14;
+            card.style.transform = 'perspective(1000px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.02, 1.02, 1.02)';
+          });
+          cardWrapper.addEventListener('mouseleave', function() {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          });
+        }
+
+        // Autofocus input if gate is active
+        var input = document.getElementById('adminAuthInput');
+        if (input && !document.documentElement.classList.contains('admin-authorized')) {
+          setTimeout(function() { input.focus(); }, 150);
+        }
+
+        window.handleAdminAuth = function(e) {
+          if (e) e.preventDefault();
+          var pass = (input ? input.value : '').trim();
+          var errorEl = document.getElementById('gateError');
+          var submitBtn = document.getElementById('gateSubmitBtn');
+          var btnText = document.getElementById('gateBtnText');
+
+          if (pass === REQUIRED_PASS) {
+            // Success
+            if (errorEl) errorEl.style.display = 'none';
+            if (input) input.classList.remove('error');
+            if (card) {
+              card.classList.remove('shake');
+              card.classList.add('granted');
+            }
+            if (submitBtn) {
+              submitBtn.classList.add('btn-granted');
+              submitBtn.disabled = true;
+            }
+            if (btnText) {
+              btnText.innerHTML = '✓ Access Granted — Decrypting OS...';
+            }
+
+            try {
+              sessionStorage.setItem(AUTH_KEY, 'rtx5090_verified');
+              localStorage.setItem(AUTH_KEY, 'rtx5090_verified');
+            } catch(err) {}
+
+            document.documentElement.classList.add('admin-authorized');
+
+            var gate = document.getElementById('admin-auth-gate');
+            if (gate) {
+              gate.classList.add('gate-closing');
+              setTimeout(function() {
+                gate.remove();
+              }, 400);
+            }
+          } else {
+            // Failure
+            if (errorEl) {
+              errorEl.style.display = 'flex';
+            }
+            if (input) {
+              input.classList.add('error');
+              input.value = '';
+              input.focus();
+            }
+            if (card) {
+              card.classList.remove('shake');
+              void card.offsetWidth; // trigger reflow
+              card.classList.add('shake');
+            }
+          }
+        };
+      })();
+    </script>
+
+    <div id="root"></div>
+    <script src="/scripts/seo-conversion-tracker.js" defer></script>
+</body>
+</html>

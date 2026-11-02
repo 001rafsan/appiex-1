@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="duneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A1705"/>
+      <stop offset="50%" stop-color="#140B02"/>
+      <stop offset="100%" stop-color="#080401"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="50" fill="url(#duneGrad)"/>
+  <circle cx="50" cy="50" r="46" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Dune sand dunes / minimalist luxury waves -->
+  <path d="M 20 62 C 34 44 48 68 80 40 C 74 68 56 74 20 62 Z" fill="url(#goldGrad)" opacity="0.85"/>
+  <path d="M 24 50 C 40 36 56 54 76 34 C 70 52 50 62 24 50 Z" fill="#FDE68A" opacity="0.95"/>
+  <text x="50" y="86" fill="#FCD34D" font-family="'Google Sans', system-ui, sans-serif" font-size="10" font-weight="900" text-anchor="middle" letter-spacing="2.5">DUNE</text>
+</svg>

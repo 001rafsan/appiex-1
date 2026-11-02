@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Appiex Client Access Portal</title>
+  <link rel="canonical" href="https://appiex.com/login">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Sign in to your Appiex client portal using your phone number to access project telemetry, sprints, and billing.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Oswald:wght@500;700&family=Anton&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #030408;
+      color: #F8FAFC;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    ::selection {
+      background: #FF2A4D;
+      color: #ffffff;
+    }
+
+    /* Ambient Background Aura */
+    .login-ambient-1 {
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(255, 42, 77, 0.28) 0%, rgba(220, 38, 38, 0.12) 45%, transparent 75%);
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .login-ambient-2 {
+      position: fixed;
+      bottom: -150px;
+      right: -100px;
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Matrix Cyber Grid */
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Glass Portal Card */
+    .portal-card {
+      background: rgba(13, 15, 22, 0.78);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 40px rgba(255, 42, 77, 0.15);
+      transition: all 0.3s ease;
+    }
+    .portal-card:hover {
+      border-color: rgba(255, 42, 77, 0.35);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9), 0 0 50px rgba(255, 42, 77, 0.22);
+    }
+
+    /* Input Styling */
+    .portal-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      transition: all 0.25s ease;
+    }
+    .portal-input:focus {
+      outline: none;
+      border-color: #FF2A4D;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 20px rgba(255, 42, 77, 0.3);
+    }
+
+    /* OTP Code Box */
+    .otp-box {
+      width: 54px;
+      height: 60px;
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      color: #ffffff;
+      transition: all 0.25s ease;
+      font-family: 'Montserrat', monospace;
+    }
+    .otp-box:focus {
+      outline: none;
+      border-color: #FF2A4D;
+      background: rgba(255, 42, 77, 0.1);
+      box-shadow: 0 0 20px rgba(255, 42, 77, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* CTA Glow Button */
+    .btn-portal-primary {
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 25px rgba(255, 42, 77, 0.45);
+    }
+    .btn-portal-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(255, 42, 77, 0.65);
+    }
+    .btn-portal-primary:active {
+      transform: translateY(0);
+    }
+  </style>
+  <script src="/scripts/visitor-tracker.js?v=20261029_v5"></script>
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+  </style>
+  <script src="/scripts/instant-nav.js?v=20261031_morph_x6" defer></script>
+
+</head>
+<body class="selection:bg-red-600 selection:text-white">
+  <div id="appiex-cuberto-curtain" aria-hidden="true"><div class="appiex-curtain-ambient"></div></div>
+
+  <!-- Ambient Lights -->
+  <div class="login-ambient-1"></div>
+  <div class="login-ambient-2"></div>
+  <div class="cyber-grid"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="relative z-20 w-full px-6 py-6 flex items-center justify-between max-w-6xl mx-auto">
+    <a href="index.html" class="flex items-center gap-3 group">
+      <img src="./images/appiex-wordmark-white.png" alt="appiex" class="h-7 w-auto object-contain group-hover:scale-105 transition-transform" />
+    </a>
+    <div class="flex items-center gap-3">
+      <a href="blog.html" class="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white hover:text-red-400 hover:border-red-500/40 transition">Blog</a>
+      <a href="index.html" class="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white hover:border-white/20 transition">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Login Main Content -->
+  <main class="relative z-10 w-full max-w-md mx-auto px-4 py-8 sm:py-12 flex-1 flex flex-col justify-center">
+    
+    <div class="portal-card p-8 sm:p-10 relative overflow-hidden">
+      
+      <!-- Top Badge -->
+      <div class="flex items-center justify-between mb-6">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-['Oswald',sans-serif] font-bold tracking-widest uppercase bg-red-600/20 text-[#FF2A4D] border border-red-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#FF2A4D] animate-ping"></span>
+          SECURE CLIENT ACCESS
+        </span>
+        <span class="text-[11px] font-mono text-slate-400">v2.4 ENCRYPTED</span>
+      </div>
+
+      <!-- Header Title -->
+      <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
+        Sign in to Appiex
+      </h1>
+      <p class="text-xs text-slate-300 leading-relaxed mb-8">
+        Access your sprint deliverables, active milestones, architecture blueprints, and direct team line.
+      </p>
+
+      <!-- STEP 1: PHONE NUMBER FORM -->
+      <div id="step-phone" class="space-y-5">
+        <div>
+          <label class="block text-xs font-semibold tracking-wide text-slate-300 uppercase mb-2">
+            Phone Number
+          </label>
+          <div class="flex gap-2">
+            <select id="country-code" class="portal-input px-3 py-3 rounded-xl text-xs font-mono font-medium focus:outline-none cursor-pointer">
+              <option value="+880" selected>🇧🇩 +880 (BD)</option>
+              <option value="+1">🇺🇸 +1 (USA)</option>
+              <option value="+44">🇬🇧 +44 (UK)</option>
+              <option value="+971">🇦🇪 +971 (UAE)</option>
+              <option value="+91">🇮🇳 +91 (IN)</option>
+              <option value="+65">🇸🇬 +65 (SG)</option>
+              <option value="+49">🇩🇪 +49 (DE)</option>
+              <option value="+61">🇦🇺 +61 (AU)</option>
+            </select>
+            <input type="tel" id="phone-number" placeholder="1700-000000" maxlength="11" autofocus class="portal-input flex-1 px-4 py-3 rounded-xl text-sm placeholder-slate-500 font-medium font-mono" />
+          </div>
+          <span id="phone-error" class="hidden text-[11px] text-red-400 mt-1.5 block">Please enter a valid phone number</span>
+        </div>
+
+        <button type="button" id="btn-send-otp" class="btn-portal-primary w-full py-3.5 px-6 rounded-xl text-sm flex items-center justify-center gap-2">
+          <span>Send Verification Code</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button>
+
+
+      </div>
+
+      <!-- STEP 2: OTP VERIFICATION FORM (Initially Hidden) -->
+      <div id="step-otp" class="space-y-6 hidden">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-semibold tracking-wide text-slate-300 uppercase">
+              Enter 4-Digit Code
+            </label>
+            <button type="button" id="btn-change-phone" class="text-xs text-red-400 hover:underline">
+              Change Number
+            </button>
+          </div>
+          
+          <div class="text-xs text-slate-400 mb-4 font-mono flex items-center justify-between">
+            <span id="otp-phone-display">+880 1712-345678</span>
+            <!-- Demo Hint Pill -->
+            <button type="button" id="btn-fill-demo-code" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30 transition text-[10px] font-bold" title="Click to auto-fill">
+              Code: <span id="demo-code-text">4829</span>
+            </button>
+          </div>
+
+          <div class="flex justify-between gap-3">
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" />
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" />
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" />
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" />
+          </div>
+          <span id="otp-error" class="hidden text-[11px] text-red-400 mt-2 text-center block">Invalid code. Use demo code 4829 or click above.</span>
+        </div>
+
+        <button type="button" id="btn-verify-otp" class="btn-portal-primary w-full py-3.5 px-6 rounded-xl text-sm flex items-center justify-center gap-2">
+          <span>Verify &amp; Enter Portal</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </button>
+
+        <div class="flex items-center justify-between text-xs text-slate-400">
+          <span id="timer-text">Resend code in <b class="text-white" id="countdown">45</b>s</span>
+          <button type="button" id="btn-resend-otp" class="text-red-400 hover:underline hidden">Resend Code</button>
+        </div>
+      </div>
+
+      <!-- Security Notice -->
+      <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+        <span>🔒 256-Bit TLS Encryption</span>
+        <span>Appiex Auth Guard</span>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 w-full py-6 text-center text-xs text-slate-500 font-mono">
+    &copy; 2026 APPIEX — ALL RIGHTS RESERVED
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // If already logged in, redirect straight to profile
+      const existingUser = localStorage.getItem('appiex_user');
+      if (existingUser) {
+        window.location.href = 'profile.html';
+        return;
+      }
+
+      const stepPhone = document.getElementById('step-phone');
+      const stepOtp = document.getElementById('step-otp');
+      const countryCode = document.getElementById('country-code');
+      const phoneNumber = document.getElementById('phone-number');
+      const btnSendOtp = document.getElementById('btn-send-otp');
+      
+      const phoneError = document.getElementById('phone-error');
+
+      const otpPhoneDisplay = document.getElementById('otp-phone-display');
+      const btnChangePhone = document.getElementById('btn-change-phone');
+      const btnVerifyOtp = document.getElementById('btn-verify-otp');
+      const otpBoxes = document.querySelectorAll('.otp-box');
+      const otpError = document.getElementById('otp-error');
+      const demoCodeText = document.getElementById('demo-code-text');
+      const btnFillDemoCode = document.getElementById('btn-fill-demo-code');
+      const countdownEl = document.getElementById('countdown');
+      const timerText = document.getElementById('timer-text');
+      const btnResendOtp = document.getElementById('btn-resend-otp');
+
+      let currentGeneratedOtp = '4829';
+      let fullFormattedPhone = '';
+      let timerInterval;
+
+      // Format input as user types: max 10 digits, formatted as ****-******
+      phoneNumber.addEventListener('input', (e) => {
+        let raw = e.target.value.replace(/\D/g, '');
+        if (raw.length > 10) raw = raw.slice(0, 10);
+        let formatted = raw;
+        if (raw.length > 4) {
+          formatted = raw.slice(0, 4) + '-' + raw.slice(4);
+        }
+        e.target.value = formatted;
+        phoneError.classList.add('hidden');
+      });
+
+      phoneNumber.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && e.target.value.endsWith('-')) {
+          e.preventDefault();
+          e.target.value = e.target.value.slice(0, -2);
+        }
+        if (e.key === 'Enter') btnSendOtp.click();
+      });
+
+      // Send OTP Action
+      btnSendOtp.addEventListener('click', () => {
+        const rawDigits = phoneNumber.value.replace(/\D/g, '');
+        if (rawDigits.length !== 10) {
+          phoneError.innerText = 'Please enter a 10-digit phone number (****-******)';
+          phoneError.classList.remove('hidden');
+          phoneNumber.focus();
+          return;
+        }
+
+        fullFormattedPhone = `${countryCode.value} ${phoneNumber.value}`;
+        currentGeneratedOtp = String(Math.floor(1000 + Math.random() * 9000));
+        demoCodeText.innerText = currentGeneratedOtp;
+
+        btnSendOtp.innerHTML = '<span>Sending SMS...</span>';
+        btnSendOtp.disabled = true;
+
+        setTimeout(() => {
+          btnSendOtp.innerHTML = '<span>Send Verification Code</span>';
+          btnSendOtp.disabled = false;
+
+          otpPhoneDisplay.innerText = fullFormattedPhone;
+          stepPhone.classList.add('hidden');
+          stepOtp.classList.remove('hidden');
+
+          startCountdown();
+          if (otpBoxes[0]) otpBoxes[0].focus();
+        }, 600);
+      });
+
+      // Auto-fill demo code
+      btnFillDemoCode.addEventListener('click', () => {
+        const digits = currentGeneratedOtp.split('');
+        otpBoxes.forEach((box, i) => {
+          box.value = digits[i] || '';
+        });
+        otpError.classList.add('hidden');
+        if (otpBoxes[3]) otpBoxes[3].focus();
+      });
+
+      // Change phone number back
+      btnChangePhone.addEventListener('click', () => {
+        stepOtp.classList.add('hidden');
+        stepPhone.classList.remove('hidden');
+        clearInterval(timerInterval);
+        phoneNumber.focus();
+      });
+
+      // OTP Input focus management
+      otpBoxes.forEach((box, index) => {
+        box.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/\D/g, '');
+          e.target.value = val ? val[0] : '';
+          otpError.classList.add('hidden');
+
+          if (val && index < otpBoxes.length - 1) {
+            otpBoxes[index + 1].focus();
+          }
+        });
+
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && index > 0) {
+            otpBoxes[index - 1].focus();
+          } else if (e.key === 'Enter') {
+            btnVerifyOtp.click();
+          }
+        });
+      });
+
+      // Countdown Timer
+      function startCountdown() {
+        clearInterval(timerInterval);
+        let seconds = 45;
+        countdownEl.innerText = seconds;
+        timerText.classList.remove('hidden');
+        btnResendOtp.classList.add('hidden');
+
+        timerInterval = setInterval(() => {
+          seconds--;
+          countdownEl.innerText = seconds;
+          if (seconds <= 0) {
+            clearInterval(timerInterval);
+            timerText.classList.add('hidden');
+            btnResendOtp.classList.remove('hidden');
+          }
+        }, 1000);
+      }
+
+      btnResendOtp.addEventListener('click', () => {
+        currentGeneratedOtp = String(Math.floor(1000 + Math.random() * 9000));
+        demoCodeText.innerText = currentGeneratedOtp;
+        startCountdown();
+        alert(`New code sent: ${currentGeneratedOtp}`);
+      });
+
+      // Verify OTP and redirect to profile
+      btnVerifyOtp.addEventListener('click', () => {
+        let enteredCode = '';
+        otpBoxes.forEach(b => enteredCode += b.value);
+
+        // Accept the generated code, or any 4 digit code for convenience
+        if (enteredCode.length !== 4) {
+          otpError.innerText = 'Please enter all 4 digits';
+          otpError.classList.remove('hidden');
+          return;
+        }
+
+        btnVerifyOtp.innerHTML = '<span>Authenticating...</span>';
+        btnVerifyOtp.disabled = true;
+
+        setTimeout(() => {
+          // Store user profile in localStorage
+          const userObj = {
+            phone: fullFormattedPhone || '+880 1798-223344',
+            name: (function(){ try { const db = JSON.parse(localStorage.getItem("appiex_partners_database") || "{}"); const normKey = (fullFormattedPhone || "").replace(/[^0-9]/g, ""); if (db[normKey] && db[normKey].profile && db[normKey].profile.name) return db[normKey].profile.name; } catch(e){} return "User " + (fullFormattedPhone || "Client"); })(),
+            avatar: './images/6251456506175886234.jpg',
+            accountId: 'APX-' + Math.floor(100000 + Math.random() * 900000),
+            tier: 'Enterprise VIP Client',
+            joined: 'Oct 2026',
+            projectsCount: 2,
+            spent: '$14,800 USD',
+            loginTime: new Date().toISOString()
+          };
+          localStorage.setItem('appiex_user', JSON.stringify(userObj));
+
+          // Ingest into Live Admin Telemetry
+          if (window.appiexRecordLogin) {
+            window.appiexRecordLogin({
+              name: userObj.name,
+              phone: userObj.phone,
+              email: (userObj.phone.replace(/[^0-9]/g, '') || 'client') + '@gmail.com'
+            });
+          }
+
+          // Success notification
+          btnVerifyOtp.classList.remove('btn-portal-primary');
+          btnVerifyOtp.style.background = '#10B981';
+          btnVerifyOtp.innerHTML = '<span>Verified! Launching Portal...</span>';
+
+          setTimeout(() => {
+            window.location.href = 'profile.html';
+          }, 600);
+        }, 700);
+      });
+    });
+  </script>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+</body>
+</html>

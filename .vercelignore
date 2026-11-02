@@ -1,0 +1,14 @@
+.env*
+scratch/
+node_modules/
+admin_source/
+*.py
+test_curv.txt
+seo-operations/
+dist/
+.lighthouseci/
+.unlighthouse/
+admin_repo/
+temp_admin_repo/
+*.bak
+*.log

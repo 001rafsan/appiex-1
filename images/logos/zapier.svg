@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 40" fill="none">
+  <g fill="#FFFFFF">
+    <!-- Zapier Asterisk mark -->
+    <path d="M18 10v20M8 20h20M11 13l14 14M25 13 11 27" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Zapier Text -->
+    <text x="40" y="27" font-family="'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.02em">zapier</text>
+  </g>
+</svg>

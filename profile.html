@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner & Referral Portal | Appiex Verified Partner Network</title>
+  <link rel="canonical" href="https://appiex.com/profile">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Official Appiex Partner & Referral Dashboard. Track referred clients, deal pipeline status, instant commission earnings, and verified payouts.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Canvas Confetti for celebratory referral submit -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #030408;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    ::selection {
+      background: #FF2A4D;
+      color: #ffffff;
+    }
+
+    /* Ambient Spatial Glows */
+    .portal-glow-1 {
+      position: fixed;
+      top: -160px;
+      left: 30%;
+      width: 800px;
+      height: 450px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255, 42, 77, 0.16) 0%, rgba(220, 38, 38, 0.05) 50%, transparent 75%);
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .portal-glow-2 {
+      position: fixed;
+      bottom: -100px;
+      right: 10%;
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+      filter: blur(110px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 85%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glass Cards & Panels */
+    .glass-card {
+      background: rgba(11, 14, 22, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      transition: all 0.25s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    .glass-card-interactive {
+      background: rgba(13, 17, 26, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      transition: all 0.2s ease;
+    }
+    .glass-card-interactive:hover {
+      border-color: rgba(255, 42, 77, 0.35);
+      background: rgba(18, 23, 36, 0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 42, 77, 0.1);
+    }
+
+    /* Red Primary Buttons */
+    .btn-red {
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      color: #ffffff;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.38);
+    }
+    .btn-red:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(255, 42, 77, 0.6);
+    }
+
+    /* Active Nav Item */
+    .nav-tab-active {
+      background: rgba(255, 42, 77, 0.12);
+      color: #FF4D6D !important;
+      border: 1px solid rgba(255, 42, 77, 0.3);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030408;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E2330;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF2A4D;
+    }
+  </style>
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+  </style>
+  <script src="/scripts/instant-nav.js" defer></script>
+
+</head>
+<body class="selection:bg-red-600 selection:text-white flex flex-col min-h-screen">
+  <div id="appiex-cuberto-curtain" aria-hidden="true"><div class="appiex-curtain-ambient"></div></div>
+
+  <!-- Ambient Lights -->
+  <div class="portal-glow-1"></div>
+  <div class="portal-glow-2"></div>
+  <div class="cyber-grid"></div>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="relative z-30 w-full px-4 sm:px-8 py-3.5 flex items-center justify-between border-b border-white/10 bg-[#06080E]/85 backdrop-blur-xl">
+    <div class="flex items-center gap-4">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <img src="./images/appiex-wordmark-white.png" alt="Appiex" class="h-6 sm:h-7 w-auto object-contain group-hover:scale-105 transition-transform" />
+      </a>
+      <span class="hidden sm:inline-block w-px h-5 bg-white/15"></span>
+      <div class="hidden sm:flex items-center gap-2">
+        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Partner Network
+        </span>
+        <span class="text-xs text-slate-400 font-mono" id="nav-partner-id">APX-REF-2026</span>
+      </div>
+    </div>
+
+    <!-- Quick Links & Actions -->
+    <div class="flex items-center gap-3">
+      <a href="refer.html" class="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg hover:bg-white/5">
+        <span>Public Refer Page</span>
+        <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+
+      <button type="button" onclick="openAgreementModal()" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <span class="hidden sm:inline">Partner Terms</span>
+      </button>
+
+      <button type="button" onclick="switchTab('refer')" class="btn-red px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+        <span>+ Refer Client</span>
+      </button>
+
+      <!-- Logout -->
+      <button type="button" id="btn-switch-partner-nav" onclick="openSwitchPartnerModal()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition flex items-center gap-1.5" title="Switch Partner Profile or Log In With Another Name">
+        <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+        <span class="hidden sm:inline">Switch Partner</span>
+      </button>
+      <button type="button" id="btn-logout" class="p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 border border-rose-500/20 hover:border-rose-500/40 transition flex items-center gap-1.5" title="Logout">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        <span class="hidden sm:inline">Logout</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Layout: Sidebar + Main Content -->
+  <div class="relative z-10 flex-1 flex flex-col lg:flex-row max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 gap-6">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="w-full lg:w-64 shrink-0 flex flex-col gap-5">
+      <!-- Profile Mini Card -->
+      <div class="glass-card p-5 relative overflow-hidden">
+        <div class="flex items-center gap-3.5 mb-3">
+          <div class="relative w-12 h-12 rounded-xl bg-gradient-to-tr from-red-600 to-indigo-600 p-0.5 shadow-md">
+            <img id="user-avatar" src="./images/6251456506175886234.jpg" alt="Partner Avatar" class="w-full h-full object-cover rounded-[10px]" onerror="this.src='https://ui-avatars.com/api/?name=Partner&background=0D111A&color=FF2A4D'">
+            <div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-[#0B0E16] rounded-full"></div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <h2 class="text-sm font-bold text-white truncate" id="sidebar-user-name">Adil Alim</h2>
+            <div class="flex items-center gap-1.5 text-[11px] text-slate-400 mt-0.5">
+              <span class="text-emerald-400 font-semibold font-mono">15% Tier</span>
+              <span>•</span>
+              <span class="truncate">Gold Partner</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Referral Code Box -->
+        <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+          <div class="min-w-0">
+            <span class="text-[9px] uppercase font-mono tracking-wider text-slate-400 block">Referral Code</span>
+            <span class="text-xs font-mono font-bold text-red-400 block truncate" id="sidebar-code">APX-ADIL-77</span>
+          </div>
+          <button type="button" onclick="copyReferralCode()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition text-xs flex items-center gap-1" title="Copy code">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span class="text-[10px] font-semibold" id="sidebar-copy-label">Copy</span>
+          </button>
+        </div>
+        <button type="button" id="btn-switch-sidebar" onclick="openSwitchPartnerModal()" class="mt-2.5 w-full py-1.5 px-2 rounded-xl bg-white/5 hover:bg-white/10 text-[11px] font-semibold text-slate-300 hover:text-white transition border border-white/10 flex items-center justify-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+          <span>Switch Partner / Database</span>
+        </button>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="glass-card p-2.5 flex flex-row lg:flex-col gap-1.5 overflow-x-auto text-xs font-semibold">
+        <button type="button" onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="nav-tab-active flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition whitespace-nowrap">
+          <svg class="w-4 h-4 text-inherit" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span>Dashboard</span>
+        </button>
+
+        <button type="button" onclick="switchTab('referrals')" id="tab-btn-referrals" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition whitespace-nowrap">
+          <svg class="w-4 h-4 text-inherit" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <span>My Referrals</span>
+          <span class="ml-auto px-1.5 py-0.5 rounded-md text-[10px] font-mono bg-white/10 text-slate-300" id="badge-referral-count">4</span>
+        </button>
+
+        <button type="button" onclick="switchTab('refer')" id="tab-btn-refer" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition whitespace-nowrap">
+          <svg class="w-4 h-4 text-inherit" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+          <span>Refer a Client</span>
+        </button>
+
+        <button type="button" onclick="switchTab('earnings')" id="tab-btn-earnings" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition whitespace-nowrap">
+          <svg class="w-4 h-4 text-inherit" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Earnings &amp; Payouts</span>
+        </button>
+
+        <button type="button" onclick="switchTab('profile')" id="tab-btn-profile" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition whitespace-nowrap">
+          <svg class="w-4 h-4 text-inherit" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span>Profile &amp; Settings</span>
+        </button>
+      </nav>
+
+      <!-- Payout Method Preview Box -->
+      <div class="glass-card p-4 text-xs space-y-2">
+        <div class="flex items-center justify-between text-slate-400">
+          <span class="text-[10px] uppercase font-bold tracking-wider">Active Payout Account</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+        <div class="font-bold text-white flex items-center gap-1.5" id="sidebar-payout-label">
+          <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          <span>Wise International (USD)</span>
+        </div>
+        <p class="text-[11px] font-mono text-slate-400" id="sidebar-payout-mask">•••• 9842 (Verified)</p>
+        <button type="button" onclick="switchTab('profile'); document.getElementById('payout-settings-anchor').scrollIntoView({behavior:'smooth'});" class="w-full mt-1 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] font-semibold transition border border-white/5">
+          Manage Destination
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Dynamic Content Body -->
+    <main class="flex-1 min-w-0 space-y-6">
+
+      <!-- ========================================== -->
+      <!-- VIEW 1: DASHBOARD OVERVIEW -->
+      <!-- ========================================== -->
+      <section id="view-dashboard" class="space-y-6">
+        
+        <!-- Welcome Hero Banner -->
+        <div class="glass-card p-6 sm:p-7 relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="relative flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold text-red-400 uppercase tracking-wider bg-red-500/10 px-2.5 py-0.5 rounded-md border border-red-500/20 font-mono">
+                  Appiex Verified Partner Network
+                </span>
+                <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+                <span class="text-xs text-slate-400 font-mono" id="hero-partner-code">APX-ADIL-77</span>
+              </div>
+              <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                Welcome back, <span id="hero-partner-name">Adil Alim</span>
+              </h1>
+              <p class="text-xs text-slate-400 max-w-xl leading-relaxed">
+                Operating under <span class="text-slate-200 font-semibold">Standard Partner Agreement v1.0</span>. Your active commission rate is <span class="text-emerald-400 font-bold">15% Instant Commission</span> on all closed deals.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button type="button" onclick="openAgreementModal()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>View Terms</span>
+              </button>
+              <button type="button" onclick="switchTab('refer')" class="btn-red px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                <span>+ Refer a Client</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Key SDR Metric Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Card 1: Total Referrals -->
+          <div class="glass-card p-5 relative overflow-hidden group">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Referrals</span>
+              <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-2xl font-extrabold text-white font-mono" id="counter-total-refs">4</div>
+              <p class="text-[11px] text-slate-400 mt-0.5">Submitted introduction records</p>
+            </div>
+          </div>
+
+          <!-- Card 2: In Progress -->
+          <div class="glass-card p-5 relative overflow-hidden group">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">In Progress</span>
+              <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-2xl font-extrabold text-blue-400 font-mono" id="counter-in-progress">2</div>
+              <p class="text-[11px] text-slate-400 mt-0.5">Active proposals &amp; discovery</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Won Clients -->
+          <div class="glass-card p-5 relative overflow-hidden group">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Won Clients</span>
+              <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-2xl font-extrabold text-emerald-400 font-mono" id="counter-won-clients">2</div>
+              <p class="text-[11px] text-slate-400 mt-0.5">Signed commercial contracts</p>
+            </div>
+          </div>
+
+          <!-- Card 4: Total Paid -->
+          <div class="glass-card p-5 relative overflow-hidden group">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Paid</span>
+              <div class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-2xl font-extrabold text-white font-mono" id="counter-total-paid">$1,020 USD</div>
+              <p class="text-[11px] text-slate-400 mt-0.5">Disbursed to Wise destination</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conspicuous Pending Pipeline Indicator Banner -->
+        <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping shrink-0"></span>
+            <p class="text-slate-200">
+              <span class="font-bold text-amber-300">Pending Pipeline Indicator:</span>
+              <span class="text-white font-bold font-mono text-sm ml-1" id="banner-pending-usd">$585 USD</span>
+              <span class="text-slate-400 text-[11px] ml-1.5 hidden md:inline">(Non-payable indicative pipeline estimate based on active proposals)</span>
+            </p>
+          </div>
+          <button type="button" onclick="switchTab('earnings')" class="text-amber-300 hover:text-amber-200 font-bold text-xs flex items-center gap-1 shrink-0 underline underline-offset-2">
+            <span>View Breakdown &rarr;</span>
+          </button>
+        </div>
+
+        <!-- Latest Referrals + Published Activity Feed Split -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Latest Referrals Table (2 Cols) -->
+          <div class="lg:col-span-2 glass-card overflow-hidden flex flex-col">
+            <div class="p-5 border-b border-white/10 flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-white">Latest Referrals</h3>
+                <p class="text-[11px] text-slate-400">Most recent client introductions &amp; deal stages</p>
+              </div>
+              <button type="button" onclick="switchTab('referrals')" class="text-xs font-semibold text-red-400 hover:text-red-300 flex items-center gap-1 transition">
+                <span>View All (<span id="latest-table-count">4</span>) &rarr;</span>
+              </button>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-slate-300">
+                <thead class="bg-white/[0.02] text-[10px] uppercase font-bold text-slate-400 tracking-wider border-b border-white/5 font-mono">
+                  <tr>
+                    <th class="py-3 px-4">Ref ID</th>
+                    <th class="py-3 px-4">Client / Company</th>
+                    <th class="py-3 px-4">Service</th>
+                    <th class="py-3 px-4">Stage</th>
+                    <th class="py-3 px-4 text-right">Commission</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 font-normal" id="latest-referrals-tbody">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Published Activity Feed (1 Col) -->
+          <div class="glass-card p-5 flex flex-col">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <h3 class="text-sm font-bold text-white">Published Activity</h3>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Admin OS Log</span>
+            </div>
+
+            <div class="mt-4 space-y-3.5 flex-1 overflow-y-auto max-h-[320px]">
+              <div class="flex items-start gap-3 text-xs">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 mt-1 shrink-0"></span>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-white">Disbursement Settled</span>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">Finance</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">$600 USD wired to Wise destination for Watch 24 BD milestone.</p>
+                  <span class="text-[10px] text-slate-500 font-mono block mt-0.5">Today • 10:45 AM</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 text-xs">
+                <span class="w-2 h-2 rounded-full bg-blue-400 mt-1 shrink-0"></span>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-white">Deal Contract Won</span>
+                    <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">Sales</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">BioSync Labs signed $4,200 Next.js 3D WebGL portal contract.</p>
+                  <span class="text-[10px] text-slate-500 font-mono block mt-0.5">Yesterday • 04:20 PM</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 text-xs">
+                <span class="w-2 h-2 rounded-full bg-amber-400 mt-1 shrink-0"></span>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-white">Proposal Sent</span>
+                    <span class="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded">Discovery</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Commercial scope dispatched to Apex Logistics AI Automation.</p>
+                  <span class="text-[10px] text-slate-500 font-mono block mt-0.5">3 days ago</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 text-xs">
+                <span class="w-2 h-2 rounded-full bg-red-400 mt-1 shrink-0"></span>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-white">Lead Qualified</span>
+                    <span class="text-[10px] font-mono text-red-400 bg-red-500/10 px-1.5 py-0.5 rounded">Ops</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Introduction for Horology Lab cleared attribution verification.</p>
+                  <span class="text-[10px] text-slate-500 font-mono block mt-0.5">5 days ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: MY REFERRALS LIST -->
+      <!-- ========================================== -->
+      <section id="view-referrals" class="hidden space-y-6">
+        <div class="glass-card p-5 sm:p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="text-lg font-bold text-white">Client Referrals &amp; Pipeline</h2>
+              <p class="text-xs text-slate-400">Track all introductions, sales milestone status, deal amounts, and your 15% commission.</p>
+            </div>
+            
+            <button type="button" onclick="switchTab('refer')" class="btn-red px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 self-start sm:self-auto">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+              <span>+ Refer New Client</span>
+            </button>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+            <div class="relative w-full sm:flex-1">
+              <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input type="text" id="ref-search-input" oninput="filterReferralsTable()" placeholder="Search client name, company, or service..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-red-500/60">
+            </div>
+
+            <div class="flex items-center gap-1.5 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+              <button type="button" onclick="setRefStatusFilter('all')" id="rf-filter-all" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-600 text-white">All</button>
+              <button type="button" onclick="setRefStatusFilter('Won')" id="rf-filter-won" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300">Won</button>
+              <button type="button" onclick="setRefStatusFilter('Proposal')" id="rf-filter-prop" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300">Proposal</button>
+              <button type="button" onclick="setRefStatusFilter('Discovery')" id="rf-filter-disc" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300">Discovery</button>
+            </div>
+          </div>
+
+          <!-- Main Referrals Table -->
+          <div class="overflow-x-auto rounded-xl border border-white/10">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="bg-white/[0.03] text-[10px] uppercase font-bold text-slate-400 tracking-wider border-b border-white/10 font-mono">
+                <tr>
+                  <th class="py-3.5 px-4">Reference</th>
+                  <th class="py-3.5 px-4">Client / Company</th>
+                  <th class="py-3.5 px-4">Service</th>
+                  <th class="py-3.5 px-4">Deal Value</th>
+                  <th class="py-3.5 px-4">Commission (15%)</th>
+                  <th class="py-3.5 px-4">Sales Stage</th>
+                  <th class="py-3.5 px-4 text-right">Details</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5" id="all-referrals-tbody">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 3: REFER A CLIENT FORM -->
+      <!-- ========================================== -->
+      <section id="view-refer" class="hidden space-y-6">
+        <div class="max-w-3xl mx-auto glass-card p-6 sm:p-8 space-y-6">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-red-400 bg-red-500/10 px-2.5 py-0.5 rounded border border-red-500/20 font-mono">
+                Direct Lead Attribution
+              </span>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Refer a Business or Client to Appiex</h2>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Submit your client’s details. A unique reference ID is issued, and our solutions architects initiate discovery within 24 hours. Once the client starts, you receive up to 15% instant commission!
+            </p>
+          </div>
+
+          <form id="refer-client-form" onsubmit="handleReferralSubmit(event)" class="space-y-5">
+            <!-- Row 1: Client Name & Company -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Client Contact Name <span class="text-red-400">*</span>
+                </label>
+                <input type="text" id="frm-client-name" required placeholder="e.g. Tanvir Ahmed" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-red-500">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Company / Brand Name <span class="text-slate-500 font-normal">(Optional)</span>
+                </label>
+                <input type="text" id="frm-company-name" placeholder="e.g. Apex Luxury Retail" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-red-500">
+              </div>
+            </div>
+
+            <!-- Row 2: Email & Phone -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Client Email Address <span class="text-red-400">*</span>
+                </label>
+                <input type="email" id="frm-client-email" required placeholder="e.g. tanvir@apexluxury.com" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-red-500">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Phone / WhatsApp <span class="text-slate-500 font-normal">(Recommended)</span>
+                </label>
+                <input type="tel" id="frm-client-phone" placeholder="e.g. +880 1700-123456" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-red-500">
+              </div>
+            </div>
+
+            <!-- Row 3: Target Service Category -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                Target Appiex Service <span class="text-red-400">*</span>
+              </label>
+              <select id="frm-service" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090C14] border border-white/10 text-xs text-white focus:outline-none focus:border-red-500 cursor-pointer">
+                <option value="Custom Web Development (Next.js & React)">Custom Web Development (Next.js &amp; React)</option>
+                <option value="Interactive 3D WebGL & Motion Websites">Interactive 3D WebGL &amp; Motion Websites</option>
+                <option value="AI Workflow Automation & Chatbots (n8n/Python)">AI Workflow Automation &amp; Chatbots (n8n/Python)</option>
+                <option value="Headless E-Commerce & Shopify Plus">Headless E-Commerce &amp; Shopify Plus</option>
+                <option value="Full-Stack Mobile App & Cloud Backend">Full-Stack Mobile App &amp; Cloud Backend</option>
+                <option value="Enterprise Technical SEO & Growth">Enterprise Technical SEO &amp; Growth</option>
+              </select>
+            </div>
+
+            <!-- Row 4: Estimated Budget & Timeline -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Estimated Project Budget
+                </label>
+                <select id="frm-budget" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090C14] border border-white/10 text-xs text-white focus:outline-none focus:border-red-500 cursor-pointer">
+                  <option value="$500 - $1,500 (Est. Commission: $75 - $225 USD)">$500 - $1,500 (Est. Commission: $75 - $225 USD)</option>
+                  <option value="$1,500 - $3,500 (Est. Commission: $225 - $525 USD)" selected>$1,500 - $3,500 (Est. Commission: $225 - $525 USD)</option>
+                  <option value="$3,500 - $7,500 (Est. Commission: $525 - $1,125 USD)">$3,500 - $7,500 (Est. Commission: $525 - $1,125 USD)</option>
+                  <option value="$7,500+ Enterprise (Est. Commission: $1,125+ USD)">$7,500+ Enterprise (Est. Commission: $1,125+ USD)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Expected Timeline
+                </label>
+                <select id="frm-timeline" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090C14] border border-white/10 text-xs text-white focus:outline-none focus:border-red-500 cursor-pointer">
+                  <option value="Immediate (1-2 weeks)">Immediate (1-2 weeks)</option>
+                  <option value="Within 1 month" selected>Within 1 month</option>
+                  <option value="Exploring for next quarter">Exploring for next quarter</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 5: Project Need & Notes -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                Project Need &amp; Scope Summary <span class="text-red-400">*</span>
+              </label>
+              <textarea id="frm-notes" rows="3" required placeholder="What does this business need? (e.g. Modern e-commerce redesign, payment gateway integration, WhatsApp AI lead generation, or 3D product showcase)..." class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-red-500 resize-none"></textarea>
+            </div>
+
+            <!-- Consent Checkbox -->
+            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition">
+              <input type="checkbox" required class="mt-0.5 rounded text-red-600 bg-black/40 border-white/20 focus:ring-red-500">
+              <span class="text-xs text-slate-300 leading-relaxed">
+                I confirm that I have connected with this client and have permission to introduce them to Appiex. I understand that commissions are disbursed upon contract execution and client advance clearance.
+              </span>
+            </label>
+
+            <!-- Submit Button & Guarantee -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
+              <div class="flex items-center gap-2 text-[11px] text-slate-400">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <span>Protected by Appiex Partner Registry</span>
+              </div>
+
+              <button type="submit" id="btn-submit-referral" class="w-full sm:w-auto btn-red px-6 py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+                <span>Submit Client &amp; Lock In 15% Commission &rarr;</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Receipt Box (Hidden by default) -->
+          <div id="referral-success-receipt" class="hidden p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mx-auto text-emerald-400">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">Client Introduction Recorded!</h3>
+              <p class="text-xs text-slate-300 max-w-md mx-auto mt-1">
+                Your referral has been successfully registered under your Partner Account with an immutable tracking ID.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-black/40 border border-white/10 max-w-sm mx-auto flex items-center justify-between">
+              <div class="text-left">
+                <span class="text-[9px] uppercase font-mono text-slate-400 block">Referral Reference ID</span>
+                <span class="text-sm font-mono font-bold text-emerald-400" id="receipt-ref-id">REF-2026-9481</span>
+              </div>
+              <button type="button" onclick="copyReceiptRefId()" class="px-2.5 py-1 rounded bg-white/10 text-xs text-white hover:bg-white/20 transition">Copy</button>
+            </div>
+            <div class="flex items-center justify-center gap-3 pt-2">
+              <a id="receipt-whatsapp-link" href="#" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2">
+                <span>Notify Team on WhatsApp &rarr;</span>
+              </a>
+              <button type="button" onclick="resetReferralForm()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold">
+                Submit Another
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 4: EARNINGS & PAYOUTS -->
+      <!-- ========================================== -->
+      <section id="view-earnings" class="hidden space-y-6">
+        
+        <!-- 3 Prominent SDR 2.4 Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Card 1: Estimated -->
+          <div class="glass-card p-5 relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Estimated Pipeline</span>
+              <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-2xl font-extrabold text-amber-300 font-mono" id="earn-estimated">$585 USD</div>
+              <p class="text-[11px] text-slate-400 mt-1">Indicative pipeline estimate from open client proposals.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Approved -->
+          <div class="glass-card p-5 relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Approved Balance</span>
+              <div class="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-2xl font-extrabold text-blue-400 font-mono" id="earn-approved">$420 USD</div>
+              <p class="text-[11px] text-slate-400 mt-1">Authorized by Finance following invoice clearance.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Paid -->
+          <div class="glass-card p-5 relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Settled</span>
+              <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-2xl font-extrabold text-emerald-400 font-mono" id="earn-paid">$1,020 USD</div>
+              <p class="text-[11px] text-slate-400 mt-1">Reconciled funds successfully transferred to your account.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payout Controls & Next Window -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="glass-card p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Payout Destination</span>
+                <p class="text-xs font-bold text-white mt-0.5" id="earn-payout-name">Wise International (USD)</p>
+                <span class="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">● Verified Destination</span>
+              </div>
+            </div>
+            <button type="button" onclick="switchTab('profile')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-300">
+              Manage
+            </button>
+          </div>
+
+          <div class="glass-card p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Next Payout Cycle</span>
+                <p class="text-xs font-bold text-white mt-0.5">Bi-Weekly / Instant on Advance</p>
+                <span class="text-[10px] text-slate-400">Within 24-48 hours of invoice clearance</span>
+              </div>
+            </div>
+            <button type="button" onclick="alert('Payouts are automatically wired as soon as client contracts clear reconciliation.')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-300">
+              Policy Info
+            </button>
+          </div>
+
+          <div class="glass-card p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Governing Agreement</span>
+                <p class="text-xs font-bold text-white mt-0.5">Partner Framework 2026</p>
+                <span class="text-[10px] text-slate-400">15% commission on all billable milestones</span>
+              </div>
+            </div>
+            <button type="button" onclick="openAgreementModal()" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-300">
+              PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Ledger Table & CSV Export -->
+        <div class="glass-card overflow-hidden">
+          <div class="p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-sm font-bold text-white">Reconciled Financial Ledger</h3>
+              <p class="text-[11px] text-slate-400">Audited statement of commission entries, client payments, and disbursement references</p>
+            </div>
+            <button type="button" onclick="exportEarningsCsv()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center gap-2">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Export CSV</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="bg-white/[0.03] text-[10px] uppercase font-bold text-slate-400 tracking-wider border-b border-white/10 font-mono">
+                <tr>
+                  <th class="py-3 px-4">Entry Ref</th>
+                  <th class="py-3 px-4">Client / Project</th>
+                  <th class="py-3 px-4">Deal Value</th>
+                  <th class="py-3 px-4">Rate</th>
+                  <th class="py-3 px-4">Commission</th>
+                  <th class="py-3 px-4">Status</th>
+                  <th class="py-3 px-4 text-right">Settlement Reference</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5 font-mono" id="earnings-ledger-tbody">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 5: PROFILE & TOOLS -->
+      <!-- ========================================== -->
+      <section id="view-profile" class="hidden space-y-6">
+        
+        <!-- Referral URL & Personal Tracking Tools Box -->
+        <div class="glass-card p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-red-400 bg-red-500/10 px-2.5 py-0.5 rounded border border-red-500/20 font-mono">
+                Attribution Credentials
+              </span>
+              <h2 class="text-lg font-bold text-white mt-1">Your Unique Referral Link &amp; Tracking Code</h2>
+              <p class="text-xs text-slate-400">Share your personal link or code with clients. Anyone visiting through this link is permanently attributed to your partner account.</p>
+            </div>
+            <button type="button" onclick="toggleQrCode()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 bg-white/5 hover:bg-white/10 transition border border-white/10 self-start sm:self-auto">
+              <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+              <span id="qr-btn-text">Show Mobile QR</span>
+            </button>
+          </div>
+
+          <!-- Code & Link Fields -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+            <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+              <div>
+                <span class="text-[9px] uppercase font-mono text-slate-400 block font-bold">Partner Code</span>
+                <span class="text-sm font-mono font-bold text-red-400 mt-0.5 block" id="tools-partner-code">APX-ADIL-77</span>
+              </div>
+              <button type="button" onclick="copyReferralCode()" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold flex items-center gap-1">
+                <span id="tools-code-label">Copy</span>
+              </button>
+            </div>
+
+            <div class="md:col-span-2 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between gap-3">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] uppercase font-mono text-slate-400 block font-bold">Direct Referral URL</span>
+                <span class="text-xs font-mono text-slate-200 mt-0.5 block truncate" id="tools-referral-url">https://appiex.com/refer?ref=APX-ADIL-77</span>
+              </div>
+              <button type="button" onclick="copyReferralUrl()" class="btn-red px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shrink-0">
+                <span id="tools-url-label">Copy Link</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- QR Code Drawer -->
+          <div id="qr-drawer" class="hidden p-5 rounded-2xl bg-white/[0.03] border border-red-500/30 flex flex-col sm:flex-row items-center gap-5">
+            <div class="w-32 h-32 bg-white rounded-xl p-2 shrink-0 flex items-center justify-center">
+              <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://appiex.com/refer?ref=APX-ADIL-77" alt="QR Code" class="w-full h-full object-contain">
+            </div>
+            <div class="space-y-1 text-center sm:text-left">
+              <h4 class="text-xs font-bold text-white uppercase tracking-wider">Instant In-Person Attribution QR</h4>
+              <p class="text-xs text-slate-300 leading-relaxed max-w-md">
+                Present this code on your phone when meeting founders or business owners. Scanning opens the Appiex Refer Portal with your partner code permanently attached.
+              </p>
+              <p class="text-[11px] text-red-400 font-mono font-medium">Attribution window: 12 months from first scan</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partner Identity & Payout Settings -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="payout-settings-anchor">
+          <!-- Profile Identity Form -->
+          <div class="glass-card p-6 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+              <h3 class="text-sm font-bold text-white">Partner Identity &amp; Contact</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-semibold">Verified Partner</span>
+            </div>
+
+            <form id="partner-profile-form" onsubmit="handleSaveProfile(event)" class="space-y-4 text-xs">
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1">Full Name</label>
+                <input type="text" id="prof-name" value="Adil Alim" required class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500">
+              </div>
+
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1">Email Address</label>
+                <input type="email" id="prof-email" value="adil.alim@appiex.partner" required class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500">
+              </div>
+
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1">Phone / WhatsApp</label>
+                <input type="tel" id="prof-phone" value="+880 1917-354847" required class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500">
+              </div>
+
+              <button type="submit" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition">
+                Save Profile Updates
+              </button>
+            </form>
+          </div>
+
+          <!-- Payout Destination Management -->
+          <div class="glass-card p-6 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+              <h3 class="text-sm font-bold text-white">Payout Destination Settings</h3>
+              <span class="text-[10px] text-emerald-400 flex items-center gap-1 font-semibold">● Active Destination</span>
+            </div>
+
+            <form id="payout-method-form" onsubmit="handleSavePayout(event)" class="space-y-4 text-xs">
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1">Preferred Payout Method</label>
+                <select id="pay-method-type" onchange="handlePayoutTypeChange()" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090C14] border border-white/10 text-xs text-white focus:outline-none focus:border-red-500 cursor-pointer">
+                  <option value="Wise">Wise International Business (USD)</option>
+                  <option value="bKash">bKash Personal / Merchant (BDT Auto-Converted)</option>
+                  <option value="PayPal">PayPal Account (USD)</option>
+                  <option value="Bank">Direct Wire / Swift Bank Transfer</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1" id="pay-label-field">Wise Email / Tag / Account</label>
+                <input type="text" id="pay-account-input" value="adil.alim@wise.com" required class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500">
+              </div>
+
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1">Account Holder Name</label>
+                <input type="text" id="pay-holder-name" value="Adil Alim" required class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500">
+              </div>
+
+              <button type="submit" class="w-full btn-red py-2.5 rounded-xl text-xs font-bold transition">
+                Update Payout Details
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: PARTNER AGREEMENT TERMS -->
+  <!-- ========================================== -->
+  <!-- Switch Partner / Account Database Modal -->
+  <div id="modal-switch-partner" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="glass-card max-w-lg w-full p-6 sm:p-7 space-y-5 border border-white/15 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <span class="text-[10px] font-mono font-bold tracking-widest uppercase text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+            Multi-Account Database
+          </span>
+          <h3 class="text-lg font-bold text-white mt-1">Switch Partner Profile</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Each partner has their own separate isolated client database, referrals, and commission ledger.</p>
+        </div>
+        <button type="button" onclick="closeSwitchPartnerModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Saved Accounts List -->
+      <div class="space-y-2.5">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Saved Partner Accounts</label>
+        <div id="switch-accounts-list" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Or Register / Login New Partner -->
+      <div class="pt-4 border-t border-white/10 space-y-3">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Log In or Create New Partner Account</label>
+        <form onsubmit="handleNewPartnerLogin(event)" class="space-y-3 text-xs">
+          <div>
+            <label class="block text-slate-300 mb-1 font-medium">Partner Full Name</label>
+            <input type="text" id="sw-name" placeholder="e.g. Tanvir Rahman or SOWDA Tech" required class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-red-500">
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1 font-medium">Phone Number</label>
+            <input type="tel" id="sw-phone" placeholder="e.g. +880 1717-552650" required class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-500 font-mono focus:outline-none focus:border-red-500">
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1 font-medium">Email Address (Optional)</label>
+            <input type="email" id="sw-email" placeholder="partner@appiex.com" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-red-500">
+          </div>
+          <div class="pt-2 flex justify-end gap-2.5">
+            <button type="button" onclick="closeSwitchPartnerModal()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-slate-300 text-xs font-semibold">
+              Cancel
+            </button>
+            <button type="submit" class="btn-red px-5 py-2 rounded-xl text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-red-500/20">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+              <span>Load / Create Account</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-agreement" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md hidden">
+    <div class="glass-card max-w-2xl w-full p-6 sm:p-8 space-y-4 max-h-[85vh] overflow-y-auto text-xs text-slate-300 border border-white/15">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <h3 class="text-base font-bold text-white">Appiex Referral &amp; Partner Agreement (SDR 1.0)</h3>
+        <button type="button" onclick="closeAgreementModal()" class="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-3 leading-relaxed text-slate-300">
+        <p><strong class="text-white">1. Introduction &amp; Scope:</strong> This Partner Agreement governs verified introducers and affiliates who refer prospective commercial clients to Appiex for digital engineering, custom Next.js development, 3D WebGL interfaces, and AI automation workflows.</p>
+        <p><strong class="text-white">2. Commission Rate &amp; Calculations:</strong> Partners earn up to 15% instant commission calculated on net project contract values (excluding third-party cloud infrastructure or API pass-through fees). Commission triggers upon client signing of commercial contracts and settlement of the milestone advance invoice.</p>
+        <p><strong class="text-white">3. Attribution Window:</strong> Client introductions submitted through your unique referral link or form remain actively attributed to your partner account for a duration of 12 full calendar months.</p>
+        <p><strong class="text-white">4. Payout Governance:</strong> Disbursements are transmitted directly to your verified payout destination (Wise, bKash, PayPal, or Bank Transfer) within 24–48 hours of invoice clearance.</p>
+        <p><strong class="text-white">5. Mutual Non-Disclosure:</strong> Both parties maintain strict confidentiality regarding client identities, commercial pricing, and technical project architectures.</p>
+      </div>
+
+      <div class="pt-3 border-t border-white/10 flex justify-end">
+        <button type="button" onclick="closeAgreementModal()" class="btn-red px-5 py-2 rounded-xl text-xs font-bold">
+          Understood &amp; Agreed
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: REFERRAL DETAIL DRAWER -->
+  <!-- ========================================== -->
+  <div id="modal-detail" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md hidden">
+    <div class="glass-card max-w-lg w-full p-6 space-y-4 text-xs text-slate-300 border border-white/15">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <div>
+          <span class="text-[10px] font-mono text-red-400 block font-bold" id="detail-ref-id">REF-2026-001</span>
+          <h3 class="text-base font-bold text-white" id="detail-client-name">Client Name</h3>
+        </div>
+        <button type="button" onclick="closeDetailModal()" class="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div class="grid grid-cols-2 gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/10">
+          <div>
+            <span class="text-[10px] text-slate-400 block">Service</span>
+            <span class="font-semibold text-white mt-0.5 block" id="detail-service">-</span>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block">Current Stage</span>
+            <span class="font-bold text-emerald-400 mt-0.5 block" id="detail-stage">-</span>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block">Deal Value</span>
+            <span class="font-mono font-bold text-white mt-0.5 block" id="detail-deal-value">-</span>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block">Commission (15%)</span>
+            <span class="font-mono font-bold text-red-400 mt-0.5 block" id="detail-commission">-</span>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+          <span class="text-[10px] text-slate-400 block">Client Contact Info</span>
+          <p class="text-white font-mono" id="detail-contact">-</p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+          <span class="text-[10px] text-slate-400 block">Project Scope &amp; Notes</span>
+          <p class="text-slate-300 leading-relaxed" id="detail-notes">-</p>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-between items-center">
+        <a id="detail-whatsapp-btn" href="#" target="_blank" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5">
+          <span>Follow up on WhatsApp</span>
+        </a>
+        <button type="button" onclick="closeDetailModal()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Telemetry Script -->
+  <script src="/scripts/visitor-tracker.js?v=20261029_v5"></script>
+
+  <!-- Interactive Dashboard Controller -->
+  <script>
+    var PARTNERS_DB_KEY = 'appiex_partners_database';
+    var ACTIVE_USER_KEY = 'appiex_active_user_key';
+
+    // Seeded multi-user accounts
+    var seedPartners = {
+      "+8801917354847": {
+        profile: {
+          name: "Adil Alim",
+          email: "adil.alim@appiex.partner",
+          phone: "+880 1917-354847",
+          referralCode: "APX-ADIL-77",
+          rate: "15%",
+          tier: "Gold Partner",
+          payoutMethod: "Wise",
+          payoutLabel: "Wise International (USD)",
+          payoutAccount: "adil.alim@wise.com",
+          payoutMask: "•••• 9842",
+          avatar: "./images/6251456506175886234.jpg"
+        },
+        referrals: [
+          {
+            id: "REF-2026-9041",
+            clientName: "Dr. Jordan Hayes",
+            companyName: "BioSync Therapeutics",
+            email: "j.hayes@biosync.io",
+            phone: "+1 (555) 392-1920",
+            service: "Interactive 3D WebGL & Motion Websites",
+            dealValue: 4200,
+            rate: 15,
+            commission: 630,
+            stage: "Won",
+            status: "Approved",
+            date: "2026-10-24",
+            notes: "Full 3D molecular simulation and high-speed Next.js medical platform."
+          },
+          {
+            id: "REF-2026-8842",
+            clientName: "Kazi Nabil",
+            companyName: "WATCH 24 BD",
+            email: "kazi@watch24bd.com",
+            phone: "+880 1711-294819",
+            service: "Headless E-Commerce & Shopify Plus",
+            dealValue: 4000,
+            rate: 15,
+            commission: 600,
+            stage: "Won",
+            status: "Paid",
+            settlementRef: "ACH-WISE-938210",
+            date: "2026-10-18",
+            notes: "3-store omnichannel inventory sync, 0% EMI financing and sub-second faceted search."
+          },
+          {
+            id: "REF-2026-8210",
+            clientName: "Sarah Jenkins",
+            companyName: "Apex Logistics AI",
+            email: "s.jenkins@apexlogistics.com",
+            phone: "+44 20 7946 0912",
+            service: "AI Workflow Automation & Chatbots (n8n/Python)",
+            dealValue: 2500,
+            rate: 15,
+            commission: 375,
+            stage: "Proposal",
+            status: "Estimated",
+            date: "2026-10-22",
+            notes: "Automated customs invoice ingestion with webhook integrations."
+          },
+          {
+            id: "REF-2026-7934",
+            clientName: "Marcus Vance",
+            companyName: "Vance Horology Lab",
+            email: "m.vance@vancetime.ch",
+            phone: "+41 22 819 3012",
+            service: "Custom Web Development (Next.js & React)",
+            dealValue: 1400,
+            rate: 15,
+            commission: 210,
+            stage: "Discovery",
+            status: "Estimated",
+            date: "2026-10-20",
+            notes: "Portfolio overhaul and 60fps kinetic motion showcase."
+          }
+        ]
+      },
+      "+8801717552650": {
+        profile: {
+          name: "Tanvir Rahman",
+          email: "client.552650@appiex.com",
+          phone: "+880 1717-552650",
+          referralCode: "APX-TANVIR-50",
+          rate: "15%",
+          tier: "Verified Partner",
+          payoutMethod: "bKash",
+          payoutLabel: "bKash Wallet (BDT)",
+          payoutAccount: "01717552650",
+          payoutMask: "•••• 2650",
+          avatar: "https://ui-avatars.com/api/?name=Tanvir+Rahman&background=0D111A&color=10B981&bold=true"
+        },
+        referrals: [
+          {
+            id: "REF-2026-6102",
+            clientName: "Rahim Chowdhury",
+            companyName: "Dhaka Cloud ERP",
+            email: "rahim@dhakacloud.com",
+            phone: "+880 1819-203948",
+            service: "Enterprise AI & Cloud Automation",
+            dealValue: 3500,
+            rate: 15,
+            commission: 525,
+            stage: "Won",
+            status: "Paid",
+            settlementRef: "BKASH-TRX-8492019",
+            date: "2026-10-23",
+            notes: "Automated inventory management and sales ledger"
+          },
+          {
+            id: "REF-2026-5831",
+            clientName: "Nusrat Jahan",
+            companyName: "Silk & Cotton Boutique",
+            email: "nusrat@silkboutique.bd",
+            phone: "+880 1629-102938",
+            service: "Headless E-Commerce & Shopify Plus",
+            dealValue: 2000,
+            rate: 15,
+            commission: 300,
+            stage: "Proposal",
+            status: "Estimated",
+            date: "2026-10-24",
+            notes: "Complete e-commerce store with bKash and SSLCommerz gateway"
+          }
+        ]
+      }
+    };
+
+    function getPartnersDb() {
+      try {
+        var raw = localStorage.getItem(PARTNERS_DB_KEY);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
+            return parsed;
+          }
+        }
+      } catch(e) {}
+      localStorage.setItem(PARTNERS_DB_KEY, JSON.stringify(seedPartners));
+      return seedPartners;
+    }
+
+    var partnersDb = getPartnersDb();
+    var activeKey = (function() {
+      try {
+        var k = localStorage.getItem(ACTIVE_USER_KEY);
+        if (k && partnersDb[k]) return k;
+      } catch(e) {}
+      return "+8801917354847";
+    })();
+
+    var partner = partnersDb[activeKey] ? partnersDb[activeKey].profile : seedPartners["+8801917354847"].profile;
+    var referrals = partnersDb[activeKey] ? (partnersDb[activeKey].referrals || []) : seedPartners["+8801917354847"].referrals;
+
+    function saveState() {
+      try {
+        if (!partnersDb[activeKey]) {
+          partnersDb[activeKey] = {};
+        }
+        partnersDb[activeKey].profile = partner;
+        partnersDb[activeKey].referrals = referrals;
+        localStorage.setItem(PARTNERS_DB_KEY, JSON.stringify(partnersDb));
+        localStorage.setItem(ACTIVE_USER_KEY, activeKey);
+        localStorage.setItem('appiex_partner_profile', JSON.stringify(partner));
+        localStorage.setItem('appiex_partner_referrals', JSON.stringify(referrals));
+        localStorage.setItem('appiex_user', JSON.stringify(partner));
+      } catch(e) {}
+    }
+
+    // Modal & Account Switching Handlers
+    function openSwitchPartnerModal() {
+      renderAccountsList();
+      document.getElementById('modal-switch-partner').classList.remove('hidden');
+    }
+
+    function closeSwitchPartnerModal() {
+      document.getElementById('modal-switch-partner').classList.add('hidden');
+    }
+
+    function renderAccountsList() {
+      var container = document.getElementById('switch-accounts-list');
+      if (!container) return;
+      partnersDb = getPartnersDb();
+      var keys = Object.keys(partnersDb);
+      container.innerHTML = keys.map(function(k) {
+        var acc = partnersDb[k];
+        var prof = acc.profile || {};
+        var refCount = (acc.referrals || []).length;
+        var isActive = k === activeKey;
+        var avatarSrc = prof.avatar || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(prof.name || 'User') + '&background=0D111A&color=FF2A4D&bold=true');
+        return '<div class="p-3 rounded-xl border transition flex items-center justify-between cursor-pointer ' +
+          (isActive ? 'bg-emerald-500/10 border-emerald-500/40 shadow-sm' : 'bg-white/[0.03] border-white/10 hover:bg-white/10') +
+          '" onclick="switchActivePartner(\'' + k + '\')">' +
+          '<div class="flex items-center gap-3">' +
+            '<img src="' + avatarSrc + '" class="w-9 h-9 rounded-lg object-cover border border-white/15" onerror="this.src=\'https://ui-avatars.com/api/?name=User&background=0D111A&color=FF2A4D\'">' +
+            '<div>' +
+              '<div class="flex items-center gap-2">' +
+                '<span class="font-bold text-white text-xs">' + prof.name + '</span>' +
+                (isActive ? '<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">CURRENT ACTIVE</span>' : '') +
+              '</div>' +
+              '<div class="text-[11px] text-slate-400 font-mono flex items-center gap-2 mt-0.5">' +
+                '<span>' + (prof.phone || prof.email) + '</span>' +
+                '<span>•</span>' +
+                '<span class="text-red-400 font-semibold">' + prof.referralCode + '</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="text-right">' +
+            '<span class="text-[11px] font-semibold text-slate-300 block">' + refCount + ' Referrals</span>' +
+            '<span class="text-[10px] text-emerald-400 font-bold block">' + (isActive ? 'Active Database' : 'Click to Load &rarr;') + '</span>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function switchActivePartner(key) {
+      partnersDb = getPartnersDb();
+      if (!partnersDb[key]) return;
+      activeKey = key;
+      partner = partnersDb[key].profile;
+      referrals = partnersDb[key].referrals || [];
+      saveState();
+      if (window.appiexRecordLogin) {
+        window.appiexRecordLogin({ phone: partner.phone, name: partner.name, email: partner.email });
+      }
+      renderPortal();
+      closeSwitchPartnerModal();
+    }
+
+    function handleNewPartnerLogin(e) {
+      e.preventDefault();
+      var name = document.getElementById('sw-name').value.trim();
+      var phone = document.getElementById('sw-phone').value.trim();
+      var email = document.getElementById('sw-email').value.trim();
+      if (!name || !phone) return;
+
+      var normKey = phone.replace(/[^0-9]/g, '') || phone;
+      partnersDb = getPartnersDb();
+
+      if (!partnersDb[normKey]) {
+        var codeTag = name.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 6) || 'PARTNER';
+        var newCode = 'APX-' + codeTag + '-' + Math.floor(10 + Math.random() * 89);
+        partnersDb[normKey] = {
+          profile: {
+            name: name,
+            phone: phone,
+            email: email || (normKey + '@appiex.partner'),
+            referralCode: newCode,
+            rate: "15%",
+            tier: "Active Partner",
+            payoutMethod: "bKash",
+            payoutLabel: "bKash Wallet (BDT)",
+            payoutAccount: phone,
+            payoutMask: phone.length > 4 ? '•••• ' + phone.slice(-4) : phone,
+            avatar: 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=0D111A&color=10B981&bold=true'
+          },
+          referrals: []
+        };
+      }
+
+      activeKey = normKey;
+      partner = partnersDb[normKey].profile;
+      referrals = partnersDb[normKey].referrals || [];
+      saveState();
+
+      if (window.appiexRecordLogin) {
+        window.appiexRecordLogin({ phone: partner.phone, name: partner.name, email: partner.email });
+      }
+
+      renderPortal();
+      closeSwitchPartnerModal();
+      document.getElementById('sw-name').value = '';
+      document.getElementById('sw-phone').value = '';
+      document.getElementById('sw-email').value = '';
+    }
+
+    // Tab Switching
+    var activeTab = 'dashboard';
+    function switchTab(tabId) {
+      activeTab = tabId;
+      ['dashboard', 'referrals', 'refer', 'earnings', 'profile'].forEach(function(t) {
+        var view = document.getElementById('view-' + t);
+        var btn = document.getElementById('tab-btn-' + t);
+        if (view) view.classList.toggle('hidden', t !== tabId);
+        if (btn) {
+          if (t === tabId) {
+            btn.classList.add('nav-tab-active');
+            btn.classList.remove('text-slate-300');
+          } else {
+            btn.classList.remove('nav-tab-active');
+            btn.classList.add('text-slate-300');
+          }
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Render Metrics & UI
+    function renderPortal() {
+      // Update form fields if present
+      if (document.getElementById('prof-name')) document.getElementById('prof-name').value = partner.name || '';
+      if (document.getElementById('prof-email')) document.getElementById('prof-email').value = partner.email || '';
+      if (document.getElementById('prof-phone')) document.getElementById('prof-phone').value = partner.phone || '';
+      if (document.getElementById('user-avatar')) {
+        document.getElementById('user-avatar').src = partner.avatar || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(partner.name || 'User') + '&background=0D111A&color=FF2A4D&bold=true');
+      }
+      // Profile Info
+      document.getElementById('sidebar-user-name').textContent = partner.name;
+      document.getElementById('hero-partner-name').textContent = partner.name;
+      document.getElementById('sidebar-code').textContent = partner.referralCode;
+      document.getElementById('hero-partner-code').textContent = partner.referralCode;
+      document.getElementById('nav-partner-id').textContent = partner.referralCode;
+      document.getElementById('tools-partner-code').textContent = partner.referralCode;
+      document.getElementById('tools-referral-url').textContent = 'https://appiex.com/refer?ref=' + partner.referralCode;
+      document.getElementById('qr-image').src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent('https://appiex.com/refer?ref=' + partner.referralCode);
+
+      // Payout Info
+      document.getElementById('sidebar-payout-label').innerHTML = partner.payoutLabel;
+      document.getElementById('sidebar-payout-mask').textContent = partner.payoutMask + ' (Verified)';
+      document.getElementById('earn-payout-name').textContent = partner.payoutLabel;
+
+      // Counters
+      var totalRefs = referrals.length;
+      var inProgress = referrals.filter(function(r){ return r.stage === 'Proposal' || r.stage === 'Discovery'; }).length;
+      var wonClients = referrals.filter(function(r){ return r.stage === 'Won'; }).length;
+      var totalPaid = referrals.filter(function(r){ return r.status === 'Paid'; }).reduce(function(acc, r){ return acc + (r.commission || 0); }, 0);
+      var pendingUsd = referrals.filter(function(r){ return r.status === 'Estimated' || r.status === 'Approved'; }).reduce(function(acc, r){ return acc + (r.commission || 0); }, 0);
+      var approvedUsd = referrals.filter(function(r){ return r.status === 'Approved'; }).reduce(function(acc, r){ return acc + (r.commission || 0); }, 0);
+      var estimatedUsd = referrals.filter(function(r){ return r.status === 'Estimated'; }).reduce(function(acc, r){ return acc + (r.commission || 0); }, 0);
+
+      document.getElementById('counter-total-refs').textContent = totalRefs;
+      document.getElementById('badge-referral-count').textContent = totalRefs;
+      document.getElementById('latest-table-count').textContent = totalRefs;
+      document.getElementById('counter-in-progress').textContent = inProgress;
+      document.getElementById('counter-won-clients').textContent = wonClients;
+      document.getElementById('counter-total-paid').textContent = '$' + totalPaid.toLocaleString() + ' USD';
+      document.getElementById('banner-pending-usd').textContent = '$' + pendingUsd.toLocaleString() + ' USD';
+      document.getElementById('earn-estimated').textContent = '$' + estimatedUsd.toLocaleString() + ' USD';
+      document.getElementById('earn-approved').textContent = '$' + approvedUsd.toLocaleString() + ' USD';
+      document.getElementById('earn-paid').textContent = '$' + totalPaid.toLocaleString() + ' USD';
+
+      // Render Tables
+      renderLatestReferralsTable();
+      renderAllReferralsTable();
+      renderEarningsLedger();
+    }
+
+    function renderLatestReferralsTable() {
+      var tbody = document.getElementById('latest-referrals-tbody');
+      if (!tbody) return;
+      var latest = referrals.slice(0, 4);
+      tbody.innerHTML = latest.map(function(r) {
+        var stageBadge = r.stage === 'Won' 
+          ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Won Deal</span>'
+          : r.stage === 'Proposal'
+          ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/30">Proposal</span>'
+          : '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">Discovery</span>';
+
+        return '<tr class="hover:bg-white/[0.03] transition-colors cursor-pointer" onclick="openDetailModal(\'' + r.id + '\')">' +
+          '<td class="py-3 px-4 font-mono font-bold text-red-400">' + r.id + '</td>' +
+          '<td class="py-3 px-4"><span class="font-bold text-white block">' + r.clientName + '</span>' + (r.companyName ? '<span class="text-[10px] text-slate-400 block">' + r.companyName + '</span>' : '') + '</td>' +
+          '<td class="py-3 px-4 text-slate-300">' + r.service + '</td>' +
+          '<td class="py-3 px-4">' + stageBadge + '</td>' +
+          '<td class="py-3 px-4 text-right font-mono font-bold text-emerald-400">$' + r.commission.toLocaleString() + ' USD</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    function renderAllReferralsTable(list) {
+      var tbody = document.getElementById('all-referrals-tbody');
+      if (!tbody) return;
+      var data = list || referrals;
+      if (data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="py-8 text-center text-slate-400 text-xs">No matching referrals found.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = data.map(function(r) {
+        var stageBadge = r.stage === 'Won' 
+          ? '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">Won Deal</span>'
+          : r.stage === 'Proposal'
+          ? '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/15 text-blue-400 border border-blue-500/30">Proposal Stage</span>'
+          : '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">Discovery</span>';
+
+        return '<tr class="hover:bg-white/[0.03] transition-colors">' +
+          '<td class="py-3.5 px-4 font-mono font-bold text-red-400">' + r.id + '</td>' +
+          '<td class="py-3.5 px-4"><span class="font-bold text-white block">' + r.clientName + '</span>' + (r.companyName ? '<span class="text-[10px] text-slate-400 block">' + r.companyName + '</span>' : '') + '</td>' +
+          '<td class="py-3.5 px-4 text-slate-300">' + r.service + '</td>' +
+          '<td class="py-3.5 px-4 font-mono font-semibold text-slate-200">$' + r.dealValue.toLocaleString() + '</td>' +
+          '<td class="py-3.5 px-4 font-mono font-bold text-emerald-400">$' + r.commission.toLocaleString() + ' USD</td>' +
+          '<td class="py-3.5 px-4">' + stageBadge + '</td>' +
+          '<td class="py-3.5 px-4 text-right"><button type="button" onclick="openDetailModal(\'' + r.id + '\')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 text-[11px] text-slate-300 hover:text-white transition">Inspect &rarr;</button></td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    function renderEarningsLedger() {
+      var tbody = document.getElementById('earnings-ledger-tbody');
+      if (!tbody) return;
+      tbody.innerHTML = referrals.map(function(r) {
+        var statusBadge = r.status === 'Paid'
+          ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">Paid</span>'
+          : r.status === 'Approved'
+          ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/15 text-blue-400 border border-blue-500/30">Approved</span>'
+          : '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">Estimated</span>';
+
+        return '<tr class="hover:bg-white/[0.03] transition-colors">' +
+          '<td class="py-3 px-4 text-red-400 font-bold">' + r.id + '</td>' +
+          '<td class="py-3 px-4 text-white font-sans font-semibold">' + r.clientName + (r.companyName ? ' (' + r.companyName + ')' : '') + '</td>' +
+          '<td class="py-3 px-4 text-slate-300">$' + r.dealValue.toLocaleString() + ' USD</td>' +
+          '<td class="py-3 px-4 text-slate-400">' + r.rate + '%</td>' +
+          '<td class="py-3 px-4 text-emerald-400 font-bold">$' + r.commission.toLocaleString() + ' USD</td>' +
+          '<td class="py-3 px-4 font-sans">' + statusBadge + '</td>' +
+          '<td class="py-3 px-4 text-right text-slate-400 text-[11px]">' + (r.settlementRef || (r.status === 'Approved' ? 'Queued for Transfer' : 'Awaiting Kickoff')) + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    // Form Handling
+    function handleReferralSubmit(e) {
+      e.preventDefault();
+      var name = document.getElementById('frm-client-name').value.trim();
+      var company = document.getElementById('frm-company-name').value.trim();
+      var email = document.getElementById('frm-client-email').value.trim();
+      var phone = document.getElementById('frm-client-phone').value.trim();
+      var service = document.getElementById('frm-service').value;
+      var budget = document.getElementById('frm-budget').value;
+      var notes = document.getElementById('frm-notes').value.trim();
+
+      var dealNum = budget.indexOf('7,500') !== -1 ? 7500 : budget.indexOf('3,500') !== -1 ? 3500 : 2000;
+      var commNum = Math.round(dealNum * 0.15);
+
+      var newRef = {
+        id: "REF-2026-" + Math.floor(1000 + Math.random() * 9000),
+        clientName: name,
+        companyName: company || undefined,
+        email: email,
+        phone: phone || undefined,
+        service: service,
+        dealValue: dealNum,
+        rate: 15,
+        commission: commNum,
+        stage: "Discovery",
+        status: "Estimated",
+        date: new Date().toISOString().split('T')[0],
+        notes: notes
+      };
+
+      referrals.unshift(newRef);
+      saveState();
+      renderPortal();
+
+      // Confetti burst
+      try {
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 80,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#FF2A4D', '#10B981', '#3B82F6', '#FFFFFF']
+          });
+        }
+      } catch(err) {}
+
+      // Show receipt
+      document.getElementById('refer-client-form').classList.add('hidden');
+      var receipt = document.getElementById('referral-success-receipt');
+      receipt.classList.remove('hidden');
+      document.getElementById('receipt-ref-id').textContent = newRef.id;
+
+      // WhatsApp prefill
+      var waMsg = "Hi Appiex, I have just referred a new client via my Partner Portal!%0A%0A" +
+        "Reference ID: " + newRef.id + "%0A" +
+        "Client Name: " + encodeURIComponent(newRef.clientName) + "%0A" +
+        "Service: " + encodeURIComponent(newRef.service) + "%0A" +
+        "My Partner Code: " + partner.referralCode;
+      document.getElementById('receipt-whatsapp-link').href = "https://wa.me/8801917354847?text=" + waMsg;
+    }
+
+    function resetReferralForm() {
+      document.getElementById('refer-client-form').reset();
+      document.getElementById('refer-client-form').classList.remove('hidden');
+      document.getElementById('referral-success-receipt').classList.add('hidden');
+    }
+
+    // Copying utilities
+    function copyReferralCode() {
+      navigator.clipboard.writeText(partner.referralCode);
+      var label = document.getElementById('sidebar-copy-label');
+      if (label) { label.textContent = 'Copied!'; setTimeout(function(){ label.textContent = 'Copy'; }, 2000); }
+      var label2 = document.getElementById('tools-code-label');
+      if (label2) { label2.textContent = 'Copied!'; setTimeout(function(){ label2.textContent = 'Copy'; }, 2000); }
+    }
+
+    function copyReferralUrl() {
+      var url = 'https://appiex.com/refer?ref=' + partner.referralCode;
+      navigator.clipboard.writeText(url);
+      var label = document.getElementById('tools-url-label');
+      if (label) { label.textContent = 'Copied!'; setTimeout(function(){ label.textContent = 'Copy Link'; }, 2000); }
+    }
+
+    function copyReceiptRefId() {
+      var id = document.getElementById('receipt-ref-id').textContent;
+      navigator.clipboard.writeText(id);
+      alert('Reference ID copied: ' + id);
+    }
+
+    function toggleQrCode() {
+      var drawer = document.getElementById('qr-drawer');
+      var btnText = document.getElementById('qr-btn-text');
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        btnText.textContent = 'Hide Mobile QR';
+      } else {
+        drawer.classList.add('hidden');
+        btnText.textContent = 'Show Mobile QR';
+      }
+    }
+
+    // Modals
+    function openAgreementModal() {
+      document.getElementById('modal-agreement').classList.remove('hidden');
+    }
+    function closeAgreementModal() {
+      document.getElementById('modal-agreement').classList.add('hidden');
+    }
+
+    function openDetailModal(refId) {
+      var item = referrals.find(function(r){ return r.id === refId; });
+      if (!item) return;
+      document.getElementById('detail-ref-id').textContent = item.id;
+      document.getElementById('detail-client-name').textContent = item.clientName + (item.companyName ? ' (' + item.companyName + ')' : '');
+      document.getElementById('detail-service').textContent = item.service;
+      document.getElementById('detail-stage').textContent = item.stage;
+      document.getElementById('detail-deal-value').textContent = '$' + item.dealValue.toLocaleString() + ' USD';
+      document.getElementById('detail-commission').textContent = '$' + item.commission.toLocaleString() + ' USD (15%)';
+      document.getElementById('detail-contact').textContent = (item.email || '') + (item.phone ? ' • ' + item.phone : '');
+      document.getElementById('detail-notes').textContent = item.notes || 'No additional notes provided.';
+
+      var waMsg = "Hi Appiex Team, regarding client referral " + item.id + " (" + encodeURIComponent(item.clientName) + "). Can you provide the latest status?";
+      document.getElementById('detail-whatsapp-btn').href = "https://wa.me/8801917354847?text=" + waMsg;
+
+      document.getElementById('modal-detail').classList.remove('hidden');
+    }
+    function closeDetailModal() {
+      document.getElementById('modal-detail').classList.add('hidden');
+    }
+
+    // Filter referrals
+    var currentFilter = 'all';
+    function setRefStatusFilter(status) {
+      currentFilter = status;
+      ['all', 'won', 'prop', 'disc'].forEach(function(s) {
+        var el = document.getElementById('rf-filter-' + s);
+        if (el) {
+          el.className = s === status.toLowerCase() || (status === 'all' && s === 'all')
+            ? 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-600 text-white'
+            : 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300';
+        }
+      });
+      filterReferralsTable();
+    }
+
+    function filterReferralsTable() {
+      var q = (document.getElementById('ref-search-input').value || '').toLowerCase();
+      var filtered = referrals.filter(function(r) {
+        var matchesQuery = r.clientName.toLowerCase().indexOf(q) !== -1 ||
+          (r.companyName && r.companyName.toLowerCase().indexOf(q) !== -1) ||
+          r.service.toLowerCase().indexOf(q) !== -1;
+        var matchesStatus = currentFilter === 'all' || r.stage.toLowerCase() === currentFilter.toLowerCase();
+        return matchesQuery && matchesStatus;
+      });
+      renderAllReferralsTable(filtered);
+    }
+
+    // Export CSV
+    function exportEarningsCsv() {
+      var headers = ["Reference ID", "Client Name", "Company", "Service", "Deal Value ($)", "Commission Rate (%)", "Commission ($)", "Status", "Settlement Ref", "Date"];
+      var rows = referrals.map(function(r) {
+        return [
+          r.id,
+          '"' + r.clientName + '"',
+          '"' + (r.companyName || '') + '"',
+          '"' + r.service + '"',
+          r.dealValue,
+          r.rate,
+          r.commission,
+          r.status,
+          '"' + (r.settlementRef || '') + '"',
+          r.date
+        ];
+      });
+
+      var csvContent = "data:text/csv;charset=utf-8," + [headers.join(',')].concat(rows.map(function(e){ return e.join(','); })).join('\n');
+      var encoded = encodeURI(csvContent);
+      var link = document.createElement("a");
+      link.setAttribute("href", encoded);
+      link.setAttribute("download", "Appiex_Partner_Ledger_" + partner.referralCode + ".csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Save Profile & Payout Handlers
+    function handleSaveProfile(e) {
+      e.preventDefault();
+      partner.name = document.getElementById('prof-name').value.trim();
+      partner.email = document.getElementById('prof-email').value.trim();
+      partner.phone = document.getElementById('prof-phone').value.trim();
+      saveState();
+      renderPortal();
+      alert('Partner profile successfully updated!');
+    }
+
+    function handleSavePayout(e) {
+      e.preventDefault();
+      var type = document.getElementById('pay-method-type').value;
+      var acc = document.getElementById('pay-account-input').value.trim();
+      var mask = acc.length > 4 ? '•••• ' + acc.slice(-4) : acc;
+      partner.payoutMethod = type;
+      partner.payoutLabel = type === 'bKash' ? 'bKash Wallet (BDT)' : type === 'PayPal' ? 'PayPal Account (USD)' : type === 'Bank' ? 'Direct Bank Transfer' : 'Wise International (USD)';
+      partner.payoutAccount = acc;
+      partner.payoutMask = mask;
+      saveState();
+      renderPortal();
+      alert('Payout destination updated and verified!');
+    }
+
+    function handlePayoutTypeChange() {
+      var type = document.getElementById('pay-method-type').value;
+      var label = document.getElementById('pay-label-field');
+      if (type === 'bKash') label.textContent = 'bKash Personal / Merchant Mobile Number';
+      else if (type === 'PayPal') label.textContent = 'PayPal Account Email';
+      else if (type === 'Bank') label.textContent = 'Bank Account / IBAN / Swift Number';
+      else label.textContent = 'Wise Email / Tag / Account';
+    }
+
+    // Logout
+    document.getElementById('btn-logout').addEventListener('click', function() {
+      if (confirm('Are you sure you want to log out of your partner dashboard?')) {
+        try {
+          localStorage.removeItem('appiex_user');
+          localStorage.removeItem('appiex_active_partner');
+        } catch(e) {}
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Initial boot
+    renderPortal();
+    if (window.appiexRecordLogin && partner && (partner.email || partner.phone)) {
+      window.appiexRecordLogin({ phone: partner.phone, name: partner.name, email: partner.email });
+    }
+  </script>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+</body>
+</html>

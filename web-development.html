@@ -1,0 +1,2818 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis lenis-scrolling">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom Web Development in Bangladesh | Appiex</title>
+  <link rel="canonical" href="https://appiex.com/web-development">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Build a business website or custom web application with Appiex. Explore our development approach, integrations and project examples, then discuss your scope.">
+  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appiex.com/web-development">
+  <meta property="og:site_name" content="Appiex">
+  <meta property="og:title" content="Custom Web Development in Bangladesh | Appiex">
+  <meta property="og:description" content="Build a business website or custom web application with Appiex. Explore our development approach, integrations and project examples, then discuss your scope.">
+  <meta property="og:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://appiex.com/web-development">
+  <meta name="twitter:title" content="Custom Web Development in Bangladesh | Appiex">
+  <meta name="twitter:description" content="Build a business website or custom web application with Appiex. Explore our development approach, integrations and project examples, then discuss your scope.">
+  <meta name="twitter:image" content="https://appiex.com/images/appiex-logo.png">
+  <meta name="theme-color" content="#030408">
+
+  <!-- Structured Data: Service, Breadcrumbs, Provider -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+    "knowsAbout": ["android app development", "android app development agency", "android app development agency for b2b saas companies", "android app development agency for ecommerce brands", "android app development agency for fashion brands", "android app development agency for luxury brands", "android app development agency for online retailers", "android app development agency for saas startups", "android app development agency in abu dhabi", "android app development agency in australia", "android app development agency in bangladesh", "android app development agency in birmingham", "android app development agency in brisbane", "android app development agency in chattogram", "android app development agency in chicago", "android app development agency in dallas", "android app development agency in dhaka", "android app development agency in dubai", "android app development agency in houston", "android app development agency in london", "android app development agency in los angeles", "android app development agency in manchester", "android app development agency in melbourne", "android app development agency in miami", "android app development agency in new york", "android app development agency in sharjah", "android app development agency in sydney", "android app development agency in united arab emirates", "android app development agency in united kingdom", "android app development agency in united states"],
+        "@id": "https://appiex.com/web-development#service",
+        "name": "Custom Website Development",
+        "serviceType": "Web Development",
+        "description": "Full-stack custom website development, enterprise web applications, and headless e-commerce platforms engineered for speed, security, and conversion.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Appiex",
+          "url": "https://appiex.com/"
+        },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://appiex.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://appiex.com/services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Web Development",
+            "item": "https://appiex.com/web-development"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts: Anton, Oswald, Google Sans, Montserrat, JetBrains Mono, Suisse Intl -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Google+Sans:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="./styles/fonts.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/Footer.v_lo1qnf.css">
+
+  <!-- Core Cuberto Stylesheets -->
+<link rel="stylesheet" href="./styles/SummarySection.CdpLgy4-.css">
+  <link rel="stylesheet" href="./styles/OverviewSection.CiLUHBLp.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            appiexRed: '#FF2A4D',
+            appiexRedDark: '#DC2626',
+            appiexTeal: '#2DD4BF',
+            appiexDark: '#030408',
+            appiexCard: '#080910'
+          },
+          fontFamily: {
+            sans: ['Suisse Intl', 'Google Sans', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            anton: ['Anton', 'sans-serif'],
+            oswald: ['Oswald', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Swiper for Feedback Carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <style>
+    /* Global Clean Pointer - No Black Dots */
+    * {
+      box-sizing: border-box;
+      cursor: auto !important;
+    }
+    a, button, [role="button"], input, select, textarea {
+      cursor: pointer !important;
+    }
+
+    html {
+      background-color: #030408 !important;
+      color: #f8fafc !important;
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+    }
+    body {
+      background-color: #030408 !important;
+      color: #f8fafc !important;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+    }
+
+    /* Ambient Red Glow */
+    .ambient-glow-red {
+      background: radial-gradient(circle, rgba(255, 42, 77, 0.18) 0%, rgba(220, 38, 38, 0.08) 35%, transparent 70%);
+    }
+
+    /* Lenis Smooth Scroll Foundation */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    /* ========================================================
+       APPIEX SIGNATURE FLOATING CAPSULE NAVBAR (MATCH PIC 2 100%)
+       ======================================================== */
+    .rafsan-navbar-shell {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 1000 !important;
+      padding: 1.25rem 0 !important;
+      pointer-events: none !important;
+      background: transparent !important;
+      font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      transition: all 0.35s ease !important;
+    }
+    .rafsan-navbar-shell.scrolled {
+      padding: 0.85rem 0 !important;
+    }
+
+    .rafsan-nav-container {
+      max-width: 1320px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 1.5rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      pointer-events: auto !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Brand Logo (Left) */
+    .rafsan-brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      text-decoration: none !important;
+      color: #ffffff !important;
+      font-size: 1.45rem !important;
+      letter-spacing: -0.02em !important;
+      transition: transform 0.25s ease, opacity 0.25s ease !important;
+      user-select: none !important;
+    }
+    .rafsan-brand:hover {
+      transform: scale(1.02) !important;
+      opacity: 0.95 !important;
+    }
+    .rafsan-brand .brand-logo-img {
+      height: 32px !important;
+      width: auto !important;
+      object-fit: contain !important;
+      filter: drop-shadow(0 2px 10px rgba(255, 42, 77, 0.45)) !important;
+    }
+    .rafsan-brand-bold {
+      font-weight: 700 !important;
+      color: #ffffff !important;
+    }
+
+    /* Center Floating Capsule */
+    .rafsan-capsule-nav {
+      position: relative !important;
+      display: none !important;
+      align-items: center !important;
+      padding: 5px 6px !important;
+      border-radius: 9999px !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      transition: all 0.35s ease !important;
+    }
+    @media (min-width: 768px) {
+      .rafsan-capsule-nav {
+        display: flex !important;
+      }
+    }
+
+    /* Sliding Red Highlight Pill */
+    .rafsan-capsule-pill {
+      position: absolute !important;
+      top: 5px !important;
+      left: 78px;
+      width: 88px;
+      height: calc(100% - 10px) !important;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+      border-radius: 9999px !important;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.5) !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+    }
+
+    .rafsan-nav-item {
+      position: relative !important;
+      z-index: 2 !important;
+      padding: 6px 17px !important;
+      font-size: 13.5px !important;
+      font-weight: 400 !important;
+      color: rgba(255, 255, 255, 0.82) !important;
+      text-decoration: none !important;
+      border-radius: 9999px !important;
+      transition: color 0.25s ease !important;
+      white-space: nowrap !important;
+      user-select: none !important;
+      cursor: pointer !important;
+    }
+    .rafsan-nav-item:hover,
+    .rafsan-nav-item.active {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+    }
+
+    /* Services Dropdown Menu */
+    .services-nav-wrap {
+      position: relative !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+    .services-caret {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-left: 5px !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .services-nav-wrap:hover .services-caret {
+      transform: rotate(180deg) !important;
+      color: #FF2A4D !important;
+    }
+    .services-popup-menu {
+      position: absolute !important;
+      top: calc(100% + 14px) !important;
+      left: 50% !important;
+      transform: translateX(-50%) translateY(10px) !important;
+      width: 650px !important;
+      max-width: calc(100vw - 2rem) !important;
+      background: #05060b !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.98), 0 0 35px rgba(255, 42, 77, 0.25) !important;
+      display: flex !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      z-index: 1000 !important;
+      overflow: hidden !important;
+    }
+    .services-nav-wrap::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -16px !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 18px !important;
+    }
+    .services-nav-wrap:hover .services-popup-menu {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateX(-50%) translateY(0) !important;
+    }
+    .services-mega-left {
+      width: 250px !important;
+      background: linear-gradient(180deg, rgba(10, 10, 15, 0.42) 0%, rgba(5, 5, 10, 0.95) 100%), url('./images/panther_cover.png') center/cover no-repeat !important;
+      padding: 28px 24px !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      text-align: left !important;
+    }
+    .services-mega-badge {
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      color: #ff2a4d !important;
+      letter-spacing: 2px !important;
+      text-transform: uppercase !important;
+      display: block !important;
+      margin-bottom: 10px !important;
+    }
+    .services-mega-title {
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      line-height: 1.35 !important;
+      text-transform: uppercase !important;
+      margin: 0 !important;
+    }
+    .services-mega-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 8px 18px !important;
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1.5px !important;
+      border-radius: 50px !important;
+      text-decoration: none !important;
+      border: 1px solid #ffffff !important;
+      transition: all 0.3s ease !important;
+      width: fit-content !important;
+      margin-top: 20px !important;
+    }
+    .services-mega-btn:hover {
+      background: #FF2A4D !important;
+      color: #fff !important;
+      border-color: #FF2A4D !important;
+    }
+    .services-mega-right {
+      flex: 1 !important;
+      padding: 28px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      background: #05060b !important;
+    }
+    .services-mega-subtitle {
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      letter-spacing: 2.5px !important;
+      text-transform: uppercase !important;
+      margin-bottom: 20px !important;
+      display: block !important;
+    }
+    .services-mega-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 14px 18px !important;
+    }
+    .services-mega-item {
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      padding: 8px 0 !important;
+      border: none !important;
+      background: transparent !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.8px !important;
+      transition: color 0.25s ease !important;
+    }
+    .services-mega-item:hover {
+      color: #ff2a4d !important;
+    }
+
+    /* Actions (Right) */
+    .rafsan-nav-actions {
+      display: none !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+    }
+    @media (min-width: 768px) {
+      .rafsan-nav-actions {
+        display: flex !important;
+      }
+    }
+    .rafsan-github-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 38px !important;
+      height: 38px !important;
+      border-radius: 50% !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      transition: all 0.25s ease !important;
+      text-decoration: none !important;
+    }
+    .rafsan-github-btn:hover {
+      background: rgba(255, 42, 77, 0.2) !important;
+      border-color: #FF2A4D !important;
+      color: #FF2A4D !important;
+    }
+    .rafsan-hire-btn {
+      padding: 8px 20px !important;
+      border-radius: 9999px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45) !important;
+      transition: all 0.25s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .rafsan-hire-btn:hover {
+      box-shadow: 0 6px 22px rgba(255, 42, 77, 0.7) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* ========================================================
+       CUBERTO CONTENT WITH DARK LUXURY THEME
+       ======================================================== */
+    .TopheadSection[data-astro-cid-yhlrtawi] {
+      padding: 14rem 0 6rem;
+      position: relative;
+    }
+    @media (width >= 768px) {
+      .TopheadSection[data-astro-cid-yhlrtawi] {
+        padding: 20rem 0 10rem;
+      }
+    }
+    .header[data-astro-cid-yhlrtawi] h1 {
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+      color: #FF2A4D !important;
+      font-size: 1.4rem;
+      font-weight: 500 !important;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    @media (width >= 768px) {
+      .header[data-astro-cid-yhlrtawi] {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .header[data-astro-cid-yhlrtawi] h1 {
+        font-size: 1.8rem;
+      }
+    }
+    .title[data-astro-cid-yhlrtawi] h2 {
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+      color: #ffffff !important;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+      font-size: 4rem;
+      font-weight: 350 !important;
+      line-height: 102%;
+    }
+    @media (width >= 768px) {
+      .title[data-astro-cid-yhlrtawi] h2 {
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto;
+        font-size: 7.8rem;
+        font-weight: 350 !important;
+      }
+    }
+
+    /* Preview Section */
+    .PreviewSection[data-astro-cid-u5y7bqyk] {
+      z-index: 1;
+      position: relative;
+    }
+    .PreviewSection[data-astro-cid-u5y7bqyk] + .PreviewSection {
+      margin-top: 2rem;
+    }
+    @media (width >= 768px) {
+      .PreviewSection[data-astro-cid-u5y7bqyk] + .PreviewSection {
+        margin-top: 6rem;
+      }
+    }
+    .main[data-astro-cid-u5y7bqyk] {
+      aspect-ratio: 1920/1080;
+      border-radius: 2rem;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      background: #0b0d17;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    }
+    .main[data-astro-cid-u5y7bqyk].-lg {
+      aspect-ratio: 355/400;
+    }
+    @media (width >= 768px) {
+      .main[data-astro-cid-u5y7bqyk].-lg {
+        aspect-ratio: 1920/1080;
+      }
+    }
+    .media[data-astro-cid-u5y7bqyk] {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .media[data-astro-cid-u5y7bqyk] video,
+    .media[data-astro-cid-u5y7bqyk] img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Overview Sections on Dark */
+    .OverviewSection[data-astro-cid-em637tx5] {
+      margin: 8rem 0;
+      position: relative;
+      color: #f8fafc;
+    }
+    @media (width >= 768px) {
+      .OverviewSection[data-astro-cid-em637tx5] {
+        margin: 14rem 0;
+      }
+    }
+    .header[data-astro-cid-em637tx5] h2 {
+      color: #ffffff !important;
+      letter-spacing: -0.02em;
+      font-size: 4.5rem;
+      font-weight: 500;
+      line-height: 100%;
+    }
+    @media (width >= 768px) {
+      .header[data-astro-cid-em637tx5] h2 {
+        font-size: 7.5rem;
+      }
+    }
+    .caption[data-astro-cid-em637tx5] h3 {
+      color: rgba(255, 255, 255, 0.5) !important;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 110%;
+      letter-spacing: 0.1em;
+    }
+    @media (width >= 768px) {
+      .caption[data-astro-cid-em637tx5] h3 {
+        font-size: 1.6rem;
+      }
+    }
+    .text[data-astro-cid-em637tx5] p,
+    .text[data-astro-cid-em637tx5] li {
+      color: #e2e8f0 !important;
+      letter-spacing: 0.01em;
+      font-size: 2rem;
+      line-height: 135%;
+    }
+    @media (width >= 768px) {
+      .text[data-astro-cid-em637tx5] p {
+        font-size: 2.5rem;
+      }
+      .text[data-astro-cid-em637tx5] li {
+        font-size: 2.2rem;
+      }
+    }
+    .text[data-astro-cid-em637tx5] a {
+      color: #FF2A4D !important;
+      text-decoration-color: rgba(255, 42, 77, 0.4) !important;
+    }
+    .text[data-astro-cid-em637tx5] a:hover {
+      text-decoration-color: #FF2A4D !important;
+    }
+
+    /* Cards */
+    /* Curved Section Transition (Match Pic 2 & Pic 3) */
+    .SummarySection[data-astro-cid-n6egurcx].-fill {
+      position: relative !important;
+      z-index: 2 !important;
+      padding-top: 6rem !important;
+    }
+    @media (width >= 768px) {
+      .SummarySection[data-astro-cid-n6egurcx].-fill {
+        padding-top: 12rem !important;
+      }
+    }
+    .SummarySection[data-astro-cid-n6egurcx].-fill .fill {
+      position: absolute !important;
+      inset: 0 !important;
+      border-radius: 4rem 4rem 0 0 !important;
+      background: rgba(8, 10, 18, 0.6) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+      border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+    }
+    @media (width >= 768px) {
+      .SummarySection[data-astro-cid-n6egurcx].-fill .fill {
+        border-radius: 8rem 8rem 0 0 !important;
+        top: -4rem !important;
+      }
+    }
+    .content[data-astro-cid-n6egurcx] {
+      position: relative !important;
+      z-index: 1 !important;
+    }
+    .Card[data-astro-cid-fibfjdhx] {
+      text-decoration: none;
+      display: block;
+    }
+    .preview[data-astro-cid-fibfjdhx] {
+      aspect-ratio: 365/420;
+      border-radius: 2rem;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      background: #0e111a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .Card:hover .preview[data-astro-cid-fibfjdhx] {
+      border-color: rgba(255, 42, 77, 0.4);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 42, 77, 0.15);
+    }
+    @media (width >= 768px) {
+      .preview[data-astro-cid-fibfjdhx] {
+        aspect-ratio: 500/675;
+      }
+    }
+    .preview__media[data-astro-cid-fibfjdhx] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .preview__media[data-astro-cid-fibfjdhx] picture,
+    .preview__media[data-astro-cid-fibfjdhx] img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .Card:hover .preview__media[data-astro-cid-fibfjdhx] img {
+      transform: scale(1.05);
+    }
+    @media (max-width: 767px) {
+      .cards[data-astro-cid-n6egurcx] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 5rem !important;
+      }
+      .cards[data-astro-cid-n6egurcx] > .col {
+        display: contents !important;
+      }
+    }
+    .caption[data-astro-cid-fibfjdhx] {
+      color: #94a3b8 !important;
+      font-size: 1.6rem;
+      line-height: 130%;
+      margin-top: 1.8rem;
+    }
+    .caption[data-astro-cid-fibfjdhx] b {
+      color: #ffffff !important;
+      font-weight: 600;
+    }
+
+    /* Interactive String Dividers */
+    .Divider[data-astro-cid-jqyytg4m] {
+      height: 1px;
+      position: relative;
+      cursor: pointer !important;
+    }
+    .Divider[data-astro-cid-jqyytg4m]:before {
+      content: "";
+      height: 4rem;
+      display: block;
+      position: absolute;
+      top: -2rem;
+      left: 0;
+      right: 0;
+    }
+    .Divider[data-astro-cid-jqyytg4m] svg {
+      pointer-events: none;
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      top: -99px;
+      left: 0;
+      right: 0;
+      overflow: visible;
+    }
+    .Divider[data-astro-cid-jqyytg4m] path {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.2) !important;
+      stroke-width: 1.2px;
+      transition: stroke 0.3s ease;
+    }
+    .interactive-divider:hover path {
+      stroke: rgba(255, 42, 77, 0.8) !important;
+    }
+
+    /* Milestones Section */
+    .caption[data-astro-cid-n6egurcx] h3 {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+    .text[data-astro-cid-n6egurcx] p {
+      color: #f1f5f9 !important;
+    }
+    .icon[data-astro-cid-n6egurcx] {
+      color: #FF2A4D !important;
+    }
+
+    /* Client Logos (Invert to white on dark) */
+    .logos[data-astro-cid-em637tx5] .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: brightness(0) invert(1);
+      opacity: 0.75;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .logos[data-astro-cid-em637tx5] .logo:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* ========================================================
+       WORLD-CLASS CLIENT FEEDBACK SECTION
+       ======================================================== */
+    .client-feedback-section {
+      position: relative;
+      margin: 10rem 0 14rem;
+    }
+    .feedback-card {
+      width: 440px !important;
+      max-width: 85vw !important;
+      background: rgba(11, 13, 23, 0.85) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 24px !important;
+      padding: 34px 30px !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      min-height: 320px !important;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
+    }
+    .feedback-card:hover {
+      border-color: rgba(255, 42, 77, 0.5) !important;
+      transform: translateY(-5px) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 42, 77, 0.2) !important;
+    }
+    .feedback-stars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      color: #FFB800;
+    }
+
+    /* Word Reveal Stagger Animation */
+    .word-mask {
+      overflow: clip;
+      vertical-align: top;
+      margin: -0.2em;
+      display: inline-block;
+    }
+    .word-char {
+      padding: 0.2em;
+      display: inline-block;
+      will-change: transform;
+      transform: translate3d(0, 0%, 0);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ========================================================
+       HOME PAGE FOOTER (MADE FOR THE HUNT - PIC 4)
+       ======================================================== */
+    .footer-huge-title {
+      font-family: 'Anton', sans-serif !important;
+      font-size: clamp(3.5rem, 12vw, 10.5rem) !important;
+      line-height: 0.85 !important;
+      text-transform: uppercase !important;
+      color: #ffffff !important;
+      letter-spacing: -0.02em !important;
+    }
+    .footer-title-red {
+      color: #FF2A4D !important;
+    }
+    .footer-kicker-red {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.22em !important;
+      text-transform: uppercase !important;
+      color: #FF2A4D !important;
+    }
+  
+    /* Enhanced Large Footer (Match Services & Home) */
+    #footer {
+      padding-top: 5rem !important;
+      padding-bottom: 7rem !important;
+    }
+    #footer .footer-huge-title {
+      font-size: clamp(5.5rem, 15vw, 13rem) !important;
+    }
+    #footer h4 {
+      font-size: 1.25rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.18em !important;
+      color: #ffffff !important;
+      margin-bottom: 1.5rem !important;
+      text-transform: uppercase !important;
+    }
+    #footer ul li a {
+      font-size: 1.15rem !important;
+      font-weight: 600 !important;
+      line-height: 2.4 !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+      transition: all 0.25s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+    #footer ul li a:hover {
+      color: #FF2A4D !important;
+      transform: translateX(5px) !important;
+    }
+    #footer .mt-14 {
+      margin-top: 4.5rem !important;
+      padding-top: 2rem !important;
+      font-size: 1rem !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+    #footer .mt-14 a {
+      font-size: 1rem !important;
+      color: rgba(255, 255, 255, 0.75) !important;
+    }
+    #footer .mt-14 a:hover {
+      color: #FF2A4D !important;
+    }
+
+
+  /* Uniform Navbar Montserrat Typography */
+  .rafsan-capsule-nav, .rafsan-nav-item {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+
+    /* Appiex Blog Pill Button */
+    .rafsan-blog-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 7px 18px !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 13.5px !important;
+      font-weight: 500 !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      text-decoration: none !important;
+    }
+    .rafsan-blog-btn:hover, .rafsan-blog-btn.active {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 42, 77, 0.5) !important;
+      color: #FF2A4D !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 15px rgba(255, 42, 77, 0.25) !important;
+    }
+
+</style>
+  <!-- Instant 0.1s Sub-Second Navigation Engine -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "index.html",
+          "projects.html",
+          "services.html",
+          "refer.html",
+          "partners.html",
+          "case-studies.html",
+          "web-development.html",
+          "ui-ux-3d-design.html",
+          "ai-automation.html",
+          "seo-marketing.html",
+          "gaming.html",
+          "digital-strategy.html",
+          "team.html",
+          "/"
+        ],
+        "eagerness": "immediate"
+      }
+    ],
+    "prefetch": [
+      {
+        "source": "document",
+        "where": {
+          "and": [
+            { "href_matches": "/*" }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+  
+  
+  
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight with Smooth Fadeout) -->
+  
+  <link rel="stylesheet" href="/styles/seo-links.css?v=20261031_restore">
+  <link rel="stylesheet" href="/styles/seo-content.css">
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+  </style>
+  <script src="/scripts/instant-nav.js?v=20261031_morph_x6" defer></script>
+
+<style>
+  /* Services Accordion Button */
+  .rafsan-mobile-services-btn {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.9rem 0 !important;
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    color: #ffffff !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+  }
+  .rafsan-mobile-services-btn span {
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    color: #ffffff !important;
+    text-align: left !important;
+  }
+  .rafsan-mobile-services-btn svg.rafsan-mobile-services-caret {
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: auto !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    display: block !important;
+    stroke: #ffffff !important;
+  }
+  .rafsan-mobile-services-btn.expanded svg.rafsan-mobile-services-caret {
+    transform: rotate(180deg) !important;
+    stroke: #FF2A4D !important;
+  }
+  .rafsan-mobile-services-btn.expanded span {
+    color: #FF2A4D !important;
+  }
+
+  /* Services Submenu Container */
+  .rafsan-mobile-services-sub {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.36s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, margin 0.3s ease !important;
+    background: rgba(255, 42, 77, 0.04) !important;
+    border: 1px solid transparent !important;
+    border-radius: 14px !important;
+    margin: 0 !important;
+    padding: 0 0.5rem !important;
+    box-sizing: border-box !important;
+  }
+  .rafsan-mobile-services-sub.open {
+    max-height: 480px !important;
+    opacity: 1 !important;
+    padding: 0.5rem 0.5rem 0.75rem 0.5rem !important;
+    margin: 0.6rem 0 0.85rem 0 !important;
+    border: 1px solid rgba(255, 42, 77, 0.22) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 42, 77, 0.05) !important;
+  }
+
+  /* Individual Submenu Items inside the accordion */
+  .rafsan-mobile-drawer .rafsan-mobile-services-sub a,
+  .rafsan-mobile-services-sub a,
+  a.rafsan-sub-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.7rem 0.85rem !important;
+    font-size: 0.86rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    color: rgba(255, 255, 255, 0.88) !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    background: transparent !important;
+    text-align: left !important;
+    -webkit-tap-highlight-color: rgba(255, 42, 77, 0.2) !important;
+    cursor: pointer !important;
+  }
+  .rafsan-mobile-drawer .rafsan-mobile-services-sub a:last-child,
+  .rafsan-mobile-services-sub a:last-child {
+    border-bottom: none !important;
+  }
+  .rafsan-mobile-drawer .rafsan-mobile-services-sub a:hover,
+  .rafsan-mobile-services-sub a:active,
+  a.rafsan-sub-item:active {
+    color: #FF2A4D !important;
+    background: rgba(255, 42, 77, 0.12) !important;
+    padding-left: 1.05rem !important;
+  }
+  .rafsan-mobile-services-sub a .dot,
+  .rafsan-mobile-services-sub .dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: #FF2A4D !important;
+    box-shadow: 0 0 8px #FF2A4D !important;
+    display: inline-block !important;
+    flex-shrink: 0 !important;
+  }
+  .rafsan-sub-explore {
+    color: #FF2A4D !important;
+    font-weight: 700 !important;
+    margin-top: 0.35rem !important;
+  }
+</style>
+<style>
+@media (min-width: 768px) {
+  .rafsan-navbar-shell {
+    padding: calc(0.55rem + 11px) 0 0.35rem 0 !important;
+  }
+  .rafsan-nav-container {
+    padding: 0 1.5rem !important;
+  }
+  .rafsan-capsule-nav {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+  }
+}
+</style>
+
+<script>
+  window.__toggleMobileServices = function(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+    var btn = document.getElementById('rafsan-mobile-services-toggle');
+    var sub = document.getElementById('rafsan-mobile-services-sub');
+    if (!sub) return false;
+
+    var isOpen = sub.classList.contains('open');
+    if (isOpen) {
+      sub.classList.remove('open');
+      if (btn) {
+        btn.classList.remove('expanded');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      sub.style.setProperty('max-height', '0px', 'important');
+      sub.style.setProperty('opacity', '0', 'important');
+      sub.style.setProperty('visibility', 'hidden', 'important');
+      sub.style.setProperty('pointer-events', 'none', 'important');
+      sub.style.setProperty('margin', '0', 'important');
+      sub.style.setProperty('padding', '0 0.5rem', 'important');
+    } else {
+      sub.classList.add('open');
+      if (btn) {
+        btn.classList.add('expanded');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      sub.style.setProperty('display', 'flex', 'important');
+      sub.style.setProperty('flex-direction', 'column', 'important');
+      sub.style.setProperty('max-height', '800px', 'important');
+      sub.style.setProperty('opacity', '1', 'important');
+      sub.style.setProperty('visibility', 'visible', 'important');
+      sub.style.setProperty('pointer-events', 'auto', 'important');
+      sub.style.setProperty('margin', '0.6rem 0 0.85rem 0', 'important');
+      sub.style.setProperty('padding', '0.5rem 0.5rem 0.75rem 0.5rem', 'important');
+      sub.style.setProperty('border', '1px solid rgba(255, 42, 77, 0.22)', 'important');
+      sub.style.setProperty('background', 'rgba(255, 42, 77, 0.06)', 'important');
+      sub.style.setProperty('border-radius', '14px', 'important');
+    }
+    return false;
+  };
+</script>
+
+</head>
+<body class="min-h-screen bg-[#030408] text-slate-100 flex flex-col justify-between relative selection:bg-red-600 selection:text-white">
+  <!-- Cuberto-Style Page Transition Curtain (Appiex Red Ambient Aesthetic) -->
+  <div id="appiex-cuberto-curtain" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 99999999; pointer-events: none; background: #030408;" aria-hidden="true">
+    <div class="appiex-curtain-ambient"></div>
+  </div>
+  
+  </div>
+
+  <!-- Background Video Overlay (APPIEX Signature Red & Black Preserved) -->
+  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center z-0" autoplay loop muted playsinline webkit-playsinline preload="none" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.48;">
+    <source src="./assets/static/vde.mp4" type="video/mp4">
+    <source src="./assets/static/vde.webm" type="video/webm">
+  </video>
+  <div class="pointer-events-none fixed inset-0 h-screen w-screen z-0" style="mix-blend-mode: color; background-color: #ff0000; opacity: 0.85;" aria-hidden="true"></div>
+  <div class="pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 w-[75rem] h-[35rem] ambient-glow-red blur-3xl z-0" aria-hidden="true"></div>
+
+  <!-- APPIEX SIGNATURE FLOATING CAPSULE NAVBAR (IDENTICAL TO PIC 2) -->
+  <header class="rafsan-navbar-shell" id="rafsan-navbar">
+  <div class="rafsan-nav-container">
+    
+    <!-- 1. Brand Logo (Left) -->
+    <a href="/index.html#home" class="rafsan-brand" aria-label="appiex">
+      <img src="./images/appiex-wordmark-white.png" alt="appiex" class="brand-wordmark-img" style="height: 28px; width: auto; object-fit: contain; display: block;">
+    </a>
+
+    <!-- 2. Floating Capsule Navbar (Center) -->
+    <nav class="rafsan-capsule-nav" aria-label="Main Navigation">
+      <div class="rafsan-capsule-pill" id="rafsan-capsule-pill"></div>
+      <a href="/index.html#home" class="rafsan-nav-item" data-section="home">Home</a>
+      
+      <!-- Services with Up-Caret & Mega Menu -->
+      <div class="services-nav-wrap" id="services-nav-wrap">
+        <a href="/services.html" class="rafsan-nav-item active" data-section="services" style="display: inline-flex; align-items: center;">
+          Services
+          <span class="services-caret" aria-hidden="true">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Mega Menu Popup -->
+        <div class="services-popup-menu" id="services-popup-menu" role="menu">
+          <div class="services-mega-left">
+            <div>
+              <span class="services-mega-badge">EXCLUSIVE</span>
+              <h4 class="services-mega-title">EXPLORE OUR SERVICES CURATIONS</h4>
+            </div>
+            <a href="/services.html" class="services-mega-btn">SEE OVERVIEW</a>
+          </div>
+          <div class="services-mega-right">
+            <span class="services-mega-subtitle">CORE DISCIPLINES</span>
+            <div class="services-mega-grid">
+              <a href="/digital-strategy.html" class="services-mega-item">DIGITAL STRATEGY</a>
+              <a href="/web-development.html" class="services-mega-item active-page">WEB DEVELOPMENT (FULL-STACK)</a>
+              <a href="/ui-ux-3d-design.html" class="services-mega-item">UI/UX &amp; 3D DESIGN</a>
+              <a href="/ai-automation.html" class="services-mega-item">AI AUTOMATION</a>
+              <a href="/seo-marketing.html" class="services-mega-item">SEO &amp; MARKETING</a>
+              <a href="/gaming.html" class="services-mega-item">GAMING &amp; 3D WORLDS</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="/refer.html" class="rafsan-nav-item" data-section="refer">Refer</a>
+      <a href="/partners.html" class="rafsan-nav-item" data-section="partners">Partnership</a>
+      <a href="/projects.html" class="rafsan-nav-item" data-section="projects">Projects</a>
+      <a href="/index.html#contact" class="rafsan-nav-item" data-section="contact">Contact</a>
+    </nav>
+
+    <!-- 3. Action Buttons (Right) -->
+    <div class="rafsan-nav-actions">
+      <a href="/blog.html" class="rafsan-blog-btn" aria-label="Blog">Blog</a>
+      <a href="/login.html" class="rafsan-hire-btn" id="nav-login-btn">Login</a>
+    </div>
+
+    <!-- 4. Mobile Hamburger -->
+    <div class="rafsan-mobile-wrap">
+      <a href="/login.html" class="rafsan-hire-btn" id="mobile-wrap-login-btn">Login</a>
+      <button type="button" class="rafsan-mobile-toggle" id="rafsan-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top"></span>
+          <span class="hamburger-line line-bottom"></span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- 5. Mobile Drawer Menu with 6 Core Disciplines Accordion -->
+  
+
+    </header>
+
+
+  <main class="View relative z-10">
+    <!-- HERO SECTION -->
+    <section class="TopheadSection" data-astro-cid-yhlrtawi="">
+      <div class="Container container" data-astro-cid-yhlrtawi="true" data-astro-cid-7bogrbt7="">
+        <div class="header" data-astro-cid-yhlrtawi="">
+          <h1 data-astro-cid-yhlrtawi="" aria-label="Custom Web Development in Bangladesh" class="reveal-words">
+            <span class="word-mask"><span class="word-char">Custom</span></span>
+            <span class="word-mask"><span class="word-char">Web</span></span>
+            <span class="word-mask"><span class="word-char">Development</span></span>
+            <span class="word-mask"><span class="word-char">in Bangladesh</span></span>
+          </h1>
+        </div>
+        <div class="title" data-astro-cid-yhlrtawi="">
+          <h2 data-astro-cid-yhlrtawi="true" aria-label="World-class solutions for sites your users will love" class="reveal-words">
+            <span class="word-mask"><span class="word-char">World-class</span></span>
+            <span class="word-mask"><span class="word-char">solutions</span></span>
+            <span class="word-mask"><span class="word-char">for</span></span><br>
+            <span class="word-mask"><span class="word-char">sites</span></span>
+            <span class="word-mask"><span class="word-char">your</span></span>
+            <span class="word-mask"><span class="word-char">users</span></span>
+            <span class="word-mask"><span class="word-char">will</span></span>
+            <span class="word-mask"><span class="word-char">love</span></span>
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN HERO PREVIEW VIDEO -->
+    <section class="PreviewSection" data-astro-cid-u5y7bqyk="">
+      <div class="Container container" data-astro-cid-u5y7bqyk="true" data-astro-cid-7bogrbt7="">
+        <div class="main -lg" data-astro-cid-u5y7bqyk="" style="clip-path: inset(0% round 2rem); opacity: 1;">
+          <div class="media" data-astro-cid-u5y7bqyk="">
+            <video autoplay playsinline loop muted preload="none" data-astro-cid-u5y7bqyk="">
+              <source src="/assets/home/hero.mp4" type="video/mp4">
+              <source src="./assets/bento-showcase.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW: BRIEF -->
+    <section class="OverviewSection" id="brief" data-astro-cid-em637tx5="">
+      <div class="Container container -size-lg" data-astro-cid-em637tx5="true" data-astro-cid-7bogrbt7="">
+        <div class="header" data-astro-cid-em637tx5="">
+          <h2 data-astro-cid-em637tx5="" aria-label="Customized for your needs" class="reveal-words">
+            <span class="word-mask"><span class="word-char">Customized</span></span><br class="-gxs">
+            <span class="word-mask"><span class="word-char">for</span></span>
+            <span class="word-mask"><span class="word-char">your</span></span>
+            <span class="word-mask"><span class="word-char">needs</span></span>
+          </h2>
+        </div>
+
+        <div class="divider" data-astro-cid-em637tx5="">
+          <div class="Divider interactive-divider" data-astro-cid-em637tx5="true" data-astro-cid-jqyytg4m="">
+            <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+          </div>
+        </div>
+
+        <div class="grid" data-astro-cid-em637tx5="">
+          <div class="grid__col -left" data-astro-cid-em637tx5="">
+            <div class="caption" data-astro-cid-em637tx5="">
+              <h3 data-astro-cid-em637tx5="true" class="reveal-words">
+                <span class="word-mask"><span class="word-char">Customized</span></span><br class="-gxs">
+                <span class="word-mask"><span class="word-char">for</span></span>
+                <span class="word-mask"><span class="word-char">your</span></span>
+                <span class="word-mask"><span class="word-char">needs</span></span>
+              </h3>
+            </div>
+          </div>
+          <div class="grid__col -right" data-astro-cid-em637tx5="">
+            <div class="info" data-astro-cid-em637tx5="">
+              <div class="text" data-astro-cid-em637tx5="">
+                <p data-astro-cid-em637tx5="" class="reveal-words">
+                  <span class="word-mask"><span class="word-char">We're</span></span>
+                  <span class="word-mask"><span class="word-char">driven</span></span>
+                  <span class="word-mask"><span class="word-char">by</span></span>
+                  <span class="word-mask"><span class="word-char">user‑centered</span></span>
+                  <span class="word-mask"><span class="word-char">design</span></span>
+                  <span class="word-mask"><span class="word-char">that</span></span>
+                  <span class="word-mask"><span class="word-char">drives</span></span>
+                  <span class="word-mask"><span class="word-char">productivity</span></span>
+                  <span class="word-mask"><span class="word-char">and</span></span>
+                  <span class="word-mask"><span class="word-char">increases</span></span>
+                  <span class="word-mask"><span class="word-char">revenue.</span></span>
+                  <span class="word-mask"><span class="word-char">Our</span></span>
+                  <span class="word-mask"><span class="word-char">expertise</span></span>
+                  <span class="word-mask"><span class="word-char">and</span></span>
+                  <span class="word-mask"><span class="word-char">ingenuity</span></span>
+                  <span class="word-mask"><span class="word-char">are</span></span>
+                  <span class="word-mask"><span class="word-char">remarkable,</span></span>
+                  <span class="word-mask"><span class="word-char">yet</span></span>
+                  <span class="word-mask"><span class="word-char">we</span></span>
+                  <span class="word-mask"><span class="word-char">always</span></span>
+                  <span class="word-mask"><span class="word-char">strive</span></span>
+                  <span class="word-mask"><span class="word-char">to</span></span>
+                  <span class="word-mask"><span class="word-char">outdo</span></span>
+                  <span class="word-mask"><span class="word-char">and</span></span>
+                  <span class="word-mask"><span class="word-char">outperform</span></span>
+                  <span class="word-mask"><span class="word-char">our</span></span>
+                  <span class="word-mask"><span class="word-char">previous</span></span>
+                  <span class="word-mask"><span class="word-char">achievements.</span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEB PROJECTS SHOWCASE -->
+    <section class="SummarySection -fill" id="featured" data-astro-cid-n6egurcx="">
+      <div class="fill" data-astro-cid-n6egurcx=""></div>
+      <div class="content" data-astro-cid-n6egurcx="">
+        <div class="Container container -size-lg" data-astro-cid-n6egurcx="true" data-astro-cid-7bogrbt7="">
+          <div class="main" data-astro-cid-n6egurcx="">
+            <div class="header" data-astro-cid-n6egurcx="">
+              <h2 data-astro-cid-n6egurcx="" aria-label="Web projects" class="reveal-words">
+                <span class="word-mask"><span class="word-char">Web</span></span><br>
+                <span class="word-mask"><span class="word-char">projects</span></span>
+              </h2>
+            </div>
+
+            <div class="cards" data-astro-cid-n6egurcx="">
+              <!-- Column 1 -->
+              <div class="col" data-astro-cid-n6egurcx="">
+                <!-- Card 1: Mamun WiFi -->
+                <div class="card" data-astro-cid-n6egurcx="" style="order: 1;">
+                  <a class="Card" href="projects.html#mamunwifi" data-astro-cid-n6egurcx="true" data-astro-cid-fibfjdhx="">
+                    <div class="preview" data-astro-cid-fibfjdhx="">
+                      <div class="preview__media -image" data-astro-cid-fibfjdhx="">
+                        <picture data-astro-cid-fibfjdhx="">
+                          <img src="./images/project_mamunwifi.jpg" loading="lazy" alt="Mamun WiFi – High Speed Broadband Where Speed Meets Stability" data-astro-cid-fibfjdhx="">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="caption" data-astro-cid-fibfjdhx="">
+                      <b>Mamun WiFi</b> – High-speed broadband network, automated ISP billing & subscriber intelligence portal
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Card 3: Libas-Nafs Perfume Brand -->
+                <div class="card" data-astro-cid-n6egurcx="" style="order: 3;">
+                  <a class="Card" href="projects.html#libasnafs" data-astro-cid-n6egurcx="true" data-astro-cid-fibfjdhx="">
+                    <div class="preview" data-astro-cid-fibfjdhx="">
+                      <div class="preview__media -image" data-astro-cid-fibfjdhx="">
+                        <picture data-astro-cid-fibfjdhx="">
+                          <img src="./images/project_libasnafs.jpg" loading="lazy" alt="Libas-Nafs Perfume Brand – Curated Excellence" data-astro-cid-fibfjdhx="">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="caption" data-astro-cid-fibfjdhx="">
+                      <b>Libas-Nafs Perfume Brand</b> – Curated excellence. Bespoke luxury fragrance catalog & sensorial boutique storefront
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Column 2 -->
+              <div class="col" data-astro-cid-n6egurcx="">
+                <!-- Card 2: Time Dune -->
+                <div class="card" data-astro-cid-n6egurcx="" style="order: 2;">
+                  <a class="Card" href="projects.html#timedune" data-astro-cid-n6egurcx="true" data-astro-cid-fibfjdhx="">
+                    <div class="preview -sm" data-astro-cid-fibfjdhx="">
+                      <div class="preview__media -image" data-astro-cid-fibfjdhx="">
+                        <picture data-astro-cid-fibfjdhx="">
+                          <img src="./images/project_timedune.jpg" loading="lazy" alt="Time Dune – Unique Timepieces & Chronograph E-Commerce" data-astro-cid-fibfjdhx="">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="caption" data-astro-cid-fibfjdhx="">
+                      <b>Time Dune</b> – Explore new unique timepieces. High-precision horology e-commerce & chronograph showcase
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Card 4: Boss Clothing Brand -->
+                <div class="card" data-astro-cid-n6egurcx="" style="order: 4;">
+                  <a class="Card" href="projects.html#boss" data-astro-cid-n6egurcx="true" data-astro-cid-fibfjdhx="">
+                    <div class="preview -sm" data-astro-cid-fibfjdhx="">
+                      <div class="preview__media -image" data-astro-cid-fibfjdhx="">
+                        <picture data-astro-cid-fibfjdhx="">
+                          <img src="./images/project_boss.jpg" loading="lazy" alt="Boss Clothing Brand – Class is a Choice Menswear Boutique" data-astro-cid-fibfjdhx="">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="caption" data-astro-cid-fibfjdhx="">
+                      <b>Boss Clothing Brand</b> – Class is a choice. Premium menswear suits, executive lifestyle catalog & digital boutique
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MILESTONES / CRITERIA SECTION -->
+    <section class="SummarySection -fill" id="milestones" data-astro-cid-n6egurcx="">
+      <div class="fill" data-astro-cid-n6egurcx=""></div>
+      <div class="content" data-astro-cid-n6egurcx="">
+        <div class="Container container -size-lg" data-astro-cid-n6egurcx="true" data-astro-cid-7bogrbt7="">
+          <div class="main" data-astro-cid-n6egurcx="">
+            <div class="header" data-astro-cid-n6egurcx="">
+              <h2 data-astro-cid-n6egurcx="" aria-label="Our criteria for an exceptional site" class="reveal-words">
+                <span class="word-mask"><span class="word-char">Our</span></span>
+                <span class="word-mask"><span class="word-char">criteria</span></span>
+                <span class="word-mask"><span class="word-char">for</span></span><br class="-gxs">
+                <span class="word-mask"><span class="word-char">an</span></span>
+                <span class="word-mask"><span class="word-char">exceptional</span></span>
+                <span class="word-mask"><span class="word-char">site</span></span>
+              </h2>
+            </div>
+
+            <!-- Item 1 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -rotating" data-astro-cid-n6egurcx="">
+                  <svg fill="none" viewBox="0 0 80 80" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <path stroke="currentColor" stroke-width="4" d="M22.72 71.22a9 9 0 0 0 8.36 3.33l27.32-3.97A9 9 0 0 0 65.46 65l10.22-25.64a9 9 0 0 0-1.3-8.9L57.29 8.77a9 9 0 0 0-8.36-3.33L21.6 9.42a9 9 0 0 0-7.06 5.57L4.32 40.64a9 9 0 0 0 1.3 8.9l17.1 21.68Z" />
+                    <path stroke="currentColor" stroke-width="4" d="m27.21 23.61 5.13 35.6L60.56 36.9 27.2 23.6Z" />
+                    <path stroke="currentColor" stroke-width="4.08" d="m26.97 72.69 6.11-15.62" />
+                    <path stroke="currentColor" stroke-width="4.08" d="m59.39 37.31 15.59-2.92" />
+                    <path stroke="currentColor" stroke-width="4.08" d="m18.46 11.87 9.67 12.62" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">Tight-knit team</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words">
+                      <span class="word-mask"><span class="word-char">Our</span></span>
+                      <span class="word-mask"><span class="word-char">development</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">design</span></span>
+                      <span class="word-mask"><span class="word-char">gurus</span></span>
+                      <span class="word-mask"><span class="word-char">work</span></span>
+                      <span class="word-mask"><span class="word-char">side</span></span>
+                      <span class="word-mask"><span class="word-char">by</span></span>
+                      <span class="word-mask"><span class="word-char">side.</span></span>
+                      <span class="word-mask"><span class="word-char">This</span></span>
+                      <span class="word-mask"><span class="word-char">has</span></span>
+                      <span class="word-mask"><span class="word-char">a</span></span>
+                      <span class="word-mask"><span class="word-char">major</span></span>
+                      <span class="word-mask"><span class="word-char">impact</span></span>
+                      <span class="word-mask"><span class="word-char">on</span></span>
+                      <span class="word-mask"><span class="word-char">building</span></span>
+                      <span class="word-mask"><span class="word-char">swift</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">responsive</span></span>
+                      <span class="word-mask"><span class="word-char">websites.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -rotating -cw" data-astro-cid-n6egurcx="">
+                  <svg viewBox="0 0 65 65" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <path d="m34.2 25.05-1.7-13.26-1.7 13.26-7.28-11.2 4.22 12.68-11.43-6.94 9.3 9.6-13.3-1.3 12.55 4.61-12.55 4.6 13.3-1.28-9.3 9.6 11.43-6.95-4.22 12.69 7.28-11.21 1.7 13.26 1.7-13.26 7.28 11.2-4.22-12.68 11.43 6.94-9.3-9.6 13.3 1.3-12.55-4.61 12.55-4.6-13.3 1.28 9.3-9.6-11.43 6.95 4.23-12.69-7.29 11.21ZM46.6 3.22l-6.62 19.9L57.9 12.24 43.31 27.3l20.88-2.03-19.7 7.23 19.7 7.23L43.3 37.7l14.6 15.06-17.93-10.88 6.62 19.9L35.17 44.2 32.5 65l-2.67-20.8L18.4 61.77l6.62-19.9L7.1 52.76 21.7 37.7.82 39.73l19.7-7.23L.8 25.27 21.7 27.3 7.1 12.24l17.92 10.88-6.62-19.9L29.83 20.8 32.5 0l2.67 20.8L46.6 3.23Z" fill="currentColor" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">We watch the clock</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words">
+                      <span class="word-mask"><span class="word-char">Collaboration</span></span>
+                      <span class="word-mask"><span class="word-char">should</span></span>
+                      <span class="word-mask"><span class="word-char">benefit</span></span>
+                      <span class="word-mask"><span class="word-char">both</span></span>
+                      <span class="word-mask"><span class="word-char">sides</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">you</span></span>
+                      <span class="word-mask"><span class="word-char">can</span></span>
+                      <span class="word-mask"><span class="word-char">trust</span></span>
+                      <span class="word-mask"><span class="word-char">that</span></span>
+                      <span class="word-mask"><span class="word-char">we</span></span>
+                      <span class="word-mask"><span class="word-char">stick</span></span>
+                      <span class="word-mask"><span class="word-char">to</span></span>
+                      <span class="word-mask"><span class="word-char">deadlines.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -stroka" data-astro-cid-n6egurcx="">
+                  <svg viewBox="0 0 64 64" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <rect x="16" y="2" width="32" height="60" rx="16" fill="none" stroke="currentColor" stroke-width="4" />
+                    <rect x="2" y="48" width="32" height="60" rx="16" fill="none" transform="rotate(-90 2 48)" stroke="currentColor" stroke-width="4" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">Problem solving</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words">
+                      <span class="word-mask"><span class="word-char">Sometimes</span></span>
+                      <span class="word-mask"><span class="word-char">a</span></span>
+                      <span class="word-mask"><span class="word-char">specialized</span></span>
+                      <span class="word-mask"><span class="word-char">challenge</span></span>
+                      <span class="word-mask"><span class="word-char">comes</span></span>
+                      <span class="word-mask"><span class="word-char">up.</span></span>
+                      <span class="word-mask"><span class="word-char">Should</span></span>
+                      <span class="word-mask"><span class="word-char">you</span></span>
+                      <span class="word-mask"><span class="word-char">look</span></span>
+                      <span class="word-mask"><span class="word-char">for</span></span>
+                      <span class="word-mask"><span class="word-char">more</span></span>
+                      <span class="word-mask"><span class="word-char">experts?</span></span>
+                      <span class="word-mask"><span class="word-char">No.</span></span>
+                      <span class="word-mask"><span class="word-char">Our</span></span>
+                      <span class="word-mask"><span class="word-char">team</span></span>
+                      <span class="word-mask"><span class="word-char">will</span></span>
+                      <span class="word-mask"><span class="word-char">find</span></span>
+                      <span class="word-mask"><span class="word-char">an</span></span>
+                      <span class="word-mask"><span class="word-char">elegant</span></span>
+                      <span class="word-mask"><span class="word-char">solution</span></span>
+                      <span class="word-mask"><span class="word-char">that</span></span>
+                      <span class="word-mask"><span class="word-char">works</span></span>
+                      <span class="word-mask"><span class="word-char">for</span></span>
+                      <span class="word-mask"><span class="word-char">you.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -rotating -cw" data-astro-cid-n6egurcx="">
+                  <svg fill="none" viewBox="0 0 80 80" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <path stroke="currentColor" stroke-width="4" d="M44.95 77.68A38.02 38.02 0 0 1 2.32 44.95 38.02 38.02 0 0 1 35.05 2.32a38.02 38.02 0 0 1 42.63 32.73 38.02 38.02 0 0 1-32.73 42.63Z" />
+                    <path stroke="currentColor" stroke-width="4" d="M44.95 77.68a25.01 25.01 0 0 1-6.51-49.58 25.01 25.01 0 0 1 6.51 49.58Z" />
+                    <path stroke="currentColor" stroke-width="4" d="M41.56 51.9a25.01 25.01 0 0 1-6.51-49.58 25.01 25.01 0 0 1 6.51 49.58Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">Contemporary approach</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words">
+                      <span class="word-mask"><span class="word-char">The</span></span>
+                      <span class="word-mask"><span class="word-char">tools</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">technologies</span></span>
+                      <span class="word-mask"><span class="word-char">used</span></span>
+                      <span class="word-mask"><span class="word-char">to</span></span>
+                      <span class="word-mask"><span class="word-char">build</span></span>
+                      <span class="word-mask"><span class="word-char">a</span></span>
+                      <span class="word-mask"><span class="word-char">website</span></span>
+                      <span class="word-mask"><span class="word-char">really</span></span>
+                      <span class="word-mask"><span class="word-char">count.</span></span>
+                      <span class="word-mask"><span class="word-char">We</span></span>
+                      <span class="word-mask"><span class="word-char">always</span></span>
+                      <span class="word-mask"><span class="word-char">stay</span></span>
+                      <span class="word-mask"><span class="word-char">on</span></span>
+                      <span class="word-mask"><span class="word-char">the</span></span>
+                      <span class="word-mask"><span class="word-char">cutting</span></span>
+                      <span class="word-mask"><span class="word-char">edge</span></span>
+                      <span class="word-mask"><span class="word-char">with</span></span>
+                      <span class="word-mask"><span class="word-char">the</span></span>
+                      <span class="word-mask"><span class="word-char">latest</span></span>
+                      <span class="word-mask"><span class="word-char">trends.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECOND PREVIEW SECTION (ENTERPRISE PLATFORMS) -->
+    <section class="PreviewSection" data-astro-cid-u5y7bqyk="">
+      <div class="Container container" data-astro-cid-u5y7bqyk="true" data-astro-cid-7bogrbt7="">
+        <div class="main" data-astro-cid-u5y7bqyk="" style="opacity: 1;">
+          <div class="media" data-astro-cid-u5y7bqyk="">
+            <video autoplay playsinline loop muted preload="none" data-astro-cid-u5y7bqyk="">
+              
+              <source src="./assets/mamunwifi-showcase.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW: ESSENTIAL STAGES -->
+    <section class="OverviewSection" id="stages" data-astro-cid-em637tx5="">
+      <div class="Container container -size-lg" data-astro-cid-em637tx5="true" data-astro-cid-7bogrbt7="">
+        <div class="header" data-astro-cid-em637tx5="">
+          <h2 data-astro-cid-em637tx5="" aria-label="The essential stages of developing a site" class="reveal-words">
+            <span class="word-mask"><span class="word-char">The</span></span>
+            <span class="word-mask"><span class="word-char">essential</span></span>
+            <span class="word-mask"><span class="word-char">stages</span></span><br class="-gxs">
+            <span class="word-mask"><span class="word-char">of</span></span>
+            <span class="word-mask"><span class="word-char">developing</span></span>
+            <span class="word-mask"><span class="word-char">a</span></span>
+            <span class="word-mask"><span class="word-char">site</span></span>
+          </h2>
+        </div>
+
+        <div class="divider" data-astro-cid-em637tx5="">
+          <div class="Divider interactive-divider" data-astro-cid-em637tx5="true" data-astro-cid-jqyytg4m="">
+            <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+          </div>
+        </div>
+
+        <div class="grid" data-astro-cid-em637tx5="">
+          <div class="grid__col -left" data-astro-cid-em637tx5="">
+            <div class="caption" data-astro-cid-em637tx5="">
+              <h3 data-astro-cid-em637tx5="true" class="reveal-words">
+                <span class="word-mask"><span class="word-char">The</span></span>
+                <span class="word-mask"><span class="word-char">essential</span></span>
+                <span class="word-mask"><span class="word-char">stages</span></span><br class="-gxs">
+                <span class="word-mask"><span class="word-char">of</span></span>
+                <span class="word-mask"><span class="word-char">developing</span></span>
+                <span class="word-mask"><span class="word-char">a</span></span>
+                <span class="word-mask"><span class="word-char">site</span></span>
+              </h3>
+            </div>
+          </div>
+          <div class="grid__col -right" data-astro-cid-em637tx5="">
+            <div class="info" data-astro-cid-em637tx5="">
+              <div class="text" data-astro-cid-em637tx5="">
+                <ol class="-by2">
+                  <li><span class="word-mask"><span class="word-char">Research</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Identifying</span></span> <span class="word-mask"><span class="word-char">competitors</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Site</span></span> <span class="word-mask"><span class="word-char">structure</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Design</span></span> <span class="word-mask"><span class="word-char">concept</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Adaptive</span></span> <span class="word-mask"><span class="word-char">design</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Illustrations</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Interactive</span></span> <span class="word-mask"><span class="word-char">design</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Front-end</span></span> <span class="word-mask"><span class="word-char">development</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Back-end</span></span> <span class="word-mask"><span class="word-char">development</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Quality</span></span> <span class="word-mask"><span class="word-char">assurance</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Launch</span></span></li>
+                  <li><span class="word-mask"><span class="word-char">Support</span></span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW: BEST AGENCY RECOGNITION -->
+    <section class="OverviewSection" id="awwwards" data-astro-cid-em637tx5="">
+      <div class="Container container -size-lg" data-astro-cid-em637tx5="true" data-astro-cid-7bogrbt7="">
+        <div class="header" data-astro-cid-em637tx5="">
+          <h2 data-astro-cid-em637tx5="" aria-label="Architectural Excellence —" class="reveal-words">
+            <span class="word-mask"><span class="word-char">Technical</span></span>
+            <span class="word-mask"><span class="word-char">Systems</span></span>
+            <span class="word-mask"><span class="word-char">Excellence</span></span><br class="-gxs">
+            <span class="word-mask"><span class="word-char">—</span></span>
+          </h2>
+        </div>
+
+        <div class="divider" data-astro-cid-em637tx5="">
+          <div class="Divider interactive-divider" data-astro-cid-em637tx5="true" data-astro-cid-jqyytg4m="">
+            <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+          </div>
+        </div>
+
+        <div class="grid" data-astro-cid-em637tx5="">
+          <div class="grid__col -left" data-astro-cid-em637tx5="">
+            <div class="caption" data-astro-cid-em637tx5="">
+              <h3 data-astro-cid-em637tx5="true" class="reveal-words">
+                <span class="word-mask"><span class="word-char">Best</span></span>
+                <span class="word-mask"><span class="word-char">Agency</span></span>
+                <span class="word-mask"><span class="word-char">Award</span></span><br class="-gxs">
+                <span class="word-mask"><span class="word-char">—</span></span>
+              </h3>
+            </div>
+          </div>
+          <div class="grid__col -right" data-astro-cid-em637tx5="">
+            <div class="info" data-astro-cid-em637tx5="">
+              <div class="text" data-astro-cid-em637tx5="">
+                <p data-astro-cid-em637tx5="" class="reveal-words">
+                  <span class="word-mask"><span class="word-char">We</span></span>
+                  <span class="word-mask"><span class="word-char">know</span></span>
+                  <span class="word-mask"><span class="word-char">winning</span></span>
+                  <span class="word-mask"><span class="word-char">isn’t</span></span>
+                  <span class="word-mask"><span class="word-char">everything.</span></span>
+                  <span class="word-mask"><span class="word-char">However,</span></span>
+                  <span class="word-mask"><span class="word-char">among</span></span>
+                  <span class="word-mask"><span class="word-char">our</span></span>
+                  <span class="word-mask"><span class="word-char">top</span></span>
+                  <span class="word-mask"><span class="word-char">recognitions,</span></span>
+                  <span class="word-mask"><span class="word-char">APPIEX</span></span>
+                  <span class="word-mask"><span class="word-char">has</span></span>
+                  <span class="word-mask"><span class="word-char">been</span></span>
+                  <span class="word-mask"><span class="word-char">honored</span></span>
+                  <span class="word-mask"><span class="word-char">with</span></span>
+                  <span class="word-mask"><span class="word-char">the</span></span>
+                  <span class="word-mask"><span class="word-char">prestigious</span></span>
+                  <span class="word-mask"><span class="word-char"><b>Best</b></span></span>
+                  <span class="word-mask"><span class="word-char"><b>Agency</b></span></span>
+                  <span class="word-mask"><span class="word-char"><b>Award</b></span></span>
+                  <span class="word-mask"><span class="word-char">for</span></span>
+                  <span class="word-mask"><span class="word-char">outstanding</span></span>
+                  <span class="word-mask"><span class="word-char">engineering,</span></span>
+                  <span class="word-mask"><span class="word-char">spatial</span></span>
+                  <span class="word-mask"><span class="word-char">web</span></span>
+                  <span class="word-mask"><span class="word-char">design,</span></span>
+                  <span class="word-mask"><span class="word-char">and</span></span>
+                  <span class="word-mask"><span class="word-char">cutting-edge</span></span>
+                  <span class="word-mask"><span class="word-char">digital</span></span>
+                  <span class="word-mask"><span class="word-char">products</span></span>
+                  <span class="word-mask"><span class="word-char">that</span></span>
+                  <span class="word-mask"><span class="word-char">deliver</span></span>
+                  <span class="word-mask"><span class="word-char">world-class</span></span>
+                  <span class="word-mask"><span class="word-char">results.</span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CINEMATIC VIDEO SHOWCASE FOR BEST AGENCY AWARD -->
+    <section class="PreviewSection" data-astro-cid-u5y7bqyk="">
+      <div class="Container container" data-astro-cid-u5y7bqyk="true" data-astro-cid-7bogrbt7="">
+        <div class="main -lg" data-astro-cid-u5y7bqyk="" style="clip-path: inset(0% round 2rem); opacity: 1;">
+          <div class="media" data-astro-cid-u5y7bqyk="">
+            <video autoplay playsinline loop muted preload="auto" data-astro-cid-u5y7bqyk="">
+              <source src="./assets/agency_project_presentation.mp4" type="video/mp4">
+            </video>
+          </div>
+          <!-- Award Glass Badge -->
+          <div class="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 z-10 flex items-center gap-4 p-4 sm:p-5 rounded-2xl bg-black/80 backdrop-blur-xl border border-white/15 shadow-2xl">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 flex items-center justify-center text-white font-extrabold text-2xl shadow-lg">
+              🏆
+            </div>
+            <div>
+              <div class="text-xs font-mono font-bold uppercase tracking-widest text-amber-400">NATIONAL HONORS</div>
+              <div class="text-white font-bold text-base sm:text-lg">Best Agency Award Winner —</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW: GLOBAL PARTNERS & LOGOS -->
+    <section class="OverviewSection" id="partners" data-astro-cid-em637tx5="">
+      <div class="Container container -size-lg" data-astro-cid-em637tx5="true" data-astro-cid-7bogrbt7="">
+        <div class="header" data-astro-cid-em637tx5="">
+          <h2 data-astro-cid-em637tx5="" aria-label="We work with people from all over the world" class="reveal-words">
+            <span class="word-mask"><span class="word-char">We</span></span>
+            <span class="word-mask"><span class="word-char">work</span></span>
+            <span class="word-mask"><span class="word-char">with</span></span><br class="-gxs">
+            <span class="word-mask"><span class="word-char">people</span></span>
+            <span class="word-mask"><span class="word-char">from</span></span>
+            <span class="word-mask"><span class="word-char">all</span></span><br class="-gxs">
+            <span class="word-mask"><span class="word-char">over</span></span>
+            <span class="word-mask"><span class="word-char">the</span></span>
+            <span class="word-mask"><span class="word-char">world</span></span>
+          </h2>
+        </div>
+
+        <div class="logos" data-astro-cid-em637tx5="" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2rem;">
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/watch24bd.svg" loading="lazy" alt="Watch24 BD" style="height: 38px; width: auto; max-width: 170px; object-fit: contain;"></a></div>
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/timedune.svg" loading="lazy" alt="TimeDune" style="height: 38px; width: auto; max-width: 160px; object-fit: contain;"></a></div>
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/libasnafs.svg" loading="lazy" alt="Libas &amp; Nafs" style="height: 38px; width: auto; max-width: 175px; object-fit: contain;"></a></div>
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/mamunwifi.svg" loading="lazy" alt="Mamun WiFi" style="height: 38px; width: auto; max-width: 175px; object-fit: contain;"></a></div>
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/daffodil.svg" loading="lazy" alt="Daffodil BLC" style="height: 38px; width: auto; max-width: 175px; object-fit: contain;"></a></div>
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/fadeoutpro.svg" loading="lazy" alt="FadeOutPro" style="height: 38px; width: auto; max-width: 175px; object-fit: contain;"></a></div>
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/mddawakhana.svg" loading="lazy" alt="Md Dawakhana" style="height: 38px; width: auto; max-width: 195px; object-fit: contain;"></a></div>
+          <div class="logo" data-astro-cid-em637tx5=""><a href="projects.html"><img src="./images/logos/ghorerbazar.svg" loading="lazy" alt="Ghorer Bazar" style="height: 38px; width: auto; max-width: 185px; object-fit: contain;"></a></div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM CLIENT FEEDBACK CAROUSEL SECTION (IMPROVED & VIBRANT) -->
+    <!-- 5. CLIENT COMMITMENTS & ENGINEERING STANDARDS SECTION -->
+    <section class="client-feedback-section" id="feedback">
+      <div class="Container container -size-lg" data-astro-cid-7bogrbt7="">
+        
+        <div class="divider mb-12">
+          <div class="Divider interactive-divider" data-astro-cid-jqyytg4m="">
+            <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+          </div>
+        </div>
+
+        <div class="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 mb-4">
+              <span class="w-2 h-2 rounded-full bg-[#FF2A4D] animate-ping"></span>
+              <span class="text-xs font-mono font-bold tracking-[0.2em] text-red-300 uppercase">ENGINEERING STANDARDS // CLIENT COMMITMENTS</span>
+            </div>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tight text-white reveal-words">
+              How we engineer with trust
+            </h2>
+          </div>
+
+          <!-- Swiper Navigation Arrows -->
+          <div class="flex items-center gap-3">
+            <button class="feedback-prev-btn w-12 h-12 rounded-full border border-white/20 bg-white/5 hover:bg-red-500/20 hover:border-red-500 text-white flex items-center justify-center transition-all shadow-lg active:scale-95" aria-label="Previous standard">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button class="feedback-next-btn w-12 h-12 rounded-full border border-white/20 bg-white/5 hover:bg-red-500/20 hover:border-red-500 text-white flex items-center justify-center transition-all shadow-lg active:scale-95" aria-label="Next standard">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Standards Swiper Container -->
+        <div class="swiper feedback-swiper" id="testimonials-swiper">
+          <div class="swiper-wrapper">
+            
+            <!-- Standard 1 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-red-400 uppercase">
+                    01 // INTELLECTUAL PROPERTY
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-xs font-bold text-emerald-400 border border-emerald-500/20">
+                    100% Client Ownership
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Full Code Ownership & Zero Lock-in</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Every line of production Next.js, Three.js, and backend code is delivered directly to your company repository under full commercial license. No proprietary lock-in, ever.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-rose-700 flex items-center justify-center text-white font-bold text-sm">
+                  IP
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Direct Repository Handover</div>
+                  <div class="text-slate-400 text-xs font-mono">Mutual NDA Protected</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 2 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-purple-400 uppercase">
+                    02 // PERFORMANCE SLA
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-purple-500/10 text-xs font-bold text-purple-400 border border-purple-500/20">
+                    95+ Lighthouse
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Sub-Second Performance Architecture</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  We engineer digital storefronts and platforms adhering to strict performance SLAs: 95+ Core Web Vitals, sub-1.5s Largest Contentful Paint (LCP), and smooth 60fps WebGL rendering.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-700 flex items-center justify-center text-white font-bold text-sm">
+                  SLA
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Edge CDN & Optimized Assets</div>
+                  <div class="text-slate-400 text-xs font-mono">Measured on Mobile Devices</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 3 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-blue-400 uppercase">
+                    03 // SPRINT TRANSPARENCY
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-blue-500/10 text-xs font-bold text-blue-400 border border-blue-500/20">
+                    Daily Async Sprints
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Transparent Sprints & Live Demos</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Direct engineer-to-client communication with daily Loom video updates, GitHub PR visibility, and bi-weekly staging deployments so you always know what is being shipped.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white font-bold text-sm">
+                  PR
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Staging Deployments & Loom Demos</div>
+                  <div class="text-slate-400 text-xs font-mono">Direct GitHub & Slack Access</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 4 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-amber-400 uppercase">
+                    04 // ENTERPRISE SECURITY
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-amber-500/10 text-xs font-bold text-amber-400 border border-amber-500/20">
+                    Production Safe
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Strict Security & Typesafe Architecture</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Typesafe TypeScript architectures, sanitized input validation, automated CI/CD security audits, and hardened API gateways engineered to protect customer data from day one.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 flex items-center justify-center text-white font-bold text-sm">
+                  SEC
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Automated Security Audits</div>
+                  <div class="text-slate-400 text-xs font-mono">Zero Third-Party Data Leaks</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 5 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-teal-400 uppercase">
+                    05 // POST-LAUNCH HYPERCARE
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-teal-500/10 text-xs font-bold text-teal-400 border border-teal-500/20">
+                    30-Day Hypercare
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Dedicated Launch Support</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Every custom deployment includes 30 days of dedicated hypercare support, real-time error telemetry monitoring, and comprehensive developer handoff documentation for your team.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-emerald-700 flex items-center justify-center text-white font-bold text-sm">
+                  HC
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Telemetry Monitoring & Handoff</div>
+                  <div class="text-slate-400 text-xs font-mono">90-Day Post-Launch Support Included</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         HOME PAGE FOOTER (EXACT MATCH PIC 4 - MADE FOR THE HUNT)
+         ======================================================== -->
+    
+<!-- SPECIALIZED P1 SERVICE HUBS & BUYER GUIDES -->
+<section id="specialized-service-hubs" class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 py-12">
+  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-[#FF2A4D] font-bold block mb-1">SPECIALIZED ENGINEERING TRACKS</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white" style="font-family: 'Space Grotesk', sans-serif;">Explore Dedicated Solutions &amp; Pricing Guides</h2>
+      </div>
+      <a href="/blog/website-development-cost-bangladesh" class="text-xs font-mono font-semibold text-[#FF2A4D] hover:underline">
+        2026 Bangladesh Website Cost Breakdown &rarr;
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs sm:text-sm">
+      <a href="/ecommerce-development" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">Ecommerce Website Development &rarr;</strong>
+        <span class="text-slate-400 text-xs">Custom stores with bKash, Nagad, SSLCOMMERZ EMI, inventory &amp; courier sync.</span>
+      </a>
+      <a href="/n8n-automation" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">n8n Workflow Automation &rarr;</strong>
+        <span class="text-slate-400 text-xs">Self-hosted n8n setup, CRM lead routing, AI agents &amp; webhook integrations.</span>
+      </a>
+      <a href="/whatsapp-automation" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">WhatsApp Chatbot &amp; Cloud API &rarr;</strong>
+        <span class="text-slate-400 text-xs">24/7 AI sales &amp; support bots in English, Bangla &amp; Banglish with human handoff.</span>
+      </a>
+      <a href="/isp-software-development" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">ISP Billing &amp; MikroTik Portals &rarr;</strong>
+        <span class="text-slate-400 text-xs">Automated MikroTik RouterOS queue control &amp; instant bKash/Nagad recharge.</span>
+      </a>
+      <a href="/website-redesign" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">Website Redesign &amp; SEO Migration &rarr;</strong>
+        <span class="text-slate-400 text-xs">Upgrade UX and Core Web Vitals speed with a 100% 301 SEO-safe relaunch.</span>
+      </a>
+      <a href="/blog/website-development-cost-bangladesh" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">Website Cost in Bangladesh (2026) &rarr;</strong>
+        <span class="text-slate-400 text-xs">Transparent BDT &amp; USD budget ranges for corporate, e-commerce &amp; custom apps.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer" class="relative z-10 mx-auto mt-20 w-full max-w-7xl px-4 pb-14 pt-12 sm:px-6 md:pb-20" style="background: transparent !important;">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Red Kicker on Top (Pic 4) -->
+        <span class="footer-kicker-red block mb-3">
+          HUNGRY FOR MORE — WEB ARCHITECTURES 2026
+        </span>
+
+        <!-- Huge Stacked Typography: MADE FOR THE HUNT. (Pic 4) -->
+        <div class="mb-14 select-none">
+          <div class="footer-huge-title">MADE</div>
+          <div class="footer-huge-title">FOR THE</div>
+          <div class="footer-huge-title footer-title-red">HUNT.</div>
+        </div>
+
+        <!-- Thin Divider Line (Pic 4) -->
+        <div class="w-full border-t border-white/10 mb-12"></div>
+
+        <!-- 4 Columns Grid (Pic 4) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-left">
+          
+          <!-- Column 1: PLATFORMS -->
+          <div>
+            <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">
+              PLATFORMS
+            </h4>
+            <ul class="space-y-3 text-sm text-slate-300/80">
+              <li><a href="web-development.html" class="hover:text-white transition-colors">E-Commerce Speed Stores</a></li>
+              <li><a href="web-development.html" class="hover:text-white transition-colors">SaaS &amp; Application Portals</a></li>
+              <li><a href="ui-ux-3d-design.html" class="hover:text-white transition-colors">3D Interactive Spikes</a></li>
+              <li><a href="ai-automation.html" class="hover:text-white transition-colors">Web Accessories &amp; Cloud</a></li>
+              <li><a href="case-studies.html" class="hover:text-white transition-colors">Performance Lab</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2: COMPANY -->
+          <div>
+            <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">
+              COMPANY
+            </h4>
+            <ul class="space-y-3 text-sm text-slate-300/80">
+              <li><a href="case-studies.html" class="hover:text-white transition-colors">About APPIEX Systems</a></li>
+              <li><a href="ui-ux-3d-design.html" class="hover:text-white transition-colors">UI/UX Biomechanics</a></li>
+              <li><a href="services.html" class="hover:text-white transition-colors">Carbon Neutral Hosting</a></li>
+              <li><a href="collections.html" class="hover:text-white transition-colors">Press &amp; Releases</a></li>
+              <li><a href="partners.html" class="hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: SUPPORT -->
+          <div>
+            <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">
+              SUPPORT
+            </h4>
+            <ul class="space-y-3 text-sm text-slate-300/80">
+              <li><a href="https://github.com/monacogo001-ops" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Repo Access</a></li>
+              <li><a href="refer.html" class="hover:text-white transition-colors">Commercial License</a></li>
+              <li><a href="web-development.html" class="hover:text-white transition-colors">Tech Stack Guide</a></li>
+              <li><a href="index.html#contact" class="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="index.html#contact" class="hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: FOLLOW -->
+          <div>
+            <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">
+              FOLLOW
+            </h4>
+            <ul class="space-y-4 text-sm text-slate-300/80">
+              <li>
+                <a href="https://www.instagram.com/appiex" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-white transition-colors group"><span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-slate-300 group-hover:border-red-500 group-hover:text-red-500 transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span>Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/monacogo001-ops" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-white transition-colors group">
+                  <span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-slate-300 group-hover:border-red-500 group-hover:text-red-500 transition-colors">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </span>
+                  <span>GitHub Repos</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/appiex" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-white transition-colors group"><span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-slate-300 group-hover:border-red-500 group-hover:text-red-500 transition-colors"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.626zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span><span>X / Twitter</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom Copyright -->
+        <div class="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+          <p>© 2026 APPIEX Systems. All rights reserved.</p>
+          <div class="flex items-center gap-6">
+            <a href="/privacy-policy.html" class="hover:text-slate-200 transition-colors">Privacy Policy</a>
+            <a href="/terms-of-service.html" class="hover:text-slate-200 transition-colors">Terms of Service</a>
+        <a href="/editorial-policy.html" class="hover:text-slate-200 transition-colors">Editorial Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Runtime Libraries: GSAP, ScrollTrigger, Lenis, Swiper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- APPIEX + Cuberto Interactive Engine -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Appiex Floating Capsule Pill Navigation (Exact bounding box)
+      const capsuleNav = document.querySelector('.rafsan-capsule-nav');
+      const pill = document.getElementById('rafsan-capsule-pill');
+      function updatePill(targetEl) {
+        if (!pill || !targetEl || !capsuleNav) return;
+        const navRect = capsuleNav.getBoundingClientRect();
+        const itemRect = targetEl.getBoundingClientRect();
+        pill.style.width = itemRect.width + 'px';
+        pill.style.left = (itemRect.left - navRect.left) + 'px';
+        pill.style.opacity = '1';
+      }
+      if (capsuleNav && pill) {
+        const activeItem = capsuleNav.querySelector('.rafsan-nav-item.active') || capsuleNav.querySelector('.rafsan-nav-item');
+        if (activeItem) {
+          updatePill(activeItem);
+          setTimeout(() => updatePill(activeItem), 50);
+          setTimeout(() => updatePill(activeItem), 250);
+          window.addEventListener('load', () => updatePill(activeItem));
+          window.addEventListener('resize', () => updatePill(activeItem));
+        }
+        capsuleNav.querySelectorAll('.rafsan-nav-item').forEach(item => {
+          item.addEventListener('mouseenter', () => updatePill(item));
+        });
+        capsuleNav.addEventListener('mouseleave', () => {
+          const currentActive = capsuleNav.querySelector('.rafsan-nav-item.active') || activeItem;
+          if (currentActive) updatePill(currentActive);
+        });
+      }
+
+      // Mobile Drawer Toggle
+      const menuToggle = document.getElementById('rafsan-menu-toggle');
+      const mobileDrawer = document.getElementById('rafsan-mobile-drawer');
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            mobileDrawer.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            mobileDrawer.classList.add('open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        document.addEventListener('click', (e) => {
+          if (!mobileDrawer.contains(e.target) && !menuToggle.contains(e.target)) {
+            mobileDrawer.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Navbar Scroll Class
+      const navbar = document.getElementById('rafsan-navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+      // 2. Initialize Lenis Smooth Scroll
+      let lenis = null;
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+        duration: 1.0,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        syncTouch: false,
+        touchMultiplier: 1.0,
+        touchInertiaMultiplier: 15,
+        infinite: false
+      })
+
+        window.lenis = lenis;
+        if (typeof gsap === 'undefined') {
+          if (lenis) {
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+        }
+
+        if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+          lenis.on('scroll', ScrollTrigger.update);
+          if (lenis) { gsap.ticker.add((time) => { lenis.raf(time * 1000); }); }
+          gsap.ticker.lagSmoothing(500, 33);
+        }
+      }
+
+      // 3. Staggered Word Reveal on Scroll
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        const revealGroups = document.querySelectorAll('.reveal-words');
+        revealGroups.forEach((group) => {
+          const chars = group.querySelectorAll('.word-char');
+          if (chars.length > 0) {
+            const isHero = group.closest('.TopheadSection') || group.closest('.IntroSection');
+            if (isHero) {
+              gsap.fromTo(chars, 
+                { yPercent: 120, opacity: 0 },
+                {
+                  yPercent: 0,
+                  opacity: 1,
+                  duration: 0.85,
+                  delay: 0.15,
+                  ease: 'power3.out',
+                  stagger: 0.03
+                }
+              );
+            } else {
+              gsap.fromTo(chars, 
+                { yPercent: 120, opacity: 0 },
+                {
+                  yPercent: 0,
+                  opacity: 1,
+                  duration: 0.85,
+                  ease: 'power3.out',
+                  stagger: 0.02,
+                  scrollTrigger: {
+                    trigger: group,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none'
+                  }
+                }
+              );
+            }
+          }
+        });
+
+        // 4. Parallax & Clip Reveal for Preview Sections
+        document.querySelectorAll('.PreviewSection').forEach((section) => {
+          const mainBox = section.querySelector('.main');
+          const mediaVideo = section.querySelector('.media');
+
+          if (mainBox) {
+            gsap.fromTo(mainBox, 
+              { clipPath: 'inset(8% round 3rem)' },
+              {
+                clipPath: 'inset(0% round 2rem)',
+                duration: 1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: section,
+                  start: 'top 85%',
+                  end: 'top 30%',
+                  scrub: 1
+                }
+              }
+            );
+          }
+
+          if (mediaVideo) {
+            gsap.fromTo(mediaVideo,
+              { yPercent: -6, scale: 1.08 },
+              {
+                yPercent: 6,
+                scale: 1.02,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: section,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: true
+                }
+              }
+            );
+          }
+        });
+
+        // 5. Client Logos Fade In
+        const partnerLogos = document.querySelectorAll('.logos .logo');
+        if (partnerLogos.length > 0) {
+          gsap.fromTo(partnerLogos,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 0.8,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.08,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: '.logos',
+                start: 'top 85%'
+              }
+            }
+          );
+        }
+      }
+
+      // 6. Interactive Elastic String SVG Dividers
+      document.querySelectorAll('.interactive-divider').forEach((divider) => {
+        const svg = divider.querySelector('svg');
+        const path = svg ? svg.querySelector('path') : null;
+        if (!svg || !path) return;
+
+        let width = divider.offsetWidth || 800;
+        let targetY = 100;
+        let isHovered = false;
+
+        function updateSvgDimensions() {
+          width = divider.offsetWidth || 800;
+          svg.setAttribute('viewBox', `0 0 ${width} 200`);
+          svg.style.width = '100%';
+          if (!isHovered) {
+            path.setAttribute('d', `M0,100 Q${width / 2},100 ${width},100`);
+          }
+        }
+        updateSvgDimensions();
+        window.addEventListener('resize', updateSvgDimensions);
+
+        let springAnim = null;
+        divider.addEventListener('mousemove', (e) => {
+          isHovered = true;
+          const rect = divider.getBoundingClientRect();
+          const mouseX = Math.max(0, Math.min(width, e.clientX - rect.left));
+          const mouseY = e.clientY - rect.top;
+          targetY = 100 + (mouseY * 1.5);
+
+          if (springAnim) springAnim.kill();
+          path.setAttribute('d', `M0,100 Q${mouseX},${targetY} ${width},100`);
+        });
+
+        divider.addEventListener('mouseleave', () => {
+          isHovered = false;
+          if (typeof gsap !== 'undefined') {
+            const snapObj = { y: targetY };
+            springAnim = gsap.to(snapObj, {
+              y: 100,
+              duration: 1.1,
+              ease: 'elastic.out(1.2, 0.25)',
+              onUpdate: () => {
+                path.setAttribute('d', `M0,100 Q${width / 2},${snapObj.y} ${width},100`);
+              }
+            });
+          } else {
+            path.setAttribute('d', `M0,100 Q${width / 2},100 ${width},100`);
+          }
+        });
+      });
+
+      // 7. Video Card Hover Play & Pause
+      document.querySelectorAll('.Card').forEach((card) => {
+        const video = card.querySelector('video');
+        if (video) {
+          card.addEventListener('mouseenter', () => {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          });
+          card.addEventListener('mouseleave', () => {
+            video.pause();
+          });
+        }
+      });
+
+      window.addEventListener('load', () => {
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      });
+      setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      }, 500);
+
+      // 8. Improved Swiper Carousel for Testimonials
+      if (typeof Swiper !== 'undefined') {
+        const swiperContainer = document.getElementById('testimonials-swiper');
+        if (swiperContainer) {
+          const swiper = new Swiper(swiperContainer, {
+            slidesPerView: 'auto',
+            spaceBetween: 28,
+            grabCursor: true,
+            speed: 650,
+            navigation: {
+              prevEl: '.feedback-prev-btn',
+              nextEl: '.feedback-next-btn'
+            },
+            breakpoints: {
+              320: {
+                slidesPerView: 1.08,
+                spaceBetween: 16
+              },
+              640: {
+                slidesPerView: 1.6,
+                spaceBetween: 20
+              },
+              1024: {
+                slidesPerView: 'auto',
+                spaceBetween: 28
+              }
+            }
+          });
+        }
+      }
+    });
+  </script>
+
+
+
+      <!-- Appiex Client Auth Session Sync -->
+  <script>
+    (function checkClientAuth() {
+      try {
+        const u = localStorage.getItem('appiex_user');
+        if (u) {
+          let userData = {};
+          try { userData = JSON.parse(u); } catch(err) {}
+          const avatarSrc = userData.avatar || './images/6251456506175886234.jpg';
+          const userName = userData.name || 'Profile';
+          const initial = (userName.charAt(0) || 'P').toUpperCase();
+
+          function transformToProfileCircle(el) {
+            if (!el) return;
+            el.href = 'profile.html';
+            el.title = userName + ' - Profile';
+            el.setAttribute('aria-label', userName + ' Profile');
+            el.innerText = '';
+            el.style.setProperty('width', '38px', 'important');
+            el.style.setProperty('height', '38px', 'important');
+            el.style.setProperty('min-width', '38px', 'important');
+            el.style.setProperty('min-height', '38px', 'important');
+            el.style.setProperty('max-width', '38px', 'important');
+            el.style.setProperty('max-height', '38px', 'important');
+            el.style.setProperty('border-radius', '50%', 'important');
+            el.style.setProperty('padding', '0', 'important');
+            el.style.setProperty('overflow', 'hidden', 'important');
+            el.style.setProperty('display', 'inline-flex', 'important');
+            el.style.setProperty('align-items', 'center', 'important');
+            el.style.setProperty('justify-content', 'center', 'important');
+            el.style.setProperty('background', 'transparent', 'important');
+            el.style.setProperty('border', '2px solid rgba(255, 42, 77, 0.85)', 'important');
+            el.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            el.style.setProperty('transition', 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease', 'important');
+            el.style.setProperty('cursor', 'pointer', 'important');
+
+            const img = document.createElement('img');
+            img.src = avatarSrc;
+            img.alt = userName;
+            img.style.cssText = 'width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 50% !important; display: block !important;';
+            img.onerror = function() {
+              this.remove();
+              el.style.background = 'linear-gradient(135deg, #FF2A4D, #991B1B)';
+              el.innerHTML = '<span style="font-weight:700;color:#fff;font-size:14px;">' + initial + '</span>';
+            };
+            el.innerHTML = '';
+            el.appendChild(img);
+
+            el.onmouseenter = function() {
+              this.style.setProperty('transform', 'scale(1.08)', 'important');
+              this.style.setProperty('border-color', '#FF2A4D', 'important');
+              this.style.setProperty('box-shadow', '0 0 20px rgba(255, 42, 77, 0.8)', 'important');
+            };
+            el.onmouseleave = function() {
+              this.style.setProperty('transform', 'scale(1)', 'important');
+              this.style.setProperty('border-color', 'rgba(255, 42, 77, 0.85)', 'important');
+              this.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            };
+          }
+
+          function applyAll() {
+            const loginButtons = document.querySelectorAll('#nav-login-btn, #mobile-wrap-login-btn, #mobile-nav-login-btn, .rafsan-hire-btn');
+            loginButtons.forEach(btn => transformToProfileCircle(btn));
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyAll);
+          } else {
+            applyAll();
+          }
+          setTimeout(applyAll, 50);
+          setTimeout(applyAll, 300);
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+<section class="seo-content" aria-labelledby="web-development-guide">
+  <div class="seo-content__inner">
+    <p class="seo-content__eyebrow">Web development services</p>
+    <h2 id="web-development-guide">Websites and web applications engineered for measurable business growth</h2>
+    <p class="seo-content__lead">Appiex is a custom web development agency in Bangladesh serving startups, established companies, and agency partners worldwide. We plan, design, build, and improve websites that need to load quickly, communicate clearly, integrate with business systems, and remain maintainable after launch.</p>
+    <div class="seo-content__grid">
+      <article class="seo-content__item"><h3>Business and corporate websites</h3><p>We build responsive company websites around clear information architecture, accessible interfaces, reusable content sections, and conversion paths. Every project starts with the audience, business objective, and content requirements—not a generic visual template.</p></article>
+      <article class="seo-content__item"><h3>Custom web applications</h3><p>For products that go beyond a marketing site, we develop authenticated dashboards, customer portals, operational tools, marketplace workflows, and API-connected platforms. Architecture is selected around the actual data, roles, integrations, security needs, and expected growth.</p></article>
+      <article class="seo-content__item"><h3>E-commerce development</h3><p>Our e-commerce work covers catalogue structure, product discovery, checkout flows, payment integration, inventory synchronization, analytics, and administrative workflows. See our <a href="/case-studies">WATCH 24 BD case study</a> for a practical example of a commerce platform connected to real business operations.</p></article>
+      <article class="seo-content__item"><h3>Performance and technical SEO</h3><p>Performance, semantic HTML, metadata, crawlability, structured data, image delivery, and Core Web Vitals are considered during development. For ongoing organic-growth work, our <a href="/seo-marketing">SEO engineering service</a> extends the technical foundation into content architecture and search measurement.</p></article>
+    </div>
+    <div class="seo-content__section">
+      <p class="seo-content__eyebrow">Delivery approach</p>
+      <h2>From requirements to a production-ready release</h2>
+      <div class="seo-content__grid">
+        <article class="seo-content__item"><h3>1. Discovery and scope</h3><p>We clarify users, commercial goals, required pages, features, content ownership, integrations, constraints, and success criteria. The resulting scope identifies what will be delivered and what information is still needed before development begins.</p></article>
+        <article class="seo-content__item"><h3>2. Architecture and UX</h3><p>We define page hierarchy, user journeys, component structure, content models, and technical boundaries. When the interface requires deeper product thinking, our <a href="/ui-ux-3d-design">UI/UX and 3D design team</a> supports research, prototypes, and interaction design.</p></article>
+        <article class="seo-content__item"><h3>3. Engineering and integration</h3><p>Development is organized into testable components and milestones. Depending on the project, the stack may include React, Next.js, headless content management, commerce platforms, custom APIs, databases, cloud services, analytics, or business automation.</p></article>
+        <article class="seo-content__item"><h3>4. Quality assurance and launch</h3><p>Before release we review responsive behavior, keyboard access, content, metadata, forms, major browsers, performance risks, and production configuration. Launch includes deployment checks and a clear handover for content, analytics, and ongoing maintenance responsibilities.</p></article>
+      </div>
+    </div>
+    <div class="seo-content__section seo-content__faq">
+      <p class="seo-content__eyebrow">Common questions</p>
+      <h2>Web development FAQ</h2>
+      <details><summary>How much does a custom website cost?</summary><p>Cost depends on page count, content readiness, design complexity, integrations, application logic, administrative tools, and delivery timeline. Appiex confirms scope and pricing in a written proposal after reviewing the requirements.</p></details>
+      <details><summary>How long does a website project take?</summary><p>Timing varies with scope, feedback cycles, content availability, and third-party dependencies. A focused marketing website is typically faster than an e-commerce platform or authenticated web application. The project schedule is confirmed before work begins.</p></details>
+      <details><summary>Can Appiex redesign an existing website?</summary><p>Yes. We can audit the current experience, retain useful content or integrations, restructure weak journeys, and rebuild the interface or underlying platform. The recommended approach depends on the condition of the existing code and content.</p></details>
+      <details><summary>Do you provide maintenance after launch?</summary><p>Maintenance, monitoring, feature development, and technical support can be included in the project agreement or arranged after launch. Responsibilities and response expectations are documented so ownership remains clear.</p></details>
+      <details><summary>Can you work with an overseas company or another agency?</summary><p>Yes. Appiex works remotely and also supports agencies through <a href="/partners">white-label development partnerships</a>. Communication, access, confidentiality, review stages, and handover requirements are agreed before delivery starts.</p></details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does a custom website cost?","acceptedAnswer":{"@type":"Answer","text":"Cost depends on page count, content readiness, design complexity, integrations, application logic, administrative tools, and delivery timeline. Appiex confirms scope and pricing in a written proposal after reviewing the requirements."}},{"@type":"Question","name":"How long does a website project take?","acceptedAnswer":{"@type":"Answer","text":"Timing varies with scope, feedback cycles, content availability, and third-party dependencies. The project schedule is confirmed before work begins."}},{"@type":"Question","name":"Can Appiex redesign an existing website?","acceptedAnswer":{"@type":"Answer","text":"Yes. Appiex can audit the current experience, retain useful content or integrations, restructure weak journeys, and rebuild the interface or underlying platform."}},{"@type":"Question","name":"Do you provide maintenance after launch?","acceptedAnswer":{"@type":"Answer","text":"Maintenance, monitoring, feature development, and technical support can be included in the project agreement or arranged after launch."}},{"@type":"Question","name":"Can you work with an overseas company or another agency?","acceptedAnswer":{"@type":"Answer","text":"Yes. Appiex works remotely and supports agencies through white-label development partnerships, with communication, confidentiality, reviews, and handover agreed before delivery."}}]}
+</script>
+<nav id="site-explore-links" class="seo-site-links" aria-label="Explore Appiex"><div class="seo-site-links__inner"><p class="seo-site-links__label">Explore Appiex</p><a href="/">Home</a><a href="/services">Services</a><a href="/web-development" aria-current="page">Web Development</a><a href="/ui-ux-3d-design">UI/UX &amp; 3D</a><a href="/seo-marketing">SEO</a><a href="/ai-automation">AI Automation</a><a href="/projects">Projects</a><a href="/case-studies">Case Studies</a><a href="/team">Team</a><a href="/partners">Partners</a><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a></div></nav>
+  <script src="./scripts/visitor-tracker.js?v=20261029_v5"></script>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+
+  <div class="rafsan-mobile-drawer appiex-cyber-drawer" id="rafsan-mobile-drawer" data-lenis-prevent="true">
+    <div class="cyber-main-pane">
+      <div class="cyber-top-header">
+        <div class="discover-tag">
+          <span class="square-dot"></span>
+          <span>DISCOVER</span>
+        </div>
+        <div class="brand-wordmark">appiex</div>
+        <div class="page-tag">
+          <span>PAGE</span>
+          001
+        </div>
+      </div>
+
+      <nav class="cyber-nav-list">
+        <a href="/index.html" class="cyber-nav-item active" data-section="home">
+          HOME
+          <span class="badge-page">PAGE<br>001</span>
+        </a>
+
+        <!-- Services Accordion with 6 Core Disciplines -->
+        <div class="cyber-services-wrap">
+          <button type="button" class="cyber-nav-item cyber-services-toggle" id="rafsan-mobile-services-toggle" aria-expanded="false" onclick="return window.__toggleMobileServices(event);">
+            <span>SERVICES</span>
+            <svg class="cyber-caret-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="cyber-services-sub" id="rafsan-mobile-services-sub">
+            <a href="/digital-strategy" class="cyber-sub-item"><span class="sub-dot"></span> DIGITAL STRATEGY</a>
+            <a href="/web-development" class="cyber-sub-item"><span class="sub-dot"></span> WEB DEVELOPMENT (FULL-STACK)</a>
+            <a href="/ui-ux-3d-design" class="cyber-sub-item"><span class="sub-dot"></span> UI/UX &amp; 3D DESIGN</a>
+            <a href="/ai-automation" class="cyber-sub-item"><span class="sub-dot"></span> AI AUTOMATION</a>
+            <a href="/seo-marketing" class="cyber-sub-item"><span class="sub-dot"></span> SEO &amp; MARKETING</a>
+            <a href="/gaming" class="cyber-sub-item"><span class="sub-dot"></span> GAMING &amp; 3D WORLDS</a>
+            <a href="/services" class="cyber-sub-item cyber-sub-explore"><span class="sub-dot"></span> EXPLORE ALL SERVICES &rarr;</a>
+          </div>
+        </div>
+
+        <a href="/refer.html" class="cyber-nav-item" data-section="refer">REFER</a>
+        <a href="/partners.html" class="cyber-nav-item" data-section="partners">PARTNERSHIP</a>
+        <a href="/projects.html" class="cyber-nav-item" data-section="projects">PROJECTS</a>
+        <a href="/index.html#contact" class="cyber-nav-item" data-section="contact">CONTACT</a>
+        <a href="/team.html" class="cyber-nav-item">ABOUT</a>
+      </nav>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>CONNECT</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="https://twitter.com/AppiexOfficial" target="_blank" rel="noopener">TWITTER</a>
+          <a href="https://discord.gg/appiex" target="_blank" rel="noopener">DISCORD</a>
+          <a href="https://wa.me/8801979493902" target="_blank" rel="noopener">WHATSAPP</a>
+        </div>
+      </div>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>ACTIONS</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="/login.html">LOGIN</a>
+          <a href="/index.html#contact">BOOK A MEETING</a>
+        </div>
+      </div>
+
+      <div class="cyber-bottom-misc">
+        <div>US-EN &#x2304;</div>
+        <div>&copy; 2026 APPIEX</div>
+      </div>
+    </div>
+
+    <div class="cyber-right-bar">
+      <button type="button" class="cyber-bar-close" id="cyber-menu-close" aria-label="Close menu" onclick="return (window.__closeMobileDrawer ? window.__closeMobileDrawer(event) : false);">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top" style="transform: translateY(5px) rotate(45deg); background-color: #ffffff;"></span>
+          <span class="hamburger-line line-bottom" style="transform: translateY(-5px) rotate(-45deg); background-color: #ffffff;"></span>
+        </span>
+      </button>
+
+      <div class="cyber-bar-bottom">
+        <div class="cyber-audio-equalizer">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

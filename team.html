@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Leadership &amp; Core Architects | Appiex</title>
+  <link rel="canonical" href="https://appiex.com/team">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Meet the Appiex leadership team across full-stack engineering, cloud infrastructure, product design, and digital growth strategy.">
+  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appiex.com/team">
+  <meta property="og:site_name" content="Appiex">
+  <meta property="og:title" content="Engineering Leadership &amp; Core Architects | Appiex">
+  <meta property="og:description" content="Meet the engineering leadership and core architects behind Appiex. Building scalable web systems, 3D experiences, and AI automations.">
+  <meta property="og:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://appiex.com/team">
+  <meta name="twitter:title" content="Engineering Leadership &amp; Core Architects | Appiex">
+  <meta name="twitter:description" content="Meet the engineering leadership and core architects behind Appiex. Building scalable web systems, 3D experiences, and AI automations.">
+  <meta name="twitter:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Structured Data: AboutPage & Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://appiex.com/team#webpage",
+        "url": "https://appiex.com/team",
+        "name": "Appiex Team & Leadership",
+        "description": "Meet the core engineering architects and strategy leadership behind Appiex digital systems.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://appiex.com/#website",
+          "name": "Appiex",
+          "url": "https://appiex.com/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://appiex.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Team",
+            "item": "https://appiex.com/team"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700;800;900&family=Oswald:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            red: {
+              500: '#FF2A4D',
+              600: '#DC2626'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* CSS Reset & Smooth Scroll */
+    html, body {
+      background-color: #030408;
+      color: #F8FAFC;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: auto !important;
+    }
+    
+    ::selection {
+      background: #FF2A4D;
+      color: #FFFFFF;
+    }
+
+    /* Fixed Capsule Navbar */
+    .rafsan-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .rafsan-nav-shell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      pointer-events: auto;
+    }
+    .rafsan-capsule-nav {
+      position: relative;
+      display: none;
+      align-items: center;
+      gap: 2px;
+      padding: 5px 6px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s ease;
+    }
+    @media (min-width: 768px) {
+      .rafsan-capsule-nav {
+        display: flex;
+      }
+    }
+    .rafsan-capsule-pill {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      height: calc(100% - 10px);
+      width: 68px;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      border-radius: 9999px;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .rafsan-nav-item {
+      position: relative;
+      z-index: 2;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: color 0.25s ease;
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+    }
+    .rafsan-nav-item:hover {
+      color: #ffffff;
+    }
+    .rafsan-nav-item.active {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Services Dropdown & Up Caret */
+    .services-nav-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      z-index: 2;
+    }
+    .services-caret {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 5px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .services-nav-wrap:hover .services-caret {
+      transform: rotate(180deg);
+    }
+    .services-popup-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: 680px;
+      background: #000000 !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 16px;
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.95), 0 0 40px rgba(220, 38, 38, 0.15);
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+      overflow: hidden;
+    }
+    .services-nav-wrap:hover .services-popup-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .services-mega-left {
+      width: 250px;
+      position: relative;
+      padding: 32px 26px;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background-color: #0b0c10;
+      background-image: url('./images/python_banner_bg.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .services-mega-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10, 10, 15, 0.92) 0%, rgba(200, 20, 40, 0.82) 100%);
+      z-index: 1;
+    }
+    .services-mega-left > * {
+      position: relative;
+      z-index: 2;
+    }
+    .services-mega-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFD23F;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .services-mega-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .services-mega-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      background: #ffffff;
+      color: #0a0a0f;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      width: fit-content;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .services-mega-btn:hover {
+      background: #FF2A4D;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .services-mega-right {
+      flex: 1;
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #000000 !important;
+    }
+    .services-mega-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #FF2A4D;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .services-mega-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .services-mega-item {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      text-decoration: none !important;
+      transition: all 0.22s ease !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 4px 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+    }
+    .services-mega-item::before {
+      content: '›';
+      color: #FF2A4D;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform 0.2s ease;
+    }
+    .services-mega-item:hover {
+      color: #FF2A4D !important;
+      transform: translateX(4px);
+    }
+
+    /* Actions Right */
+    .rafsan-nav-actions {
+      display: none;
+      align-items: center;
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .rafsan-nav-actions {
+        display: flex;
+      }
+    }
+    .rafsan-github-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      transition: all 0.25s ease;
+    }
+    .rafsan-github-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #FF2A4D;
+    }
+    .rafsan-resume-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .rafsan-resume-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+    .rafsan-hire-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      border-radius: 9999px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(255, 42, 77, 0.45);
+      transition: all 0.25s ease;
+    }
+    .rafsan-hire-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 42, 77, 0.6);
+    }
+
+    /* Mobile Drawer */
+    .rafsan-mobile-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    @media (min-width: 768px) {
+      .rafsan-mobile-wrap {
+        display: none;
+      }
+    }
+    .rafsan-mobile-toggle {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 8px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .rafsan-mobile-drawer {
+      position: absolute;
+      top: 100%;
+      left: 16px;
+      right: 16px;
+      background: rgba(10, 10, 15, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 20px;
+      display: none;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+    }
+    .rafsan-mobile-drawer.open {
+      display: block;
+    }
+    .rafsan-mobile-link {
+      padding: 12px 14px;
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: block;
+    }
+    .rafsan-mobile-link:hover, .rafsan-mobile-link.active {
+      color: #FF2A4D;
+    }
+    .rafsan-mobile-drawer-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* PIC 5: HUGE TYPOGRAPHY HERO "Our.team" */
+    .hero-team-title {
+      font-family: 'Anton', 'Impact', sans-serif !important;
+      font-size: clamp(4.5rem, 16vw, 15rem) !important;
+      letter-spacing: -0.05em !important;
+      line-height: 0.88 !important;
+      color: #FFFFFF !important;
+      text-transform: uppercase !important;
+      user-select: none;
+      position: relative;
+    }
+    .hero-team-title .dot {
+      color: #FF2A4D !important;
+      display: inline-block;
+      margin: 0 -0.04em;
+    }
+
+    /* Floating Team Avatar Bubbles (Pic 5 Overlay) */
+    .avatar-bubble {
+      position: absolute;
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 3px solid #030408;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 42, 77, 0.35);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      cursor: pointer;
+      z-index: 20;
+    }
+    .avatar-bubble:hover {
+      transform: scale(1.15) translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 42, 77, 0.7);
+      border-color: #FF2A4D;
+    }
+
+    /* Team Member Cards */
+    .team-card {
+      background: #08090E;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .team-card:hover {
+      border-color: rgba(255, 42, 77, 0.6);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 42, 77, 0.2);
+    }
+
+    /* Footer Huge Title */
+    .footer-huge-title {
+      font-family: 'Anton', 'Impact', sans-serif !important;
+      font-size: clamp(3.2rem, 9.5vw, 8.8rem) !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.04em !important;
+      line-height: 0.86 !important;
+      text-transform: uppercase !important;
+      color: #FFFFFF !important;
+    }
+    .footer-title-red {
+      color: #FF2A4D !important;
+      text-shadow: 0 0 45px rgba(255, 42, 77, 0.45);
+    }
+    .footer-kicker-red {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: clamp(0.7rem, 1.1vw, 0.95rem) !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.22em !important;
+      text-transform: uppercase !important;
+      color: #FF2A4D !important;
+    }
+  
+@media (min-width: 768px) {
+  .rafsan-mobile-drawer {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+  /* Uniform Navbar Montserrat Typography */
+  .rafsan-capsule-nav, .rafsan-nav-item {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+.team-card {
+      background: #08090E;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      min-height: 680px;
+    }
+    .team-card:hover {
+      border-color: rgba(255, 42, 77, 0.7);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 42, 77, 0.35);
+    }
+    .team-card-bg-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .team-card-bg-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .team-card:hover .team-card-bg-wrap img {
+      transform: scale(1.08);
+    }
+    .team-card-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(3, 4, 8, 0.05) 0%, rgba(3, 4, 8, 0.3) 30%, rgba(3, 4, 8, 0.85) 55%, #030408 85%, #030408 100%);
+      z-index: 1;
+    }
+
+    /* Appiex Blog Pill Button */
+    .rafsan-blog-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 7px 18px !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 13.5px !important;
+      font-weight: 500 !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      text-decoration: none !important;
+    }
+    .rafsan-blog-btn:hover, .rafsan-blog-btn.active {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 42, 77, 0.5) !important;
+      color: #FF2A4D !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 15px rgba(255, 42, 77, 0.25) !important;
+    }
+
+</style>
+  <!-- Instant 0.1s Sub-Second Navigation Engine -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "index.html",
+          "projects.html",
+          "services.html",
+          "refer.html",
+          "partners.html",
+          "case-studies.html",
+          "web-development.html",
+          "ui-ux-3d-design.html",
+          "ai-automation.html",
+          "seo-marketing.html",
+          "gaming.html",
+          "digital-strategy.html",
+          "team.html",
+          "/"
+        ],
+        "eagerness": "immediate"
+      }
+    ],
+    "prefetch": [
+      {
+        "source": "document",
+        "where": {
+          "and": [
+            { "href_matches": "/*" }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+  
+  
+  
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight with Smooth Fadeout) -->
+  
+  <link rel="stylesheet" href="/styles/seo-links.css?v=20261031_restore">
+  <link rel="stylesheet" href="/styles/seo-content.css">
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+  </style>
+  <script src="/scripts/instant-nav.js?v=20261031_morph_x6" defer></script>
+
+
+<script>
+  window.__toggleMobileServices = function(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+    var btn = document.getElementById('rafsan-mobile-services-toggle');
+    var sub = document.getElementById('rafsan-mobile-services-sub');
+    if (!sub) return false;
+
+    var isOpen = sub.classList.contains('open');
+    if (isOpen) {
+      sub.classList.remove('open');
+      if (btn) {
+        btn.classList.remove('expanded');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      sub.style.setProperty('max-height', '0px', 'important');
+      sub.style.setProperty('opacity', '0', 'important');
+      sub.style.setProperty('visibility', 'hidden', 'important');
+      sub.style.setProperty('pointer-events', 'none', 'important');
+      sub.style.setProperty('margin', '0', 'important');
+      sub.style.setProperty('padding', '0 0.5rem', 'important');
+    } else {
+      sub.classList.add('open');
+      if (btn) {
+        btn.classList.add('expanded');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      sub.style.setProperty('display', 'flex', 'important');
+      sub.style.setProperty('flex-direction', 'column', 'important');
+      sub.style.setProperty('max-height', '800px', 'important');
+      sub.style.setProperty('opacity', '1', 'important');
+      sub.style.setProperty('visibility', 'visible', 'important');
+      sub.style.setProperty('pointer-events', 'auto', 'important');
+      sub.style.setProperty('margin', '0.6rem 0 0.85rem 0', 'important');
+      sub.style.setProperty('padding', '0.5rem 0.5rem 0.75rem 0.5rem', 'important');
+      sub.style.setProperty('border', '1px solid rgba(255, 42, 77, 0.22)', 'important');
+      sub.style.setProperty('background', 'rgba(255, 42, 77, 0.06)', 'important');
+      sub.style.setProperty('border-radius', '14px', 'important');
+    }
+    return false;
+  };
+</script>
+
+</head>
+<body class="min-h-screen bg-[#030408] text-slate-100 flex flex-col justify-between relative selection:bg-red-600 selection:text-white">
+  <!-- Cuberto-Style Page Transition Curtain (Appiex Red Ambient Aesthetic) -->
+  <div id="appiex-cuberto-curtain" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 99999999; pointer-events: none; background: #030408;" aria-hidden="true">
+    <div class="appiex-curtain-ambient"></div>
+  </div>
+  
+  </div>
+
+  <!-- Background Video Overlay (Consistent with index & services) -->
+  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center z-0" autoplay loop muted playsinline preload="none" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.48;">
+    <source src="./assets/static/vde.mp4" type="video/mp4"><source src="./assets/static/vde.webm" type="video/webm">
+  </video>
+  <div class="pointer-events-none fixed inset-0 h-screen w-screen z-0" style="mix-blend-mode: color; background-color: #ff0000; opacity: 0.85;" aria-hidden="true"></div>
+
+  <!-- Ambient Top Lights -->
+  <div class="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-[900px] h-[340px] bg-red-600/20 blur-[130px] rounded-full z-0"></div>
+
+  <!-- UNIFIED NAVBAR -->
+  <header class="rafsan-header" id="rafsan-header">
+    <div class="rafsan-nav-shell">
+      
+      <!-- 1. Brand Logo -->
+      <a href="index.html" class="rafsan-brand flex items-center group text-decoration-none" aria-label="appiex">
+        <img src="./images/appiex-wordmark-white.png" alt="appiex" class="brand-wordmark-img" style="height: 28px; width: auto; object-fit: contain; display: block;">
+      </a>
+
+      <!-- 2. Floating Capsule Navbar (Center) -->
+      <nav class="rafsan-capsule-nav" aria-label="Main Navigation">
+        <div class="rafsan-capsule-pill" id="rafsan-capsule-pill"></div>
+        <a href="index.html" class="rafsan-nav-item" data-section="home">Home</a>
+        
+        <!-- Services with Up Caret & Mega Menu -->
+        <div class="services-nav-wrap" id="services-nav-wrap">
+          <a href="services.html" class="rafsan-nav-item" data-section="services" style="display: inline-flex; align-items: center;">
+            Services
+            <span class="services-caret" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Mega Menu Popup (Pure Black & Clean) -->
+          <div class="services-popup-menu" id="services-popup-menu" role="menu">
+            <div class="services-mega-left">
+              <div>
+                <span class="services-mega-badge">EXCLUSIVE</span>
+                <h4 class="services-mega-title">EXPLORE OUR SERVICES CURATIONS</h4>
+              </div>
+              <a href="services.html" class="services-mega-btn">SEE OVERVIEW</a>
+            </div>
+            <div class="services-mega-right">
+              <span class="services-mega-subtitle">CORE DISCIPLINES</span>
+              <div class="services-mega-grid">
+                <a href="digital-strategy.html" class="services-mega-item">DIGITAL STRATEGY</a>
+                <a href="web-development.html" class="services-mega-item">WEB DEVELOPMENT (FULL-STACK)</a>
+                <a href="ui-ux-3d-design.html" class="services-mega-item">UI/UX &amp; 3D DESIGN</a>
+                <a href="ai-automation.html" class="services-mega-item">AI AUTOMATION</a>
+                <a href="seo-marketing.html" class="services-mega-item">SEO &amp; MARKETING</a>
+              <a href="gaming.html" class="services-mega-item">GAMING &amp; 3D WORLDS</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="refer.html" class="rafsan-nav-item" data-section="refer">Refer</a>
+        <a href="partners.html" class="rafsan-nav-item" data-section="partners">Partnership</a>
+        <a href="projects.html" class="rafsan-nav-item" data-section="projects">Projects</a>
+        <a href="team.html" class="rafsan-nav-item active" data-section="team">Team</a>
+        <a href="index.html#contact" class="rafsan-nav-item" data-section="contact">Contact</a>
+      </nav>
+
+      <!-- 3. Action Buttons (Right) -->
+      <div class="rafsan-nav-actions">
+        <a href="blog.html" class="rafsan-blog-btn" aria-label="Blog">Blog</a>
+        
+        <a href="login.html" class="rafsan-hire-btn" id="nav-login-btn">Login</a>
+      </div>
+
+      <!-- 4. Mobile Hamburger -->
+      <div class="rafsan-mobile-wrap">
+        <a href="login.html" class="rafsan-hire-btn" id="mobile-wrap-login-btn">Login</a>
+        <button type="button" class="rafsan-mobile-toggle" id="rafsan-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top"></span>
+          <span class="hamburger-line line-bottom"></span>
+        </span>
+      </button>
+      </div>
+
+    </div>
+
+    </header>
+
+  <!-- MAIN TEAM CONTAINER -->
+  <main class="relative z-10 pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    
+    <!-- TOP PILL & SUBTITLE -->
+    <div class="flex flex-col items-center text-center mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-950/20 backdrop-blur-md mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#FF2A4D] animate-pulse"></span>
+        <span class="font-['Oswald',sans-serif] text-xs uppercase tracking-[0.22em] text-[#FF2A4D] font-bold">
+          ARCHITECTS &bull; BUILDERS &bull; STRATEGISTS
+        </span>
+      </div>
+      <p class="max-w-xl text-xs sm:text-sm text-slate-400 font-mono tracking-wide uppercase">
+        Engineered with ruthless precision. High-conversion web architectures crafted by specialists.
+      </p>
+    </div>
+
+    <!-- PIC 5 EXACT HERO: "Our.team" TYPOGRAPHY WITH FLOATING AVATAR BUBBLES -->
+    <section class="relative w-full py-12 sm:py-20 flex items-center justify-center overflow-visible select-none">
+      
+      <!-- HUGE FONT TITLE: Our.team -->
+      <h1 class="hero-team-title text-center">
+        <span>Our</span><span class="dot">.</span><span>team</span>
+      </h1>
+
+      <!-- FLOATING AVATAR BUBBLE 1: RAFSAN (Left/Middle overlapping 'u' & 'r') -->
+      <a href="#rafsan" class="avatar-bubble w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 left-[8%] sm:left-[16%] md:left-[20%] top-[4%] sm:top-[2%]" title="Rafsan — Full Stack Architect">
+        <img src="./images/6251456506175886234.jpg" alt="Rafsan - Full Stack Architect" class="w-full h-full object-cover" />
+      </a>
+
+      <!-- FLOATING AVATAR BUBBLE 2: FAYAZ (Center overlapping the red dot) -->
+      <a href="#fayaz" class="avatar-bubble w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 left-[44%] sm:left-[45%] md:left-[46%] -bottom-[8%] sm:-bottom-[10%]" title="Fayaz — Core Backend Engineer">
+        <img src="./images/6251456506175886236.jpg" alt="Fayaz - Backend Engineer" class="w-full h-full object-cover" />
+      </a>
+
+      <!-- FLOATING AVATAR BUBBLE 3: ADIL (Right overlapping 'a' & 'm') -->
+      <a href="#adil" class="avatar-bubble w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 right-[8%] sm:right-[15%] md:right-[18%] top-[10%] sm:top-[6%]" title="Adil — Growth & Marketing Lead">
+        <img src="./images/6251456506175886235.jpg" alt="Adil - Growth Marketing Lead" class="w-full h-full object-cover" />
+      </a>
+
+    </section>
+
+    <!-- SECTION SUB-HEADER -->
+    <div class="mt-20 mb-12 flex flex-col sm:flex-row items-start sm:items-end justify-between border-b border-white/10 pb-6 gap-4">
+      <div>
+        <span class="font-['Oswald',sans-serif] text-xs tracking-[0.2em] text-[#FF2A4D] uppercase font-bold block mb-1">
+          CORE SPECIALISTS
+        </span>
+        <h2 class="font-['Anton',sans-serif] text-3xl sm:text-5xl uppercase tracking-tight text-white">
+          THE TRIAD OF EXECUTION
+        </h2>
+      </div>
+      <span class="text-xs font-mono text-slate-400">
+        3 FOUNDATIONAL ROLES &bull; ZERO OUTSOURCING
+      </span>
+    </div>
+
+    <!-- 3 DETAILED TEAM MEMBER CARDS (Rafsan, Fayaz, Adil - FULL CARD PHOTO) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- MEMBER 1: RAFSAN (FULL STACK) -->
+      <article id="rafsan" class="team-card p-7 sm:p-8 flex flex-col justify-between group shadow-2xl">
+        <!-- Full Card Portrait Photo & Vignette Overlay -->
+        <div class="team-card-bg-wrap">
+          <img src="./images/6251456506175886234.jpg" alt="Rafsan - Full Stack Architect" />
+          <div class="team-card-vignette"></div>
+        </div>
+
+        <!-- Top Floating Status Pill -->
+        <div class="relative z-10 flex items-center justify-between mb-auto pb-52 sm:pb-60">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[10px] font-mono text-emerald-300 font-bold tracking-wider uppercase">ACTIVE CORE</span>
+          </div>
+          <span class="px-2.5 py-1 rounded text-[10px] font-['Oswald',sans-serif] font-bold tracking-widest uppercase bg-red-600/30 text-red-400 border border-red-500/40 backdrop-blur-md shadow-sm">
+            LEAD TECH
+          </span>
+        </div>
+
+        <!-- Bottom Content Overlay (Text Protected by Deep Vignette) -->
+        <div class="relative z-10 pt-4">
+          <!-- Role Tags -->
+          <div class="flex items-center gap-2 mb-2">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-['Oswald',sans-serif] font-bold tracking-widest uppercase bg-red-600/30 text-[#FF2A4D] border border-red-500/40 backdrop-blur-sm">
+              FULL STACK ARCHITECT
+            </span>
+          </div>
+
+          <!-- Member Name -->
+          <h3 class="text-3xl font-extrabold uppercase tracking-wider text-white mb-3 drop-shadow-md">
+            RAFSAN
+          </h3>
+
+          <!-- Bio -->
+          <p class="text-xs text-slate-200 leading-relaxed mb-6 font-normal drop-shadow">
+            Mastermind of pixel-perfect frontend experiences and reactive application logic. Specializes in Next.js, Three.js spatial canvases, GSAP motion curves, and end-to-end full stack architecture.
+          </p>
+
+          <!-- Core Tech Skills -->
+          <div class="space-y-2 mb-6">
+            <span class="text-[10px] font-mono uppercase text-slate-400 tracking-wider block">TECH SPECIALTIES</span>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">React & Next.js</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">TypeScript</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Three.js / WebGL</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Tailwind & GSAP</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Full Stack SLA</span>
+            </div>
+          </div>
+
+          <div class="pt-5 border-t border-white/15 flex items-center justify-between">
+            <span class="text-[11px] font-mono text-slate-400">STACK: REACT · NEXT · NODE</span>
+            <a href="https://github.com/AdilAlim32/Appiex-Admin-Panel" target="_blank" class="text-xs font-bold text-[#FF2A4D] hover:underline uppercase tracking-wider flex items-center gap-1">
+              GITHUB &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- MEMBER 2: FAYAZ (BACKEND) -->
+      <article id="fayaz" class="team-card p-7 sm:p-8 flex flex-col justify-between group shadow-2xl">
+        <!-- Full Card Portrait Photo & Vignette Overlay -->
+        <div class="team-card-bg-wrap">
+          <img src="./images/6251456506175886236.jpg" alt="Fayaz - Core Backend Engineer" />
+          <div class="team-card-vignette"></div>
+        </div>
+
+        <!-- Top Floating Status Pill -->
+        <div class="relative z-10 flex items-center justify-between mb-auto pb-52 sm:pb-60">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[10px] font-mono text-emerald-300 font-bold tracking-wider uppercase">ACTIVE CORE</span>
+          </div>
+          <span class="px-2.5 py-1 rounded text-[10px] font-['Oswald',sans-serif] font-bold tracking-widest uppercase bg-cyan-600/30 text-cyan-400 border border-cyan-500/40 backdrop-blur-md shadow-sm">
+            INFRA &amp; DATA
+          </span>
+        </div>
+
+        <!-- Bottom Content Overlay (Text Protected by Deep Vignette) -->
+        <div class="relative z-10 pt-4">
+          <!-- Role Tags -->
+          <div class="flex items-center gap-2 mb-2">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-['Oswald',sans-serif] font-bold tracking-widest uppercase bg-cyan-600/30 text-cyan-400 border border-cyan-500/40 backdrop-blur-sm">
+              CORE BACKEND ENGINEER
+            </span>
+          </div>
+
+          <!-- Member Name -->
+          <h3 class="text-3xl font-extrabold uppercase tracking-wider text-white mb-3 drop-shadow-md">
+            FAYAZ
+          </h3>
+
+          <!-- Bio -->
+          <p class="text-xs text-slate-200 leading-relaxed mb-6 font-normal drop-shadow">
+            Cloud infrastructure maestro guaranteeing zero-downtime server fleets and microsecond APIs. Orchestrates high-concurrency databases, Redis telemetry caching, microservices, and Docker Kubernetes clusters.
+          </p>
+
+          <!-- Core Tech Skills -->
+          <div class="space-y-2 mb-6">
+            <span class="text-[10px] font-mono uppercase text-slate-400 tracking-wider block">TECH SPECIALTIES</span>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Go &amp; Python</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">PostgreSQL</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Redis &amp; Kafka</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Docker &amp; K8s</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Cloud Security</span>
+            </div>
+          </div>
+
+          <div class="pt-5 border-t border-white/15 flex items-center justify-between">
+            <span class="text-[11px] font-mono text-slate-400">STACK: GO · FASTAPI · RUST</span>
+            <a href="case-studies.html" class="text-xs font-bold text-cyan-400 hover:underline uppercase tracking-wider flex items-center gap-1">
+              BLUEPRINTS &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- MEMBER 3: ADIL (MARKETING) -->
+      <article id="adil" class="team-card p-7 sm:p-8 flex flex-col justify-between group shadow-2xl">
+        <!-- Full Card Portrait Photo & Vignette Overlay -->
+        <div class="team-card-bg-wrap">
+          <img src="./images/6251456506175886235.jpg" alt="Adil - Growth Marketing Lead" />
+          <div class="team-card-vignette"></div>
+        </div>
+
+        <!-- Top Floating Status Pill -->
+        <div class="relative z-10 flex items-center justify-between mb-auto pb-52 sm:pb-60">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[10px] font-mono text-emerald-300 font-bold tracking-wider uppercase">ACTIVE CORE</span>
+          </div>
+          <span class="px-2.5 py-1 rounded text-[10px] font-['Oswald',sans-serif] font-bold tracking-widest uppercase bg-amber-600/30 text-amber-400 border border-amber-500/40 backdrop-blur-md shadow-sm">
+            CLIENT ACQUISITION
+          </span>
+        </div>
+
+        <!-- Bottom Content Overlay (Text Protected by Deep Vignette) -->
+        <div class="relative z-10 pt-4">
+          <!-- Role Tags -->
+          <div class="flex items-center gap-2 mb-2">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-['Oswald',sans-serif] font-bold tracking-widest uppercase bg-amber-600/30 text-amber-400 border border-amber-500/40 backdrop-blur-sm">
+              GROWTH &amp; MARKETING LEAD
+            </span>
+          </div>
+
+          <!-- Member Name -->
+          <h3 class="text-3xl font-extrabold uppercase tracking-wider text-white mb-3 drop-shadow-md">
+            ADIL
+          </h3>
+
+          <!-- Bio -->
+          <p class="text-xs text-slate-200 leading-relaxed mb-6 font-normal drop-shadow">
+            Strategic growth architect bridging technical innovation with commercial victory. Directs customer acquisition loops, high-conversion branding funnels, SEO rankings, and partner referral ecosystems.
+          </p>
+
+          <!-- Core Tech Skills -->
+          <div class="space-y-2 mb-6">
+            <span class="text-[10px] font-mono uppercase text-slate-400 tracking-wider block">STRATEGY SPECIALTIES</span>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Conversion CRO</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Global SEO</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Brand Positioning</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Funnel Analytics</span>
+              <span class="px-2.5 py-1 text-[10px] font-mono rounded-lg bg-black/50 backdrop-blur-md border border-white/15 text-slate-200">Client Strategy</span>
+            </div>
+          </div>
+
+          <div class="pt-5 border-t border-white/15 flex items-center justify-between">
+            <span class="text-[11px] font-mono text-slate-400">FOCUS: ROAS · REVENUE · SEO</span>
+            <a href="refer.html" class="text-xs font-bold text-amber-400 hover:underline uppercase tracking-wider flex items-center gap-1">
+              PARTNER TIERS &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CALL TO ACTION BANNER -->
+    <div class="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-black via-red-950/20 to-black border border-white/15 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="font-['Oswald',sans-serif] text-xs uppercase tracking-[0.2em] text-[#FF2A4D] font-bold block mb-2">
+          NEED THE TEAM ON YOUR PROJECT?
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-bold uppercase text-white font-['Montserrat']">
+          LET&apos;S ARCHITECT YOUR DIGITAL EDGE.
+        </h3>
+        <p class="text-xs text-slate-400 mt-1 max-w-lg">
+          Direct engineering consultation with Rafsan, Fayaz, and Adil. Zero middle managers.
+        </p>
+      </div>
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <a href="index.html#contact" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#FF2A4D] hover:bg-red-600 transition shadow-[0_0_25px_rgba(255,42,77,0.5)]">
+          SCHEDULE A BRIEF &rarr;
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- UNIFIED FOOTER -->
+  <footer id="footer" class="relative z-10 mx-auto mt-16 w-full max-w-7xl px-4 pb-14 pt-12 sm:px-6 md:pb-20" style="background: transparent !important;">
+    <div class="max-w-7xl mx-auto">
+      <span class="footer-kicker-red block mb-3">
+        HUNGRY FOR MORE — WEB ARCHITECTURES 2026
+      </span>
+      <div class="mb-14 select-none">
+        <div class="footer-huge-title">MADE</div>
+        <div class="footer-huge-title">FOR THE</div>
+        <div class="footer-huge-title footer-title-red">HUNT.</div>
+      </div>
+      <div class="w-full border-t border-white/10 mb-12"></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-left">
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">SERVICES</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80">
+            <li><a href="services.html#custom-software" class="hover:text-white transition-colors">Custom Software &amp; SaaS</a></li>
+            <li><a href="services.html#headless-ecommerce" class="hover:text-white transition-colors">Headless E-Commerce</a></li>
+            <li><a href="services.html#3d-spatial" class="hover:text-white transition-colors">3D Spatial &amp; WebGL</a></li>
+            <li><a href="services.html#mobile-apps" class="hover:text-white transition-colors">Mobile Engineering</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">COMPANY</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80">
+            <li><a href="index.html" class="hover:text-white transition-colors">About Appiex</a></li>
+            <li><a href="team.html" class="hover:text-white text-red-400 font-semibold transition-colors">Core Engineering Team</a></li>
+            <li><a href="refer.html" class="hover:text-white transition-colors">Referral Partner Tiers</a></li>
+            <li><a href="case-studies.html" class="hover:text-white transition-colors">Blueprints &amp; SOC</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">PORTFOLIO</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80">
+            <li><a href="projects.html" class="hover:text-white transition-colors">Watch24 BD Luxury</a></li>
+            <li><a href="projects.html" class="hover:text-white transition-colors">Libas &amp; Nafs Fashion</a></li>
+            <li><a href="projects.html" class="hover:text-white transition-colors">Mamun WiFi Telecom</a></li>
+            <li><a href="case-studies.html" class="hover:text-white transition-colors">All 10 Blueprints</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">CONTACT</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80 font-mono text-xs">
+            <li><a href="https://wa.me/8801917354847" target="_blank" class="hover:text-emerald-400 transition-colors">WhatsApp: 01917-354847</a></li>
+            <li><a href="mailto:contact@appiex.com" class="hover:text-white transition-colors">contact@appiex.com</a></li>
+            <li><a href="https://github.com/AdilAlim32/Appiex-Admin-Panel" target="_blank" class="hover:text-white transition-colors">GitHub: @monacogo001-ops</a></li>
+            <li><span>Dhaka, Bangladesh</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <span>© 2026 Appiex Technologies. All rights reserved.</span>
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="hover:text-white">Home</a>
+          <a href="services.html" class="hover:text-white">Services</a>
+          <a href="refer.html" class="hover:text-white">Refer</a>
+          <a href="case-studies.html" class="hover:text-white">Case Studies</a>
+          <a href="projects.html" class="hover:text-white">Projects</a>
+          <a href="team.html" class="text-red-400">Team</a>
+          <a href="/privacy-policy.html" class="hover:text-white">Privacy Policy</a>
+          <a href="/terms-of-service.html" class="hover:text-white">Terms of Service</a>
+          <a href="/editorial-policy.html" class="hover:text-white">Editorial Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Capsule Pill & Smooth Scrolling Script -->
+  <script>
+    (function initRafsanNavbar() {
+      const navContainer = document.querySelector('.rafsan-capsule-nav');
+      const pill = document.getElementById('rafsan-capsule-pill');
+      const navItems = document.querySelectorAll('.rafsan-nav-item');
+      const menuToggle = document.getElementById('rafsan-menu-toggle');
+      const mobileDrawer = document.getElementById('rafsan-mobile-drawer');
+
+      function updatePill(targetEl) {
+        if (!pill || !targetEl || !navContainer) return;
+        const navRect = navContainer.getBoundingClientRect();
+        const itemRect = targetEl.getBoundingClientRect();
+        pill.style.width = itemRect.width + 'px';
+        pill.style.left = (itemRect.left - navRect.left) + 'px';
+        pill.style.opacity = '1';
+      }
+
+      const initialActive = document.querySelector('.rafsan-nav-item.active');
+      if (initialActive) {
+        setTimeout(() => updatePill(initialActive), 150);
+        window.addEventListener('load', () => updatePill(initialActive));
+      }
+
+      window.addEventListener('resize', () => {
+        const currentActive = document.querySelector('.rafsan-nav-item.active');
+        if (currentActive) updatePill(currentActive);
+      }, { passive: true });
+
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = mobileDrawer.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+  <script>
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
+  </script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      if (typeof Lenis !== 'undefined' && !window.lenis) {
+        // Smooth Lenis initialized with syncTouch: false for silky momentum
+      const isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window);
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      syncTouch: false,
+      touchMultiplier: 1.0
+    });
+        window.lenis = lenis;
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+    });
+  </script>
+
+      <!-- Appiex Client Auth Session Sync -->
+  <script>
+    (function checkClientAuth() {
+      try {
+        const u = localStorage.getItem('appiex_user');
+        if (u) {
+          let userData = {};
+          try { userData = JSON.parse(u); } catch(err) {}
+          const avatarSrc = userData.avatar || './images/6251456506175886234.jpg';
+          const userName = userData.name || 'Profile';
+          const initial = (userName.charAt(0) || 'P').toUpperCase();
+
+          function transformToProfileCircle(el) {
+            if (!el) return;
+            el.href = 'profile.html';
+            el.title = userName + ' - Profile';
+            el.setAttribute('aria-label', userName + ' Profile');
+            el.innerText = '';
+            el.style.setProperty('width', '38px', 'important');
+            el.style.setProperty('height', '38px', 'important');
+            el.style.setProperty('min-width', '38px', 'important');
+            el.style.setProperty('min-height', '38px', 'important');
+            el.style.setProperty('max-width', '38px', 'important');
+            el.style.setProperty('max-height', '38px', 'important');
+            el.style.setProperty('border-radius', '50%', 'important');
+            el.style.setProperty('padding', '0', 'important');
+            el.style.setProperty('overflow', 'hidden', 'important');
+            el.style.setProperty('display', 'inline-flex', 'important');
+            el.style.setProperty('align-items', 'center', 'important');
+            el.style.setProperty('justify-content', 'center', 'important');
+            el.style.setProperty('background', 'transparent', 'important');
+            el.style.setProperty('border', '2px solid rgba(255, 42, 77, 0.85)', 'important');
+            el.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            el.style.setProperty('transition', 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease', 'important');
+            el.style.setProperty('cursor', 'pointer', 'important');
+
+            const img = document.createElement('img');
+            img.src = avatarSrc;
+            img.alt = userName;
+            img.style.cssText = 'width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 50% !important; display: block !important;';
+            img.onerror = function() {
+              this.remove();
+              el.style.background = 'linear-gradient(135deg, #FF2A4D, #991B1B)';
+              el.innerHTML = '<span style="font-weight:700;color:#fff;font-size:14px;">' + initial + '</span>';
+            };
+            el.innerHTML = '';
+            el.appendChild(img);
+
+            el.onmouseenter = function() {
+              this.style.setProperty('transform', 'scale(1.08)', 'important');
+              this.style.setProperty('border-color', '#FF2A4D', 'important');
+              this.style.setProperty('box-shadow', '0 0 20px rgba(255, 42, 77, 0.8)', 'important');
+            };
+            el.onmouseleave = function() {
+              this.style.setProperty('transform', 'scale(1)', 'important');
+              this.style.setProperty('border-color', 'rgba(255, 42, 77, 0.85)', 'important');
+              this.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            };
+          }
+
+          function applyAll() {
+            const loginButtons = document.querySelectorAll('#nav-login-btn, #mobile-wrap-login-btn, #mobile-nav-login-btn, .rafsan-hire-btn');
+            loginButtons.forEach(btn => transformToProfileCircle(btn));
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyAll);
+          } else {
+            applyAll();
+          }
+          setTimeout(applyAll, 50);
+          setTimeout(applyAll, 300);
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+<section class="seo-content" aria-labelledby="about-appiex-team">
+  <div class="seo-content__inner">
+    <p class="seo-content__eyebrow">About Appiex</p>
+    <h2 id="about-appiex-team">A multidisciplinary software and digital product team</h2>
+    <p class="seo-content__lead">Appiex brings together full-stack engineering, cloud and backend development, product design, and growth strategy. The team is structured to connect commercial requirements with the people responsible for architecture and delivery, reducing handoffs between planning, design, implementation, and launch.</p>
+    <div class="seo-content__grid">
+      <article class="seo-content__item"><h3>Clear ownership</h3><p>Projects begin with an agreed scope, decision-makers, communication rhythm, and review process. Technical and design choices are documented around the business requirement rather than hidden behind unnecessary complexity.</p></article>
+      <article class="seo-content__item"><h3>Cross-functional delivery</h3><p>Engineering, interface design, automation, and search considerations are evaluated together when the project needs them. This helps prevent common conflicts between visual ambition, performance, maintainability, and discoverability.</p></article>
+      <article class="seo-content__item"><h3>Evidence over vague claims</h3><p>Our <a href="/projects">selected projects</a> and <a href="/case-studies">case studies</a> show the type of platforms and delivery challenges we work on. Project-specific scope, responsibilities, and success criteria are confirmed in writing before engagement.</p></article>
+      <article class="seo-content__item"><h3>Responsible collaboration</h3><p>Appiex supports direct clients and <a href="/partners">agency partners</a>. Confidentiality, access, third-party services, ownership, and handover expectations are documented for the engagement. Read our <a href="/privacy-policy">Privacy Policy</a> and <a href="/terms-of-service">Terms of Service</a> for the public baseline.</p></article>
+    </div>
+  </div>
+</section>
+<nav id="site-explore-links" class="seo-site-links" aria-label="Explore Appiex"><div class="seo-site-links__inner"><p class="seo-site-links__label">Explore Appiex</p><a href="/">Home</a><a href="/services">Services</a><a href="/web-development">Web Development</a><a href="/ui-ux-3d-design">UI/UX &amp; 3D</a><a href="/seo-marketing">SEO</a><a href="/ai-automation">AI Automation</a><a href="/projects">Projects</a><a href="/case-studies">Case Studies</a><a href="/team" aria-current="page">Team</a><a href="/partners">Partners</a><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a></div></nav>
+  <script src="./scripts/visitor-tracker.js?v=20261029_v5"></script>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+
+  <div class="rafsan-mobile-drawer appiex-cyber-drawer" id="rafsan-mobile-drawer" data-lenis-prevent="true">
+    <div class="cyber-main-pane">
+      <div class="cyber-top-header">
+        <div class="discover-tag">
+          <span class="square-dot"></span>
+          <span>DISCOVER</span>
+        </div>
+        <div class="brand-wordmark">appiex</div>
+        <div class="page-tag">
+          <span>PAGE</span>
+          001
+        </div>
+      </div>
+
+      <nav class="cyber-nav-list">
+        <a href="/index.html" class="cyber-nav-item active" data-section="home">
+          HOME
+          <span class="badge-page">PAGE<br>001</span>
+        </a>
+
+        <!-- Services Accordion with 6 Core Disciplines -->
+        <div class="cyber-services-wrap">
+          <button type="button" class="cyber-nav-item cyber-services-toggle" id="rafsan-mobile-services-toggle" aria-expanded="false" onclick="return window.__toggleMobileServices(event);">
+            <span>SERVICES</span>
+            <svg class="cyber-caret-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="cyber-services-sub" id="rafsan-mobile-services-sub">
+            <a href="/digital-strategy" class="cyber-sub-item"><span class="sub-dot"></span> DIGITAL STRATEGY</a>
+            <a href="/web-development" class="cyber-sub-item"><span class="sub-dot"></span> WEB DEVELOPMENT (FULL-STACK)</a>
+            <a href="/ui-ux-3d-design" class="cyber-sub-item"><span class="sub-dot"></span> UI/UX &amp; 3D DESIGN</a>
+            <a href="/ai-automation" class="cyber-sub-item"><span class="sub-dot"></span> AI AUTOMATION</a>
+            <a href="/seo-marketing" class="cyber-sub-item"><span class="sub-dot"></span> SEO &amp; MARKETING</a>
+            <a href="/gaming" class="cyber-sub-item"><span class="sub-dot"></span> GAMING &amp; 3D WORLDS</a>
+            <a href="/services" class="cyber-sub-item cyber-sub-explore"><span class="sub-dot"></span> EXPLORE ALL SERVICES &rarr;</a>
+          </div>
+        </div>
+
+        <a href="/refer.html" class="cyber-nav-item" data-section="refer">REFER</a>
+        <a href="/partners.html" class="cyber-nav-item" data-section="partners">PARTNERSHIP</a>
+        <a href="/projects.html" class="cyber-nav-item" data-section="projects">PROJECTS</a>
+        <a href="/index.html#contact" class="cyber-nav-item" data-section="contact">CONTACT</a>
+        <a href="/team.html" class="cyber-nav-item">ABOUT</a>
+      </nav>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>CONNECT</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="https://twitter.com/AppiexOfficial" target="_blank" rel="noopener">TWITTER</a>
+          <a href="https://discord.gg/appiex" target="_blank" rel="noopener">DISCORD</a>
+          <a href="https://wa.me/8801979493902" target="_blank" rel="noopener">WHATSAPP</a>
+        </div>
+      </div>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>ACTIONS</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="/login.html">LOGIN</a>
+          <a href="/index.html#contact">BOOK A MEETING</a>
+        </div>
+      </div>
+
+      <div class="cyber-bottom-misc">
+        <div>US-EN &#x2304;</div>
+        <div>&copy; 2026 APPIEX</div>
+      </div>
+    </div>
+
+    <div class="cyber-right-bar">
+      <button type="button" class="cyber-bar-close" id="cyber-menu-close" aria-label="Close menu" onclick="return (window.__closeMobileDrawer ? window.__closeMobileDrawer(event) : false);">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top" style="transform: translateY(5px) rotate(45deg); background-color: #ffffff;"></span>
+          <span class="hamburger-line line-bottom" style="transform: translateY(-5px) rotate(-45deg); background-color: #ffffff;"></span>
+        </span>
+      </button>
+
+      <div class="cyber-bar-bottom">
+        <div class="cyber-audio-equalizer">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 40" fill="none">
+  <g fill="#FFFFFF">
+    <!-- Anthropic A mark -->
+    <path d="M12.3 8h4.4l8.3 24h-4.2l-2-6h-8.6l-2 6H3.8L12.3 8zm6 14.5-2.9-8.7-2.9 8.7h5.8zM24.8 8h4.2l8.3 24h-4.2l-2-6h-8.6l-2 6h-4.4L24.8 8zm6 14.5-2.9-8.7-2.9 8.7h5.8z"/>
+    <!-- Anthropic Text -->
+    <text x="44" y="26" font-family="'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="700" letter-spacing="-0.01em">ANTHROPIC</text>
+  </g>
+</svg>

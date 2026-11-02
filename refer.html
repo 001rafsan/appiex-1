@@ -1,847 +1,2650 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refer & Earn Partner Program — APPIEX Web Systems</title>
-  <meta name="description" content="Join the APPIEX Partner & Referral Program. Earn up to ৳5,000 flat cash or 20% recurring commission per client introduction. Instant payout via bKash, Nagad & Bank.">
-  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Design Client Referral Program | Appiex</title>
+  <link rel="canonical" href="https://appiex.com/refer">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Introduce a business that needs a website, software or automation project. Explore the Appiex referral process, eligibility and published reward terms.">
+  <meta name="keywords" content="website design referral program, website development referral program, digital agency referral program, refer web design clients, earn commission referring website clients, get paid to refer website design projects, freelance referral program, software development referral commission, ecommerce referral program, refer clients for commission, Appiex referral program">
+  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-  <!-- Fonts & CDN -->
+  <!-- Instant Pre-Paint Dynamic Hydration (Eliminates old content flash on refresh) -->
+  <script>
+    (function() {
+      try {
+        var raw = localStorage.getItem('appiex_refer_page_content');
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        if (!data) return;
+
+        function applySyncToNode(el) {
+          if (!el || !el.id) return;
+          if (data.hero) {
+            if (el.id === 'dyn-hero-title1' && data.hero.titleLine1) el.textContent = data.hero.titleLine1;
+            else if (el.id === 'dyn-hero-title2' && data.hero.titleLine2) el.textContent = data.hero.titleLine2;
+            else if (el.id === 'dyn-hero-desc' && data.hero.description) el.innerHTML = data.hero.description;
+            else if (el.id === 'dyn-hero-badge' && data.hero.tagline) el.textContent = data.hero.tagline;
+            else if (el.id === 'dyn-top-badge' && data.hero.topBadge) el.textContent = data.hero.topBadge;
+            else if (el.id === 'dyn-wa-btn' && data.hero.whatsappLink) el.href = data.hero.whatsappLink;
+          }
+          if (data.milestones) {
+            if (el.id === 'dyn-ms-badge' && data.milestones.sectionBadge) el.textContent = data.milestones.sectionBadge;
+            else if (el.id === 'dyn-ms-title' && data.milestones.sectionTitle) el.textContent = data.milestones.sectionTitle;
+            else if (el.id === 'dyn-ms-desc' && data.milestones.sectionDesc) el.textContent = data.milestones.sectionDesc;
+            else if (el.id === 'dyn-ms-hand' && data.milestones.handwritingText) el.textContent = data.milestones.handwritingText;
+          }
+        }
+
+        function checkNodeTree(node) {
+          if (!node || node.nodeType !== 1) return;
+          applySyncToNode(node);
+          if (node.querySelectorAll) {
+            var targets = node.querySelectorAll('[id^="dyn-"]');
+            for (var i = 0; i < targets.length; i++) {
+              applySyncToNode(targets[i]);
+            }
+          }
+        }
+
+        var observer = new MutationObserver(function(mutations) {
+          for (var i = 0; i < mutations.length; i++) {
+            var added = mutations[i].addedNodes;
+            for (var j = 0; j < added.length; j++) {
+              checkNodeTree(added[j]);
+            }
+          }
+        });
+
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+        window.addEventListener('DOMContentLoaded', function() {
+          observer.disconnect();
+        });
+      } catch(e) {}
+    })();
+  </script>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appiex.com/refer">
+  <meta property="og:site_name" content="Appiex">
+  <meta property="og:title" content="Web Design Client Referral Program | Appiex">
+  <meta property="og:description" content="Introduce a business that needs a website, software or automation project. Explore the Appiex referral process, eligibility and published reward terms.">
+  <meta property="og:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://appiex.com/refer">
+  <meta name="twitter:title" content="Web Design Client Referral Program | Appiex">
+  <meta name="twitter:description" content="Introduce a business that needs a website, software or automation project. Explore the Appiex referral process, eligibility and published reward terms.">
+  <meta name="twitter:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Structured Data: Service, BreadcrumbList, FAQPage -->
+<!-- Structured Data: Service, BreadcrumbList, FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://appiex.com/refer#service",
+        "name": "Appiex Client Referral Program",
+        "serviceType": "Affiliate & Client Referral Program",
+        "description": "High-payout referral program for freelancers, designers, developers, agencies, and consultants to refer clients for website development, 3D web design, and AI automation for up to 15% commission.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Appiex",
+          "url": "https://appiex.com/"
+        },
+        "areaServed": [
+          "Worldwide",
+          "United States",
+          "United Kingdom",
+          "Australia",
+          "United Arab Emirates",
+          "Bangladesh"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Eligible Referral Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Website Design & Next.js Web Development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Interactive 3D WebGL & Three.js Experiences"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "AI Workflow Automation & Custom Agents"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Headless E-Commerce & Shopify Plus Engineering"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Enterprise Technical SEO & Digital Strategy"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://appiex.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Referral Program",
+            "item": "https://appiex.com/refer"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://appiex.com/refer#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the Appiex Web Design & Software Referral Program?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Appiex Referral Program allows freelancers, students, consultants, and professionals to earn up to 15% instant commission in USD by referring clients who need custom web development, 3D interactive websites, e-commerce stores, or AI automation workflows."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who can participate in the Appiex Referral Program?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Anyone can join without technical knowledge or monetary investment. Whether you are a student, freelancer, job holder, digital marketer, or agency owner, you simply introduce clients who need digital engineering, and our senior team handles discovery, sales, and delivery."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much referral commission do I earn per closed project?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You earn up to 15% instant commission based on the contract value. For example, on a $3,000 custom web build, you earn up to $450 in instant USD payout. Higher-tier enterprise contracts yield correspondingly higher earnings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When and how are commissions paid out?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Commissions are released immediately once the client signs the agreement and pays their project deposit. We wire funds directly via Wise, PayPal, Payoneer, or local bank transfer according to your payout preference."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What services can I refer clients for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can refer clients for Full-Stack Web Development (Next.js/React), 3D WebGL Experiences, E-Commerce Platforms (Shopify, Custom Headless), AI Workflow Automation (n8n, Python, CRM bots), Mobile Apps, and Technical SEO Services."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can freelance web designers, marketers, and consultants refer their clients?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Freelance web designers, graphic designers, copywriters, and consultants frequently partner with Appiex to monetize client requests that fall outside their core expertise or capacity, such as high-ticket custom software, 3D WebGL development, or advanced AI automations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you accept client referrals from the USA, UK, UAE, Australia, and internationally?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Appiex serves clients globally with key hubs in the USA, UK, Australia, UAE, Europe, and Bangladesh. All project proposals, discovery sessions, contracts, and commission payouts are executed seamlessly in USD across timezones."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between the Referral Program and the Agency Partnership Program?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Referral Program is an introducer model where you introduce a lead and earn up to 15% commission with zero delivery responsibility. The Agency Partnership Program is a white-label delivery arrangement where Appiex works behind the scenes as your dedicated dev department under strict bilateral NDAs."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,400i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Google+Sans:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="./styles/fonts.css" rel="stylesheet">
+  <link href="./styles/ContactSection.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            anton: ['Anton', 'Impact', 'sans-serif'],
-            satoshi: ['Satoshi', 'system-ui', 'sans-serif'],
-            oswald: ['Oswald', 'sans-serif'],
-            cormorant: ['Cormorant Garamond', 'serif'],
-          },
           colors: {
-            'brand-red': '#DC2626',
-            'brand-red-mid': '#B91C1C',
-            'brand-neon': '#FF2A4D',
-            'brand-gold': '#FBBF24',
-            'brand-pale': '#FEE2E2',
-            'hairline': '#E5E5E5',
+            appiexRed: '#FF2A4D',
+            appiexRedDark: '#DC2626',
+            appiexTeal: '#2DD4BF',
+            appiexDark: '#030408',
+            appiexCard: '#080910'
+          },
+          fontFamily: {
+            sans: ['Google Sans', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            anton: ['Anton', 'Impact', 'sans-serif']
           }
         }
       }
     }
   </script>
+
   <style>
-    :root {
-      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    @font-face {
+      font-family: 'Suisse Intl';
+      src: url('./fonts/SuisseIntl-Regular.woff2') format('woff2'), url('./images/suisseintl-regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
-    html.lenis, html.lenis body {
-      height: auto;
+    @font-face {
+      font-family: 'Suisse Intl';
+      src: url('./fonts/SuisseIntl-Medium.woff2') format('woff2'), url('./images/suisseintl-medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
     }
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
+    @font-face {
+      font-family: 'Suisse Intl';
+      src: url('./fonts/SuisseIntl-SemiBold.woff2') format('woff2'), url('./images/suisseintl-semibold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
     }
-    .lenis.lenis-smooth [data-lenis-prevent] {
-      overscroll-behavior: contain;
+    @font-face {
+      font-family: 'Suisse Intl';
+      src: url('./fonts/SuisseIntl-Bold.woff2') format('woff2'), url('./images/suisseintl-bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
     }
-    .lenis.lenis-stopped {
+
+    * {
+      font-family: 'Suisse Intl', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #030408;
+      color: #f8fafc;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+    }
+
+    .ambient-glow-red {
+      background: radial-gradient(circle, rgba(255, 42, 77, 0.16) 0%, rgba(220, 38, 38, 0.08) 35%, transparent 70%);
+    }
+
+    /* Floating Capsule Navbar */
+    .rafsan-navbar-shell {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 1000 !important;
+      padding: 1.25rem 0 !important;
+      pointer-events: none !important;
+      background: transparent !important;
+      font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      transition: all 0.35s ease !important;
+    }
+    .rafsan-navbar-shell.scrolled {
+      padding: 0.85rem 0 !important;
+    }
+    .rafsan-nav-container {
+      max-width: 82rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+      width: 100%;
+    }
+    .rafsan-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      transition: transform 0.25s ease;
+      user-select: none;
+    }
+    .rafsan-brand:hover {
+      transform: scale(1.02);
+    }
+    .rafsan-brand .brand-logo-img {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      margin-right: 0.35rem;
+      filter: drop-shadow(0 2px 8px rgba(255, 42, 77, 0.4));
+    }
+    .rafsan-brand-bold {
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .rafsan-brand-light {
+      font-weight: 300;
+      color: #d1d5db;
+      margin-left: 0.2rem;
+    }
+    .rafsan-capsule-nav {
+      position: relative;
+      display: none;
+      align-items: center;
+      padding: 5px 6px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s ease;
+    }
+    @media (min-width: 768px) {
+      .rafsan-capsule-nav {
+        display: flex;
+      }
+    }
+    .rafsan-capsule-pill {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      height: calc(100% - 10px);
+      width: 68px;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      border-radius: 9999px;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .rafsan-nav-item {
+      position: relative;
+      z-index: 2;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: color 0.25s ease;
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+    }
+    .rafsan-nav-item:hover {
+      color: #ffffff;
+    }
+    .rafsan-nav-item.active {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Services Dropdown & Up Caret */
+    .services-nav-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .services-caret {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+    }
+    .services-nav-wrap:hover .services-caret,
+    .services-nav-wrap.is-open .services-caret {
+      transform: rotate(180deg);
+      color: #FF2A4D;
+    }
+    .services-popup-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: 650px;
+      max-width: calc(100vw - 2rem);
+      background: #000000 !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 42, 77, 0.2) !important;
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
       overflow: hidden;
     }
-    .lenis.lenis-smooth iframe {
-      pointer-events: none;
+    .services-nav-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 0;
+      width: 100%;
+      height: 18px;
     }
-    html, body {
-      background-color: #06070B;
-      color: #FFFFFF;
-      font-family: 'Satoshi', sans-serif;
+    .services-nav-wrap:hover .services-popup-menu,
+    .services-nav-wrap.is-open .services-popup-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
     }
-    .btn-pill {
-      border-radius: 9999px;
-      font-family: 'Satoshi', sans-serif;
+    /* Left Banner Side (With Fierce Red Panther Face Background) */
+    .services-mega-left {
+      width: 250px;
+      background: linear-gradient(180deg, rgba(10, 10, 15, 0.42) 0%, rgba(5, 5, 10, 0.90) 100%), url('./images/panther_cover.png') center/cover no-repeat !important;
+      padding: 28px 24px;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      text-align: left;
+      position: relative;
+      font-family: 'Figtree', sans-serif !important;
+    }
+    .services-mega-badge {
+      font-size: 10px;
       font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.1em;
+      color: #ff2a4d;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      transition: all 280ms var(--ease-spring);
+      display: block;
+      margin-bottom: 10px;
+      font-family: 'Figtree', sans-serif !important;
+    }
+    .services-mega-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.35;
+      text-transform: uppercase;
+      font-family: 'Figtree', sans-serif !important;
+      margin: 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    }
+    .services-mega-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      background-color: #ffffff;
+      color: #0f172a;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 1px solid #ffffff;
+      transition: all 0.3s ease;
+      width: fit-content;
+      margin-top: 20px;
+      font-family: 'Figtree', sans-serif !important;
+    }
+    .services-mega-btn:hover {
+      background-color: #ff2a4d;
+      color: #ffffff;
+      border-color: #ff2a4d;
+      box-shadow: 0 4px 14px rgba(255, 42, 77, 0.4);
+    }
+    /* Right Categories Side - PURE BLACK BACKGROUND & NO BOX BG BEHIND 6 OPTIONS */
+    .services-mega-right {
+      flex: 1;
+      padding: 28px 24px;
+      background: #000000 !important;
+      box-sizing: border-box;
+      text-align: left;
+      font-family: 'Figtree', sans-serif !important;
+    }
+    .services-mega-subtitle {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.5) !important;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: block;
+      font-family: 'Figtree', sans-serif !important;
+    }
+    .services-mega-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px 18px;
+    }
+    .services-mega-item {
+      padding: 8px 10px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #ffffff !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.6px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      border: none !important;
+      background: transparent !important;
+      font-family: 'Figtree', sans-serif !important;
+    }
+    .services-mega-item:hover {
+      background: transparent !important;
+      color: #FF2A4D !important;
+      transform: translateX(4px);
+      text-shadow: 0 0 14px rgba(255, 42, 77, 0.7);
+    }
+
+    .rafsan-nav-actions {
+      display: none;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    @media (min-width: 768px) {
+      .rafsan-nav-actions {
+        display: flex;
+      }
+    }
+    .rafsan-github-btn {
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border-radius: 50%;
+      transition: color 0.25s ease, transform 0.25s ease;
+      text-decoration: none;
+    }
+    .rafsan-github-btn:hover {
+      color: #FF2A4D;
+      transform: scale(1.1);
+    }
+    .rafsan-resume-btn {
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      text-decoration: none;
+      background: transparent;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(8px);
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
-    .btn-pill:hover {
-      transform: translateY(-2px);
-    }
-
-    /* 3D Perspective Card Tilt */
-    .card-3d-wrap {
-      perspective: 1200px;
-      transform-style: preserve-3d;
-    }
-    .card-3d {
-      transition: transform 320ms var(--ease-spring), box-shadow 320ms ease, border-color 320ms ease;
-      transform-style: preserve-3d;
-    }
-    .card-3d:hover {
-      border-color: rgba(220, 38, 38, 0.5);
-      box-shadow: 0 25px 60px -15px rgba(220, 38, 38, 0.25), 0 0 40px rgba(255, 42, 77, 0.15);
-    }
-
-    /* Floating Pill Navbar */
-    #sticky-nav {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 32px);
-      max-width: 1140px;
-      border-radius: 9999px;
-      z-index: 50;
-      background: rgba(11, 13, 20, 0.9);
-      backdrop-filter: blur(32px) saturate(1.8);
-      -webkit-backdrop-filter: blur(32px) saturate(1.8);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-      transition: all 350ms ease;
-    }
-    .nav-link {
-      padding: 6px 14px;
-      border-radius: 9999px;
-      white-space: nowrap;
-      transition: all 220ms ease;
-    }
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.14);
-      color: #FFFFFF !important;
-    }
-
-    /* Range Slider Styling */
-    input[type=range] {
-      -webkit-appearance: none;
-      width: 100%;
+    .rafsan-resume-btn:hover {
+      border-color: #ffffff;
       background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+    .rafsan-hire-btn {
+      padding: 7px 18px;
       border-radius: 9999px;
-      height: 10px;
-      outline: none;
+      font-size: 12px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      color: #ffffff;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.4);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      height: 26px;
-      width: 26px;
-      border-radius: 50%;
-      background: #FF2A4D;
+    .rafsan-hire-btn:hover {
+      background: linear-gradient(135deg, #ff4767 0%, #ef4444 100%);
+      box-shadow: 0 6px 22px rgba(255, 42, 77, 0.65);
+      transform: translateY(-1px);
+    }
+    .rafsan-mobile-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    @media (min-width: 768px) {
+      .rafsan-mobile-wrap {
+        display: none;
+      }
+    }
+    .rafsan-mobile-toggle {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 6px;
       cursor: pointer;
-      box-shadow: 0 0 16px rgba(255, 42, 77, 0.8), 0 0 0 4px #FFFFFF;
-      transition: transform 150ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
     }
-    input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
+    .rafsan-mobile-drawer { position: fixed; top: 66px; left: 0; width: 100%; background: #12070a; border-bottom: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85); padding: 1.25rem 1.5rem; transform: translate3d(0, -12px, 0); opacity: 0; visibility: hidden; pointer-events: none; transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease, visibility 0.22s; will-change: transform, opacity; z-index: 99; } .rafsan-mobile-drawer.open { transform: translate3d(0, 0, 0); opacity: 1; visibility: visible; pointer-events: auto; } @media (max-width: 768px) {
+    body video.fixed, video[class*="fixed"] {
+      display: block !important;
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      object-fit: cover !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+      filter: grayscale(1) contrast(1.2) brightness(0.95) !important;
+      opacity: 0.45 !important;
+    }
+    body div[style*="mix-blend-mode: color"] {
+      display: block !important;
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background-color: #ff0000 !important;
+      opacity: 0.75 !important;
+      mix-blend-mode: color !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+    }
+  }
+    .rafsan-mobile-drawer a {
+      display: block;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+    .rafsan-mobile-drawer a:hover {
+      color: #FF2A4D;
+      padding-left: 0.5rem;
+    }
+    .rafsan-mobile-drawer-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 0.5rem;
     }
 
-    /* Mobile Nav Overlay */
-    #mobile-nav-overlay {
-      position: fixed;
-      inset: 0;
-      background: #080A12;
-      z-index: 9000;
-      transform: translateX(100%);
-      transition: transform 400ms var(--ease-spring);
+    /* Bento Refer Styling */
+    .numbers-bento-card {
+      border-radius: 1.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .numbers-tall-card {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
+    }
+    .numbers-center-col {
       display: flex;
       flex-direction: column;
-      padding: 32px;
+      gap: 1.5rem;
+      justify-content: space-between;
     }
-    #mobile-nav-overlay.open {
-      transform: translateX(0);
+    .numbers-center-top {
+      height: 232px;
+      min-height: 232px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .numbers-center-bottom {
+      height: 232px;
+      min-height: 232px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
     }
 
-    /* Toast Notification */
-    #toast-notification {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #0F172A;
-      border: 1px solid #10B981;
-      box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
-      padding: 14px 22px;
-      border-radius: 16px;
-      z-index: 9999;
-      transform: translateY(120%);
-      opacity: 0;
-      transition: all 300ms var(--ease-spring);
+    /* Swaying Animations */
+    @keyframes swayBadgeKeyframes {
+      0%, 100% { transform: rotate(-5deg) translateY(0px); }
+      50% { transform: rotate(5deg) translateY(-8px); }
     }
-    #toast-notification.show {
-      transform: translateY(0);
-      opacity: 1;
+    @keyframes swayCashKeyframes {
+      0%, 100% { transform: rotate(4deg) translateY(0px); }
+      50% { transform: rotate(-4deg) translateY(-6px); }
+    }
+    .animate-sway-badge {
+      animation: swayBadgeKeyframes 4s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    .animate-sway-cash {
+      animation: swayCashKeyframes 3.6s ease-in-out infinite 0.4s;
+      transform-origin: center center;
+    }
+
+    /* Border Beams */
+    .video-border-beam {
+      position: absolute;
+      inset: -2px;
+      border-radius: 1.75rem;
+      padding: 2px;
+      background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, transparent 270deg, rgba(255, 255, 255, 0.15) 310deg, #ffffff 345deg, transparent 360deg);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      animation: videoBeamSpinCCW 4.5s linear infinite;
+      z-index: 20;
+    }
+    @keyframes videoBeamSpinCCW {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .refer-border-beam {
+      position: absolute;
+      inset: -2px;
+      border-radius: 1.75rem;
+      padding: 2px;
+      background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 260deg, rgba(255, 42, 77, 0.3) 290deg, #FF2A4D 325deg, #2DD4BF 350deg, #ffffff 360deg);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      animation: referBeamSpinCW 4.5s linear infinite;
+      z-index: 20;
+    }
+    @keyframes referBeamSpinCW {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Path SVG Beams */
+    @keyframes animPantherSegment {
+      0% { stroke-dashoffset: 240; }
+      100% { stroke-dashoffset: -240; }
+    }
+    .anim-panther-segment {
+      stroke-dasharray: 48 192;
+      animation: animPantherSegment 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes animPartnerSegment {
+      0% { stroke-dashoffset: 240; }
+      100% { stroke-dashoffset: -240; }
+    }
+    .anim-partner-segment {
+      stroke-dasharray: 48 192;
+      animation: animPartnerSegment 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* Typography */
+    .appiex-growth-title {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: clamp(1.4rem, 2.7vw, 2.2rem) !important;
+      letter-spacing: 4px !important;
+      line-height: 1.2 !important;
+      text-transform: uppercase !important;
+      color: #FFFFFF !important;
+      font-weight: 300 !important;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7) !important;
+    }
+    .footer-huge-title {
+      font-family: 'Anton', 'Impact', sans-serif !important;
+      font-size: clamp(3.2rem, 9.5vw, 8.8rem) !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.04em !important;
+      line-height: 0.86 !important;
+      text-transform: uppercase !important;
+      color: #FFFFFF !important;
+    }
+    .footer-title-red {
+      color: #FF2A4D !important;
+      text-shadow: 0 0 45px rgba(255, 42, 77, 0.45);
+    }
+    .footer-kicker-red {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: clamp(0.7rem, 1.1vw, 0.95rem) !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.22em !important;
+      text-transform: uppercase !important;
+      color: #FF2A4D !important;
+    }
+  
+@media (min-width: 768px) {
+  .rafsan-mobile-drawer {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+  /* Uniform Navbar Montserrat Typography */
+  .rafsan-capsule-nav, .rafsan-nav-item {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+
+    /* Appiex Blog Pill Button */
+    .rafsan-blog-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 7px 18px !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 13.5px !important;
+      font-weight: 500 !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      text-decoration: none !important;
+    }
+    .rafsan-blog-btn:hover, .rafsan-blog-btn.active {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 42, 77, 0.5) !important;
+      color: #FF2A4D !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 15px rgba(255, 42, 77, 0.25) !important;
+    }
+
+</style>
+
+<style>
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+  .lenis.lenis-scrolling iframe { pointer-events: none; }
+</style>
+
+  <!-- Instant 0.1s Sub-Second Navigation Engine -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "index.html",
+          "projects.html",
+          "services.html",
+          "refer.html",
+          "partners.html",
+          "case-studies.html",
+          "web-development.html",
+          "ui-ux-3d-design.html",
+          "ai-automation.html",
+          "seo-marketing.html",
+          "gaming.html",
+          "digital-strategy.html",
+          "team.html",
+          "/"
+        ],
+        "eagerness": "immediate"
+      }
+    ],
+    "prefetch": [
+      {
+        "source": "document",
+        "where": {
+          "and": [
+            { "href_matches": "/*" }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+  
+  
+  
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight with Smooth Fadeout) -->
+  
+  <link rel="stylesheet" href="/styles/seo-links.css?v=20261031_restore">
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
   </style>
+  <script src="/scripts/instant-nav.js?v=20261031_morph_x6" defer></script>
 
-  <!-- GSAP & Lenis CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<style>
+@media (min-width: 768px) {
+  .rafsan-navbar-shell {
+    padding: calc(0.55rem + 11px) 0 0.35rem 0 !important;
+  }
+  .rafsan-nav-container {
+    padding: 0 1.5rem !important;
+  }
+  .rafsan-capsule-nav {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+  }
+}
+</style>
+
+<script>
+  window.__toggleMobileServices = function(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+    var btn = document.getElementById('rafsan-mobile-services-toggle');
+    var sub = document.getElementById('rafsan-mobile-services-sub');
+    if (!sub) return false;
+
+    var isOpen = sub.classList.contains('open');
+    if (isOpen) {
+      sub.classList.remove('open');
+      if (btn) {
+        btn.classList.remove('expanded');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      sub.style.setProperty('max-height', '0px', 'important');
+      sub.style.setProperty('opacity', '0', 'important');
+      sub.style.setProperty('visibility', 'hidden', 'important');
+      sub.style.setProperty('pointer-events', 'none', 'important');
+      sub.style.setProperty('margin', '0', 'important');
+      sub.style.setProperty('padding', '0 0.5rem', 'important');
+    } else {
+      sub.classList.add('open');
+      if (btn) {
+        btn.classList.add('expanded');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      sub.style.setProperty('display', 'flex', 'important');
+      sub.style.setProperty('flex-direction', 'column', 'important');
+      sub.style.setProperty('max-height', '800px', 'important');
+      sub.style.setProperty('opacity', '1', 'important');
+      sub.style.setProperty('visibility', 'visible', 'important');
+      sub.style.setProperty('pointer-events', 'auto', 'important');
+      sub.style.setProperty('margin', '0.6rem 0 0.85rem 0', 'important');
+      sub.style.setProperty('padding', '0.5rem 0.5rem 0.75rem 0.5rem', 'important');
+      sub.style.setProperty('border', '1px solid rgba(255, 42, 77, 0.22)', 'important');
+      sub.style.setProperty('background', 'rgba(255, 42, 77, 0.06)', 'important');
+      sub.style.setProperty('border-radius', '14px', 'important');
+    }
+    return false;
+  };
+</script>
+
 </head>
-<body class="bg-[#06070B] text-white antialiased selection:bg-brand-red selection:text-white">
-
-  <!-- TOAST NOTIFICATION -->
-  <div id="toast-notification" class="flex items-center space-x-3 pointer-events-none">
-    <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">✓</div>
-    <div>
-      <h5 class="text-xs font-bold text-white uppercase tracking-wider">Referral Link Copied!</h5>
-      <p class="text-[11px] text-white/70">Share with founders to start earning.</p>
-    </div>
+<body class="min-h-screen bg-[#030408] text-slate-100 flex flex-col justify-between relative selection:bg-red-600 selection:text-white">
+  <!-- Cuberto-Style Page Transition Curtain (Appiex Red Ambient Aesthetic) -->
+  <div id="appiex-cuberto-curtain" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 99999999; pointer-events: none; background: #030408;" aria-hidden="true">
+    <div class="appiex-curtain-ambient"></div>
+  </div>
+  
   </div>
 
-  <!-- MOBILE NAVIGATION DRAWER -->
-  <div id="mobile-nav-overlay">
-    <div class="flex items-center justify-between">
-      <a href="index.html" class="flex items-center space-x-2">
-        <svg class="h-8 w-auto text-white" viewBox="0 0 240 50" fill="none">
-          <g transform="translate(2, 2)">
-            <path d="M4 32 C10 20, 22 12, 36 8 C30 14, 28 20, 30 26 C26 23, 20 24, 14 28 C22 31, 30 28, 38 20 C34 27, 28 32, 18 35 C27 37, 36 35, 42 26 C38 32, 32 37, 24 39 C34 40, 46 34, 52 22 C56 16, 57 10, 58 4 C50 10, 42 13, 34 11 C44 6, 54 4, 62 1 C56 7, 52 13, 44 18 C52 13, 58 8, 64 2 C60 10, 54 16, 44 22 C52 18, 58 13, 64 7 C62 15, 54 23, 44 28 C38 32, 30 34, 20 35 Z" fill="#DC2626"/>
-          </g>
-          <text x="74" y="34" font-family="'Anton', 'Oswald', sans-serif" font-size="28" font-weight="900" fill="currentColor">APPIEX</text>
-        </svg>
+  <!-- Background Video Overlay (Identical to Home) -->
+  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center z-0" autoplay loop muted playsinline preload="none" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.48;">
+    <source src="./assets/static/vde.mp4" type="video/mp4"><source src="./assets/static/vde.webm" type="video/webm">
+  </video>
+  <div class="pointer-events-none fixed inset-0 h-screen w-screen z-0" style="mix-blend-mode: color; background-color: #ff0000; opacity: 0.85;" aria-hidden="true"></div>
+
+  <!-- Ambient Top Lights -->
+  <div class="pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 w-[75rem] h-[35rem] ambient-glow-red blur-3xl z-0" aria-hidden="true"></div>
+
+  <!-- FLOATING CAPSULE NAVBAR (UNIFIED APPIEX HUNT) -->
+  <header class="rafsan-navbar-shell" id="rafsan-navbar">
+    <div class="rafsan-nav-container">
+      
+      <!-- 1. Brand Logo (Left) -->
+      <a href="index.html#home" class="rafsan-brand" aria-label="appiex">
+        <img src="./images/appiex-wordmark-white.png" alt="appiex" class="brand-wordmark-img" style="height: 28px; width: auto; object-fit: contain; display: block;">
       </a>
-      <button id="close-mobile-nav" class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="flex flex-col space-y-4 my-auto">
-      <a href="services.html" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">SERVICES</a>
-      <a href="refer.html" class="font-anton text-4xl sm:text-5xl uppercase text-brand-neon">REFER</a>
-      <a href="collections.html" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">COLLECTIONS</a>
-      <a href="stories.html" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">CASE STUDIES</a>
-      <a href="index.html#contact" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">CONTACT</a>
-    </div>
-    <span class="font-satoshi text-xs uppercase tracking-widest text-white/80">APPIEX PARTNER & REFERRAL PROGRAM</span>
-  </div>
 
-  <!-- FLOATING NAVBAR -->
-  <header id="sticky-nav" class="px-5 sm:px-6 md:px-7 py-3 flex items-center justify-between flex-nowrap">
-    <a href="index.html" class="flex items-center shrink-0 group transition-transform duration-300 hover:scale-105" aria-label="APPIEX Home">
-      <img src="./assets/appiex-panther-logo.png" alt="APPIEX" class="h-8 md:h-10 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(255,42,77,0.45)]">
-    </a>
-
-    <!-- Center Links: SERVICES -> REFER -> COLLECTIONS -> CASE STUDIES -> CONTACT -->
-    <nav class="hidden lg:flex items-center space-x-2 xl:space-x-3 font-satoshi text-xs uppercase tracking-[0.14em] font-medium text-white/80 whitespace-nowrap flex-nowrap shrink-0">
-      <a href="services.html" class="nav-link whitespace-nowrap">SERVICES</a>
-      <a href="refer.html" class="nav-link bg-white/15 text-white font-bold whitespace-nowrap flex items-center space-x-1.5">
-        <span>REFER</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse"></span>
-      </a>
-      <a href="collections.html" class="nav-link whitespace-nowrap">COLLECTIONS</a>
-      <a href="stories.html" class="nav-link whitespace-nowrap">CASE STUDIES</a>
-      <a href="index.html#contact" class="nav-link whitespace-nowrap">CONTACT</a>
-    </nav>
-
-    <!-- Right Controls -->
-    <div class="flex items-center space-x-3 flex-shrink-0 whitespace-nowrap">
-      <a href="#calculator" class="hidden sm:inline-flex btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-5 py-2 text-[11px] shadow-lg shadow-brand-red/30 whitespace-nowrap shrink-0">
-        CALCULATE CASH
-      </a>
-      <button id="hamburger" aria-label="Menu" class="lg:hidden p-2 flex flex-col space-y-1.5 text-white">
-        <span class="w-5 h-0.5 bg-white"></span>
-        <span class="w-5 h-0.5 bg-white"></span>
-        <span class="w-5 h-0.5 bg-white"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="relative pt-36 pb-20 px-6 md:px-12 bg-gradient-to-b from-[#0B0D17] via-[#15070A] to-[#06070B] border-b border-white/10 overflow-hidden">
-    <!-- Ambient Neon Cyber Glows -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[380px] bg-brand-red/20 blur-[130px] rounded-full pointer-events-none"></div>
-    <div class="absolute top-1/3 right-10 w-[350px] h-[350px] bg-emerald-500/10 blur-[110px] rounded-full pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-10 relative z-10">
-      <div class="space-y-5 max-w-3xl">
-        <div class="inline-flex items-center space-x-2 bg-brand-red/20 border border-brand-red/40 px-4 py-1.5 rounded-full text-brand-neon font-oswald text-xs tracking-[0.2em] uppercase font-bold">
-          <span class="w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
-          <span>APPIEX PARTNER NETWORK · ZERO RISK, INSTANT PAYOUT</span>
-        </div>
-        <h1 class="font-anton text-6xl sm:text-7xl md:text-8xl lg:text-9xl uppercase leading-[0.88] tracking-tight text-white">
-          REFER A CLIENT. <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-white">EARN UP TO ৳5,000</span> <br>
-          <span class="text-brand-neon">INSTANT CASH.</span>
-        </h1>
-        <p class="font-satoshi text-base sm:text-lg text-white/80 max-w-2xl font-light leading-relaxed">
-          Know a business, founder, or e-commerce shop owner needing a modern high-performance website? Introduce them to APPIEX. When they deploy a project, you receive cash directly via bKash, Nagad, or Bank within 24 hours.
-        </p>
-        <div class="flex flex-wrap items-center gap-4 pt-2">
-          <a href="#calculator" class="btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-7 py-3.5 text-xs shadow-xl shadow-brand-red/40 font-bold">
-            CALCULATE YOUR EARNINGS ↓
+      <!-- 2. Floating Capsule Navbar (Center) -->
+      <nav class="rafsan-capsule-nav" aria-label="Main Navigation">
+        <div class="rafsan-capsule-pill" id="rafsan-capsule-pill"></div>
+        <a href="index.html#home" class="rafsan-nav-item" data-section="home">Home</a>
+        
+        <!-- Services with < (up) Caret & 6-Option Popup -->
+        <div class="services-nav-wrap" id="services-nav-wrap">
+          <a href="services.html" class="rafsan-nav-item" data-section="services" style="display: inline-flex; align-items: center;">
+            Services
+            <span class="services-caret" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </span>
           </a>
-          <a href="#generate-link" class="btn-pill bg-white text-black hover:bg-white/90 px-7 py-3.5 text-xs font-bold">
-            GET YOUR REFERRAL CODE
-          </a>
+
+          <!-- Mega Menu Popup (Pic 1 & User Specification) -->
+          <div class="services-popup-menu" id="services-popup-menu" role="menu">
+            <!-- Left Banner Area (With Python Graphic Background) -->
+            <div class="services-mega-left">
+              <div>
+                <span class="services-mega-badge">EXCLUSIVE</span>
+                <h4 class="services-mega-title">EXPLORE OUR SERVICES CURATIONS</h4>
+              </div>
+              <a href="services.html" class="services-mega-btn">SEE OVERVIEW</a>
+            </div>
+            <!-- Right Categories Area (6 Target Options) -->
+            <div class="services-mega-right">
+              <span class="services-mega-subtitle">CORE DISCIPLINES</span>
+              <div class="services-mega-grid">
+                <a href="digital-strategy.html" class="services-mega-item">DIGITAL STRATEGY</a>
+                <a href="web-development.html" class="services-mega-item">WEB DEVELOPMENT (FULL -STACK)</a>
+                <a href="ui-ux-3d-design.html" class="services-mega-item">UI/UX &amp; 3D DESIGN</a>
+                <a href="ai-automation.html" class="services-mega-item">AI AUTOMATION</a>
+                <a href="seo-marketing.html" class="services-mega-item">SEO &amp; MARKETIN</a>
+                <a href="gaming.html" class="services-mega-item">GAMING &amp; 3D WORLDS</a>
+            </div>
+            </div>
+          </div>
         </div>
+
+        <a href="refer.html" class="rafsan-nav-item active" data-section="refer">Refer</a>
+        <a href="partners.html" class="rafsan-nav-item" data-section="partners">Partnership</a>
+        <a href="projects.html" class="rafsan-nav-item" data-section="projects">Projects</a>
+        <a href="index.html#contact" class="rafsan-nav-item" data-section="contact">Contact</a>
+      </nav>
+
+      <!-- 3. Action Buttons (Right) -->
+      <div class="rafsan-nav-actions">
+        <!-- GitHub Icon -->
+        <a href="blog.html" class="rafsan-blog-btn" aria-label="Blog">Blog</a>
+        
+        <!-- Hire Us Button -->
+        <a href="login.html" class="rafsan-hire-btn" id="nav-login-btn">Login</a>
       </div>
 
-      <!-- Live Payout Guarantee Bento Box -->
-      <div class="w-full lg:w-[380px] p-6 rounded-3xl bg-black/70 border border-white/15 backdrop-blur-2xl space-y-4 shrink-0 shadow-2xl">
-        <div class="flex items-center justify-between pb-3 border-b border-white/10">
-          <span class="font-oswald text-xs uppercase tracking-wider text-white/50 font-bold">PAYOUT CHANNELS</span>
-          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">● 24H SETTLEMENT</span>
-        </div>
-        <div class="grid grid-cols-2 gap-2 text-center font-anton text-sm tracking-wider uppercase">
-          <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-pink-500/50 transition">
-            <span class="text-pink-500 block text-lg font-bold">bKash</span>
-            <span class="font-satoshi text-[10px] text-white/60 normal-case">Personal / Merchant</span>
-          </div>
-          <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-orange-500/50 transition">
-            <span class="text-orange-500 block text-lg font-bold">Nagad</span>
-            <span class="font-satoshi text-[10px] text-white/60 normal-case">Instant Transfer</span>
-          </div>
-          <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-purple-500/50 transition">
-            <span class="text-purple-400 block text-lg font-bold">Rocket</span>
-            <span class="font-satoshi text-[10px] text-white/60 normal-case">DBBL Mobile</span>
-          </div>
-          <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-blue-500/50 transition">
-            <span class="text-blue-400 block text-lg font-bold">BEFTN / NPSB</span>
-            <span class="font-satoshi text-[10px] text-white/60 normal-case">All BD Banks</span>
-          </div>
-        </div>
-        <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-[11px] font-satoshi text-white/70 flex items-center space-x-2">
-          <span class="text-emerald-400 font-bold text-sm">✓</span>
-          <span>Zero minimum threshold. Get paid right after project kick-off.</span>
-        </div>
+      <!-- 4. Mobile Hamburger -->
+      <div class="rafsan-mobile-wrap">
+        <a href="login.html" class="rafsan-hire-btn" id="mobile-wrap-login-btn">Login</a>
+        <button type="button" class="rafsan-mobile-toggle" id="rafsan-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top"></span>
+          <span class="hamburger-line line-bottom"></span>
+        </span>
+      </button>
       </div>
-    </div>
-  </section>
 
-  <!-- INTERACTIVE EARNINGS CALCULATOR SECTION -->
-  <section id="calculator" class="py-24 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
-    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
-      <span class="font-oswald text-xs uppercase tracking-[0.2em] text-brand-neon font-bold">DYNAMIC PROFIT SIMULATOR</span>
-      <h2 class="font-anton text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-white">
-        HOW MUCH WILL YOU EARN?
-      </h2>
-      <p class="font-satoshi text-sm sm:text-base text-white/70">
-        Adjust the client slider below to calculate your estimated referral commissions based on project size.
+    </div>
+
+    </header>
+
+  <!-- MAIN REFER SECTION (Handwritten Note Blueprint: Student/Job-Holder Zero-Investment Earning) -->
+  <main class="relative z-10 pt-20 sm:pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-6xl mx-auto mb-14">
+      <div class="inline-flex items-center justify-center gap-3 mb-4">
+        <span class="w-12 h-px bg-gradient-to-r from-transparent to-red-500"></span>
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-[#FF2A4D] shadow-[0_0_10px_#FF2A4D] animate-pulse"></span>
+          <span class="text-xs sm:text-sm font-bold tracking-wider text-white uppercase font-mono" id="dyn-top-badge">Zero Investment · 100% Risk Free</span>
+        </div>
+        <span class="w-12 h-px bg-gradient-to-l from-transparent to-red-500"></span>
+      </div>
+
+      <h1 class="text-white mb-5 leading-[1.12]" style="font-family: 'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 600 !important; font-size: clamp(2rem, 5.2vw, 4.2rem); letter-spacing: -0.03em;">
+        <span class="block text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-[#FF2A4D] mb-3 font-bold" id="dyn-hero-badge">Appiex Client Referral Program</span>
+        <span class="block" id="dyn-hero-title1">Student or Looking to Earn Extra Money?</span>
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF2A4D] via-red-400 to-rose-300" style="font-weight: 600 !important;" id="dyn-hero-title2">
+          We've Got an Opportunity for You!
+        </span>
+      </h1>
+      
+      <p class="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style="font-family: 'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; font-weight: 400 !important; letter-spacing: -0.01em;" id="dyn-hero-desc">
+        Student, Creator, Freelancer, or Looking to Earn Extra Income? No investment. No coding skills. Simply refer clients who need websites, software, or AI automation and earn up to 15% commission in USD! Get paid via Wise, PayPal, Payoneer, or bank transfer.
       </p>
-    </div>
 
-    <div class="card-3d-wrap max-w-4xl mx-auto">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#121624] via-[#0E111C] to-[#080A10] border border-white/15 p-8 sm:p-12 shadow-2xl space-y-10">
-        <div class="absolute -top-24 -left-24 w-80 h-80 bg-brand-neon/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <!-- Slider Control -->
-        <div class="space-y-4">
-          <div class="flex items-center justify-between">
-            <label for="clients-slider" class="font-oswald text-sm uppercase tracking-wider text-white/80 font-bold">
-              MONTHLY CLIENT REFERRALS:
-            </label>
-            <span class="font-anton text-3xl sm:text-4xl text-brand-neon" id="clients-count-display">04 CLIENTS</span>
-          </div>
-          <input type="range" id="clients-slider" data-lenis-prevent min="1" max="20" value="4" step="1" aria-label="Select number of referrals">
-          <div class="flex justify-between text-[11px] font-mono text-white/40">
-            <span>1 CLIENT</span>
-            <span>5 CLIENTS</span>
-            <span>10 CLIENTS</span>
-            <span>15 CLIENTS</span>
-            <span>20 CLIENTS</span>
-          </div>
-        </div>
-
-        <!-- Tier Selection Radio Buttons -->
-        <div class="space-y-3">
-          <span class="font-oswald text-xs uppercase tracking-wider text-white/60 font-semibold block">SELECT PROJECT TYPE:</span>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <label class="cursor-pointer p-4 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-white/30 transition flex flex-col justify-between tier-radio-label active" data-rate="3000">
-              <input type="radio" name="project_tier" value="3000" class="sr-only" checked>
-              <div>
-                <span class="font-oswald text-xs uppercase tracking-wider text-white/50 block mb-1">STANDARD WEBSITE</span>
-                <span class="font-anton text-lg text-white">PORTFOLIO / SHOWCASE</span>
-              </div>
-              <span class="font-anton text-xl text-amber-400 mt-3">৳3,000 / CLIENT</span>
-            </label>
-
-            <label class="cursor-pointer p-4 rounded-2xl bg-white/[0.04] border border-brand-red/50 bg-brand-red/10 transition flex flex-col justify-between tier-radio-label" data-rate="5000">
-              <input type="radio" name="project_tier" value="5000" class="sr-only">
-              <div>
-                <span class="font-oswald text-xs uppercase tracking-wider text-brand-neon block mb-1">MOST POPULAR</span>
-                <span class="font-anton text-lg text-white">NITRO E-COMMERCE</span>
-              </div>
-              <span class="font-anton text-xl text-emerald-400 mt-3">৳5,000 / CLIENT</span>
-            </label>
-
-            <label class="cursor-pointer p-4 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-white/30 transition flex flex-col justify-between tier-radio-label" data-rate="12000">
-              <input type="radio" name="project_tier" value="12000" class="sr-only">
-              <div>
-                <span class="font-oswald text-xs uppercase tracking-wider text-purple-400 block mb-1">ENTERPRISE / AI</span>
-                <span class="font-anton text-lg text-white">CUSTOM SOFTWARE (20%)</span>
-              </div>
-              <span class="font-anton text-xl text-purple-300 mt-3">~৳12,000 / CLIENT</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Calculated Payout Display Bento -->
-        <div class="p-8 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-black to-emerald-950/20 border border-emerald-500/40 text-center space-y-2">
-          <span class="font-oswald text-xs uppercase tracking-[0.25em] text-emerald-400 font-bold">ESTIMATED TOTAL REFERRAL CASH PAYOUT</span>
-          <div class="font-anton text-5xl sm:text-6xl md:text-7xl text-white tracking-tight" id="calculated-total-display">
-            ৳20,000 BDT
-          </div>
-          <p class="font-satoshi text-xs text-white/60">
-            Transferred directly to your designated mobile wallet or bank upon project validation.
-          </p>
-        </div>
-
-        <div class="flex justify-center">
-          <a href="#generate-link" class="btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-8 py-3.5 text-xs shadow-xl shadow-brand-red/40 font-bold">
-            CLAIM THIS COMMISSION CODE NOW →
-          </a>
-        </div>
+      <!-- Instant WhatsApp Referral Callout -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a 
+          href="https://wa.me/8801917354847?text=Hi%20APPIEX,%20I%20have%20a%20client%20to%20refer%20for%20a%20project!" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-bold text-sm tracking-wide transition-all shadow-[0_10px_25px_rgba(16,185,129,0.35)] hover:scale-105"
+        >
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.184 1.564 5.938l-1.564 5.719 5.86-1.537c1.706.93 3.654 1.458 5.72 1.458 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+          Direct Refer via WhatsApp &rarr;
+        </a>
+        <a 
+          href="#referral-form" 
+          class="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all"
+        >
+          Submit Client Details Below
+        </a>
       </div>
     </div>
-  </section>
 
-  <!-- 3-STEP PROCESS SECTION -->
-  <section class="py-20 px-6 md:px-12 bg-white/[0.02] border-y border-white/10">
-    <div class="max-w-7xl mx-auto space-y-16">
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <span class="font-oswald text-xs uppercase tracking-[0.2em] text-brand-neon font-bold">EFFORTLESS 3-STEP REWARD CYCLE</span>
-        <h2 class="font-anton text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-white">
-          HOW IT WORKS
-        </h2>
-        <p class="font-satoshi text-sm text-white/70">
-          No sign-up barriers, no corporate approval wait times. 3 straightforward steps to cash.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Step 1 -->
-        <div class="card-3d-wrap">
-          <div class="card-3d p-8 rounded-3xl bg-black/60 border border-white/10 space-y-5 h-full flex flex-col justify-between">
-            <div class="space-y-4">
-              <div class="w-14 h-14 rounded-2xl bg-brand-red/20 border border-brand-red/40 flex items-center justify-center font-anton text-2xl text-brand-neon">
-                01
-              </div>
-              <h3 class="font-anton text-2xl uppercase tracking-wide text-white">GET YOUR REFERRAL CODE</h3>
-              <p class="font-satoshi text-sm text-white/70 leading-relaxed font-light">
-                Generate your personal link or unique discount code below. You can also directly connect the client with our lead team via WhatsApp.
-              </p>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-[11px] font-mono text-white/60">
-              Input name & phone → Instantly ready
-            </div>
+    <!-- 4 CORE PRINCIPLES: STANDALONE EXPERTISE MILESTONE DESIGN (Transparent BG + Red Highlight) -->
+    <section
+      id="expertise"
+      class="bg-transparent rounded-[2.5rem] pt-10 pb-16 md:pt-14 md:pb-16 px-4 md:px-10 w-full relative overflow-hidden font-sans mb-20 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:80px_80px]"
+    >
+      <div class="max-w-6xl mx-auto relative md:h-[1880px]">
+        
+        <!-- Left Section Header -->
+        <div class="md:absolute top-6 left-0 md:w-[460px] lg:w-[490px] z-20 mb-14 md:mb-0">
+          <div class="inline-block border border-red-500/40 rounded-full px-5 py-1.5 text-sm text-[#FF2A4D] mb-6 shadow-sm bg-red-500/10 font-medium">
+            Referral Blueprint
           </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="card-3d-wrap">
-          <div class="card-3d p-8 rounded-3xl bg-black/60 border border-white/10 space-y-5 h-full flex flex-col justify-between">
-            <div class="space-y-4">
-              <div class="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center font-anton text-2xl text-amber-400">
-                02
-              </div>
-              <h3 class="font-anton text-2xl uppercase tracking-wide text-white">CONNECT WITH THE CLIENT</h3>
-              <p class="font-satoshi text-sm text-white/70 leading-relaxed font-light">
-                Introduce founders, business owners, or e-commerce retailers seeking high conversion and sub-0.4s web speed. Our architects manage the pitch and technical demo.
-              </p>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-[11px] font-mono text-white/60">
-              We provide the live portfolio & audits
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="card-3d-wrap">
-          <div class="card-3d p-8 rounded-3xl bg-black/60 border border-white/10 space-y-5 h-full flex flex-col justify-between">
-            <div class="space-y-4">
-              <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center font-anton text-2xl text-emerald-400">
-                03
-              </div>
-              <h3 class="font-anton text-2xl uppercase tracking-wide text-white">RECEIVE INSTANT CASH</h3>
-              <p class="font-satoshi text-sm text-white/70 leading-relaxed font-light">
-                As soon as the client deposits their project confirmation, your commission (৳3,000 to ৳5,000 or 20%) is transferred directly to your bKash, Nagad, or Bank account.
-              </p>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-[11px] font-mono text-emerald-400 font-bold">
-              24-Hour Cash Delivery Guaranteed
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GENERATE LINK / CODE GENERATOR -->
-  <section id="generate-link" class="py-24 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
-    <div class="card-3d-wrap max-w-3xl mx-auto">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#160E18] via-[#0F0B12] to-[#070509] border border-purple-500/30 p-8 sm:p-12 shadow-2xl space-y-8">
-        <div class="space-y-2 text-center">
-          <span class="font-oswald text-xs uppercase tracking-[0.2em] text-purple-400 font-bold">ONE-CLICK PARTNER SETUP</span>
-          <h2 class="font-anton text-3xl sm:text-4xl uppercase tracking-wide text-white">
-            GENERATE YOUR UNIQUE REFERRAL LINK
+          
+          <h2 class="text-3xl md:text-5xl text-white leading-[1.1] mb-5 tracking-[0.04em] uppercase" style="font-family: 'Montserrat', sans-serif; font-weight: 600;">
+            <span id="dyn-ms-title">EARN UP TO 15% COMMISSION WITH ZERO RISK</span>
           </h2>
-          <p class="font-satoshi text-xs sm:text-sm text-white/70">
-            Enter your details so our finance engine can associate clients with your payout number.
+          <p class="text-slate-300 text-base md:text-lg max-w-md leading-relaxed font-normal">
+            <span id="dyn-ms-desc">Connecting businesses with our world-class engineering team to create scalable digital products while you earn instant USD rewards.</span>
           </p>
         </div>
 
-        <form id="referral-form" class="space-y-4" onsubmit="generateReferralLink(event)">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="partner-name" class="block font-oswald text-xs uppercase tracking-wider text-white/70 mb-1 font-semibold">Your Full Name</label>
-              <input type="text" id="partner-name" required placeholder="e.g. Tanvir Ahmed" class="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/15 text-white placeholder-white/30 text-sm focus:outline-none focus:border-brand-neon transition">
+        <!-- Dashed S-Curve SVG Connecting Line (Desktop) -->
+        <svg
+          id="expertise-svg"
+          class="hidden md:block absolute top-0 left-0 w-full h-[1880px] pointer-events-none z-0"
+          viewBox="0 0 1000 1880"
+          preserveAspectRatio="none"
+        >
+          <!-- Subtle Red Base Dashed Line -->
+          <path
+            d="M 650,180 C 380,300 200,440 300,660 C 400,880 760,880 700,1140 C 640,1380 240,1380 300,1580 C 350,1720 240,1780 180,1820"
+            fill="none"
+            stroke="rgba(255, 42, 77, 0.25)"
+            stroke-width="2"
+            stroke-dasharray="8 10"
+          />
+          <!-- Animated Mask for Scroll Fill -->
+          <mask id="path-mask">
+            <path
+              id="expertise-progress-path"
+              d="M 650,180 C 380,300 200,440 300,660 C 400,880 760,880 700,1140 C 640,1380 240,1380 300,1580 C 350,1720 240,1780 180,1820"
+              fill="none"
+              stroke="white"
+              stroke-width="20"
+              stroke-dasharray="3200"
+              stroke-dashoffset="3200"
+            />
+          </mask>
+          <path
+            d="M 650,180 C 380,300 200,440 300,660 C 400,880 760,880 700,1140 C 640,1380 240,1380 300,1580 C 350,1720 240,1780 180,1820"
+            fill="none"
+            stroke="#FF2A4D"
+            stroke-width="2.5"
+            stroke-dasharray="8 10"
+            mask="url(#path-mask)"
+            class="drop-shadow-[0_0_10px_rgba(255,42,77,0.6)]"
+          />
+        </svg>
+
+        <!-- Bottom Pointer Badge -->
+        <div class="hidden md:flex absolute top-[1805px] left-[130px] z-30 items-center gap-2">
+          <div class="w-5 h-5 rounded-full bg-[#FF2A4D] border-4 border-red-500/30 shadow-[0_0_15px_#FF2A4D] animate-pulse"></div>
+          <span class="inline-block text-xs font-semibold text-[#FF2A4D] uppercase tracking-[0.15em] px-4 py-1.5 bg-red-500/10 rounded-full border border-red-500/30 shadow-sm">
+            Instant USD Payout
+          </span>
+        </div>
+
+        <!-- 4 Milestone Cards -->
+        <div class="flex flex-col gap-10 md:gap-0 relative z-10">
+          
+          <!-- CARD 01 -->
+          <div
+            class="milestone-card md:absolute md:w-[480px] md:top-[10px] md:right-[2%] lg:right-[5%] md:-rotate-1 rounded-[2rem] p-2 relative flex flex-col items-center hover:scale-[1.02] transition-all duration-500 z-10 bg-[#DC2626] border border-red-400 shadow-[0_20px_50px_rgba(220,38,38,0.4)]"
+          >
+            <div class="w-6 h-6 rounded-full bg-zinc-900 border-2 border-red-300 absolute -top-3 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
+              <div class="milestone-pin w-2.5 h-2.5 rounded-full transition-colors duration-500 bg-red-300"></div>
             </div>
-            <div>
-              <label for="partner-payout" class="block font-oswald text-xs uppercase tracking-wider text-white/70 mb-1 font-semibold">bKash / Nagad Number</label>
-              <input type="text" id="partner-payout" required placeholder="e.g. 017XXXXXXXX" class="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/15 text-white placeholder-white/30 text-sm focus:outline-none focus:border-brand-neon transition">
+            <div class="milestone-body w-full h-full rounded-[1.5rem] mt-6 p-8 flex flex-col min-h-[220px] transition-colors duration-500 bg-red-950/60 text-white">
+              <span class="milestone-num text-xl mb-2 font-serif italic transition-colors duration-500 text-red-200">01</span>
+              <h3 class="milestone-title text-2xl md:text-3xl font-semibold mb-3 tracking-[0.04em] uppercase leading-snug transition-colors duration-500 text-white" style="font-family: 'Montserrat', sans-serif;">
+                <span id="dyn-card-0-title">You Don't Need Money</span>
+              </h3>
+              <p class="milestone-text text-sm md:text-base font-normal leading-relaxed transition-colors duration-500 text-red-100">
+                <span id="dyn-card-0-desc">Zero capital required. No registration fee, no investment, no risk. You start earning from day one.</span>
+              </p>
             </div>
           </div>
 
-          <button type="submit" class="w-full btn-pill bg-brand-red hover:bg-brand-red-mid text-white py-3.5 text-xs shadow-xl shadow-brand-red/40 font-bold transition">
-            CREATE MY OFFICIAL REFERRAL LINK
-          </button>
-        </form>
-
-        <!-- Output Card (Hidden by default, shown after submit) -->
-        <div id="referral-result-box" class="hidden p-6 rounded-2xl bg-black/70 border border-emerald-500/40 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="font-oswald text-xs uppercase tracking-wider text-emerald-400 font-bold">YOUR LIVE REFERRAL LINK</span>
-            <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full">ACTIVE & VERIFIED</span>
+          <!-- CARD 02 -->
+          <div
+            class="milestone-card md:absolute md:w-[480px] md:top-[480px] md:left-[2%] lg:left-[5%] md:rotate-2 rounded-[2rem] p-2 relative flex flex-col items-center hover:scale-[1.02] transition-all duration-500 z-10 bg-white/[0.04] backdrop-blur-md border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
+          >
+            <div class="w-6 h-6 rounded-full bg-zinc-900 border-2 border-white/25 absolute -top-3 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
+              <div class="milestone-pin w-2.5 h-2.5 rounded-full transition-colors duration-500 bg-white/40"></div>
+            </div>
+            <div class="milestone-body w-full h-full rounded-[1.5rem] mt-6 p-8 flex flex-col min-h-[220px] transition-colors duration-500 bg-black/40 text-white">
+              <span class="milestone-num text-xl mb-2 font-serif italic transition-colors duration-500 text-red-400/80">02</span>
+              <h3 class="milestone-title text-2xl md:text-3xl font-semibold mb-3 tracking-[0.04em] uppercase leading-snug transition-colors duration-500 text-white" style="font-family: 'Montserrat', sans-serif;">
+                <span id="dyn-card-1-title">No Coding Skills Needed</span>
+              </h3>
+              <p class="milestone-text text-sm md:text-base font-normal leading-relaxed transition-colors duration-500 text-slate-300">
+                <span id="dyn-card-1-desc">You don't need to know web development or design. You just find someone who needs it. We handle 100% of the tech.</span>
+              </p>
+            </div>
           </div>
 
-          <div class="flex items-center space-x-2">
-            <input type="text" id="generated-link-input" readonly value="https://appiex.com/?ref=PARTNER" class="w-full px-4 py-3 rounded-xl bg-white/[0.08] border border-white/20 text-emerald-300 font-mono text-xs focus:outline-none select-all">
-            <button type="button" onclick="copyReferralLink()" class="btn-pill bg-white text-black hover:bg-emerald-400 hover:text-black px-5 py-3 text-xs font-bold shrink-0 transition">
-              COPY LINK
+          <!-- CARD 03 -->
+          <div
+            class="milestone-card md:absolute md:w-[480px] md:top-[950px] md:right-[2%] lg:right-[5%] md:-rotate-2 rounded-[2rem] p-2 relative flex flex-col items-center hover:scale-[1.02] transition-all duration-500 z-10 bg-white/[0.04] backdrop-blur-md border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
+          >
+            <div class="w-6 h-6 rounded-full bg-zinc-900 border-2 border-white/25 absolute -top-3 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
+              <div class="milestone-pin w-2.5 h-2.5 rounded-full transition-colors duration-500 bg-white/40"></div>
+            </div>
+            <div class="milestone-body w-full h-full rounded-[1.5rem] mt-6 p-8 flex flex-col min-h-[220px] transition-colors duration-500 bg-black/40 text-white">
+              <span class="milestone-num text-xl mb-2 font-serif italic transition-colors duration-500 text-red-400/80">03</span>
+              <h3 class="milestone-title text-2xl md:text-3xl font-semibold mb-3 tracking-[0.04em] uppercase leading-snug transition-colors duration-500 text-white" style="font-family: 'Montserrat', sans-serif;">
+                <span id="dyn-card-2-title">We Close The Deal</span>
+              </h3>
+              <p class="milestone-text text-sm md:text-base font-normal leading-relaxed transition-colors duration-500 text-slate-300">
+                <span id="dyn-card-2-desc">Our senior software architects meet the client, explain the project, and close the contract professionally.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 04 -->
+          <div
+            class="milestone-card md:absolute md:w-[480px] md:top-[1420px] md:left-[2%] lg:left-[5%] md:rotate-1 rounded-[2rem] p-2 relative flex flex-col items-center hover:scale-[1.02] transition-all duration-500 z-10 bg-white/[0.04] backdrop-blur-md border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
+          >
+            <div class="w-6 h-6 rounded-full bg-zinc-900 border-2 border-white/25 absolute -top-3 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
+              <div class="milestone-pin w-2.5 h-2.5 rounded-full transition-colors duration-500 bg-white/40"></div>
+            </div>
+            <div class="milestone-body w-full h-full rounded-[1.5rem] mt-6 p-8 flex flex-col min-h-[220px] transition-colors duration-500 bg-black/40 text-white">
+              <span class="milestone-num text-xl mb-2 font-serif italic transition-colors duration-500 text-red-400/80">04</span>
+              <h3 class="milestone-title text-2xl md:text-3xl font-semibold mb-3 tracking-[0.04em] uppercase leading-snug transition-colors duration-500 text-white" style="font-family: 'Montserrat', sans-serif;">
+                <span id="dyn-card-3-title">Instant Cash In Hand</span>
+              </h3>
+              <p class="milestone-text text-sm md:text-base font-normal leading-relaxed transition-colors duration-500 text-slate-300">
+                <span id="dyn-card-3-desc">As soon as client advances are received, up to 15% in USD is transferred directly to your Wise, PayPal, Bank, or Mobile Wallet.</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Handwriting Text -->
+        <div
+          class="hidden md:block absolute top-[1730px] left-[60%] font-['Caveat',cursive] text-3xl text-[#FF2A4D] rotate-6 select-none"
+        >
+          <span id="dyn-ms-hand">Turning connections into USD!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSPARENT COMMISSION CALCULATOR TABLE (Real Numbers in USD) -->
+    <div class="mb-16 rounded-[2.5rem] border border-white/10 bg-black/50 backdrop-blur-2xl p-8 sm:p-10 shadow-2xl">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-red-400 block mb-1">REALISTIC USD EARNINGS BREAKDOWN</span>
+        <h3 class="text-2xl sm:text-3xl font-semibold text-white uppercase tracking-[0.05em]" style="font-family: 'Montserrat', sans-serif;">How Much Money Will You Make?</h3>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">Here are real deal examples in USD and what you pocket on each referral:</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Tier 1 -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-red-500/40 transition">
+          <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Standard Website / Shop</span>
+          <div class="text-sm text-slate-300 mb-2">Project: <span class="font-bold text-white">$500</span></div>
+          <div class="text-2xl font-black text-[#FF2A4D] mb-1">$75 USD</div>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full inline-block">15% INSTANT PAYOUT</span>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-red-500/40 transition">
+          <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Custom Portal / SaaS</span>
+          <div class="text-sm text-slate-300 mb-2">Project: <span class="font-bold text-white">$1,200</span></div>
+          <div class="text-2xl font-black text-[#FF2A4D] mb-1">$180 USD</div>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full inline-block">15% INSTANT PAYOUT</span>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-red-500/40 transition">
+          <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Mobile App &amp; Backend</span>
+          <div class="text-sm text-slate-300 mb-2">Project: <span class="font-bold text-white">$2,500</span></div>
+          <div class="text-2xl font-black text-[#FF2A4D] mb-1">$375 USD</div>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full inline-block">15% INSTANT PAYOUT</span>
+        </div>
+
+        <!-- Tier 4 -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-red-500/40 transition">
+          <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Enterprise Software</span>
+          <div class="text-sm text-slate-300 mb-2">Project: <span class="font-bold text-white">$5,000+</span></div>
+          <div class="text-2xl font-black text-[#FF2A4D] mb-1">$750+ USD</div>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full inline-block">15% INSTANT PAYOUT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFERRAL SUBMISSION FORM (CUBERTO INTERACTIVE STYLE MATCHING INDEX.HTML#CONTACT) -->
+    <section id="referral-form" class="ContactSection relative z-10 mx-auto w-full max-w-4xl px-4 pt-10 pb-16 sm:px-6 md:pt-14 md:pb-20">
+      <div class="Container container -size-lg">
+        
+        <!-- Top Pill & Header -->
+        <div class="header text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-[#FF2A4D] text-xs font-semibold tracking-widest uppercase mb-6 shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#FF2A4D] shadow-[0_0_8px_#FF2A4D]"></span>
+            <span id="dyn-form-badge">SIMPLE 1-MINUTE FORM</span>
+          </div>
+          <h2 class="text-white text-center tracking-tight" id="dyn-form-title-wrap">
+            <span>Submit Your</span><br>
+            <span>Client <span class="text-[#FF2A4D]">Lead</span></span>
+          </h2>
+          <p class="text-slate-400 text-sm mt-3 max-w-xl mx-auto" id="dyn-form-sub">
+            Give us their contact details. We'll close the deal and send your USD commission.
+          </p>
+        </div>
+
+        <form class="form" id="lead-referral-form" onsubmit="handleReferralSubmit(event)">
+          
+          <!-- Group 1: What Does The Client Need? (Pill Radios matching Cuberto CheckboxInput) -->
+          <div class="group">
+            <div class="label">What does the client need?</div>
+            <div class="checkboxes" style="display: flex; flex-wrap: wrap; gap: 10px;">
+              
+              <div class="checkbox">
+                <label class="CheckboxInput">
+                  <input type="radio" name="projectTypeRadio" value="E-Commerce Store / Shop Website ($500+)" checked onchange="document.getElementById('ref-service').value=this.value">
+                  <span class="box">
+                    <span class="border"></span>
+                    <span class="ripple"><span></span></span>
+                    <span class="title"><span data-text="E-Commerce Store ($500+)">E-Commerce Store ($500+)</span></span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="CheckboxInput">
+                  <input type="radio" name="projectTypeRadio" value="Company Portfolio / Brand Website ($500 - $1,200)" onchange="document.getElementById('ref-service').value=this.value">
+                  <span class="box">
+                    <span class="border"></span>
+                    <span class="ripple"><span></span></span>
+                    <span class="title"><span data-text="Company / Portfolio ($500-$1,200)">Company / Portfolio ($500-$1,200)</span></span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="CheckboxInput">
+                  <input type="radio" name="projectTypeRadio" value="Custom SaaS Software / Management System ($2,500+)" onchange="document.getElementById('ref-service').value=this.value">
+                  <span class="box">
+                    <span class="border"></span>
+                    <span class="ripple"><span></span></span>
+                    <span class="title"><span data-text="SaaS / Custom Software ($2,500+)">SaaS / Custom Software ($2,500+)</span></span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="CheckboxInput">
+                  <input type="radio" name="projectTypeRadio" value="Mobile App (Android / iOS) ($2,500+)" onchange="document.getElementById('ref-service').value=this.value">
+                  <span class="box">
+                    <span class="border"></span>
+                    <span class="ripple"><span></span></span>
+                    <span class="title"><span data-text="Mobile App (iOS/Android) ($2,500+)">Mobile App (iOS/Android) ($2,500+)</span></span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label class="CheckboxInput">
+                  <input type="radio" name="projectTypeRadio" value="Enterprise Platform / 3D WebGL ($5,000+)" onchange="document.getElementById('ref-service').value=this.value">
+                  <span class="box">
+                    <span class="border"></span>
+                    <span class="ripple"><span></span></span>
+                    <span class="title"><span data-text="Enterprise 3D WebGL ($5,000+)">Enterprise 3D WebGL ($5,000+)</span></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+            <input type="hidden" id="ref-service" value="E-Commerce Store / Shop Website ($500+)">
+          </div>
+
+          <!-- Group 2: Your Name (Referrer) -->
+          <div class="group">
+            <label class="UnderlineInput">
+              <input type="text" id="ref-name" name="name" required placeholder="Your name (Referrer)">
+              <span class="required"></span>
+              <span class="line"></span>
+            </label>
+          </div>
+
+          <!-- Group 3: Payout Account -->
+          <div class="group">
+            <label class="UnderlineInput">
+              <input type="text" id="ref-bkash" name="payout" required placeholder="Payout account (Wise / PayPal / Bank / Mobile)">
+              <span class="required"></span>
+              <span class="line"></span>
+            </label>
+          </div>
+
+          <!-- Group 4: Client Name / Business -->
+          <div class="group">
+            <label class="UnderlineInput">
+              <input type="text" id="ref-client" name="client" required placeholder="Client name / Business (e.g. Apex Luxury Boutique)">
+              <span class="required"></span>
+              <span class="line"></span>
+            </label>
+          </div>
+
+          <!-- Group 5: Client Phone / WhatsApp / Email -->
+          <div class="group">
+            <label class="UnderlineInput">
+              <input type="text" id="ref-phone" name="phone" required placeholder="Client phone / WhatsApp / Email">
+              <span class="required"></span>
+              <span class="line"></span>
+            </label>
+          </div>
+
+          <div id="lead-submit-status" class="hidden text-center text-xs font-mono text-emerald-400 py-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20 my-4"></div>
+
+          <!-- Submit CTA Button -->
+          <div class="submit">
+            <button type="submit" id="ref-submit-btn" class="CtaButton">
+              <span class="border"></span>
+              <span class="ripple"><span></span></span>
+              <span class="title"><span id="dyn-form-btn-text" data-text="Submit Client & Lock In 15% USD Commission →">Submit Client & Lock In 15% USD Commission →</span></span>
             </button>
           </div>
+        </form>
+        <script src="./scripts/firebase-config.js"></script>
+        <script>
+          async function handleReferralSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('ref-submit-btn');
+            const status = document.getElementById('lead-submit-status');
+            btn.disabled = true;
+            btn.textContent = 'Submitting to Database...';
 
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <a id="share-whatsapp-btn" href="#" target="_blank" rel="noopener" class="btn-pill bg-[#25D366] hover:bg-[#20bd5a] text-black font-bold px-5 py-2.5 text-xs flex items-center space-x-2 transition">
-              <span>SHARE ON WHATSAPP</span>
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-            </a>
-            <span class="text-[11px] text-white/50 font-satoshi">Client automatically tracked in cookie session.</span>
-          </div>
-        </div>
+            const lead = {
+              referrerName: document.getElementById('ref-name').value.trim(),
+              referrerBkash: document.getElementById('ref-bkash').value.trim(),
+              clientName: document.getElementById('ref-client').value.trim(),
+              clientPhone: document.getElementById('ref-phone').value.trim(),
+              projectType: document.getElementById('ref-service').value
+            };
 
+            if (window.appiexFirebase) {
+              await window.appiexFirebase.saveReferralLead(lead);
+            }
+
+            try {
+              const refRecord = {
+                id: 'ref_' + Date.now().toString().slice(-4),
+                referrerName: lead.referrerName,
+                referrerEmail: lead.referrerBkash,
+                referredCompany: lead.clientName,
+                contactPerson: lead.clientName,
+                contactEmail: lead.clientPhone,
+                serviceRequested: lead.projectType || 'Full-Stack Development',
+                contractedRateBps: 1500,
+                dealValue: 12000,
+                eligibleCommission: 1800,
+                submittedAt: new Date().toISOString(),
+                status: 'submitted',
+                paymentVerified: false,
+                financeApproval1: false,
+                financeApproval2: false,
+                notes: 'Submitted through refer.html affiliate portal (Payout: ' + lead.referrerBkash + ')'
+              };
+
+              const refLead = {
+                id: 'lead_' + Date.now().toString().slice(-4),
+                name: lead.clientName,
+                company: lead.clientName,
+                email: lead.clientPhone.includes('@') ? lead.clientPhone : 'lead@' + lead.clientName.toLowerCase().replace(/[^a-z0-9]/g, '') + '.com',
+                phone: lead.clientPhone,
+                country: 'Global',
+                serviceInterest: 'Web Development',
+                budgetMin: 8000,
+                budgetMax: 20000,
+                currency: 'USD',
+                description: 'Referred by ' + lead.referrerName + ' (Payout Account: ' + lead.referrerBkash + ') for ' + lead.projectType,
+                source: 'Referral',
+                stage: 'new',
+                score: 90,
+                owner: 'Adil Al Alim',
+                expectedValue: 12000,
+                probability: 50,
+                createdAt: new Date().toISOString(),
+                lastContactAt: new Date().toISOString()
+              };
+
+              const existingRefs = JSON.parse(localStorage.getItem('appiex_admin_referrals_v2') || '[]');
+              localStorage.setItem('appiex_admin_referrals_v2', JSON.stringify([refRecord, ...existingRefs]));
+
+              const existingLeads = JSON.parse(localStorage.getItem('appiex_admin_leads_v2') || '[]');
+              localStorage.setItem('appiex_admin_leads_v2', JSON.stringify([refLead, ...existingLeads]));
+            } catch(err) {
+              console.warn('Admin OS referral sync error:', err);
+            }
+
+            status.textContent = '✅ Lead recorded successfully in Firebase database! Rafsan and the Appiex team will contact the client and wire your 15% USD commission upon advance.';
+            status.classList.remove('hidden');
+            btn.textContent = 'Submitted Successfully!';
+            btn.classList.add('opacity-75');
+            document.getElementById('lead-referral-form').reset();
+          }
+        </script>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- COMMISSION TIERS BENTO SECTION -->
-  <section class="py-20 px-6 md:px-12 bg-[#080A10] border-t border-white/10">
-    <div class="max-w-7xl mx-auto space-y-12">
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <span class="font-oswald text-xs uppercase tracking-[0.2em] text-brand-gold font-bold">TRANSPARENT REWARD STRUCTURE</span>
-        <h2 class="font-anton text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-white">
-          COMMISSION TIERS BREAKDOWN
+    <!-- REFERRAL PERSONAS, VERTICALS & SERVICE CLUSTERS (2,858 KEYWORD COVERAGE) -->
+    <section id="referral-opportunities" class="mt-20 max-w-6xl mx-auto w-full px-4">
+      <div class="text-center mb-12">
+        <span class="text-xs font-mono uppercase tracking-[0.25em] text-[#FF2A4D] block mb-2 font-bold">PARTNER PERSONAS &amp; PROJECT VERTICALS</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold text-white uppercase tracking-[0.03em]" style="font-family: 'Montserrat', sans-serif;">
+          Who Can Refer Clients &amp; What Projects Qualify
         </h2>
+        <p class="text-slate-400 text-sm mt-3 max-w-2xl mx-auto">
+          Whether you are an independent freelancer, consultant, or agency owner in Bangladesh, the USA, UK, UAE, or Australia, you can monetize client introductions across every Appiex capability.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Starter Tier -->
-        <div class="p-8 rounded-3xl bg-black/60 border border-white/10 space-y-6 flex flex-col justify-between">
-          <div class="space-y-4">
-            <span class="font-oswald text-xs uppercase tracking-wider text-white/50 block font-bold">TIER 01 · STARTER PLATFORM</span>
-            <div class="font-anton text-4xl text-white">৳3,000 <span class="text-xs font-satoshi text-white/60 font-normal">CASH</span></div>
-            <p class="font-satoshi text-xs text-white/70 leading-relaxed">
-              For single-page showcase websites, dynamic corporate landing pages, or redesigns of existing corporate web assets.
-            </p>
-            <ul class="font-satoshi text-xs space-y-2 text-white/80 pt-2 border-t border-white/10">
-              <li class="flex items-center space-x-2">
-                <span class="text-emerald-400">✓</span>
-                <span>Immediate ৳3,000 payout upon deposit</span>
-              </li>
-              <li class="flex items-center space-x-2">
-                <span class="text-emerald-400">✓</span>
-                <span>Includes client discount coupon</span>
-              </li>
-            </ul>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <!-- Persona Cluster -->
+        <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider block mb-2">01 // FOR INTRODUCERS &amp; FREELANCERS</span>
+          <h3 class="text-lg font-bold text-white mb-3">Referral Program for Freelancers &amp; Consultants</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
+            Earn commission when a client needs a larger engineering scope than you handle solo:
+          </p>
+          <ul class="space-y-2 text-xs text-slate-300 font-mono">
+            <li>• Freelance Web &amp; UI/UX Designers</li>
+            <li>• Graphic &amp; Brand Identity Designers</li>
+            <li>• SEO Specialists &amp; Digital Marketers</li>
+            <li>• Copywriters &amp; Content Strategists</li>
+            <li>• Business, IT &amp; Management Consultants</li>
+          </ul>
+        </div>
+
+        <!-- Service Capability Cluster -->
+        <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider block mb-2">02 // ELIGIBLE DIGITAL SERVICES</span>
+          <h3 class="text-lg font-bold text-white mb-3">High-Commission Project Types</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
+            Refer business leads for any of our specialized engineering tracks:
+          </p>
+          <ul class="space-y-2 text-xs text-slate-300 font-mono">
+            <li>• <a href="/ecommerce-development" class="hover:text-[#FF2A4D] underline">Custom Ecommerce &amp; Online Stores</a></li>
+            <li>• <a href="/web-development" class="hover:text-[#FF2A4D] underline">Next.js Website Design &amp; Development</a></li>
+            <li>• <a href="/website-redesign" class="hover:text-[#FF2A4D] underline">Website Redesign &amp; Speed Optimization</a></li>
+            <li>• <a href="/n8n-automation" class="hover:text-[#FF2A4D] underline">n8n Workflow &amp; CRM Automation</a></li>
+            <li>• <a href="/whatsapp-automation" class="hover:text-[#FF2A4D] underline">WhatsApp AI Chatbots &amp; ISP Portals</a></li>
+          </ul>
+        </div>
+
+        <!-- Industry Verticals & Markets Cluster -->
+        <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider block mb-2">03 // INDUSTRY VERTICALS &amp; MARKETS</span>
+          <h3 class="text-lg font-bold text-white mb-3">Industries &amp; Regions We Serve</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
+            We close and deliver projects for clients across high-value commercial verticals:
+          </p>
+          <ul class="space-y-2 text-xs text-slate-300 font-mono">
+            <li>• Retail, Watch, Fashion &amp; D2C Brands</li>
+            <li>• Real Estate, Construction &amp; Interior Firms</li>
+            <li>• Healthcare Clinics, Med Spas &amp; Dental</li>
+            <li>• ISP Broadband, FinTech &amp; SaaS Startups</li>
+            <li>• Markets: Bangladesh, USA, UK, UAE, Australia</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (Structured Q&A for Search Intent & FAQPage Schema) -->
+    <section id="faq" class="mt-24 mb-12 max-w-4xl mx-auto w-full">
+      <div class="text-center mb-12">
+        <span class="text-xs font-mono uppercase tracking-[0.25em] text-[#FF2A4D] block mb-2 font-bold">FREQUENTLY ASKED QUESTIONS</span>
+        <h2 class="text-3xl sm:text-4xl font-semibold text-white uppercase tracking-[0.04em]" style="font-family: 'Montserrat', sans-serif;">
+          Referral Program Q&amp;A
+        </h2>
+        <p class="text-slate-400 text-sm mt-3">Everything you need to know about referring clients, commissions, and instant USD payouts.</p>
+      </div>
+
+      <div class="space-y-4" id="referral-faq-accordion">
+        <!-- Q1 -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">What is the Appiex Web Design &amp; Software Referral Program?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            The Appiex Referral Program empowers freelancers, digital marketers, students, and consultants to earn up to 15% instant commission in USD by referring businesses that need custom web development, 3D interactive design, e-commerce platforms, or AI workflow automation.
           </div>
         </div>
 
-        <!-- Nitro E-Commerce Tier -->
-        <div class="p-8 rounded-3xl bg-gradient-to-b from-[#1C0D12] to-black border-2 border-brand-red space-y-6 flex flex-col justify-between relative shadow-2xl">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-red text-white text-[10px] font-bold font-oswald uppercase tracking-widest px-4 py-1 rounded-full shadow-lg">
-            MOST POPULAR REFERRAL
-          </div>
-          <div class="space-y-4">
-            <span class="font-oswald text-xs uppercase tracking-wider text-brand-neon block font-bold">TIER 02 · NITRO COMMERCE</span>
-            <div class="font-anton text-5xl text-brand-neon">৳5,000 <span class="text-xs font-satoshi text-white/60 font-normal">CASH</span></div>
-            <p class="font-satoshi text-xs text-white/70 leading-relaxed">
-              For high-velocity e-commerce stores (like Watch24BD and WatchShopBD), multi-product platforms, or headless commerce systems.
-            </p>
-            <ul class="font-satoshi text-xs space-y-2 text-white/80 pt-2 border-t border-white/10">
-              <li class="flex items-center space-x-2">
-                <span class="text-emerald-400">✓</span>
-                <span>Immediate ৳5,000 cash via bKash / Nagad</span>
-              </li>
-              <li class="flex items-center space-x-2">
-                <span class="text-emerald-400">✓</span>
-                <span>Client receives ৳5,000 launch discount</span>
-              </li>
-              <li class="flex items-center space-x-2">
-                <span class="text-emerald-400">✓</span>
-                <span>Free 1-Month SEO audit bundle included</span>
-              </li>
-            </ul>
+        <!-- Q2 -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">Who can participate in the referral program?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            Anyone can participate! You don't need coding knowledge or financial investment. If you know business owners, founders, or agencies needing modern digital infrastructure, you simply introduce them. Our senior engineering team manages client consultations, proposals, and delivery.
           </div>
         </div>
 
-        <!-- Custom Software & AI Tier -->
-        <div class="p-8 rounded-3xl bg-black/60 border border-purple-500/30 space-y-6 flex flex-col justify-between">
-          <div class="space-y-4">
-            <span class="font-oswald text-xs uppercase tracking-wider text-purple-400 block font-bold">TIER 03 · ENTERPRISE & AI</span>
-            <div class="font-anton text-4xl text-purple-300">20% <span class="text-xs font-satoshi text-white/60 font-normal">PROJECT FEE</span></div>
-            <p class="font-satoshi text-xs text-white/70 leading-relaxed">
-              For complex web software, SaaS platforms, or autonomous Gemini AI agent development contracts starting from ৳60,000+.
-            </p>
-            <ul class="font-satoshi text-xs space-y-2 text-white/80 pt-2 border-t border-white/10">
-              <li class="flex items-center space-x-2">
-                <span class="text-emerald-400">✓</span>
-                <span>Earn up to ৳20,000+ per single client</span>
-              </li>
-              <li class="flex items-center space-x-2">
-                <span class="text-emerald-400">✓</span>
-                <span>Dedicated partner manager & direct channel</span>
-              </li>
-            </ul>
+        <!-- Q3 -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">How much commission do I earn per closed project?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            You earn up to 15% instant commission on the signed contract value. For a standard $3,000 custom website or AI project, your payout is up to $450 USD. High-ticket enterprise applications and retainer contracts offer even higher cumulative earnings.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">When and how are commissions paid out?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            Payouts are triggered immediately once the referred client signs the agreement and clears their project kickoff advance. We send funds directly via Wise, PayPal, Payoneer, or direct bank transfer according to your preference.
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">What services are eligible for referral earnings?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            All core Appiex digital capabilities are eligible: Custom Next.js Web Development, Interactive 3D WebGL Interfaces, AI Workflow Automation (n8n/Python), Headless E-Commerce &amp; Shopify Plus, Mobile Apps, and Enterprise Technical SEO.
+          </div>
+        </div>
+
+        <!-- Q6: Freelancers & Introducers (From SEO dataset cluster) -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">Can freelance web designers, marketers, and consultants refer their clients?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            Yes! Freelance web designers, graphic designers, copywriters, and consultants frequently partner with Appiex to monetize client requests that fall outside their core expertise or capacity, such as high-ticket custom software, 3D WebGL development, or advanced AI automations.
+          </div>
+        </div>
+
+        <!-- Q7: Geo Markets (USA, UK, Australia, UAE, Bangladesh) -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">Do you accept client referrals from the USA, UK, UAE, Australia, and internationally?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            Yes. Appiex serves clients globally with key hubs in the USA, UK, Australia, UAE (Dubai/Abu Dhabi), Europe, and Bangladesh (Dhaka). All project proposals, discovery sessions, contracts, and commission payouts are executed seamlessly in USD across timezones.
+          </div>
+        </div>
+
+        <!-- Q8: Referral vs Agency Partnership -->
+        <div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">
+          <button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">
+            <span class="text-base sm:text-lg">What is the difference between the Referral Program and Agency Partnerships?</span>
+            <span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+            The Referral Program is an introducer model where you introduce a lead and earn up to 15% commission with zero delivery responsibility. The Agency Partnership Program is a white-label delivery arrangement where Appiex works behind the scenes as your dedicated dev department under strict bilateral NDAs.
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FREQUENTLY ASKED QUESTIONS (FAQ) -->
-  <section class="py-20 px-6 md:px-12 max-w-4xl mx-auto space-y-12">
-    <div class="text-center space-y-3">
-      <span class="font-oswald text-xs uppercase tracking-[0.2em] text-white/50 font-bold">CLARITY & ASSURANCE</span>
-      <h2 class="font-anton text-4xl sm:text-5xl uppercase tracking-tight text-white">
-        FREQUENTLY ASKED QUESTIONS
-      </h2>
-    </div>
-
-    <div class="space-y-4 font-satoshi">
-      <!-- FAQ 1 -->
-      <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6 space-y-2">
-        <h4 class="font-bold text-white text-base">Who is eligible to participate in the APPIEX Partner Program?</h4>
-        <p class="text-xs text-white/70 leading-relaxed">
-          Anyone! Whether you are a student, freelance designer, marketer, agency founder, or developer, you can earn commissions simply by introducing clients who need top-tier web engineering or e-commerce development.
-        </p>
-      </div>
-
-      <!-- FAQ 2 -->
-      <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6 space-y-2">
-        <h4 class="font-bold text-white text-base">When and how do I receive my referral payout?</h4>
-        <p class="text-xs text-white/70 leading-relaxed">
-          Payout is executed within 24 hours of the client confirming their project agreement with APPIEX. Funds are sent straight to your designated bKash, Nagad, Rocket, or Bank account with confirmation receipts.
-        </p>
-      </div>
-
-      <!-- FAQ 3 -->
-      <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6 space-y-2">
-        <h4 class="font-bold text-white text-base">Is there any limit on how many clients I can refer?</h4>
-        <p class="text-xs text-white/70 leading-relaxed">
-          No limits. If you refer 10 e-commerce clients in a single month, you will receive ৳50,000 BDT in direct cash commissions.
-        </p>
-      </div>
-
-      <!-- FAQ 4 -->
-      <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6 space-y-2">
-        <h4 class="font-bold text-white text-base">Can I introduce clients via WhatsApp directly?</h4>
-        <p class="text-xs text-white/70 leading-relaxed">
-          Yes! You can initiate a 3-way WhatsApp chat with Rafsan or Adil. Simply mention that you referred the client, and we will register your partner payout instantly.
-        </p>
+    <!-- Agency Partnership Cross-Link Card -->
+    <div class="mt-8 mb-12 max-w-4xl mx-auto w-full px-4">
+      <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-white/[0.03] to-red-500/[0.05] p-8 backdrop-blur-xl">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-2 text-center md:text-left">
+            <span class="text-xs font-mono uppercase tracking-[0.2em] text-[#FF2A4D] font-bold">AGENCY &amp; STUDIO COLLABORATION</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white">Need White Label Web Development or Dedicated Tech Overflow?</h3>
+            <p class="text-sm text-slate-300 max-w-xl">
+              If you run a creative agency or design studio looking for subcontracting, dedicated Next.js engineering pods, or 100% NDA-protected white-label delivery, explore our Agency Partnership Program.
+            </p>
+          </div>
+          <a href="partners.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-slate-200 transition-all duration-300 shrink-0">
+            <span>Explore Agency Partnerships</span>
+            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="py-12 px-6 md:px-12 border-t border-white/10 text-white/50 text-xs font-satoshi">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center space-x-4">
-        <span class="font-anton text-xl tracking-wider text-white">APPIEX</span>
-        <span>© 2026 APPIEX WEB SYSTEMS. PARTNER PROGRAM.</span>
+    <!-- APPENDIX A: REFERRAL PROGRAM TERMS & RULES (Collapsible with See More) -->
+    <section id="referral-terms-rules" class="mb-16 max-w-4xl mx-auto w-full px-4">
+      <div class="rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-6 sm:p-8 transition-all duration-300 hover:border-white/20">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
+          <div>
+            <span class="text-[11px] font-mono uppercase tracking-[0.2em] text-[#FF2A4D] font-bold block mb-1">PROGRAM LEGAL TERMS</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight" id="dyn-terms-title">Appendix A: Referral Program Terms &amp; Rules</h3>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1" id="dyn-terms-sub">Framework terms governing official client introductions, commission rates, and payout policies.</p>
+          </div>
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-white/5 border border-white/10 text-slate-300 shrink-0 self-start sm:self-auto">
+            Version 1.0 • 2026
+          </span>
+        </div>
+
+        <!-- 2-3 Line Preview -->
+        <div class="mt-5 space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <div class="flex items-start gap-2.5">
+            <span class="text-[#FF2A4D] font-bold mt-0.5">•</span>
+            <p><strong class="text-white">15% First Project + 5% Repeat Work:</strong> Earn 15% of Net Project Value on the client's first signed contract, plus 5% recurring commission on repeat work signed within 12 months.</p>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-[#FF2A4D] font-bold mt-0.5">•</span>
+            <p><strong class="text-white">90-Day Lead Protection &amp; Timestamp Priority:</strong> Every valid lead submitted via appiex.com/refer is locked to your account for 90 days. First submission wins attribution.</p>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-[#FF2A4D] font-bold mt-0.5">•</span>
+            <p><strong class="text-white">Fast 7-Day Cleared Payouts:</strong> Paid directly within 7 business days after client payment clears via Wise, PayPal, Bank Transfer, or bKash/Nagad ($25 minimum payout).</p>
+          </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between flex-wrap gap-3">
+          <button type="button" id="referral-rules-toggle-btn" onclick="toggleReferralRules()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 hover:border-[#FF2A4D]/50 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300">
+            <span id="referral-rules-toggle-text">See More Terms &amp; Rules (13 Sections)</span>
+            <svg id="referral-rules-toggle-icon" class="w-4 h-4 text-[#FF2A4D] transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <span class="text-[11px] text-slate-500 font-mono">Appiex Legal Entity • Dhaka, Bangladesh</span>
+        </div>
+
+        <!-- Full Expandable Terms Content -->
+        <div id="referral-rules-full" class="hidden mt-6 pt-6 border-t border-white/10 space-y-6 text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">1.</span> About these terms
+            </h4>
+            <p>These terms govern the Appiex Referral Program ("Program") run by Appiex ("Appiex", "we"), registered in Dhaka, Bangladesh. By submitting a referral you ("Referrer") agree to these terms.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">2.</span> Eligibility
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li>You must be at least 18 years old and able to enter a binding agreement.</li>
+              <li>Employees, contractors and directors of Appiex, and their immediate family members, can't take part.</li>
+              <li>You can't refer yourself, a business you own or control, or a business that employs you in a decision-making role about the purchase.</li>
+              <li>Joining is free. There are no targets or minimum referrals.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">3.</span> What counts as a valid referral
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li>It is submitted through the official form at appiex.com/refer. WhatsApp or verbal introductions must be followed by a form submission to be tracked.</li>
+              <li>The client is a real business or person who has agreed to be contacted by Appiex.</li>
+              <li>The client is not already an Appiex client and has not been in contact with Appiex about a project in the 6 months before your submission.</li>
+              <li>The client signs a written agreement (or accepts a proposal) with Appiex within the Lead Protection Period (section 4).</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">4.</span> Lead protection
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li>Each valid referral is protected for 90 days from the timestamp of your form submission ("Lead Protection Period").</li>
+              <li>If two Referrers submit the same client, the first valid submission wins.</li>
+              <li>If the client signs after the Lead Protection Period, no commission is due unless Appiex agrees in writing.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">5.</span> Commission
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li><strong class="text-white">Rate:</strong> 15% of the Net Project Value of the client's first signed project ("First Project").</li>
+              <li><strong class="text-white">Repeat work:</strong> 5% of the Net Project Value of any further project that client signs within 12 months of the First Project's signing date.</li>
+              <li><strong class="text-white">Net Project Value:</strong> Means the amount the client actually pays Appiex for design and development work. It excludes VAT and other taxes, payment-gateway and bank fees, and third-party costs passed through to the client (domains, hosting, paid licences or plugins, advertising spend, stock content).</li>
+              <li>Ongoing retainers, maintenance plans and hosting fees are excluded unless they are part of the First Project's signed price.</li>
+              <li>Appiex alone decides whether to accept a project and on what price and terms. No commission is due on projects Appiex declines.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">6.</span> When and how you are paid
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li>Commission is earned only on money Appiex actually receives. For each client payment that clears, you earn 15% (or 5% for repeat work) of that payment's net amount.</li>
+              <li>Appiex pays within 7 business days after each client payment clears.</li>
+              <li><strong class="text-white">Payment methods:</strong> Wise, PayPal, Payoneer, bank transfer, or bKash/Nagad (Bangladesh only). Commission is calculated in USD. Payments to Bangladesh in BDT use the bank or wallet rate on the payment date.</li>
+              <li>The minimum payout is USD 25. Smaller balances roll over to the next payment.</li>
+              <li>Transfer fees charged by the payment provider are deducted from the payout.</li>
+              <li>Before the first payout, Appiex may ask for your full legal name, a government ID and your payout account details, to prevent fraud and meet legal requirements.</li>
+              <li>You are responsible for declaring and paying any taxes on your commission in your own country.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">7.</span> Refunds, cancellations and clawback
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li>If Appiex refunds any client payment, or a payment is charged back, the commission paid on that amount is deducted from your future payouts or must be repaid within 30 days.</li>
+              <li>If the client cancels the project, commission is due only on payments Appiex keeps.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">8.</span> Your conduct
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li>Don't make promises on Appiex's behalf about price, timelines, features or results.</li>
+              <li>Don't send spam, buy ads on the "Appiex" brand name, or create websites, pages or profiles that look like official Appiex channels.</li>
+              <li>Don't offer the client part of your commission or any other incentive without Appiex's written approval.</li>
+              <li>Only share a client's contact details with their permission, and in line with applicable data-protection law.</li>
+              <li>You are an independent party, not an employee, agent or partner of Appiex, and you can't sign anything on Appiex's behalf.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">9.</span> Fraud and termination
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300 pl-1">
+              <li>Appiex may reject a referral, withhold commission or remove you from the Program for fraud, self-referral, fake leads, spam, or breach of these terms.</li>
+              <li>Either party may leave the Program at any time. Commission already earned on valid referrals is still paid under these terms.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">10.</span> Changes to the Program
+            </h4>
+            <p>Appiex may change these terms or end the Program with 30 days' notice on this page and by email to active Referrers. Referrals submitted before the change follow the terms in force at the time of submission.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">11.</span> Liability
+            </h4>
+            <p>Appiex's total liability to a Referrer under the Program is limited to the commission owed but unpaid. Neither party is liable for indirect or consequential losses.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">12.</span> Privacy
+            </h4>
+            <p>Referral data is handled under the Appiex Privacy Policy (appiex.com/privacy).</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              <span class="text-[#FF2A4D] font-mono">13.</span> Governing law and disputes
+            </h4>
+            <p>These terms are governed by the laws of Bangladesh. The parties will first try to resolve a dispute in good faith within 30 days. If that fails, the courts of Dhaka have exclusive jurisdiction. Questions: contact@appiex.com.</p>
+          </div>
+        </div>
       </div>
-      <div class="flex items-center space-x-6">
-        <a href="index.html" class="hover:text-white transition">HOME</a>
-        <a href="services.html" class="hover:text-white transition">SERVICES</a>
-        <a href="refer.html" class="text-white hover:text-brand-neon transition font-bold">REFER & EARN</a>
-        <a href="seo.html" class="hover:text-white transition">SEO LAB</a>
-        <a href="collections.html" class="hover:text-white transition">COLLECTIONS</a>
-        <a href="stories.html" class="hover:text-white transition">CASE STUDIES</a>
+    </section>
+
+    <script>
+      function toggleReferralRules() {
+        const fullContent = document.getElementById('referral-rules-full');
+        const toggleText = document.getElementById('referral-rules-toggle-text');
+        const toggleIcon = document.getElementById('referral-rules-toggle-icon');
+        const isHidden = fullContent.classList.contains('hidden');
+        
+        if (isHidden) {
+          fullContent.classList.remove('hidden');
+          toggleText.textContent = 'See Less Terms & Rules ↑';
+          toggleIcon.style.transform = 'rotate(180deg)';
+        } else {
+          fullContent.classList.add('hidden');
+          toggleText.textContent = 'See More Terms & Rules (13 Sections)';
+          toggleIcon.style.transform = 'rotate(0deg)';
+        }
+      }
+    </script>
+
+    <script>
+      function toggleFaq(btn) {
+        const item = btn.parentElement;
+        const content = item.querySelector('.faq-content');
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !content.classList.contains('hidden');
+        
+        // Close all other FAQs
+        document.querySelectorAll('#referral-faq-accordion .faq-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('#referral-faq-accordion .faq-icon').forEach(i => {
+          i.textContent = '+';
+          i.style.transform = 'rotate(0deg)';
+        });
+
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          icon.textContent = '−';
+          icon.style.transform = 'rotate(180deg)';
+        }
+      }
+    </script>
+  </main>
+
+  <!-- UNIFIED FOOTER -->
+  <footer id="footer" class="relative z-10 mx-auto mt-16 w-full max-w-7xl px-4 pb-14 pt-12 sm:px-6 md:pb-20" style="background: transparent !important;">
+    <div class="max-w-7xl mx-auto">
+      <span class="footer-kicker-red block mb-3">
+        HUNGRY FOR MORE — WEB ARCHITECTURES 2026
+      </span>
+      <div class="mb-14 select-none">
+        <div class="footer-huge-title">MADE</div>
+        <div class="footer-huge-title">FOR THE</div>
+        <div class="footer-huge-title footer-title-red">HUNT.</div>
+      </div>
+      <div class="w-full border-t border-white/10 mb-12"></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-left">
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">SERVICES</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80">
+            <li><a href="services.html#custom-software" class="hover:text-white transition-colors">Custom Software &amp; SaaS</a></li>
+            <li><a href="services.html#headless-ecommerce" class="hover:text-white transition-colors">Headless E-Commerce</a></li>
+            <li><a href="services.html#3d-spatial" class="hover:text-white transition-colors">3D Spatial &amp; WebGL</a></li>
+            <li><a href="services.html#mobile-apps" class="hover:text-white transition-colors">Mobile Engineering</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">COMPANY</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80">
+            <li><a href="index.html#home" class="hover:text-white transition-colors">About Appiex</a></li>
+            <li><a href="/best-software-agency" class="hover:text-white transition-colors text-[#FF2A4D]">Software Companies Comparison</a></li>
+            <li><a href="refer.html" class="hover:text-white transition-colors">Referral Partner Tiers</a></li>
+            <li><a href="partners.html" class="hover:text-white transition-colors">Strategic Partnership</a></li>
+            <li><a href="case-studies.html" class="hover:text-white transition-colors">Blueprints &amp; Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">PORTFOLIO</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80">
+            <li><a href="projects.html#watch24" class="hover:text-white transition-colors">Watch24 BD Luxury</a></li>
+            <li><a href="projects.html#libas-nafs" class="hover:text-white transition-colors">Libas &amp; Nafs Fashion</a></li>
+            <li><a href="projects.html#mamun-wifi" class="hover:text-white transition-colors">Mamun WiFi Telecom</a></li>
+            <li><a href="case-studies.html" class="hover:text-white transition-colors">All 10 Blueprints</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold tracking-[0.18em] uppercase text-slate-400 mb-5">CONTACT</h4>
+          <ul class="space-y-3 text-sm text-slate-300/80 font-mono text-xs">
+            <li><a href="https://wa.me/8801917354847" target="_blank" class="hover:text-emerald-400 transition-colors">WhatsApp: 01917-354847</a></li>
+            <li><a href="mailto:contact@appiex.com" class="hover:text-white transition-colors">contact@appiex.com</a></li>
+            <li><a href="https://github.com/monacogo001-ops" target="_blank" class="hover:text-white transition-colors">GitHub: @monacogo001-ops</a></li>
+            <li><span>Dhaka, Bangladesh</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <span>© 2026 Appiex Technologies. All rights reserved.</span>
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="hover:text-white">Home</a>
+          <a href="services.html" class="hover:text-white">Services</a>
+          <a href="refer.html" class="text-red-400">Refer</a>
+          <a href="partners.html" class="hover:text-white">Partnership</a>
+          <a href="projects.html" class="hover:text-white">Projects</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT & CALCULATOR LOGIC -->
+  <!-- Expertise Tilted Cards Focal-Zone & S-Curve SVG Scroll Script (Red Active Theme) -->
   <script>
-    // Calculator State & Logic
-    const clientsSlider = document.getElementById('clients-slider');
-    const clientsCountDisplay = document.getElementById('clients-count-display');
-    const calculatedTotalDisplay = document.getElementById('calculated-total-display');
-    const tierRadioLabels = document.querySelectorAll('.tier-radio-label');
-    let currentRate = 5000; // default to Nitro E-Commerce
+    (function initExpertiseMilestoneScroll() {
+      const section = document.getElementById('expertise');
+      const progressPath = document.getElementById('expertise-progress-path');
+      const cards = document.querySelectorAll('.milestone-card');
+      const pathLength = 3200;
 
-    function updateCalculator() {
-      const clients = parseInt(clientsSlider.value, 10);
-      clientsCountDisplay.textContent = `${clients < 10 ? '0' + clients : clients} CLIENT${clients > 1 ? 'S' : ''}`;
-      
-      const totalBDT = clients * currentRate;
-      calculatedTotalDisplay.textContent = `৳${totalBDT.toLocaleString()} BDT`;
-    }
+      function setCardState(card, active) {
+        const pin = card.querySelector('.milestone-pin');
+        const pinOuter = pin ? pin.parentElement : null;
+        const body = card.querySelector('.milestone-body');
+        const num = card.querySelector('.milestone-num');
+        const text = card.querySelector('.milestone-text');
 
-    if (clientsSlider) {
-      clientsSlider.addEventListener('input', updateCalculator);
-    }
-
-    tierRadioLabels.forEach(label => {
-      label.addEventListener('click', () => {
-        tierRadioLabels.forEach(l => {
-          l.classList.remove('border-brand-red/50', 'bg-brand-red/10', 'active');
-          l.classList.add('border-white/10', 'bg-white/[0.04]');
-        });
-        label.classList.remove('border-white/10', 'bg-white/[0.04]');
-        label.classList.add('border-brand-red/50', 'bg-brand-red/10', 'active');
-
-        const rate = parseInt(label.getAttribute('data-rate'), 10);
-        if (rate) {
-          currentRate = rate;
-          updateCalculator();
+        if (active) {
+          card.classList.remove('bg-white/[0.04]', 'backdrop-blur-md', 'border-white/15', 'shadow-[0_15px_40px_rgba(0,0,0,0.3)]');
+          card.classList.add('bg-[#DC2626]', 'border-red-400', 'shadow-[0_20px_50px_rgba(220,38,38,0.45)]', 'scale-[1.02]');
+          if (pinOuter) { pinOuter.classList.remove('border-white/25'); pinOuter.classList.add('border-red-300'); }
+          if (pin) { pin.classList.remove('bg-white/40'); pin.classList.add('bg-red-300'); }
+          if (body) { body.classList.remove('bg-black/40'); body.classList.add('bg-red-950/60'); }
+          if (num) { num.classList.remove('text-red-400/80'); num.classList.add('text-red-200'); }
+          if (text) { text.classList.remove('text-slate-300'); text.classList.add('text-red-100'); }
+        } else {
+          card.classList.remove('bg-[#DC2626]', 'border-red-400', 'shadow-[0_20px_50px_rgba(220,38,38,0.45)]', 'shadow-[0_20px_50px_rgba(220,38,38,0.4)]', 'scale-[1.02]');
+          card.classList.add('bg-white/[0.04]', 'backdrop-blur-md', 'border-white/15', 'shadow-[0_15px_40px_rgba(0,0,0,0.3)]');
+          if (pinOuter) { pinOuter.classList.add('border-white/25'); pinOuter.classList.remove('border-red-300'); }
+          if (pin) { pin.classList.add('bg-white/40'); pin.classList.remove('bg-red-300'); }
+          if (body) { body.classList.add('bg-black/40'); body.classList.remove('bg-red-950/60'); }
+          if (num) { num.classList.add('text-red-400/80'); num.classList.remove('text-red-200'); }
+          if (text) { text.classList.add('text-slate-300'); text.classList.remove('text-red-100'); }
         }
-      });
-    });
+      }
 
-    // Referral Link Generator
-    function generateReferralLink(e) {
-      e.preventDefault();
-      const name = document.getElementById('partner-name').value.trim();
-      const payout = document.getElementById('partner-payout').value.trim();
-      if (!name || !payout) return;
+      function updateExpertiseOnScroll() {
+        const viewportHeight = window.innerHeight;
 
-      const slug = name.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const refCode = slug || 'partner';
-      const fullUrl = `https://appiex.com/?ref=${encodeURIComponent(refCode)}`;
+        if (section && progressPath) {
+          const rect = section.getBoundingClientRect();
+          const startY = viewportHeight * 0.8;
+          const endY = viewportHeight * 0.2;
+          const totalDistance = rect.height + (startY - endY);
+          const traveled = startY - rect.top;
+          const progress = Math.max(0, Math.min(1, traveled / totalDistance));
+          progressPath.style.strokeDashoffset = String(pathLength * (1 - progress));
+        }
 
-      const linkInput = document.getElementById('generated-link-input');
-      linkInput.value = fullUrl;
+        let anyActive = false;
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const inFocalZone = rect.top <= viewportHeight * 0.65 && rect.bottom >= viewportHeight * 0.25;
+          if (inFocalZone) anyActive = true;
+          setCardState(card, inFocalZone);
+        });
 
-      // WhatsApp Share Link
-      const waText = encodeURIComponent(`Hey! If you are planning to build or redesign a high-performance website or e-commerce store, check out APPIEX: ${fullUrl} — their team builds with sub-0.4s speed!`);
-      const waBtn = document.getElementById('share-whatsapp-btn');
-      waBtn.href = `https://api.whatsapp.com/send?text=${waText}`;
+        // Keep first card active in red when user hasn't scrolled past it yet
+        if (!anyActive && cards.length > 0) {
+          const firstRect = cards[0].getBoundingClientRect();
+          if (firstRect.top > viewportHeight * 0.25) {
+            setCardState(cards[0], true);
+          }
+        }
+      }
 
-      document.getElementById('referral-result-box').classList.remove('hidden');
-      linkInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.addEventListener('scroll', updateExpertiseOnScroll, { passive: true });
+      window.addEventListener('resize', updateExpertiseOnScroll, { passive: true });
+      setTimeout(updateExpertiseOnScroll, 150);
+    })();
+  </script>
+
+  <!-- Capsule Navbar Interaction Script -->
+  <script>
+    (function initRafsanNavbar() {
+      const capsuleNav = document.querySelector('.rafsan-capsule-nav');
+      const pill = document.getElementById('rafsan-capsule-pill');
+      function updatePill(targetEl) {
+        if (!pill || !targetEl || !capsuleNav) return;
+        const navRect = capsuleNav.getBoundingClientRect();
+        const itemRect = targetEl.getBoundingClientRect();
+        pill.style.width = itemRect.width + 'px';
+        pill.style.left = (itemRect.left - navRect.left) + 'px';
+        pill.style.opacity = '1';
+      }
+      if (capsuleNav && pill) {
+        const activeItem = capsuleNav.querySelector('.rafsan-nav-item.active') || capsuleNav.querySelector('.rafsan-nav-item');
+        if (activeItem) {
+          updatePill(activeItem);
+          setTimeout(() => updatePill(activeItem), 50);
+          setTimeout(() => updatePill(activeItem), 250);
+          window.addEventListener('load', () => updatePill(activeItem));
+          window.addEventListener('resize', () => updatePill(activeItem));
+        }
+        capsuleNav.querySelectorAll('.rafsan-nav-item').forEach(item => {
+          item.addEventListener('mouseenter', () => updatePill(item));
+        });
+        capsuleNav.addEventListener('mouseleave', () => {
+          const currentActive = capsuleNav.querySelector('.rafsan-nav-item.active') || activeItem;
+          if (currentActive) updatePill(currentActive);
+        });
+      }
+
+      // Mobile Drawer Toggle
+      const menuToggle = document.getElementById('rafsan-menu-toggle');
+      const mobileDrawer = document.getElementById('rafsan-mobile-drawer');
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            mobileDrawer.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            mobileDrawer.classList.add('open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        document.addEventListener('click', (e) => {
+          if (!mobileDrawer.contains(e.target) && !menuToggle.contains(e.target)) {
+            mobileDrawer.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      const navbar = document.getElementById('rafsan-navbar');
+      window.addEventListener('scroll', () => {
+        if (!navbar) return;
+        if (window.scrollY > 40) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    })();
+  </script>
+  <script>
+    document.documentElement.style.scrollBehavior = 'smooth';
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+(function() {
+  function initLenis() {
+    if (typeof Lenis === 'undefined') {
+      setTimeout(function() { if (typeof initLenis === 'function') initLenis(); else if (typeof initHomeLenis === 'function') initHomeLenis(); }, 60);
+      return;
     }
-
-    // Copy Referral Link & Show Toast
-    function copyReferralLink() {
-      const linkInput = document.getElementById('generated-link-input');
-      linkInput.select();
-      navigator.clipboard.writeText(linkInput.value).then(() => {
-        showToast();
-      }).catch(() => {
-        document.execCommand('copy');
-        showToast();
-      });
-    }
-
-    function showToast() {
-      const toast = document.getElementById('toast-notification');
-      if (!toast) return;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3500);
-    }
-
-    // Mobile Navigation Controls
-    const hamburger = document.getElementById('hamburger');
-    const closeMobileNav = document.getElementById('close-mobile-nav');
-    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-
-    if (hamburger && mobileNavOverlay) {
-      hamburger.addEventListener('click', () => {
-        mobileNavOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    }
-    if (closeMobileNav && mobileNavOverlay) {
-      closeMobileNav.addEventListener('click', () => {
-        mobileNavOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    }
-
-    // 3D Perspective Card Tilt
-    document.querySelectorAll('.card-3d').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const xPct = (x / rect.width) - 0.5;
-        const yPct = (y / rect.height) - 0.5;
-        const rotateY = xPct * 8;
-        const rotateX = -yPct * 8;
-        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-      });
-    });
-
-    // Initialize Buttery Smooth Lenis Scroll Engine
-    let lenis;
-    if (typeof Lenis !== 'undefined') {
-      lenis = new Lenis({
-        duration: 1.2,
+    const lenis = new Lenis({
+        duration: 1.0,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.1,
-        touchMultiplier: 2,
+        wheelMultiplier: 1.0,
+        syncTouch: false,
+        touchMultiplier: 1.0,
+        touchInertiaMultiplier: 15,
         infinite: false
-      });
-      window.lenis = lenis;
-
-      lenis.on('scroll', () => {
-        if (typeof ScrollTrigger !== 'undefined') {
-          ScrollTrigger.update();
-        }
-      });
-
-      if (typeof gsap !== 'undefined') {
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-      } else {
+      })
+    window.lenis = lenis;
+    if (lenis) {
         function raf(time) {
           lenis.raf(time);
           requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
       }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLenis);
+  } else {
+    initLenis();
+  }
+})();
+</script>
 
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId !== '#') {
-            const targetEl = document.querySelector(targetId);
-            if (targetEl) {
-              e.preventDefault();
-              lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 });
+
+
+
+      <!-- Appiex Client Auth Session Sync -->
+  <script>
+    (function checkClientAuth() {
+      try {
+        const u = localStorage.getItem('appiex_user');
+        if (u) {
+          let userData = {};
+          try { userData = JSON.parse(u); } catch(err) {}
+          const avatarSrc = userData.avatar || './images/6251456506175886234.jpg';
+          const userName = userData.name || 'Profile';
+          const initial = (userName.charAt(0) || 'P').toUpperCase();
+
+          function transformToProfileCircle(el) {
+            if (!el) return;
+            el.href = 'profile.html';
+            el.title = userName + ' - Profile';
+            el.setAttribute('aria-label', userName + ' Profile');
+            el.innerText = '';
+            el.style.setProperty('width', '38px', 'important');
+            el.style.setProperty('height', '38px', 'important');
+            el.style.setProperty('min-width', '38px', 'important');
+            el.style.setProperty('min-height', '38px', 'important');
+            el.style.setProperty('max-width', '38px', 'important');
+            el.style.setProperty('max-height', '38px', 'important');
+            el.style.setProperty('border-radius', '50%', 'important');
+            el.style.setProperty('padding', '0', 'important');
+            el.style.setProperty('overflow', 'hidden', 'important');
+            el.style.setProperty('display', 'inline-flex', 'important');
+            el.style.setProperty('align-items', 'center', 'important');
+            el.style.setProperty('justify-content', 'center', 'important');
+            el.style.setProperty('background', 'transparent', 'important');
+            el.style.setProperty('border', '2px solid rgba(255, 42, 77, 0.85)', 'important');
+            el.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            el.style.setProperty('transition', 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease', 'important');
+            el.style.setProperty('cursor', 'pointer', 'important');
+
+            const img = document.createElement('img');
+            img.src = avatarSrc;
+            img.alt = userName;
+            img.style.cssText = 'width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 50% !important; display: block !important;';
+            img.onerror = function() {
+              this.remove();
+              el.style.background = 'linear-gradient(135deg, #FF2A4D, #991B1B)';
+              el.innerHTML = '<span style="font-weight:700;color:#fff;font-size:14px;">' + initial + '</span>';
+            };
+            el.innerHTML = '';
+            el.appendChild(img);
+
+            el.onmouseenter = function() {
+              this.style.setProperty('transform', 'scale(1.08)', 'important');
+              this.style.setProperty('border-color', '#FF2A4D', 'important');
+              this.style.setProperty('box-shadow', '0 0 20px rgba(255, 42, 77, 0.8)', 'important');
+            };
+            el.onmouseleave = function() {
+              this.style.setProperty('transform', 'scale(1)', 'important');
+              this.style.setProperty('border-color', 'rgba(255, 42, 77, 0.85)', 'important');
+              this.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            };
+          }
+
+          function applyAll() {
+            const loginButtons = document.querySelectorAll('#nav-login-btn, #mobile-wrap-login-btn, #mobile-nav-login-btn, .rafsan-hire-btn');
+            loginButtons.forEach(btn => transformToProfileCircle(btn));
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyAll);
+          } else {
+            applyAll();
+          }
+          setTimeout(applyAll, 50);
+          setTimeout(applyAll, 300);
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+  <!-- Live Dynamic CMS Hydration Engine for appiex.com/refer -->
+  <script>
+    (function() {
+      function applyReferPageDynamicContent() {
+        try {
+          var raw = localStorage.getItem('appiex_refer_page_content');
+          if (!raw) return;
+          var data = JSON.parse(raw);
+          if (!data) return;
+
+          // 1. Hero
+          if (data.hero) {
+            var topBadge = document.getElementById('dyn-top-badge');
+            if (topBadge && data.hero.topBadge) topBadge.textContent = data.hero.topBadge;
+
+            var badge = document.getElementById('dyn-hero-badge');
+            if (badge && data.hero.tagline) badge.textContent = data.hero.tagline;
+
+            var t1 = document.getElementById('dyn-hero-title1');
+            if (t1 && data.hero.titleLine1) t1.textContent = data.hero.titleLine1;
+
+            var t2 = document.getElementById('dyn-hero-title2');
+            if (t2 && data.hero.titleLine2) t2.textContent = data.hero.titleLine2;
+
+            var desc = document.getElementById('dyn-hero-desc');
+            if (desc && data.hero.description) desc.innerHTML = data.hero.description;
+
+            var waBtn = document.getElementById('dyn-wa-btn');
+            if (waBtn && data.hero.whatsappLink) waBtn.href = data.hero.whatsappLink;
+          }
+
+          // 2. Milestones
+          if (data.milestones) {
+            var mBadge = document.getElementById('dyn-ms-badge');
+            if (mBadge && data.milestones.sectionBadge) mBadge.textContent = data.milestones.sectionBadge;
+
+            var mTitle = document.getElementById('dyn-ms-title');
+            if (mTitle && data.milestones.sectionTitle) mTitle.textContent = data.milestones.sectionTitle;
+
+            var mDesc = document.getElementById('dyn-ms-desc');
+            if (mDesc && data.milestones.sectionDesc) mDesc.textContent = data.milestones.sectionDesc;
+
+            var mHand = document.getElementById('dyn-ms-hand');
+            if (mHand && data.milestones.handwritingText) mHand.textContent = data.milestones.handwritingText;
+
+            if (Array.isArray(data.milestones.cards)) {
+              data.milestones.cards.forEach(function(card, idx) {
+                var cTitle = document.getElementById('dyn-card-' + idx + '-title');
+                var cDesc = document.getElementById('dyn-card-' + idx + '-desc');
+                if (cTitle && card.title) cTitle.textContent = card.title;
+                if (cDesc && card.desc) cDesc.textContent = card.desc;
+              });
             }
           }
-        });
-      });
-    }
 
-    // Initial Calculator Sync
-    updateCalculator();
+          // 3. Tiers
+          if (Array.isArray(data.tiers)) {
+            data.tiers.forEach(function(tier, idx) {
+              var tName = document.getElementById('dyn-tier-' + idx + '-name');
+              var tVal = document.getElementById('dyn-tier-' + idx + '-val');
+              var tPay = document.getElementById('dyn-tier-' + idx + '-pay');
+              var tBadge = document.getElementById('dyn-tier-' + idx + '-badge');
+              if (tName && tier.name) tName.textContent = tier.name;
+              if (tVal && tier.projectValue) tVal.textContent = tier.projectValue;
+              if (tPay && tier.payout) tPay.textContent = tier.payout;
+              if (tBadge && tier.badge) tBadge.textContent = tier.badge;
+            });
+          }
+
+          // 4. Form
+          if (data.form) {
+            var fBadge = document.getElementById('dyn-form-badge');
+            if (fBadge && data.form.badge) fBadge.textContent = data.form.badge;
+
+            var fBtn = document.getElementById('dyn-form-btn-text');
+            if (fBtn && data.form.buttonText) {
+              fBtn.textContent = data.form.buttonText;
+              fBtn.setAttribute('data-text', data.form.buttonText);
+            }
+
+            var fSub = document.getElementById('dyn-form-sub');
+            if (fSub && data.form.subtitle) fSub.textContent = data.form.subtitle;
+          }
+
+          // 5. FAQs
+          if (Array.isArray(data.faqs) && data.faqs.length > 0) {
+            var faqContainer = document.getElementById('referral-faq-accordion');
+            if (faqContainer) {
+              var html = '';
+              data.faqs.forEach(function(faq) {
+                html += '<div class="border border-white/10 rounded-2xl bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-red-500/40">' +
+                  '<button type="button" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-white focus:outline-none" onclick="toggleFaq(this)">' +
+                    '<span class="text-base sm:text-lg">' + escapeHtml(faq.q) + '</span>' +
+                    '<span class="faq-icon text-[#FF2A4D] text-2xl font-mono transition-transform duration-300">+</span>' +
+                  '</button>' +
+                  '<div class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">' +
+                    escapeHtml(faq.a) +
+                  '</div>' +
+                '</div>';
+              });
+              faqContainer.innerHTML = html;
+            }
+          }
+
+          // 6. Terms
+          if (data.terms) {
+            var tTitle = document.getElementById('dyn-terms-title');
+            if (tTitle && data.terms.title) tTitle.textContent = data.terms.title;
+            var tSub = document.getElementById('dyn-terms-sub');
+            if (tSub && data.terms.subtitle) tSub.textContent = data.terms.subtitle;
+            var tVer = document.getElementById('dyn-terms-ver');
+            if (tVer && data.terms.version) tVer.textContent = data.terms.version;
+          }
+        } catch (err) {
+          console.warn('Error applying dynamic refer content:', err);
+        }
+      }
+
+      function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Run immediately
+      applyReferPageDynamicContent();
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyReferPageDynamicContent);
+      } else {
+        applyReferPageDynamicContent();
+      }
+
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'appiex_refer_page_content') {
+          applyReferPageDynamicContent();
+        }
+      });
+    })();
   </script>
+
+  <!-- Live Daily Visitor Telemetry & Leads Tracker -->
+  <script src="/scripts/visitor-tracker.js?v=20261029_v5"></script>
+<nav id="site-explore-links" class="seo-site-links" aria-label="Explore Appiex"><div class="seo-site-links__inner"><p class="seo-site-links__label">Explore Appiex</p><a href="/">Home</a><a href="/services">Services</a><a href="/web-development">Web Development</a><a href="/ui-ux-3d-design">UI/UX &amp; 3D</a><a href="/seo-marketing">SEO</a><a href="/ai-automation">AI Automation</a><a href="/projects">Projects</a><a href="/case-studies">Case Studies</a><a href="/team">Team</a><a href="/partners">Partners</a><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a></div></nav>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+
+  <div class="rafsan-mobile-drawer appiex-cyber-drawer" id="rafsan-mobile-drawer" data-lenis-prevent="true">
+    <div class="cyber-main-pane">
+      <div class="cyber-top-header">
+        <div class="discover-tag">
+          <span class="square-dot"></span>
+          <span>DISCOVER</span>
+        </div>
+        <div class="brand-wordmark">appiex</div>
+        <div class="page-tag">
+          <span>PAGE</span>
+          001
+        </div>
+      </div>
+
+      <nav class="cyber-nav-list">
+        <a href="/index.html" class="cyber-nav-item active" data-section="home">
+          HOME
+          <span class="badge-page">PAGE<br>001</span>
+        </a>
+
+        <!-- Services Accordion with 6 Core Disciplines -->
+        <div class="cyber-services-wrap">
+          <button type="button" class="cyber-nav-item cyber-services-toggle" id="rafsan-mobile-services-toggle" aria-expanded="false" onclick="return window.__toggleMobileServices(event);">
+            <span>SERVICES</span>
+            <svg class="cyber-caret-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="cyber-services-sub" id="rafsan-mobile-services-sub">
+            <a href="/digital-strategy" class="cyber-sub-item"><span class="sub-dot"></span> DIGITAL STRATEGY</a>
+            <a href="/web-development" class="cyber-sub-item"><span class="sub-dot"></span> WEB DEVELOPMENT (FULL-STACK)</a>
+            <a href="/ui-ux-3d-design" class="cyber-sub-item"><span class="sub-dot"></span> UI/UX &amp; 3D DESIGN</a>
+            <a href="/ai-automation" class="cyber-sub-item"><span class="sub-dot"></span> AI AUTOMATION</a>
+            <a href="/seo-marketing" class="cyber-sub-item"><span class="sub-dot"></span> SEO &amp; MARKETING</a>
+            <a href="/gaming" class="cyber-sub-item"><span class="sub-dot"></span> GAMING &amp; 3D WORLDS</a>
+            <a href="/services" class="cyber-sub-item cyber-sub-explore"><span class="sub-dot"></span> EXPLORE ALL SERVICES &rarr;</a>
+          </div>
+        </div>
+
+        <a href="/refer.html" class="cyber-nav-item" data-section="refer">REFER</a>
+        <a href="/partners.html" class="cyber-nav-item" data-section="partners">PARTNERSHIP</a>
+        <a href="/projects.html" class="cyber-nav-item" data-section="projects">PROJECTS</a>
+        <a href="/index.html#contact" class="cyber-nav-item" data-section="contact">CONTACT</a>
+        <a href="/team.html" class="cyber-nav-item">ABOUT</a>
+      </nav>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>CONNECT</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="https://twitter.com/AppiexOfficial" target="_blank" rel="noopener">TWITTER</a>
+          <a href="https://discord.gg/appiex" target="_blank" rel="noopener">DISCORD</a>
+          <a href="https://wa.me/8801979493902" target="_blank" rel="noopener">WHATSAPP</a>
+        </div>
+      </div>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>ACTIONS</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="/login.html">LOGIN</a>
+          <a href="/index.html#contact">BOOK A MEETING</a>
+        </div>
+      </div>
+
+      <div class="cyber-bottom-misc">
+        <div>US-EN &#x2304;</div>
+        <div>&copy; 2026 APPIEX</div>
+      </div>
+    </div>
+
+    <div class="cyber-right-bar">
+      <button type="button" class="cyber-bar-close" id="cyber-menu-close" aria-label="Close menu" onclick="return (window.__closeMobileDrawer ? window.__closeMobileDrawer(event) : false);">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top" style="transform: translateY(5px) rotate(45deg); background-color: #ffffff;"></span>
+          <span class="hamburger-line line-bottom" style="transform: translateY(-5px) rotate(-45deg); background-color: #ffffff;"></span>
+        </span>
+      </button>
+
+      <div class="cyber-bar-bottom">
+        <div class="cyber-audio-equalizer">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 195 44" fill="none" width="195" height="44">
+  <!-- Md Dawakhana Pharmacy & Wellness -->
+  <rect x="8" y="10" width="24" height="24" rx="6" stroke="white" stroke-width="2" fill="none"/>
+  <path d="M20 14 V30 M12 22 H28" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="20" cy="22" r="3" fill="#10B981"/>
+  <text x="40" y="27" fill="white" font-family="'Oswald', system-ui, sans-serif" font-size="16" font-weight="700" letter-spacing="1.2">MD DAWAKHANA</text>
+</svg>

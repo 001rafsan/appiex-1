@@ -1,21 +1,35 @@
 {
-  "name": "appiex",
-  "version": "2.0.0",
-  "description": "APPIEX — High-Velocity Web Architectures & E-Commerce Platforms",
-  "main": "index.html",
+  "name": "appiex-hunt",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js",
-    "build": "echo Build completed"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [
-    "appiex",
-    "web-engineering",
-    "headless-commerce",
-    "3d-motion",
-    "nextjs",
-    "firebase"
-  ],
-  "author": "APPIEX Engineering",
-  "license": "MIT"
+  "dependencies": {
+    "@vercel/blob": "^2.8.2",
+    "firebase": "^10.8.0",
+    "framer-motion": "^11.5.4",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26",
+    "lucide-react": "^1.16.0",
+    "next": "^15.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@unlighthouse/cli": "^0.19.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "next-seo": "^7.3.0",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.11",
+    "vite": "^5.4.3"
+  }
 }

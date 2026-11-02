@@ -1,44 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="lenis lenis-scrolling">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engineering Services & Architecture Directory — APPIEX</title>
-  <meta name="description" content="Explore APPIEX's 6 core engineering disciplines: Digital Strategy, UI/UX Design, Web & Software Development, AI Development & Automation, SEO & Digital Marketing, and Branding.">
-  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Software, Web Development &amp; AI Services | Appiex</title>
+  <link rel="canonical" href="https://appiex.com/services">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Explore Appiex services for custom websites, web applications, AI automation, UI/UX design and technical SEO. Find the service that fits your project.">
+  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-  <!-- Fonts & CDN -->
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appiex.com/services">
+  <meta property="og:site_name" content="Appiex">
+  <meta property="og:title" content="Software, Web Development &amp; AI Services | Appiex">
+  <meta property="og:description" content="Explore Appiex services for custom websites, web applications, AI automation, UI/UX design and technical SEO. Find the service that fits your project.">
+  <meta property="og:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://appiex.com/services">
+  <meta name="twitter:title" content="Software, Web Development &amp; AI Services | Appiex">
+  <meta name="twitter:description" content="Explore Appiex services for custom websites, web applications, AI automation, UI/UX design and technical SEO. Find the service that fits your project.">
+  <meta name="twitter:image" content="https://appiex.com/images/appiex-logo.png">
+  <meta name="theme-color" content="#030408">
+
+  <!-- Structured Data: Service, Breadcrumbs, Provider -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://appiex.com/services#service",
+        "name": "Digital Agency & Engineering Services",
+        "serviceType": "Full-Stack Web & 3D Engineering",
+        "description": "Full-cycle digital services covering custom web development, 3D WebGL design, AI workflow automation, programmatic SEO, and growth strategy.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Appiex",
+          "url": "https://appiex.com/"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Core Engineering Capabilities",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Website Development",
+                "url": "https://appiex.com/web-development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "UI/UX & 3D Interactive Design",
+                "url": "https://appiex.com/ui-ux-3d-design"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "AI Development & Automation",
+                "url": "https://appiex.com/ai-automation"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "SEO & Digital Marketing",
+                "url": "https://appiex.com/seo-marketing"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Digital Strategy & Consulting",
+                "url": "https://appiex.com/digital-strategy"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "White Label Web Development",
+                "url": "https://appiex.com/partners.html"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Client Referral Program",
+                "url": "https://appiex.com/refer.html"
+              }
+            }
+          ]
+        },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://appiex.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://appiex.com/services"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts: Anton, Oswald, Google Sans, Montserrat, JetBrains Mono, Suisse Intl -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,400i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Google+Sans:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="./styles/fonts.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/Footer.v_lo1qnf.css">
+
+  <!-- Core Cuberto Stylesheets -->
+<link rel="stylesheet" href="./styles/SummarySection.CdpLgy4-.css">
+  <link rel="stylesheet" href="./styles/OverviewSection.CiLUHBLp.css">
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            anton: ['Anton', 'Impact', 'sans-serif'],
-            satoshi: ['Satoshi', 'system-ui', 'sans-serif'],
-            oswald: ['Oswald', 'sans-serif'],
-            cormorant: ['Cormorant Garamond', 'serif'],
-          },
           colors: {
-            'brand-red': '#DC2626',
-            'brand-red-mid': '#B91C1C',
-            'brand-neon': '#FF2A4D',
-            'brand-pale': '#FEE2E2',
-            'hairline': '#E5E5E5',
+            appiexRed: '#FF2A4D',
+            appiexRedDark: '#DC2626',
+            appiexTeal: '#2DD4BF',
+            appiexDark: '#030408',
+            appiexCard: '#080910'
+          },
+          fontFamily: {
+            sans: ['Suisse Intl', 'Google Sans', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            anton: ['Anton', 'sans-serif'],
+            oswald: ['Oswald', 'sans-serif']
           }
         }
       }
     }
   </script>
+
+  <!-- Swiper for Feedback Carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
   <style>
-    :root {
-      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    /* Global Clean Pointer - No Black Dots */
+    * {
+      box-sizing: border-box;
+      cursor: auto !important;
     }
+    a, button, [role="button"], input, select, textarea {
+      cursor: pointer !important;
+    }
+
+    html {
+      background-color: #030408 !important;
+      color: #f8fafc !important;
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+    }
+    body {
+      background-color: #030408 !important;
+      color: #f8fafc !important;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+    }
+
+    /* Ambient Red Glow */
+    .ambient-glow-red {
+      background: radial-gradient(circle, rgba(255, 42, 77, 0.18) 0%, rgba(220, 38, 38, 0.08) 35%, transparent 70%);
+    }
+
+    /* Lenis Smooth Scroll Foundation */
     html.lenis, html.lenis body {
       height: auto;
     }
@@ -51,1106 +219,2391 @@
     .lenis.lenis-stopped {
       overflow: hidden;
     }
-    .lenis.lenis-smooth iframe {
-      pointer-events: none;
+
+    /* ========================================================
+       APPIEX SIGNATURE FLOATING CAPSULE NAVBAR (MATCH PIC 2 100%)
+       ======================================================== */
+    .rafsan-navbar-shell {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 1000 !important;
+      padding: 1.25rem 0 !important;
+      pointer-events: none !important;
+      background: transparent !important;
+      font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      transition: all 0.35s ease !important;
     }
-    html, body {
-      background-color: #06070B;
-      color: #FFFFFF;
-      font-family: 'Satoshi', sans-serif;
+    .rafsan-navbar-shell.scrolled {
+      padding: 0.85rem 0 !important;
     }
-    .btn-pill {
-      border-radius: 9999px;
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.1em;
+
+    .rafsan-nav-container {
+      max-width: 1320px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 1.5rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      pointer-events: auto !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Brand Logo (Left) */
+    .rafsan-brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      text-decoration: none !important;
+      color: #ffffff !important;
+      font-size: 1.45rem !important;
+      letter-spacing: -0.02em !important;
+      transition: transform 0.25s ease, opacity 0.25s ease !important;
+      user-select: none !important;
+    }
+    .rafsan-brand:hover {
+      transform: scale(1.02) !important;
+      opacity: 0.95 !important;
+    }
+    .rafsan-brand .brand-logo-img {
+      height: 32px !important;
+      width: auto !important;
+      object-fit: contain !important;
+      filter: drop-shadow(0 2px 10px rgba(255, 42, 77, 0.45)) !important;
+    }
+    .rafsan-brand-bold {
+      font-weight: 700 !important;
+      color: #ffffff !important;
+    }
+
+    /* Center Floating Capsule */
+    .rafsan-capsule-nav {
+      position: relative !important;
+      display: none !important;
+      align-items: center !important;
+      padding: 5px 6px !important;
+      border-radius: 9999px !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      transition: all 0.35s ease !important;
+    }
+    @media (min-width: 768px) {
+      .rafsan-capsule-nav {
+        display: flex !important;
+      }
+    }
+
+    /* Sliding Red Highlight Pill */
+    .rafsan-capsule-pill {
+      position: absolute !important;
+      top: 5px !important;
+      left: 78px;
+      height: calc(100% - 10px) !important;
+      width: 88px;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+      border-radius: 9999px !important;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.5) !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+    }
+
+    .rafsan-nav-item {
+      position: relative !important;
+      z-index: 2 !important;
+      padding: 6px 17px !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      color: rgba(255, 255, 255, 0.85) !important;
+      text-decoration: none !important;
+      border-radius: 9999px !important;
+      transition: color 0.25s ease !important;
+      white-space: nowrap !important;
+      user-select: none !important;
+      cursor: pointer !important;
+    }
+    .rafsan-nav-item:hover,
+    .rafsan-nav-item.active {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+    }
+
+    /* Services Dropdown Menu */
+    .services-nav-wrap {
+      position: relative !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+    .services-caret {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-left: 5px !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .services-nav-wrap:hover .services-caret {
+      transform: rotate(180deg) !important;
+      color: #FF2A4D !important;
+    }
+    .services-popup-menu {
+      position: absolute !important;
+      top: calc(100% + 14px) !important;
+      left: 50% !important;
+      transform: translateX(-50%) translateY(10px) !important;
+      width: 650px !important;
+      max-width: calc(100vw - 2rem) !important;
+      background: #05060b !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.98), 0 0 35px rgba(255, 42, 77, 0.25) !important;
+      display: flex !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      z-index: 1000 !important;
+      overflow: hidden !important;
+    }
+    .services-nav-wrap::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -16px !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 18px !important;
+    }
+    .services-nav-wrap:hover .services-popup-menu {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateX(-50%) translateY(0) !important;
+    }
+    .services-mega-left {
+      width: 250px !important;
+      background: linear-gradient(180deg, rgba(10, 10, 15, 0.42) 0%, rgba(5, 5, 10, 0.95) 100%), url('./images/panther_cover.png') center/cover no-repeat !important;
+      padding: 28px 24px !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      text-align: left !important;
+    }
+    .services-mega-badge {
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      color: #ff2a4d !important;
+      letter-spacing: 2px !important;
+      text-transform: uppercase !important;
+      display: block !important;
+      margin-bottom: 10px !important;
+    }
+    .services-mega-title {
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      line-height: 1.35 !important;
+      text-transform: uppercase !important;
+      margin: 0 !important;
+    }
+    .services-mega-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 8px 18px !important;
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1.5px !important;
+      border-radius: 50px !important;
+      text-decoration: none !important;
+      border: 1px solid #ffffff !important;
+      transition: all 0.3s ease !important;
+      width: fit-content !important;
+      margin-top: 20px !important;
+    }
+    .services-mega-btn:hover {
+      background: #FF2A4D !important;
+      color: #fff !important;
+      border-color: #FF2A4D !important;
+    }
+    .services-mega-right {
+      flex: 1 !important;
+      padding: 28px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      background: #05060b !important;
+    }
+    .services-mega-subtitle {
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      letter-spacing: 2.5px !important;
+      text-transform: uppercase !important;
+      margin-bottom: 20px !important;
+      display: block !important;
+    }
+    .services-mega-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 14px 18px !important;
+    }
+    .services-mega-item {
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      padding: 8px 0 !important;
+      border: none !important;
+      background: transparent !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.8px !important;
+      transition: color 0.25s ease !important;
+    }
+    .services-mega-item:hover {
+      color: #ff2a4d !important;
+    }
+
+    /* Actions (Right) */
+    .rafsan-nav-actions {
+      display: none !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+    }
+    @media (min-width: 768px) {
+      .rafsan-nav-actions {
+        display: flex !important;
+      }
+    }
+    .rafsan-github-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 38px !important;
+      height: 38px !important;
+      border-radius: 50% !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      transition: all 0.25s ease !important;
+      text-decoration: none !important;
+    }
+    .rafsan-github-btn:hover {
+      background: rgba(255, 42, 77, 0.2) !important;
+      border-color: #FF2A4D !important;
+      color: #FF2A4D !important;
+    }
+    .rafsan-hire-btn {
+      padding: 8px 20px !important;
+      border-radius: 9999px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45) !important;
+      transition: all 0.25s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .rafsan-hire-btn:hover {
+      box-shadow: 0 6px 22px rgba(255, 42, 77, 0.7) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* Mobile Controls */
+    .rafsan-mobile-wrap {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+    }
+    @media (min-width: 768px) {
+      .rafsan-mobile-wrap {
+        display: none !important;
+      }
+    }
+    .rafsan-mobile-toggle {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 9999px !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .rafsan-mobile-drawer {
+      position: fixed !important;
+      top: 75px !important;
+      left: 0 !important;
+      width: 100% !important;
+      background: #090a12 !important;
+      border-bottom: 1px solid rgba(255, 42, 77, 0.25) !important;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9) !important;
+      padding: 1.5rem !important;
+      transform: translate3d(0, -12px, 0) !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: all 0.25s ease !important;
+      z-index: 999 !important;
+    }
+    .rafsan-mobile-drawer.open {
+      transform: translate3d(0, 0, 0) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+    .rafsan-mobile-link {
+      display: block !important;
+      padding: 0.75rem 0 !important;
+      font-size: 1.1rem !important;
+      font-weight: 500 !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    .rafsan-mobile-link:hover {
+      color: #FF2A4D !important;
+      padding-left: 0.5rem !important;
+    }
+
+    /* ========================================================
+       CUBERTO NATIVE CONTENT ON DARK THEME
+       ======================================================== */
+    .TopheadSection[data-astro-cid-yhlrtawi] {
+      padding: 7rem 0 3rem;
+      position: relative;
+    }
+    @media (width >= 768px) {
+      .TopheadSection[data-astro-cid-yhlrtawi] {
+        padding: 9.5rem 0 4.5rem;
+      }
+    }
+    .header[data-astro-cid-yhlrtawi] h1 {
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+      color: #FF2A4D !important;
+      font-size: 1.4rem;
+      font-weight: 500 !important;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      transition: all 280ms var(--ease-spring);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      margin-bottom: 2rem;
     }
-    .btn-pill:hover {
-      transform: translateY(-2px);
+    @media (width >= 768px) {
+      .header[data-astro-cid-yhlrtawi] {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .header[data-astro-cid-yhlrtawi] h1 {
+        font-size: 1.8rem;
+      }
     }
-
-    /* 3D Perspective Card Tilt */
-    .card-3d-wrap {
-      perspective: 1200px;
-      transform-style: preserve-3d;
+    .title[data-astro-cid-yhlrtawi] h2 {
+      font-family: 'Suisse Intl', 'Google Sans', sans-serif !important;
+      color: #ffffff !important;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+      font-size: 4rem;
+      font-weight: 350 !important;
+      line-height: 102%;
     }
-    .card-3d {
-      transition: transform 320ms var(--ease-spring), box-shadow 320ms ease, border-color 320ms ease;
-      transform-style: preserve-3d;
-    }
-    .card-3d:hover {
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 42, 77, 0.15);
-    }
-
-    /* Floating Pill Navbar */
-    #sticky-nav {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 32px);
-      max-width: 1140px;
-      border-radius: 9999px;
-      z-index: 50;
-      background: rgba(11, 13, 20, 0.9);
-      backdrop-filter: blur(32px) saturate(1.8);
-      -webkit-backdrop-filter: blur(32px) saturate(1.8);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-      transition: all 350ms ease;
-    }
-    .nav-link {
-      padding: 6px 14px;
-      border-radius: 9999px;
-      white-space: nowrap;
-      transition: all 220ms ease;
-    }
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.14);
-      color: #FFFFFF !important;
+    @media (width >= 768px) {
+      .title[data-astro-cid-yhlrtawi] h2 {
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto;
+        font-size: 7.8rem;
+        font-weight: 350 !important;
+      }
     }
 
-    /* Service Filter Pills */
-    .filter-tab {
-      cursor: pointer;
-      transition: all 240ms ease;
+    /* Preview Section */
+    .PreviewSection[data-astro-cid-u5y7bqyk] {
+      z-index: 1;
+      position: relative;
     }
-    .filter-tab.active {
-      background: #FFFFFF;
-      color: #06070B;
-      font-weight: 700;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
+    .PreviewSection[data-astro-cid-u5y7bqyk] + .PreviewSection {
+      margin-top: 2rem;
     }
-
-    /* Drawer / Modal */
-    .drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(12px);
-      z-index: 9100;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 300ms ease;
+    @media (width >= 768px) {
+      .PreviewSection[data-astro-cid-u5y7bqyk] + .PreviewSection {
+        margin-top: 6rem;
+      }
     }
-    .drawer-overlay.open {
-      opacity: 1;
-      pointer-events: all;
+    .main[data-astro-cid-u5y7bqyk] {
+      aspect-ratio: 1920/1080;
+      border-radius: 2rem;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      background: #0b0d17;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
     }
-    #service-details-modal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -46%) scale(0.95);
-      width: 92%;
-      max-width: 820px;
-      max-height: 88vh;
-      background: #0B0E17;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 28px;
-      z-index: 9200;
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 380ms var(--ease-spring), opacity 350ms ease;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 50px rgba(220, 38, 38, 0.2);
-      display: flex;
-      flex-direction: column;
+    .main[data-astro-cid-u5y7bqyk].-lg {
+      aspect-ratio: 355/400;
+    }
+    @media (width >= 768px) {
+      .main[data-astro-cid-u5y7bqyk].-lg {
+        aspect-ratio: 1920/1080;
+      }
+    }
+    .media[data-astro-cid-u5y7bqyk] {
+      width: 100%;
+      height: 100%;
+      position: relative;
       overflow: hidden;
     }
-    #service-details-modal.open {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-      pointer-events: all;
+    .media[data-astro-cid-u5y7bqyk] video,
+    .media[data-astro-cid-u5y7bqyk] img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
-    /* Mobile Nav Overlay */
-    #mobile-nav-overlay {
-      position: fixed;
-      inset: 0;
-      background: #080A12;
-      z-index: 9000;
-      transform: translateX(100%);
-      transition: transform 400ms var(--ease-spring);
-      display: flex;
-      flex-direction: column;
-      padding: 32px;
+    /* SummarySection (Solutions & Benefits) on Dark */
+    .SummarySection[data-astro-cid-n6egurcx] {
+      position: relative;
     }
-    #mobile-nav-overlay.open {
-      transform: translateX(0);
+    .SummarySection[data-astro-cid-n6egurcx] .header h2 {
+      color: #ffffff !important;
+      letter-spacing: -0.02em;
+      font-size: 4.5rem;
+      font-weight: 500;
+      line-height: 100%;
+    }
+    @media (width >= 768px) {
+      .SummarySection[data-astro-cid-n6egurcx] .header h2 {
+        font-size: 7.5rem;
+      }
+    }
+    .SummarySection[data-astro-cid-n6egurcx].-fill .fill {
+      background: transparent !important;
+    }
+    .caption[data-astro-cid-n6egurcx] h3 {
+      color: #ffffff !important;
+      text-transform: uppercase;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 120%;
+      letter-spacing: 0.05em;
+    }
+    @media (width >= 768px) {
+      .caption[data-astro-cid-n6egurcx] h3 {
+        font-size: 2.2rem;
+      }
+    }
+    #solutions .caption[data-astro-cid-n6egurcx] h3 {
+      color: #ffffff !important;
+      font-size: 2.2rem !important;
+      font-weight: 800 !important;
+      line-height: 120% !important;
+      letter-spacing: -0.01em !important;
+      text-transform: uppercase;
+    }
+    @media (width >= 768px) {
+      #solutions .caption[data-astro-cid-n6egurcx] h3 {
+        font-size: 3.2rem !important;
+      }
+    }
+    .text[data-astro-cid-n6egurcx] p {
+      color: #f1f5f9 !important;
+      letter-spacing: 0.01em;
+      font-size: 2rem;
+      line-height: 135%;
+    }
+    @media (width >= 768px) {
+      .text[data-astro-cid-n6egurcx] p {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Interactive String Dividers */
+    .Divider[data-astro-cid-jqyytg4m] {
+      height: 1px;
+      position: relative;
+      cursor: pointer !important;
+    }
+    .Divider[data-astro-cid-jqyytg4m]:before {
+      content: "";
+      height: 4rem;
+      display: block;
+      position: absolute;
+      top: -2rem;
+      left: 0;
+      right: 0;
+    }
+    .Divider[data-astro-cid-jqyytg4m] svg {
+      pointer-events: none;
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      top: -99px;
+      left: 0;
+      right: 0;
+      overflow: visible;
+    }
+    .Divider[data-astro-cid-jqyytg4m] path {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.2) !important;
+      stroke-width: 1.2px;
+      transition: stroke 0.3s ease;
+    }
+    .interactive-divider:hover path {
+      stroke: rgba(255, 42, 77, 0.8) !important;
+    }
+
+    /* Benefits Rotating Icons */
+    .icon[data-astro-cid-n6egurcx] {
+      color: #FF2A4D !important;
+    }
+
+    /* Word Reveal Stagger Animation */
+    .word-mask {
+      overflow: clip;
+      vertical-align: top;
+      margin: -0.2em;
+      display: inline-block;
+    }
+    .word-char {
+      padding: 0.2em;
+      display: inline-block;
+      will-change: transform;
+      transform: translate3d(0, 0%, 0);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Cuberto CtaButton (Pill Button) */
+    .CtaButton[data-astro-cid-s6shze65] {
+      color: #ffffff !important;
+      background: transparent !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .CtaButton[data-astro-cid-s6shze65]:hover {
+      border-color: #FF2A4D !important;
+      box-shadow: 0 10px 30px rgba(255, 42, 77, 0.4) !important;
+      transform: scale(1.03) !important;
+    }
+    .ripple[data-astro-cid-s6shze65] span[data-astro-cid-s6shze65] {
+      background: #FF2A4D !important;
+    }
+    .title[data-astro-cid-s6shze65] span[data-astro-cid-s6shze65]:after {
+      color: #ffffff !important;
+    }
+
+    /* Client Feedback Carousel */
+    .client-feedback-section {
+      position: relative;
+      margin: 10rem 0 14rem;
+    }
+    .feedback-card {
+      width: 440px !important;
+      max-width: 85vw !important;
+      background: rgba(11, 13, 23, 0.85) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 24px !important;
+      padding: 34px 30px !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      min-height: 320px !important;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
+    }
+    .feedback-card:hover {
+      border-color: rgba(255, 42, 77, 0.5) !important;
+      transform: translateY(-5px) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 42, 77, 0.2) !important;
+    }
+    .feedback-stars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      color: #FFB800;
+    }
+
+    /* Home Page Footer (Made For The Hunt) */
+    .footer-huge-title {
+      font-family: 'Anton', 'Impact', sans-serif !important;
+      font-size: clamp(4.5rem, 13vw, 11rem) !important;
+      font-weight: 900 !important;
+      line-height: 0.88 !important;
+      letter-spacing: -0.02em !important;
+      text-transform: uppercase !important;
+      color: #ffffff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .footer-title-red {
+      color: #FF2A4D !important;
+    }
+    .footer-kicker-red {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.22em !important;
+      text-transform: uppercase !important;
+      color: #FF2A4D !important;
+    }
+  
+    /* Enhanced Large Footer (Services Page - Pic 2) */
+    #footer {
+      padding-top: 5rem !important;
+      padding-bottom: 7rem !important;
+    }
+    #footer .footer-huge-title {
+      font-size: clamp(5.5rem, 15vw, 13rem) !important;
+    }
+    #footer h4 {
+      font-size: 1.25rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.18em !important;
+      color: #ffffff !important;
+      margin-bottom: 1.5rem !important;
+      text-transform: uppercase !important;
+    }
+    #footer ul li a {
+      font-size: 1.15rem !important;
+      font-weight: 600 !important;
+      line-height: 2.4 !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+      transition: all 0.25s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+    #footer ul li a:hover {
+      color: #FF2A4D !important;
+      transform: translateX(5px) !important;
+    }
+    #footer .mt-14 {
+      margin-top: 4.5rem !important;
+      padding-top: 2rem !important;
+      font-size: 1rem !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+    #footer .mt-14 a {
+      font-size: 1rem !important;
+      color: rgba(255, 255, 255, 0.75) !important;
+    }
+    #footer .mt-14 a:hover {
+      color: #FF2A4D !important;
+    }
+
+  /* Uniform Navbar Montserrat Typography */
+  .rafsan-capsule-nav, .rafsan-nav-item {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+
+    /* Appiex Blog Pill Button */
+    .rafsan-blog-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 7px 18px !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 13.5px !important;
+      font-weight: 500 !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      text-decoration: none !important;
+    }
+    .rafsan-blog-btn:hover, .rafsan-blog-btn.active {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 42, 77, 0.5) !important;
+      color: #FF2A4D !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 15px rgba(255, 42, 77, 0.25) !important;
+    }
+
+</style>
+  <!-- Instant 0.1s Sub-Second Navigation Engine -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "index.html",
+          "projects.html",
+          "services.html",
+          "refer.html",
+          "partners.html",
+          "case-studies.html",
+          "web-development.html",
+          "ui-ux-3d-design.html",
+          "ai-automation.html",
+          "seo-marketing.html",
+          "gaming.html",
+          "digital-strategy.html",
+          "team.html",
+          "/"
+        ],
+        "eagerness": "immediate"
+      }
+    ],
+    "prefetch": [
+      {
+        "source": "document",
+        "where": {
+          "and": [
+            { "href_matches": "/*" }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+  
+  
+  
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
+  <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight with Smooth Fadeout) -->
+  
+  <link rel="stylesheet" href="/styles/seo-links.css?v=20261031_restore">
+  <link rel="stylesheet" href="/styles/seo-content.css">
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
   </style>
+  <script src="/scripts/instant-nav.js?v=20261031_morph_x6" defer></script>
 
-  <!-- GSAP & Lenis CDN -->
+<style>
+@media (min-width: 768px) {
+  .rafsan-navbar-shell {
+    padding: calc(0.55rem + 11px) 0 0.35rem 0 !important;
+  }
+  .rafsan-nav-container {
+    padding: 0 1.5rem !important;
+  }
+  .rafsan-capsule-nav {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+  }
+}
+</style>
+
+<script>
+  window.__toggleMobileServices = function(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+    var btn = document.getElementById('rafsan-mobile-services-toggle');
+    var sub = document.getElementById('rafsan-mobile-services-sub');
+    if (!sub) return false;
+
+    var isOpen = sub.classList.contains('open');
+    if (isOpen) {
+      sub.classList.remove('open');
+      if (btn) {
+        btn.classList.remove('expanded');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      sub.style.setProperty('max-height', '0px', 'important');
+      sub.style.setProperty('opacity', '0', 'important');
+      sub.style.setProperty('visibility', 'hidden', 'important');
+      sub.style.setProperty('pointer-events', 'none', 'important');
+      sub.style.setProperty('margin', '0', 'important');
+      sub.style.setProperty('padding', '0 0.5rem', 'important');
+    } else {
+      sub.classList.add('open');
+      if (btn) {
+        btn.classList.add('expanded');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      sub.style.setProperty('display', 'flex', 'important');
+      sub.style.setProperty('flex-direction', 'column', 'important');
+      sub.style.setProperty('max-height', '800px', 'important');
+      sub.style.setProperty('opacity', '1', 'important');
+      sub.style.setProperty('visibility', 'visible', 'important');
+      sub.style.setProperty('pointer-events', 'auto', 'important');
+      sub.style.setProperty('margin', '0.6rem 0 0.85rem 0', 'important');
+      sub.style.setProperty('padding', '0.5rem 0.5rem 0.75rem 0.5rem', 'important');
+      sub.style.setProperty('border', '1px solid rgba(255, 42, 77, 0.22)', 'important');
+      sub.style.setProperty('background', 'rgba(255, 42, 77, 0.06)', 'important');
+      sub.style.setProperty('border-radius', '14px', 'important');
+    }
+    return false;
+  };
+</script>
+
+</head>
+<body class="min-h-screen bg-[#030408] text-slate-100 flex flex-col justify-between relative selection:bg-red-600 selection:text-white">
+  <!-- Cuberto-Style Page Transition Curtain (Appiex Red Ambient Aesthetic) -->
+  <div id="appiex-cuberto-curtain" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 99999999; pointer-events: none; background: #030408;" aria-hidden="true">
+    <div class="appiex-curtain-ambient"></div>
+  </div>
+  
+  </div>
+
+  <!-- Background Video Overlay (Identical to Home) -->
+  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center z-0" autoplay loop muted playsinline webkit-playsinline preload="none" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.48;">
+    <source src="./assets/static/vde.mp4" type="video/mp4">
+    <source src="./assets/static/vde.webm" type="video/webm">
+  </video>
+  <div class="pointer-events-none fixed inset-0 h-screen w-screen z-0" style="mix-blend-mode: color; background-color: #ff0000; opacity: 0.85;" aria-hidden="true"></div>
+  <div class="pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 w-[75rem] h-[35rem] ambient-glow-red blur-3xl z-0" aria-hidden="true"></div>
+
+  <!-- APPIEX SIGNATURE FLOATING CAPSULE NAVBAR (EXACT SAME ACROSS ALL PAGES) -->
+  <header class="rafsan-navbar-shell" id="rafsan-navbar">
+    <div class="rafsan-nav-container">
+      
+      <!-- 1. Brand Logo (Left) -->
+      <a href="index.html#home" class="rafsan-brand" aria-label="appiex">
+        <img src="./images/appiex-wordmark-white.png" alt="appiex" class="brand-wordmark-img" style="height: 28px; width: auto; object-fit: contain; display: block;">
+      </a>
+
+      <!-- 2. Floating Capsule Navbar (Center) -->
+      <nav class="rafsan-capsule-nav" aria-label="Main Navigation">
+        <div class="rafsan-capsule-pill" id="rafsan-capsule-pill"></div>
+        <a href="index.html#home" class="rafsan-nav-item" data-section="home">Home</a>
+        
+        <!-- Services Dropdown with Caret (Active on this page) -->
+        <div class="services-nav-wrap" id="services-nav-wrap">
+          <a href="services.html" class="rafsan-nav-item active" data-section="services" style="display: inline-flex; align-items: center;">
+            Services
+            <span class="services-caret" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Mega Menu Popup -->
+          <div class="services-popup-menu" id="services-popup-menu" role="menu">
+            <div class="services-mega-left">
+              <div>
+                <span class="services-mega-badge">EXCLUSIVE</span>
+                <h4 class="services-mega-title">EXPLORE OUR SERVICES CURATIONS</h4>
+              </div>
+              <a href="services.html" class="services-mega-btn">SEE OVERVIEW</a>
+            </div>
+            <div class="services-mega-right">
+              <span class="services-mega-subtitle">CORE DISCIPLINES</span>
+              <div class="services-mega-grid">
+                <a href="digital-strategy.html" class="services-mega-item">DIGITAL STRATEGY</a>
+                <a href="web-development.html" class="services-mega-item">WEB DEVELOPMENT (FULL-STACK)</a>
+                <a href="ui-ux-3d-design.html" class="services-mega-item">UI/UX &amp; 3D DESIGN</a>
+                <a href="ai-automation.html" class="services-mega-item">AI AUTOMATION</a>
+                <a href="seo-marketing.html" class="services-mega-item">SEO &amp; MARKETING</a>
+              <a href="gaming.html" class="services-mega-item">GAMING &amp; 3D WORLDS</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="refer.html" class="rafsan-nav-item" data-section="refer">Refer</a>
+        <a href="partners.html" class="rafsan-nav-item" data-section="partners">Partnership</a>
+        <a href="projects.html" class="rafsan-nav-item" data-section="projects">Projects</a>
+        <a href="index.html#contact" class="rafsan-nav-item" data-section="contact">Contact</a>
+      </nav>
+
+      <!-- 3. Action Buttons (Right) -->
+      <div class="rafsan-nav-actions">
+        <a href="blog.html" class="rafsan-blog-btn" aria-label="Blog">Blog</a>
+        <a href="login.html" class="rafsan-hire-btn" id="nav-login-btn">Login</a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="rafsan-mobile-wrap">
+        <a href="login.html" class="rafsan-hire-btn" id="mobile-wrap-login-btn">Login</a>
+        <button type="button" class="rafsan-mobile-toggle" id="rafsan-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top"></span>
+          <span class="hamburger-line line-bottom"></span>
+        </span>
+      </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    </header>
+
+  <!-- ========================================================
+       MAIN VIEW (CUBERTO SERVICES PAGE FULL REPLICA)
+       ======================================================== -->
+  <main class="View relative z-10">
+
+    <!-- 1. TOPHEAD HERO SECTION -->
+    <section class="TopheadSection" data-astro-cid-yhlrtawi="">
+      <div class="Container container" data-astro-cid-yhlrtawi="true" data-astro-cid-7bogrbt7="">
+        <div class="header" data-astro-cid-yhlrtawi="">
+          <h1 data-astro-cid-yhlrtawi="" aria-label="Software and Digital Services" class="reveal-words">
+            <span class="word-mask"><span class="word-char">Software</span></span>
+            <span class="word-mask"><span class="word-char">&amp; Digital Services</span></span>
+          </h1>
+        </div>
+        <div class="title" data-astro-cid-yhlrtawi="">
+          <h2 data-astro-cid-yhlrtawi="true" aria-label="Going beyond what’s possible" class="reveal-words">
+            <span class="word-mask"><span class="word-char">Going</span></span>
+            <span class="word-mask"><span class="word-char">beyond</span></span>
+            <span class="word-mask"><span class="word-char">what’s</span></span>
+            <span class="word-mask"><span class="word-char">possible</span></span>
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PREVIEW SECTION: SHOWREEL VIDEO -->
+    <section class="PreviewSection" id="showreel" data-astro-cid-u5y7bqyk="">
+      <div class="Container container" data-astro-cid-u5y7bqyk="true" data-astro-cid-7bogrbt7="">
+        <div class="main -lg" data-astro-cid-u5y7bqyk="" style="opacity: 1;">
+          <div class="media" data-astro-cid-u5y7bqyk="">
+            <video autoplay playsinline loop muted preload="none" data-astro-cid-u5y7bqyk="">
+              <source src="./assets/Agency_project_presentation_1080p.mp4" type="video/mp4">
+              <source src="./assets/libasnafs-showcase.mp4" type="video/mp4">
+              <source src="./assets/mamunwifi-showcase.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SUMMARY SECTION: OUR SOLUTIONS (CUBERTO EXACT NESTED GRID) -->
+    <section class="SummarySection" id="solutions" data-astro-cid-n6egurcx="">
+      <div class="content" data-astro-cid-n6egurcx="">
+        <div class="Container container -size-lg" data-astro-cid-n6egurcx="true" data-astro-cid-7bogrbt7="">
+          <div class="main" data-astro-cid-n6egurcx="">
+            
+            <div class="header" data-astro-cid-n6egurcx="">
+              <h2 data-astro-cid-n6egurcx="" aria-label="Our solutions" class="reveal-words">
+                <span class="word-mask"><span class="word-char">Our</span></span>
+                <span class="word-mask"><span class="word-char">solutions</span></span>
+              </h2>
+            </div>
+
+            <!-- Service 1: DIGITAL STRATEGY -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="caption" data-astro-cid-n6egurcx="">
+                  <h3 data-astro-cid-n6egurcx="" class="reveal-words">
+                    <span class="word-mask"><span class="word-char">Digital</span></span>
+                    <span class="word-mask"><span class="word-char">Strategy</span></span>
+                  </h3>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">Data-driven</span></span>
+                      <span class="word-mask"><span class="word-char">market</span></span>
+                      <span class="word-mask"><span class="word-char">positioning,</span></span>
+                      <span class="word-mask"><span class="word-char">brand</span></span>
+                      <span class="word-mask"><span class="word-char">transformation,</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">omnichannel</span></span>
+                      <span class="word-mask"><span class="word-char">roadmaps</span></span>
+                      <span class="word-mask"><span class="word-char">engineered</span></span>
+                      <span class="word-mask"><span class="word-char">to</span></span>
+                      <span class="word-mask"><span class="word-char">dominate</span></span>
+                      <span class="word-mask"><span class="word-char">competitive</span></span>
+                      <span class="word-mask"><span class="word-char">markets</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">scale</span></span>
+                      <span class="word-mask"><span class="word-char">revenue</span></span>
+                      <span class="word-mask"><span class="word-char">exponentially.</span></span>
+                    </p>
+                  </div>
+                  <div class="action" data-astro-cid-n6egurcx="">
+                    <a href="digital-strategy.html" data-astro-cid-n6egurcx="true" data-astro-cid-s6shze65="true" class="CtaButton">
+                      <span class="border" data-astro-cid-s6shze65=""></span>
+                      <span class="ripple" data-astro-cid-s6shze65=""><span data-astro-cid-s6shze65=""></span></span>
+                      <span class="title" data-astro-cid-s6shze65=""><span data-text="Digital Strategy" data-astro-cid-s6shze65="">Digital Strategy</span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 2: WEB DEVELOPMENT (FULL-STACK) -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="caption" data-astro-cid-n6egurcx="">
+                  <h3 data-astro-cid-n6egurcx="" class="reveal-words">
+                    <span class="word-mask"><span class="word-char">Web</span></span>
+                    <span class="word-mask"><span class="word-char">Development</span></span>
+                    <span class="word-mask"><span class="word-char text-xs tracking-wider opacity-70 block sm:inline">(Full-Stack)</span></span>
+                  </h3>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">High-performance</span></span>
+                      <span class="word-mask"><span class="word-char">Next.js</span></span>
+                      <span class="word-mask"><span class="word-char">14,</span></span>
+                      <span class="word-mask"><span class="word-char">React,</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">headless</span></span>
+                      <span class="word-mask"><span class="word-char">cloud</span></span>
+                      <span class="word-mask"><span class="word-char">architectures.</span></span>
+                      <span class="word-mask"><span class="word-char">Ultra-fast</span></span>
+                      <span class="word-mask"><span class="word-char">sub-second</span></span>
+                      <span class="word-mask"><span class="word-char">speed,</span></span>
+                      <span class="word-mask"><span class="word-char">bespoke</span></span>
+                      <span class="word-mask"><span class="word-char">APIs,</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">bank-grade</span></span>
+                      <span class="word-mask"><span class="word-char">enterprise</span></span>
+                      <span class="word-mask"><span class="word-char">reliability.</span></span>
+                    </p>
+                  </div>
+                  <div class="action" data-astro-cid-n6egurcx="">
+                    <a href="web-development.html" data-astro-cid-n6egurcx="true" data-astro-cid-s6shze65="true" class="CtaButton">
+                      <span class="border" data-astro-cid-s6shze65=""></span>
+                      <span class="ripple" data-astro-cid-s6shze65=""><span data-astro-cid-s6shze65=""></span></span>
+                      <span class="title" data-astro-cid-s6shze65=""><span data-text="Web Development" data-astro-cid-s6shze65="">Web Development</span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 3: UI/UX & 3D DESIGN -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="caption" data-astro-cid-n6egurcx="">
+                  <h3 data-astro-cid-n6egurcx="" class="reveal-words">
+                    <span class="word-mask"><span class="word-char">UI/UX</span></span>
+                    <span class="word-mask"><span class="word-char">&amp;</span></span>
+                    <span class="word-mask"><span class="word-char">3D</span></span>
+                    <span class="word-mask"><span class="word-char">Design</span></span>
+                  </h3>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">Award-winning</span></span>
+                      <span class="word-mask"><span class="word-char">spatial</span></span>
+                      <span class="word-mask"><span class="word-char">interfaces,</span></span>
+                      <span class="word-mask"><span class="word-char">interactive</span></span>
+                      <span class="word-mask"><span class="word-char">WebGL/Three.js</span></span>
+                      <span class="word-mask"><span class="word-char">physics,</span></span>
+                      <span class="word-mask"><span class="word-char">glassmorphism,</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">bespoke</span></span>
+                      <span class="word-mask"><span class="word-char">motion</span></span>
+                      <span class="word-mask"><span class="word-char">choreography</span></span>
+                      <span class="word-mask"><span class="word-char">crafted</span></span>
+                      <span class="word-mask"><span class="word-char">to</span></span>
+                      <span class="word-mask"><span class="word-char">captivate</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">convert.</span></span>
+                    </p>
+                  </div>
+                  <div class="action" data-astro-cid-n6egurcx="">
+                    <a href="ui-ux-3d-design.html" data-astro-cid-n6egurcx="true" data-astro-cid-s6shze65="true" class="CtaButton">
+                      <span class="border" data-astro-cid-s6shze65=""></span>
+                      <span class="ripple" data-astro-cid-s6shze65=""><span data-astro-cid-s6shze65=""></span></span>
+                      <span class="title" data-astro-cid-s6shze65=""><span data-text="UI/UX &amp; 3D Design" data-astro-cid-s6shze65="">UI/UX &amp; 3D Design</span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 4: AI AUTOMATION -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="caption" data-astro-cid-n6egurcx="">
+                  <h3 data-astro-cid-n6egurcx="" class="reveal-words">
+                    <span class="word-mask"><span class="word-char">AI</span></span>
+                    <span class="word-mask"><span class="word-char">Automation</span></span>
+                  </h3>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">Autonomous</span></span>
+                      <span class="word-mask"><span class="word-char">multi-agent</span></span>
+                      <span class="word-mask"><span class="word-char">systems,</span></span>
+                      <span class="word-mask"><span class="word-char">enterprise</span></span>
+                      <span class="word-mask"><span class="word-char">LLM</span></span>
+                      <span class="word-mask"><span class="word-char">fine-tuning,</span></span>
+                      <span class="word-mask"><span class="word-char">intelligent</span></span>
+                      <span class="word-mask"><span class="word-char">customer</span></span>
+                      <span class="word-mask"><span class="word-char">routing,</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">automated</span></span>
+                      <span class="word-mask"><span class="word-char">data</span></span>
+                      <span class="word-mask"><span class="word-char">pipelines</span></span>
+                      <span class="word-mask"><span class="word-char">that</span></span>
+                      <span class="word-mask"><span class="word-char">slash</span></span>
+                      <span class="word-mask"><span class="word-char">operational</span></span>
+                      <span class="word-mask"><span class="word-char">costs.</span></span>
+                    </p>
+                  </div>
+                  <div class="action" data-astro-cid-n6egurcx="">
+                    <a href="ai-automation.html" data-astro-cid-n6egurcx="true" data-astro-cid-s6shze65="true" class="CtaButton">
+                      <span class="border" data-astro-cid-s6shze65=""></span>
+                      <span class="ripple" data-astro-cid-s6shze65=""><span data-astro-cid-s6shze65=""></span></span>
+                      <span class="title" data-astro-cid-s6shze65=""><span data-text="AI Automation" data-astro-cid-s6shze65="">AI Automation</span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 5: SEO & MARKETING -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="caption" data-astro-cid-n6egurcx="">
+                  <h3 data-astro-cid-n6egurcx="" class="reveal-words">
+                    <span class="word-mask"><span class="word-char">SEO</span></span>
+                    <span class="word-mask"><span class="word-char">&amp;</span></span>
+                    <span class="word-mask"><span class="word-char">Marketing</span></span>
+                  </h3>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">Algorithmic</span></span>
+                      <span class="word-mask"><span class="word-char">search</span></span>
+                      <span class="word-mask"><span class="word-char">domination,</span></span>
+                      <span class="word-mask"><span class="word-char">technical</span></span>
+                      <span class="word-mask"><span class="word-char">Core</span></span>
+                      <span class="word-mask"><span class="word-char">Web</span></span>
+                      <span class="word-mask"><span class="word-char">Vitals</span></span>
+                      <span class="word-mask"><span class="word-char">optimization,</span></span>
+                      <span class="word-mask"><span class="word-char">viral</span></span>
+                      <span class="word-mask"><span class="word-char">growth</span></span>
+                      <span class="word-mask"><span class="word-char">engines,</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">high-converting</span></span>
+                      <span class="word-mask"><span class="word-char">funnels</span></span>
+                      <span class="word-mask"><span class="word-char">that</span></span>
+                      <span class="word-mask"><span class="word-char">compound</span></span>
+                      <span class="word-mask"><span class="word-char">ROI.</span></span>
+                    </p>
+                  </div>
+                  <div class="action" data-astro-cid-n6egurcx="">
+                    <a href="seo-marketing.html" data-astro-cid-n6egurcx="true" data-astro-cid-s6shze65="true" class="CtaButton">
+                      <span class="border" data-astro-cid-s6shze65=""></span>
+                      <span class="ripple" data-astro-cid-s6shze65=""><span data-astro-cid-s6shze65=""></span></span>
+                      <span class="title" data-astro-cid-s6shze65=""><span data-text="SEO &amp; Marketing" data-astro-cid-s6shze65="">SEO &amp; Marketing</span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SUMMARY SECTION: BENEFITS OF WORKING WITH US (CUBERTO EXACT NESTED GRID) -->
+    <section class="SummarySection -inverse -fill" id="benefits" data-astro-cid-n6egurcx="">
+      <div class="fill" data-astro-cid-n6egurcx=""></div>
+      <div class="content" data-astro-cid-n6egurcx="">
+        <div class="Container container -size-lg" data-astro-cid-n6egurcx="true" data-astro-cid-7bogrbt7="">
+          <div class="main" data-astro-cid-n6egurcx="">
+            
+            <div class="header" data-astro-cid-n6egurcx="">
+              <h2 data-astro-cid-n6egurcx="" aria-label="Benefits of working with us" class="reveal-words">
+                <span class="word-mask"><span class="word-char">Benefits</span></span>
+                <span class="word-mask"><span class="word-char">of</span></span><br class="-gxs">
+                <span class="word-mask"><span class="word-char">working</span></span>
+                <span class="word-mask"><span class="word-char">with</span></span>
+                <span class="word-mask"><span class="word-char">us</span></span>
+              </h2>
+            </div>
+
+            <!-- Benefit 1 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -rotating" data-astro-cid-n6egurcx="">
+                  <svg fill="none" viewBox="0 0 80 80" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <path stroke="currentColor" stroke-width="4" d="M22.72 71.22a9 9 0 0 0 8.36 3.33l27.32-3.97A9 9 0 0 0 65.46 65l10.22-25.64a9 9 0 0 0-1.3-8.9L57.29 8.77a9 9 0 0 0-8.36-3.33L21.6 9.42a9 9 0 0 0-7.06 5.57L4.32 40.64a9 9 0 0 0 1.3 8.9l17.1 21.68Z" />
+                    <path stroke="currentColor" stroke-width="4" d="m27.21 23.61 5.13 35.6L60.56 36.9 27.2 23.6Z" />
+                    <path stroke="currentColor" stroke-width="4.08" d="m26.97 72.69 6.11-15.62" />
+                    <path stroke="currentColor" stroke-width="4.08" d="m59.39 37.31 15.59-2.92" />
+                    <path stroke="currentColor" stroke-width="4.08" d="m18.46 11.87 9.67 12.62" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">Time zones ain’t no thing</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">Wherever</span></span>
+                      <span class="word-mask"><span class="word-char">you</span></span>
+                      <span class="word-mask"><span class="word-char">are</span></span>
+                      <span class="word-mask"><span class="word-char">in</span></span>
+                      <span class="word-mask"><span class="word-char">the</span></span>
+                      <span class="word-mask"><span class="word-char">world,</span></span>
+                      <span class="word-mask"><span class="word-char">you’ll</span></span>
+                      <span class="word-mask"><span class="word-char">feel</span></span>
+                      <span class="word-mask"><span class="word-char">like</span></span>
+                      <span class="word-mask"><span class="word-char">we’re</span></span>
+                      <span class="word-mask"><span class="word-char">right</span></span>
+                      <span class="word-mask"><span class="word-char">around</span></span>
+                      <span class="word-mask"><span class="word-char">the</span></span>
+                      <span class="word-mask"><span class="word-char">corner.</span></span>
+                      <span class="word-mask"><span class="word-char">With</span></span>
+                      <span class="word-mask"><span class="word-char">12</span></span>
+                      <span class="word-mask"><span class="word-char">years</span></span>
+                      <span class="word-mask"><span class="word-char">of</span></span>
+                      <span class="word-mask"><span class="word-char">experience,</span></span>
+                      <span class="word-mask"><span class="word-char">our</span></span>
+                      <span class="word-mask"><span class="word-char">business</span></span>
+                      <span class="word-mask"><span class="word-char">processes</span></span>
+                      <span class="word-mask"><span class="word-char">are</span></span>
+                      <span class="word-mask"><span class="word-char">seamless</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">time</span></span>
+                      <span class="word-mask"><span class="word-char">differences</span></span>
+                      <span class="word-mask"><span class="word-char">don’t</span></span>
+                      <span class="word-mask"><span class="word-char">matter.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -rotating -cw" data-astro-cid-n6egurcx="">
+                  <svg viewBox="0 0 65 65" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <path d="m34.2 25.05-1.7-13.26-1.7 13.26-7.28-11.2 4.22 12.68-11.43-6.94 9.3 9.6-13.3-1.3 12.55 4.61-12.55 4.6 13.3-1.28-9.3 9.6 11.43-6.95-4.22 12.69 7.28-11.21 1.7 13.26 1.7-13.26 7.28 11.2-4.22-12.68 11.43 6.94-9.3-9.6 13.3 1.3-12.55-4.61 12.55-4.6-13.3 1.28 9.3-9.6-11.43 6.95 4.23-12.69-7.29 11.21ZM46.6 3.22l-6.62 19.9L57.9 12.24 43.31 27.3l20.88-2.03-19.7 7.23 19.7 7.23L43.3 37.7l14.6 15.06-17.93-10.88 6.62 19.9L35.17 44.2 32.5 65l-2.67-20.8L18.4 61.77l6.62-19.9L7.1 52.76 21.7 37.7.82 39.73l19.7-7.23L.8 25.27 21.7 27.3 7.1 12.24l17.92 10.88-6.62-19.9L29.83 20.8 32.5 0l2.67 20.8L46.6 3.23Z" fill="currentColor" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">Impossible? We’re on it</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">“Impossible”</span></span>
+                      <span class="word-mask"><span class="word-char">simply</span></span>
+                      <span class="word-mask"><span class="word-char">does</span></span>
+                      <span class="word-mask"><span class="word-char">not</span></span>
+                      <span class="word-mask"><span class="word-char">exist</span></span>
+                      <span class="word-mask"><span class="word-char">in</span></span>
+                      <span class="word-mask"><span class="word-char">our</span></span>
+                      <span class="word-mask"><span class="word-char">vocabulary.</span></span>
+                      <span class="word-mask"><span class="word-char">We</span></span>
+                      <span class="word-mask"><span class="word-char">develop</span></span>
+                      <span class="word-mask"><span class="word-char">products</span></span>
+                      <span class="word-mask"><span class="word-char">exactly</span></span>
+                      <span class="word-mask"><span class="word-char">as</span></span>
+                      <span class="word-mask"><span class="word-char">they</span></span>
+                      <span class="word-mask"><span class="word-char">were</span></span>
+                      <span class="word-mask"><span class="word-char">at</span></span>
+                      <span class="word-mask"><span class="word-char">the</span></span>
+                      <span class="word-mask"><span class="word-char">design</span></span>
+                      <span class="word-mask"><span class="word-char">stage,</span></span>
+                      <span class="word-mask"><span class="word-char">no</span></span>
+                      <span class="word-mask"><span class="word-char">simplifications,</span></span>
+                      <span class="word-mask"><span class="word-char">no</span></span>
+                      <span class="word-mask"><span class="word-char">shortcuts,</span></span>
+                      <span class="word-mask"><span class="word-char">no</span></span>
+                      <span class="word-mask"><span class="word-char">BS.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -stroka" data-astro-cid-n6egurcx="">
+                  <svg viewBox="0 0 64 64" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <rect x="16" y="2" width="32" height="60" rx="16" fill="none" stroke="currentColor" stroke-width="4" />
+                    <rect x="2" y="48" width="32" height="60" rx="16" fill="none" transform="rotate(-90 2 48)" stroke="currentColor" stroke-width="4" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">Flexible work terms</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">Just</span></span>
+                      <span class="word-mask"><span class="word-char">like</span></span>
+                      <span class="word-mask"><span class="word-char">we</span></span>
+                      <span class="word-mask"><span class="word-char">stick</span></span>
+                      <span class="word-mask"><span class="word-char">to</span></span>
+                      <span class="word-mask"><span class="word-char">a</span></span>
+                      <span class="word-mask"><span class="word-char">fixed</span></span>
+                      <span class="word-mask"><span class="word-char">budget,</span></span>
+                      <span class="word-mask"><span class="word-char">we</span></span>
+                      <span class="word-mask"><span class="word-char">stay</span></span>
+                      <span class="word-mask"><span class="word-char">within</span></span>
+                      <span class="word-mask"><span class="word-char">a</span></span>
+                      <span class="word-mask"><span class="word-char">set</span></span>
+                      <span class="word-mask"><span class="word-char">Time</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">Materials</span></span>
+                      <span class="word-mask"><span class="word-char">framework.</span></span>
+                      <span class="word-mask"><span class="word-char">Whatever</span></span>
+                      <span class="word-mask"><span class="word-char">terms</span></span>
+                      <span class="word-mask"><span class="word-char">we</span></span>
+                      <span class="word-mask"><span class="word-char">agree</span></span>
+                      <span class="word-mask"><span class="word-char">to</span></span>
+                      <span class="word-mask"><span class="word-char">will</span></span>
+                      <span class="word-mask"><span class="word-char">depend</span></span>
+                      <span class="word-mask"><span class="word-char">on</span></span>
+                      <span class="word-mask"><span class="word-char">your</span></span>
+                      <span class="word-mask"><span class="word-char">project</span></span>
+                      <span class="word-mask"><span class="word-char">needs.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 4 -->
+            <div class="divider" data-astro-cid-n6egurcx="">
+              <div class="Divider interactive-divider" data-astro-cid-n6egurcx="true" data-astro-cid-jqyytg4m="">
+                <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+              </div>
+            </div>
+            <div class="grid" data-astro-cid-n6egurcx="">
+              <div class="grid__col -left" data-astro-cid-n6egurcx="">
+                <div class="icon -rotating -cw" data-astro-cid-n6egurcx="">
+                  <svg fill="none" viewBox="0 0 80 80" data-astro-cid-n6egurcx="true" data-astro-cid-nnxxpn6e="true">
+                    <path stroke="currentColor" stroke-width="4" d="M44.95 77.68A38.02 38.02 0 0 1 2.32 44.95 38.02 38.02 0 0 1 35.05 2.32a38.02 38.02 0 0 1 42.63 32.73 38.02 38.02 0 0 1-32.73 42.63Z" />
+                    <path stroke="currentColor" stroke-width="4" d="M44.95 77.68a25.01 25.01 0 0 1-6.51-49.58 25.01 25.01 0 0 1 6.51 49.58Z" />
+                    <path stroke="currentColor" stroke-width="4" d="M41.56 51.9a25.01 25.01 0 0 1-6.51-49.58 25.01 25.01 0 0 1 6.51 49.58Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="grid__col -right" data-astro-cid-n6egurcx="">
+                <div class="info" data-astro-cid-n6egurcx="">
+                  <div class="caption -offset" data-astro-cid-n6egurcx="">
+                    <h3 data-astro-cid-n6egurcx="">Full spectrum of services</h3>
+                  </div>
+                  <div class="text" data-astro-cid-n6egurcx="">
+                    <p data-astro-cid-n6egurcx="" class="reveal-words scrub-words">
+                      <span class="word-mask"><span class="word-char">Any</span></span>
+                      <span class="word-mask"><span class="word-char">solution</span></span>
+                      <span class="word-mask"><span class="word-char">your</span></span>
+                      <span class="word-mask"><span class="word-char">business</span></span>
+                      <span class="word-mask"><span class="word-char">needs,</span></span>
+                      <span class="word-mask"><span class="word-char">we’re</span></span>
+                      <span class="word-mask"><span class="word-char">on</span></span>
+                      <span class="word-mask"><span class="word-char">it:</span></span>
+                      <span class="word-mask"><span class="word-char">UI/UX</span></span>
+                      <span class="word-mask"><span class="word-char">design,</span></span>
+                      <span class="word-mask"><span class="word-char">logo</span></span>
+                      <span class="word-mask"><span class="word-char">creation,</span></span>
+                      <span class="word-mask"><span class="word-char">mobile</span></span>
+                      <span class="word-mask"><span class="word-char">app</span></span>
+                      <span class="word-mask"><span class="word-char">design,</span></span>
+                      <span class="word-mask"><span class="word-char">frontend</span></span>
+                      <span class="word-mask"><span class="word-char">and</span></span>
+                      <span class="word-mask"><span class="word-char">backend</span></span>
+                      <span class="word-mask"><span class="word-char">development,</span></span>
+                      <span class="word-mask"><span class="word-char">technical</span></span>
+                      <span class="word-mask"><span class="word-char">support.</span></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CLIENT COMMITMENTS & ENGINEERING STANDARDS SECTION -->
+    <section class="client-feedback-section" id="feedback">
+      <div class="Container container -size-lg" data-astro-cid-7bogrbt7="">
+        
+        <div class="divider mb-12">
+          <div class="Divider interactive-divider" data-astro-cid-jqyytg4m="">
+            <svg><path d="M0,100 Q309.5,100 619,100" /></svg>
+          </div>
+        </div>
+
+        <div class="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 mb-4">
+              <span class="w-2 h-2 rounded-full bg-[#FF2A4D] animate-ping"></span>
+              <span class="text-xs font-mono font-bold tracking-[0.2em] text-red-300 uppercase">ENGINEERING STANDARDS // CLIENT COMMITMENTS</span>
+            </div>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tight text-white reveal-words">
+              How we engineer with trust
+            </h2>
+          </div>
+
+          <!-- Swiper Navigation Arrows -->
+          <div class="flex items-center gap-3">
+            <button class="feedback-prev-btn w-12 h-12 rounded-full border border-white/20 bg-white/5 hover:bg-red-500/20 hover:border-red-500 text-white flex items-center justify-center transition-all shadow-lg active:scale-95" aria-label="Previous standard">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button class="feedback-next-btn w-12 h-12 rounded-full border border-white/20 bg-white/5 hover:bg-red-500/20 hover:border-red-500 text-white flex items-center justify-center transition-all shadow-lg active:scale-95" aria-label="Next standard">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Standards Swiper Container -->
+        <div class="swiper feedback-swiper" id="testimonials-swiper">
+          <div class="swiper-wrapper">
+            
+            <!-- Standard 1 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-red-400 uppercase">
+                    01 // INTELLECTUAL PROPERTY
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-xs font-bold text-emerald-400 border border-emerald-500/20">
+                    100% Client Ownership
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Full Code Ownership & Zero Lock-in</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Every line of production Next.js, Three.js, and backend code is delivered directly to your company repository under full commercial license. No proprietary lock-in, ever.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-rose-700 flex items-center justify-center text-white font-bold text-sm">
+                  IP
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Direct Repository Handover</div>
+                  <div class="text-slate-400 text-xs font-mono">Mutual NDA Protected</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 2 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-purple-400 uppercase">
+                    02 // PERFORMANCE SLA
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-purple-500/10 text-xs font-bold text-purple-400 border border-purple-500/20">
+                    95+ Lighthouse
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Sub-Second Performance Architecture</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  We engineer digital storefronts and platforms adhering to strict performance SLAs: 95+ Core Web Vitals, sub-1.5s Largest Contentful Paint (LCP), and smooth 60fps WebGL rendering.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-700 flex items-center justify-center text-white font-bold text-sm">
+                  SLA
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Edge CDN & Optimized Assets</div>
+                  <div class="text-slate-400 text-xs font-mono">Measured on Mobile Devices</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 3 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-blue-400 uppercase">
+                    03 // SPRINT TRANSPARENCY
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-blue-500/10 text-xs font-bold text-blue-400 border border-blue-500/20">
+                    Daily Async Sprints
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Transparent Sprints & Live Demos</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Direct engineer-to-client communication with daily Loom video updates, GitHub PR visibility, and bi-weekly staging deployments so you always know what is being shipped.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white font-bold text-sm">
+                  PR
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Staging Deployments & Loom Demos</div>
+                  <div class="text-slate-400 text-xs font-mono">Direct GitHub & Slack Access</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 4 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-amber-400 uppercase">
+                    04 // ENTERPRISE SECURITY
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-amber-500/10 text-xs font-bold text-amber-400 border border-amber-500/20">
+                    Production Safe
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Strict Security & Typesafe Architecture</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Typesafe TypeScript architectures, sanitized input validation, automated CI/CD security audits, and hardened API gateways engineered to protect customer data from day one.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 flex items-center justify-center text-white font-bold text-sm">
+                  SEC
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Automated Security Audits</div>
+                  <div class="text-slate-400 text-xs font-mono">Zero Third-Party Data Leaks</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard 5 -->
+            <div class="swiper-slide feedback-card">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="text-xs font-mono font-bold tracking-wider text-teal-400 uppercase">
+                    05 // POST-LAUNCH HYPERCARE
+                  </div>
+                  <div class="px-2.5 py-1 rounded-full bg-teal-500/10 text-xs font-bold text-teal-400 border border-teal-500/20">
+                    30-Day Hypercare
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Dedicated Launch Support</h3>
+                <p class="text-slate-200 text-base leading-relaxed mb-6">
+                  Every custom deployment includes 30 days of dedicated hypercare support, real-time error telemetry monitoring, and comprehensive developer handoff documentation for your team.
+                </p>
+              </div>
+              <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-emerald-700 flex items-center justify-center text-white font-bold text-sm">
+                  HC
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Telemetry Monitoring & Handoff</div>
+                  <div class="text-slate-400 text-xs font-mono">90-Day Post-Launch Support Included</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         HOME PAGE FOOTER (EXACT MATCH PIC 4 - MADE FOR THE HUNT)
+         ======================================================== -->
+    
+<!-- SPECIALIZED P1 SERVICE HUBS & BUYER GUIDES -->
+<section id="specialized-service-hubs" class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 py-12">
+  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-[#FF2A4D] font-bold block mb-1">SPECIALIZED ENGINEERING TRACKS</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white" style="font-family: 'Space Grotesk', sans-serif;">Explore Dedicated Solutions &amp; Pricing Guides</h2>
+      </div>
+      <a href="/blog/website-development-cost-bangladesh" class="text-xs font-mono font-semibold text-[#FF2A4D] hover:underline">
+        2026 Bangladesh Website Cost Breakdown &rarr;
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs sm:text-sm">
+      <a href="/ecommerce-development" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">Ecommerce Website Development &rarr;</strong>
+        <span class="text-slate-400 text-xs">Custom stores with bKash, Nagad, SSLCOMMERZ EMI, inventory &amp; courier sync.</span>
+      </a>
+      <a href="/n8n-automation" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">n8n Workflow Automation &rarr;</strong>
+        <span class="text-slate-400 text-xs">Self-hosted n8n setup, CRM lead routing, AI agents &amp; webhook integrations.</span>
+      </a>
+      <a href="/whatsapp-automation" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">WhatsApp Chatbot &amp; Cloud API &rarr;</strong>
+        <span class="text-slate-400 text-xs">24/7 AI sales &amp; support bots in English, Bangla &amp; Banglish with human handoff.</span>
+      </a>
+      <a href="/isp-software-development" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">ISP Billing &amp; MikroTik Portals &rarr;</strong>
+        <span class="text-slate-400 text-xs">Automated MikroTik RouterOS queue control &amp; instant bKash/Nagad recharge.</span>
+      </a>
+      <a href="/website-redesign" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">Website Redesign &amp; SEO Migration &rarr;</strong>
+        <span class="text-slate-400 text-xs">Upgrade UX and Core Web Vitals speed with a 100% 301 SEO-safe relaunch.</span>
+      </a>
+      <a href="/blog/website-development-cost-bangladesh" class="p-4 rounded-xl border border-white/10 hover:border-[#FF2A4D]/50 bg-white/[0.01] transition-all block">
+        <strong class="text-white block mb-1">Website Cost in Bangladesh (2026) &rarr;</strong>
+        <span class="text-slate-400 text-xs">Transparent BDT &amp; USD budget ranges for corporate, e-commerce &amp; custom apps.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer" class="relative z-10 mx-auto mt-28 w-full max-w-7xl px-4 pb-20 pt-16 sm:px-6 md:pb-28" style="background: transparent !important;">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Red Kicker on Top -->
+        <span class="footer-kicker-red block mb-3">
+          HUNGRY FOR MORE — WEB ARCHITECTURES 2026
+        </span>
+
+        <!-- Huge Stacked Typography: MADE FOR THE HUNT. -->
+        <div class="mb-14 select-none">
+          <div class="footer-huge-title">MADE</div>
+          <div class="footer-huge-title">FOR THE</div>
+          <div class="footer-huge-title footer-title-red">HUNT.</div>
+        </div>
+
+        <!-- Thin Divider Line -->
+        <div class="w-full border-t border-white/10 mb-12"></div>
+
+        <!-- 4 Columns Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-left">
+          
+          <!-- Column 1: PLATFORMS -->
+          <div>
+            <h4 class="text-sm font-bold tracking-[0.2em] uppercase text-slate-300 mb-6">
+              PLATFORMS
+            </h4>
+            <ul class="space-y-4" style="font-size: 1.05rem;">
+              <li><a href="web-development.html" class="hover:text-white transition-colors">E-Commerce Speed Stores</a></li>
+              <li><a href="web-development.html" class="hover:text-white transition-colors">SaaS &amp; Application Portals</a></li>
+              <li><a href="ui-ux-3d-design.html" class="hover:text-white transition-colors">3D Interactive Spikes</a></li>
+              <li><a href="ai-automation.html" class="hover:text-white transition-colors">Web Accessories &amp; Cloud</a></li>
+              <li><a href="case-studies.html" class="hover:text-white transition-colors">Performance Lab</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2: COMPANY -->
+          <div>
+            <h4 class="text-sm font-bold tracking-[0.2em] uppercase text-slate-300 mb-6">
+              COMPANY
+            </h4>
+            <ul class="space-y-4" style="font-size: 1.05rem;">
+              <li><a href="case-studies.html" class="hover:text-white transition-colors">About APPIEX Systems</a></li>
+              <li><a href="ui-ux-3d-design.html" class="hover:text-white transition-colors">UI/UX Biomechanics</a></li>
+              <li><a href="services.html" class="hover:text-white transition-colors">Carbon Neutral Hosting</a></li>
+              <li><a href="collections.html" class="hover:text-white transition-colors">Press &amp; Releases</a></li>
+              <li><a href="partners.html" class="hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: SUPPORT -->
+          <div>
+            <h4 class="text-sm font-bold tracking-[0.2em] uppercase text-slate-300 mb-6">
+              SUPPORT
+            </h4>
+            <ul class="space-y-4" style="font-size: 1.05rem;">
+              <li><a href="https://github.com/monacogo001-ops" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Repo Access</a></li>
+              <li><a href="refer.html" class="hover:text-white transition-colors">Commercial License</a></li>
+              <li><a href="web-development.html" class="hover:text-white transition-colors">Tech Stack Guide</a></li>
+              <li><a href="index.html#contact" class="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="index.html#contact" class="hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: FOLLOW -->
+          <div>
+            <h4 class="text-sm font-bold tracking-[0.2em] uppercase text-slate-300 mb-6">
+              FOLLOW
+            </h4>
+            <ul class="space-y-4" style="font-size: 1.05rem;">
+              <li>
+                <a href="https://www.instagram.com/appiex" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-white transition-colors group"><span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-slate-300 group-hover:border-red-500 group-hover:text-red-500 transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span>Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/monacogo001-ops" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-white transition-colors group">
+                  <span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-slate-300 group-hover:border-red-500 group-hover:text-red-500 transition-colors">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </span>
+                  <span>GitHub Repos</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/appiex" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-white transition-colors group"><span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-slate-300 group-hover:border-red-500 group-hover:text-red-500 transition-colors"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.626zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span><span>X / Twitter</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom Copyright -->
+        <div class="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+          <p>© 2026 APPIEX Systems. All rights reserved.</p>
+          <div class="flex items-center gap-6">
+            <a href="/privacy-policy.html" class="hover:text-slate-200 transition-colors">Privacy Policy</a>
+            <a href="/terms-of-service.html" class="hover:text-slate-200 transition-colors">Terms of Service</a>
+        <a href="/editorial-policy.html" class="hover:text-slate-200 transition-colors">Editorial Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Runtime Libraries: GSAP, ScrollTrigger, Lenis, Swiper -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-</head>
-<body class="bg-[#06070B] text-white antialiased selection:bg-brand-red selection:text-white">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <!-- MODAL OVERLAY -->
-  <div id="modal-overlay" class="drawer-overlay"></div>
-
-  <!-- INTERACTIVE SERVICE DETAIL MODAL -->
-  <div id="service-details-modal" role="dialog" aria-modal="true" aria-labelledby="modal-service-title">
-    <!-- Header -->
-    <div class="p-6 md:p-8 border-b border-white/10 flex items-center justify-between bg-[#0e111a]">
-      <div class="flex items-center space-x-4">
-        <div id="modal-service-icon" class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-lg shrink-0">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </div>
-        <div>
-          <div class="flex items-center space-x-2">
-            <span id="modal-service-category" class="font-oswald text-[10px] tracking-[0.2em] text-brand-neon uppercase font-bold">CORE DISCIPLINE</span>
-            <span id="modal-service-badge" class="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold bg-white/10 text-white border border-white/20">LIVE BLUEPRINT</span>
-          </div>
-          <h3 id="modal-service-title" class="font-anton text-2xl md:text-3xl uppercase tracking-wide text-white">Digital Strategy & Consulting</h3>
-        </div>
-      </div>
-      <button id="close-modal-btn" aria-label="Close modal" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-brand-neon transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-
-    <!-- Modal Body (Scrollable) -->
-    <div class="p-6 md:p-8 overflow-y-auto space-y-6 flex-1">
-      <div>
-        <h4 class="font-anton text-lg tracking-wide uppercase text-white mb-2 flex items-center space-x-2">
-          <span class="text-brand-neon">✦</span>
-          <span>EXECUTIVE SCOPE & IMPACT</span>
-        </h4>
-        <p id="modal-service-desc" class="font-satoshi text-sm text-white/80 leading-relaxed">
-          Comprehensive product roadmaps, headless architecture consultation, tech debt eradication, and conversion-optimized biomechanics systems engineered for scale.
-        </p>
-      </div>
-
-      <!-- Deliverables Bento Grid -->
-      <div>
-        <h5 class="font-oswald text-xs uppercase tracking-[0.18em] text-white/60 mb-3 font-semibold">VERIFIED DELIVERABLES & PHASES</h5>
-        <div id="modal-deliverables-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 font-satoshi text-xs text-white/80">
-          <!-- Injected dynamically -->
-        </div>
-      </div>
-
-      <!-- Tech Stack & Tools -->
-      <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-        <span class="font-oswald text-[11px] uppercase tracking-wider text-white/50 block mb-2 font-semibold">PRODUCTION TECH STACK & METHODOLOGY</span>
-        <div id="modal-tech-stack" class="flex flex-wrap gap-2">
-          <!-- Injected dynamically -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Footer Actions -->
-    <div class="p-6 border-t border-white/10 bg-[#0A0D15] flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="text-xs font-satoshi text-white/60 flex items-center space-x-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        <span>Lead architects ready for sprint deployment</span>
-      </div>
-      <div class="flex items-center space-x-3 w-full sm:w-auto">
-        <a id="modal-chat-btn" href="https://wa.me/8801600676875?text=Hello%20APPIEX%20Engineering,%20I%20want%20to%20consult%20about%20your%20services" target="_blank" rel="noopener" class="flex-1 sm:flex-none btn-pill bg-white text-black hover:bg-white/90 px-6 py-2.5 text-xs font-bold">
-          INSTANT WHATSAPP CHAT
-        </a>
-        <a href="index.html#contact" class="flex-1 sm:flex-none btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-6 py-2.5 text-xs shadow-lg shadow-brand-red/30 font-bold">
-          BOOK SPRINT
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- MOBILE NAVIGATION DRAWER -->
-  <div id="mobile-nav-overlay">
-    <div class="flex items-center justify-between">
-      <a href="index.html" class="flex items-center space-x-2">
-        <svg class="h-8 w-auto text-white" viewBox="0 0 240 50" fill="none">
-          <g transform="translate(2, 2)">
-            <path d="M4 32 C10 20, 22 12, 36 8 C30 14, 28 20, 30 26 C26 23, 20 24, 14 28 C22 31, 30 28, 38 20 C34 27, 28 32, 18 35 C27 37, 36 35, 42 26 C38 32, 32 37, 24 39 C34 40, 46 34, 52 22 C56 16, 57 10, 58 4 C50 10, 42 13, 34 11 C44 6, 54 4, 62 1 C56 7, 52 13, 44 18 C52 13, 58 8, 64 2 C60 10, 54 16, 44 22 C52 18, 58 13, 64 7 C62 15, 54 23, 44 28 C38 32, 30 34, 20 35 Z" fill="#DC2626"/>
-          </g>
-          <text x="74" y="34" font-family="'Anton', 'Oswald', sans-serif" font-size="28" font-weight="900" fill="currentColor">APPIEX</text>
-        </svg>
-      </a>
-      <button id="close-mobile-nav" class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="flex flex-col space-y-4 my-auto">
-      <a href="services.html" class="font-anton text-4xl sm:text-5xl uppercase text-brand-neon">SERVICES</a>
-      <a href="refer.html" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">REFER</a>
-      <a href="collections.html" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">COLLECTIONS</a>
-      <a href="stories.html" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">CASE STUDIES</a>
-      <a href="index.html#contact" class="font-anton text-4xl sm:text-5xl uppercase hover:text-brand-neon text-white">CONTACT</a>
-    </div>
-    <span class="font-satoshi text-xs uppercase tracking-widest text-white/80">APPIEX SERVICES · 6 CORE DISCIPLINES</span>
-  </div>
-
-  <!-- FLOATING NAVBAR -->
-  <header id="sticky-nav" class="px-5 sm:px-6 md:px-7 py-3 flex items-center justify-between flex-nowrap">
-    <a href="index.html" class="flex items-center shrink-0 group transition-transform duration-300 hover:scale-105" aria-label="APPIEX Home">
-      <img src="./assets/appiex-panther-logo.png" alt="APPIEX" class="h-8 md:h-10 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(255,42,77,0.45)]">
-    </a>
-
-    <!-- Center Links: SERVICES -> REFER -> COLLECTIONS -> CASE STUDIES -> CONTACT -->
-    <nav class="hidden lg:flex items-center space-x-2 xl:space-x-3 font-satoshi text-xs uppercase tracking-[0.14em] font-medium text-white/80 whitespace-nowrap flex-nowrap shrink-0">
-      <a href="services.html" class="nav-link bg-white/15 text-white font-bold whitespace-nowrap">SERVICES</a>
-      <a href="refer.html" class="nav-link text-brand-neon font-bold whitespace-nowrap flex items-center space-x-1">
-        <span>REFER</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse"></span>
-      </a>
-      <a href="collections.html" class="nav-link whitespace-nowrap">COLLECTIONS</a>
-      <a href="stories.html" class="nav-link whitespace-nowrap">CASE STUDIES</a>
-      <a href="index.html#contact" class="nav-link whitespace-nowrap">CONTACT</a>
-    </nav>
-
-    <!-- Right Controls -->
-    <div class="flex items-center space-x-3 flex-shrink-0 whitespace-nowrap">
-      <a href="#services-directory" class="hidden sm:inline-flex btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-5 py-2 text-[11px] shadow-lg shadow-brand-red/30 whitespace-nowrap shrink-0">
-        ALL 6 DISCIPLINES
-      </a>
-      <button id="hamburger" aria-label="Menu" class="lg:hidden p-2 flex flex-col space-y-1.5 text-white">
-        <span class="w-5 h-0.5 bg-white"></span>
-        <span class="w-5 h-0.5 bg-white"></span>
-        <span class="w-5 h-0.5 bg-white"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="relative pt-36 pb-20 px-6 md:px-12 bg-gradient-to-b from-[#080A12] via-[#0E0608] to-[#06070B] border-b border-white/10 overflow-hidden">
-    <!-- Ambient Neon Cyber Glows -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-brand-red/15 blur-[130px] rounded-full pointer-events-none"></div>
-    <div class="absolute top-1/3 right-10 w-[320px] h-[320px] bg-purple-600/10 blur-[100px] rounded-full pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-10 relative z-10">
-      <div class="space-y-4 max-w-3xl">
-        <div class="inline-flex items-center space-x-2 bg-brand-red/15 border border-brand-red/30 px-4 py-1.5 rounded-full text-brand-neon font-oswald text-xs tracking-[0.2em] uppercase font-bold">
-          <span class="w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
-          <span>FULL-SPECTRUM DIGITAL ARCHITECTURE & PRODUCTION</span>
-        </div>
-        <h1 class="font-anton text-6xl sm:text-7xl md:text-8xl lg:text-9xl uppercase leading-[0.9] tracking-tight text-white">
-          ENGINEERING <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon via-red-400 to-white">DISCIPLINES</span>
-        </h1>
-        <p class="font-satoshi text-base sm:text-lg text-white/70 max-w-2xl font-light leading-relaxed">
-          From headless enterprise commerce and high-impact UI/UX biomechanics to autonomous Gemini AI agent pipelines and search dominance. 6 core disciplines, 1 elite engineering team.
-        </p>
-      </div>
-
-      <!-- Quick Stats Card -->
-      <div class="flex flex-row lg:flex-col gap-3 shrink-0">
-        <div class="px-6 py-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-xl">
-          <span class="font-satoshi text-[11px] uppercase tracking-wider text-white/50 block">Active Production Disciplines</span>
-          <span class="font-anton text-3xl md:text-4xl text-brand-neon">06 DIVISIONS</span>
-        </div>
-        <div class="px-6 py-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-xl">
-          <span class="font-satoshi text-[11px] uppercase tracking-wider text-white/50 block">Global Web Performance</span>
-          <span class="font-anton text-3xl md:text-4xl text-emerald-400">&lt; 0.4s SPEED</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Filter Category Tabs -->
-    <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/10">
-      <div class="flex items-center space-x-2 overflow-x-auto pb-2 text-xs font-satoshi font-semibold tracking-wider uppercase no-scrollbar">
-        <button class="filter-tab active px-4 py-2 rounded-full border border-white/20" data-filter="all">ALL DISCIPLINES (6)</button>
-        <a href="#strategy" class="filter-tab px-4 py-2 rounded-full bg-white/[0.05] border border-white/10 text-white/80 hover:text-white hover:border-amber-500/50 transition">STRATEGY</a>
-        <a href="#uiux" class="filter-tab px-4 py-2 rounded-full bg-white/[0.05] border border-white/10 text-white/80 hover:text-white hover:border-purple-500/50 transition">UI/UX DESIGN</a>
-        <a href="#development" class="filter-tab px-4 py-2 rounded-full bg-white/[0.05] border border-white/10 text-white/80 hover:text-white hover:border-blue-500/50 transition">WEB & SOFTWARE</a>
-        <a href="#ai-automation" class="filter-tab px-4 py-2 rounded-full bg-white/[0.05] border border-white/10 text-white/80 hover:text-white hover:border-teal-500/50 transition">AI & AGENTS</a>
-        <a href="#seo-marketing" class="filter-tab px-4 py-2 rounded-full bg-white/[0.05] border border-white/10 text-white/80 hover:text-white hover:border-emerald-500/50 transition">SEO & AEO</a>
-        <a href="#branding" class="filter-tab px-4 py-2 rounded-full bg-white/[0.05] border border-white/10 text-white/80 hover:text-white hover:border-pink-500/50 transition">BRANDING</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 CORE SERVICES DIRECTORY (MATCHES 1ST PICTURE IN DETAIL) -->
-  <section id="services-directory" class="py-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
-
-    <!-- 1. Digital Strategy & Consulting -->
-    <div id="strategy" class="service-card-block card-3d-wrap pt-6 scroll-mt-28">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#13110E] via-[#0D0B08] to-[#070605] border border-amber-500/30 p-8 md:p-12 overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-amber-500/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-          <!-- Left Column -->
-          <div class="lg:col-span-7 space-y-6">
-            <div class="flex items-center space-x-3.5">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg shadow-orange-500/30 flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zm3.5 6.5l-2 5.5-5.5 2 2-5.5 5.5-2z"/></svg>
-              </div>
-              <div>
-                <span class="font-oswald text-xs uppercase tracking-[0.2em] text-amber-400 font-bold">DISCIPLINE 01 · STRATEGY</span>
-                <h2 class="font-anton text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white">Digital Strategy & Consulting</h2>
-              </div>
-            </div>
-
-            <p class="font-satoshi text-base text-white/80 leading-relaxed font-light">
-              Product strategy consulting, technology roadmaps, UX strategy & digital transformation. We help ambitious founders and executives audit their architecture, de-risk multi-million dollar tech debt, and chart ultra-fast deployment roadmaps.
-            </p>
-
-            <!-- Deliverables Check List -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-satoshi text-sm text-white/90">
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-amber-400 font-bold">✓</span>
-                <span>Product Strategy & Monetization Roadmaps</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-amber-400 font-bold">✓</span>
-                <span>Enterprise Technology Debt Audits</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-amber-400 font-bold">✓</span>
-                <span>Conversion Biomechanics UX Audits</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-amber-400 font-bold">✓</span>
-                <span>Headless & Cloud Migration Blueprint</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-3 pt-4">
-              <button onclick="openServiceModal('strategy')" class="btn-pill bg-white text-black hover:bg-amber-400 hover:text-black px-6 py-3 text-xs font-bold transition">
-                VIEW FULL BLUEPRINT
-              </button>
-              <a href="index.html#contact" class="btn-pill bg-white/10 hover:bg-white/20 text-white px-6 py-3 text-xs border border-white/15">
-                REQUEST STRATEGY SESSION
-              </a>
-            </div>
-          </div>
-
-          <!-- Right Column Bento Card -->
-          <div class="lg:col-span-5 space-y-4">
-            <div class="p-6 rounded-2xl bg-black/60 border border-amber-500/20 space-y-4">
-              <span class="font-oswald text-xs uppercase tracking-widest text-amber-400 font-bold">TARGET OUTCOMES</span>
-              <div class="space-y-3 font-satoshi text-xs">
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Time-to-Market Reduction</span>
-                  <span class="font-anton text-lg text-amber-400">45% FASTER</span>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Cloud Infrastructure Cost Savings</span>
-                  <span class="font-anton text-lg text-emerald-400">-32% OPEX</span>
-                </div>
-                <div class="flex justify-between items-center py-2">
-                  <span class="text-white/60">Sprint Velocity Gain</span>
-                  <span class="font-anton text-lg text-white">3.2X VELOCITY</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200/90 text-xs font-satoshi">
-              <span class="font-bold">Lead Strategist:</span> Supervised by Rafsan & Adil with direct experience across 50+ enterprise launches.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. UI/UX Design & Product Design -->
-    <div id="uiux" class="service-card-block card-3d-wrap pt-6 scroll-mt-28">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#110E18] via-[#0C0A12] to-[#060509] border border-purple-500/30 p-8 md:p-12 overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-purple-500/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-          <div class="lg:col-span-7 space-y-6">
-            <div class="flex items-center space-x-3.5">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 shadow-lg shadow-purple-500/30 flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 5h16M10 10v10"/></svg>
-              </div>
-              <div>
-                <span class="font-oswald text-xs uppercase tracking-[0.2em] text-purple-400 font-bold">DISCIPLINE 02 · DESIGN & UX</span>
-                <h2 class="font-anton text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white">UI/UX Design & Product Design</h2>
-              </div>
-            </div>
-
-            <p class="font-satoshi text-base text-white/80 leading-relaxed font-light">
-              UX research, UI/UX architecture, website design, UX audits & 3D web design. We eliminate cognitive friction, engineering spatial interfaces with tactile 3D cards, micro-animations, and neuromarketing-backed conversion flow.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-satoshi text-sm text-white/90">
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-purple-400 font-bold">✓</span>
-                <span>Figma Enterprise Design Systems & Tokens</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-purple-400 font-bold">✓</span>
-                <span>3D Spatial Canvases & R3F Interactions</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-purple-400 font-bold">✓</span>
-                <span>Mobile-First Conversion Funnels</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-purple-400 font-bold">✓</span>
-                <span>Interactive Wireframes & Micro-prototypes</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-3 pt-4">
-              <button onclick="openServiceModal('uiux')" class="btn-pill bg-white text-black hover:bg-purple-400 hover:text-black px-6 py-3 text-xs font-bold transition">
-                VIEW FULL BLUEPRINT
-              </button>
-              <a href="collections.html" class="btn-pill bg-white/10 hover:bg-white/20 text-white px-6 py-3 text-xs border border-white/15">
-                EXPLORE DESIGN GALLERY
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 space-y-4">
-            <div class="p-6 rounded-2xl bg-black/60 border border-purple-500/20 space-y-4">
-              <span class="font-oswald text-xs uppercase tracking-widest text-purple-400 font-bold">CONVERSION BENCHMARKS</span>
-              <div class="space-y-3 font-satoshi text-xs">
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Cart Checkout Completion Lift</span>
-                  <span class="font-anton text-lg text-purple-400">+41.8%</span>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Average Session Duration</span>
-                  <span class="font-anton text-lg text-white">4.8 MINS</span>
-                </div>
-                <div class="flex justify-between items-center py-2">
-                  <span class="text-white/60">Design Token Reusability</span>
-                  <span class="font-anton text-lg text-emerald-400">100% DRY</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-200/90 text-xs font-satoshi">
-              <span class="font-bold">Design Philosophy:</span> Dark cyberpunk aesthetics, spatial perspective hover tilts, and zero-distraction layout hierarchy.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. Web & Software Development -->
-    <div id="development" class="service-card-block card-3d-wrap pt-6 scroll-mt-28">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#0B121E] via-[#080D16] to-[#05080E] border border-blue-500/30 p-8 md:p-12 overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-          <div class="lg:col-span-7 space-y-6">
-            <div class="flex items-center space-x-3.5">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg shadow-blue-500/30 flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-              </div>
-              <div>
-                <span class="font-oswald text-xs uppercase tracking-[0.2em] text-blue-400 font-bold">DISCIPLINE 03 · SOFTWARE ENGINEERING</span>
-                <h2 class="font-anton text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white">Web & Software Development</h2>
-              </div>
-            </div>
-
-            <p class="font-satoshi text-base text-white/80 leading-relaxed font-light">
-              Custom software, web applications, SaaS platforms, mobile apps & API integrations. Engineered with Next.js 15, Turbopack, Tailwind CSS, high-concurrency Node.js, and headless commerce engines designed for 100,000+ daily visitors.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-satoshi text-sm text-white/90">
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-blue-400 font-bold">✓</span>
-                <span>Next.js 15 Server Components & Headless APIs</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-blue-400 font-bold">✓</span>
-                <span>Headless Shopify & WooCommerce Engines</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-blue-400 font-bold">✓</span>
-                <span>Sub-0.4s Global Edge Caching (Cloudflare)</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-blue-400 font-bold">✓</span>
-                <span>Cross-Platform Flutter & React Native Mobile Apps</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-3 pt-4">
-              <button onclick="openServiceModal('development')" class="btn-pill bg-white text-black hover:bg-blue-400 hover:text-black px-6 py-3 text-xs font-bold transition">
-                VIEW FULL BLUEPRINT
-              </button>
-              <a href="https://watch24bd.com" target="_blank" rel="noopener" class="btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-6 py-3 text-xs shadow-lg shadow-brand-red/30">
-                VIEW LIVE STORE: WATCH24BD.COM ↗
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 space-y-4">
-            <div class="p-6 rounded-2xl bg-black/60 border border-blue-500/20 space-y-4">
-              <span class="font-oswald text-xs uppercase tracking-widest text-blue-400 font-bold">PERFORMANCE SPECS</span>
-              <div class="space-y-3 font-satoshi text-xs">
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Core Web Vitals LCP</span>
-                  <span class="font-anton text-lg text-emerald-400">0.38 SECONDS</span>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Cumulative Layout Shift</span>
-                  <span class="font-anton text-lg text-white">0.00 CLS</span>
-                </div>
-                <div class="flex justify-between items-center py-2">
-                  <span class="text-white/60">Max Concurrent Requests</span>
-                  <span class="font-anton text-lg text-blue-400">25,000 REQ/SEC</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-200/90 text-xs font-satoshi">
-              <span class="font-bold">Engineering Leads:</span> Fayaj (Backend Architecture & APIs) & Rafsan (Full-Stack React/Next.js Core).
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. AI Development & Automation (Matches AI AGENTS Badge) -->
-    <div id="ai-automation" class="service-card-block card-3d-wrap pt-6 scroll-mt-28">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#08181A] via-[#061214] to-[#040A0B] border border-teal-400/40 p-8 md:p-12 overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-teal-400/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-          <div class="lg:col-span-7 space-y-6">
-            <div class="flex items-center space-x-3.5">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-cyan-600 shadow-lg shadow-teal-500/30 flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              </div>
-              <div>
-                <div class="flex items-center space-x-2">
-                  <span class="font-oswald text-xs uppercase tracking-[0.2em] text-teal-300 font-bold">DISCIPLINE 04 · INTELLIGENCE</span>
-                  <span class="bg-[#082F3E] text-[#38BDF8] border border-[#0284C7]/50 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                    AI AGENTS
-                  </span>
-                </div>
-                <h2 class="font-anton text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white">AI Development & Automation</h2>
-              </div>
-            </div>
-
-            <p class="font-satoshi text-base text-white/80 leading-relaxed font-light">
-              AI agent development, Gemini LLM workflows, process automation & chatbots. We build autonomous AI agents that handle multi-step order placement, CRM synchronization, vector search recommendations, and 24/7 client operations.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-satoshi text-sm text-white/90">
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-teal-400 font-bold">✓</span>
-                <span>Custom Google Gemini 1.5 / 2.0 LLM Agent Workflows</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-teal-400 font-bold">✓</span>
-                <span>Vector Database Embeddings & Semantic Search</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-teal-400 font-bold">✓</span>
-                <span>Automated Order Dispatch & Inventory Bots</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-teal-400 font-bold">✓</span>
-                <span>WhatsApp & Messenger Autonomous Support AI</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-3 pt-4">
-              <button onclick="openServiceModal('ai-automation')" class="btn-pill bg-white text-black hover:bg-teal-400 hover:text-black px-6 py-3 text-xs font-bold transition">
-                VIEW FULL BLUEPRINT
-              </button>
-              <a href="index.html#contact" class="btn-pill bg-white/10 hover:bg-white/20 text-white px-6 py-3 text-xs border border-white/15">
-                DEPLOY AN AI AGENT
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 space-y-4">
-            <div class="p-6 rounded-2xl bg-black/60 border border-teal-400/20 space-y-4">
-              <span class="font-oswald text-xs uppercase tracking-widest text-teal-300 font-bold">AUTOMATION EFFICIENCY</span>
-              <div class="space-y-3 font-satoshi text-xs">
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Support Ticket Resolution Rate</span>
-                  <span class="font-anton text-lg text-teal-300">84% AUTONOMOUS</span>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Response Latency</span>
-                  <span class="font-anton text-lg text-emerald-400">&lt; 750ms</span>
-                </div>
-                <div class="flex justify-between items-center py-2">
-                  <span class="text-white/60">Manual Labor Hours Saved / Mo</span>
-                  <span class="font-anton text-lg text-white">160+ HOURS</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-teal-400/10 border border-teal-400/20 text-teal-200/90 text-xs font-satoshi">
-              <span class="font-bold">Safety & Precision:</span> Built with strict prompt sandboxing, role-based guardrails, and programmatic validation.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. SEO & Digital Marketing (Matches GEO & AEO Badge) -->
-    <div id="seo-marketing" class="service-card-block card-3d-wrap pt-6 scroll-mt-28">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#0A1811] via-[#07120C] to-[#040A07] border border-emerald-500/30 p-8 md:p-12 overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-          <div class="lg:col-span-7 space-y-6">
-            <div class="flex items-center space-x-3.5">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 shadow-lg shadow-emerald-500/30 flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-              </div>
-              <div>
-                <div class="flex items-center space-x-2">
-                  <span class="font-oswald text-xs uppercase tracking-[0.2em] text-emerald-400 font-bold">DISCIPLINE 05 · VISIBILITY</span>
-                  <span class="bg-[#0A3828] text-[#34D399] border border-[#059669]/50 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                    GEO & AEO
-                  </span>
-                </div>
-                <h2 class="font-anton text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white">SEO & Digital Marketing</h2>
-              </div>
-            </div>
-
-            <p class="font-satoshi text-base text-white/80 leading-relaxed font-light">
-              Technical SEO, AEO/GEO/LLM optimization, CRO & analytics platforms. We dominate Google Bangladesh SERP positions #1 while optimizing your brand for conversational AI answers (ChatGPT, Perplexity, and Google Gemini Overviews).
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-satoshi text-sm text-white/90">
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>Rank #1 SERP Technical Programmatic SEO</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>Generative Engine Optimization (GEO & AEO)</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>JSON-LD Automated Schema Graph Structuring</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>Conversion Rate Optimization (CRO) A/B Testing</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-3 pt-4">
-              <button onclick="openServiceModal('seo-marketing')" class="btn-pill bg-white text-black hover:bg-emerald-400 hover:text-black px-6 py-3 text-xs font-bold transition">
-                VIEW FULL BLUEPRINT
-              </button>
-              <a href="seo.html" class="btn-pill bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 px-6 py-3 text-xs border border-emerald-500/40">
-                VIEW LIVE AUDIT LAB (WATCH24BD) ↗
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 space-y-4">
-            <div class="p-6 rounded-2xl bg-black/60 border border-emerald-500/20 space-y-4">
-              <span class="font-oswald text-xs uppercase tracking-widest text-emerald-400 font-bold">PROVEN TRACK RECORD</span>
-              <div class="space-y-3 font-satoshi text-xs">
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Rank #1 Target Keywords</span>
-                  <span class="font-anton text-lg text-emerald-400">18+ KEYWORDS</span>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Organic Traffic Growth</span>
-                  <span class="font-anton text-lg text-white">+380%</span>
-                </div>
-                <div class="flex justify-between items-center py-2">
-                  <span class="text-white/60">Organic Sales Attributed</span>
-                  <span class="font-anton text-lg text-brand-neon">৳12.8M BDT</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-200/90 text-xs font-satoshi">
-              <span class="font-bold">Growth Strategist:</span> Directed by Adil (Marketing & Growth Operations) with deep BD local and international SEO mastery.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. Branding & Creative Services -->
-    <div id="branding" class="service-card-block card-3d-wrap pt-6 scroll-mt-28">
-      <div class="card-3d relative rounded-3xl bg-gradient-to-b from-[#180A11] via-[#12070D] to-[#0A0407] border border-rose-500/30 p-8 md:p-12 overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-rose-500/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-          <div class="lg:col-span-7 space-y-6">
-            <div class="flex items-center space-x-3.5">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg shadow-pink-500/30 flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4 5 5 0 015-5c1 0 2-1 2-2a3 3 0 013-3 5 5 0 015 5 4 4 0 01-4 4h-2a2 2 0 00-2 2 3 3 0 01-3 3z"/></svg>
-              </div>
-              <div>
-                <span class="font-oswald text-xs uppercase tracking-[0.2em] text-rose-400 font-bold">DISCIPLINE 06 · BRAND IDENTITY</span>
-                <h2 class="font-anton text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white">Branding & Creative Services</h2>
-              </div>
-            </div>
-
-            <p class="font-satoshi text-base text-white/80 leading-relaxed font-light">
-              Brand strategy, visual identity design, logo design tokens & content strategy. We forge iconic brand identities that command high average order value (AOV), strong customer loyalty, and unforgettable digital prestige.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-satoshi text-sm text-white/90">
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-rose-400 font-bold">✓</span>
-                <span>Full Brand Bible & Vector Identity Systems</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-rose-400 font-bold">✓</span>
-                <span>Custom Typography, Palettes & Style Guides</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-rose-400 font-bold">✓</span>
-                <span>3D Packaging Mockups & Product Renders</span>
-              </div>
-              <div class="flex items-center space-x-2.5 bg-white/[0.03] p-3 rounded-xl border border-white/5">
-                <span class="text-rose-400 font-bold">✓</span>
-                <span>Omnichannel Content Playbooks & Voice</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-3 pt-4">
-              <button onclick="openServiceModal('branding')" class="btn-pill bg-white text-black hover:bg-rose-400 hover:text-black px-6 py-3 text-xs font-bold transition">
-                VIEW FULL BLUEPRINT
-              </button>
-              <a href="index.html#contact" class="btn-pill bg-white/10 hover:bg-white/20 text-white px-6 py-3 text-xs border border-white/15">
-                COMMISSION BRAND IDENTITY
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 space-y-4">
-            <div class="p-6 rounded-2xl bg-black/60 border border-rose-500/20 space-y-4">
-              <span class="font-oswald text-xs uppercase tracking-widest text-rose-400 font-bold">BRAND EQUITY ACCELERATION</span>
-              <div class="space-y-3 font-satoshi text-xs">
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Perceived Brand Value Lift</span>
-                  <span class="font-anton text-lg text-rose-400">+65% AOV</span>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-white/10">
-                  <span class="text-white/60">Asset Consistency Score</span>
-                  <span class="font-anton text-lg text-white">99.4%</span>
-                </div>
-                <div class="flex justify-between items-center py-2">
-                  <span class="text-white/60">Turnaround Time</span>
-                  <span class="font-anton text-lg text-emerald-400">10-14 DAYS</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-200/90 text-xs font-satoshi">
-              <span class="font-bold">Creative Guarantee:</span> Unlimited vector scalability, registered SVG assets, and turnkey web design token handoff.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- BOTTOM CALL TO ACTION / CONSULTATION SPRINT -->
-  <section class="py-20 px-6 md:px-12 bg-gradient-to-b from-[#06070B] via-[#0F080A] to-[#06070B] border-t border-white/10">
-    <div class="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-brand-red/20 via-black to-brand-neon/15 border border-brand-red/40 p-8 sm:p-14 text-center space-y-6 relative overflow-hidden">
-      <div class="inline-flex items-center space-x-2 bg-brand-red/20 border border-brand-red/40 px-4 py-1.5 rounded-full text-brand-neon font-oswald text-xs tracking-widest uppercase font-bold">
-        <span>READY TO ACCELERATE YOUR DIGITAL PLATFORM?</span>
-      </div>
-      <h2 class="font-anton text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-white max-w-3xl mx-auto">
-        SCHEDULE AN ARCHITECTURE AUDIT WITH APPIEX LEAD ENGINEERS
-      </h2>
-      <p class="font-satoshi text-sm sm:text-base text-white/70 max-w-xl mx-auto font-light leading-relaxed">
-        Speak directly with Rafsan, Adil, and Fayaj. We review your codebase, marketing performance, and conversion funnel with zero obligations.
-      </p>
-      <div class="pt-4 flex flex-wrap justify-center items-center gap-4">
-        <a href="index.html#contact" class="btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-8 py-3.5 text-xs shadow-xl shadow-brand-red/40 font-bold">
-          CONTACT APPIEX ARCHITECTS
-        </a>
-        <a href="refer.html" class="btn-pill bg-white text-black hover:bg-white/90 px-8 py-3.5 text-xs font-bold">
-          REFER A CLIENT & EARN UP TO ৳5,000 CASH →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-12 px-6 md:px-12 border-t border-white/10 text-white/50 text-xs font-satoshi">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center space-x-4">
-        <span class="font-anton text-xl tracking-wider text-white">APPIEX</span>
-        <span>© 2026 APPIEX WEB SYSTEMS. ALL RIGHTS RESERVED.</span>
-      </div>
-      <div class="flex items-center space-x-6">
-        <a href="index.html" class="hover:text-white transition">HOME</a>
-        <a href="services.html" class="text-white hover:text-brand-neon transition">SERVICES</a>
-        <a href="refer.html" class="hover:text-brand-neon transition text-brand-neon font-bold">REFER & EARN</a>
-        <a href="seo.html" class="hover:text-white transition">SEO LAB</a>
-        <a href="collections.html" class="hover:text-white transition">COLLECTIONS</a>
-        <a href="stories.html" class="hover:text-white transition">CASE STUDIES</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- JAVASCRIPT & MODAL LOGIC -->
+  <!-- APPIEX + Cuberto Interactive Engine -->
   <script>
-    // Blueprint Data for Modal
-    const servicesData = {
-      strategy: {
-        title: "Digital Strategy & Consulting",
-        category: "DISCIPLINE 01 · STRATEGY",
-        badge: "ENTERPRISE READY",
-        iconGradient: "from-amber-500 to-orange-600",
-        description: "Our digital strategy consulting provides high-growth brands with concrete architectural roadmaps. We identify tech bottlenecks, eradicate technical debt, and plan conversion biomechanics that give you an insurmountable competitive moat.",
-        deliverables: [
-          "Complete Architecture & Tech Stack Evaluation Report",
-          "Conversion Funnel & Friction Matrix Audit",
-          "12-Month Headless Migration & Cloud Infrastructure Blueprint",
-          "Executive Agile Sprint Sizing & Resource Allocation",
-          "Security, Compliance & Multi-Region Caching Strategy",
-          "Bi-Weekly Executive Consultation & KPI Reviews"
-        ],
-        techStack: ["Next.js Architecture", "AWS / Cloudflare Edge", "System Design Docs", "Figma FigJam", "PostgreSQL", "Jira / Linear", "Datadog APM"]
-      },
-      uiux: {
-        title: "UI/UX Design & Product Design",
-        category: "DISCIPLINE 02 · DESIGN & UX",
-        badge: "3D SPATIAL SYSTEMS",
-        iconGradient: "from-purple-500 to-indigo-600",
-        description: "We craft futuristic, dark-mode and glassmorphic spatial interfaces engineered for extreme conversion rates. Every pixel, micro-interaction, and 3D card tilt is calculated to mesmerize visitors and drive instant checkout.",
-        deliverables: [
-          "Interactive High-Fidelity Figma Design System & Tokens",
-          "3D Spatial Card Tilt, Bento Grids & Micro-Interactions",
-          "Mobile-First Responsive Breakpoints (375px to 4K)",
-          "Neuromarketing Checkout Funnel Optimization",
-          "Design Token Handoff with Tailwind CSS / CSS Variables",
-          "Usability Testing & Heatmap Analysis Protocols"
-        ],
-        techStack: ["Figma Enterprise", "Three.js / R3F", "Spline 3D", "Tailwind CSS", "Framer Motion", "GSAP ScrollTrigger", "Hotjar"]
-      },
-      development: {
-        title: "Web & Software Development",
-        category: "DISCIPLINE 03 · SOFTWARE ENGINEERING",
-        badge: "SUB-0.4s VELOCITY",
-        iconGradient: "from-blue-500 to-cyan-600",
-        description: "Engineered from 3-4 years of high-performance web engineering. We build headless commerce architectures, custom SaaS platforms, and custom software systems capable of powering millions in monthly transactions with zero slowdown.",
-        deliverables: [
-          "Next.js 15 App Router & Turbopack High-Velocity Codebase",
-          "Headless Shopify / WooCommerce Custom Engine Integration",
-          "Cloudflare Edge Network Caching & Sub-40ms TTFB",
-          "PostgreSQL / Supabase Database Architecture with Real-Time Sync",
-          "Multi-currency & Local Payment Gateway (bKash, Nagad, Stripe)",
-          "CI/CD Automated Deployment Pipelines & 99.99% Uptime SLA"
-        ],
-        techStack: ["Next.js 15", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Cloudflare Workers", "Shopify Storefront API", "Vercel"]
-      },
-      "ai-automation": {
-        title: "AI Development & Automation",
-        category: "DISCIPLINE 04 · INTELLIGENCE",
-        badge: "AI AGENTS DEPLOYED",
-        iconGradient: "from-teal-400 to-cyan-600",
-        description: "Harness Google Gemini LLMs and autonomous agents to automate customer service, order booking, dynamic recommendations, and multi-step business workflows with 24/7 reliability.",
-        deliverables: [
-          "Autonomous Gemini 1.5 / 2.0 AI Agent Architecture",
-          "WhatsApp & Messenger Automated Sales & Support Bot",
-          "Vector Database Semantic Search for Product Discovery",
-          "Automated Inventory Reorder & Order Fulfillment Workflows",
-          "Role-based Security Guardrails & Strict Prompt Sandboxing",
-          "LLM Latency Caching & Cost Optimization Engine"
-        ],
-        techStack: ["Google Gemini API", "LangChain / LlamaIndex", "Pinecone / pgvector", "Python FastAPI", "Node.js", "OpenAI Whisper", "Redis"]
-      },
-      "seo-marketing": {
-        title: "SEO & Digital Marketing",
-        category: "DISCIPLINE 05 · VISIBILITY",
-        badge: "GEO & AEO OPTIMIZED",
-        iconGradient: "from-emerald-500 to-green-600",
-        description: "Proven dominance in Google SERP rankings (verified with Watch24BD and WatchShopBD). We combine technical Core Web Vitals acceleration with Generative Engine Optimization (GEO) so AI engines cite your brand first.",
-        deliverables: [
-          "Comprehensive Technical SEO Code Audit & Fixes",
-          "Programmatic JSON-LD Schema Graphs (Products, FAQ, Reviews)",
-          "Sub-0.4s LCP Core Web Vitals Optimization",
-          "AEO & GEO Optimization for Perplexity, ChatGPT & Gemini Overviews",
-          "High-Intent E-Commerce Keyword Ranking Roadmap",
-          "Google Search Console & GA4 Custom Conversion Tracking"
-        ],
-        techStack: ["Google Search Console", "Ahrefs / Semrush", "Next.js SSR Schema", "Screaming Frog", "PageSpeed Insights", "GA4", "Cloudflare"]
-      },
-      branding: {
-        title: "Branding & Creative Services",
-        category: "DISCIPLINE 06 · BRAND IDENTITY",
-        badge: "ICONIC PRESTIGE",
-        iconGradient: "from-rose-500 to-pink-600",
-        description: "We create distinctive, memorable visual identities that stand out in crowded markets. From luxury logos and vector marks to custom typography and 3D product renders, we turn products into beloved icons.",
-        deliverables: [
-          "Comprehensive Vector Logo Suite (Primary, Wordmark, Monogram)",
-          "Brand Guidelines & Identity Bible (Typography, Color, Spacing)",
-          "3D Photorealistic Packaging & Product Renders",
-          "Social Media Brand Kits & Advertising Visual Templates",
-          "Copywriting Voice, Taglines & Brand Story Manual",
-          "Ready-to-Code Design Tokens for Instant Web Implementation"
-        ],
-        techStack: ["Adobe Illustrator", "Figma", "Blender 3D", "Photoshop", "Cinema 4D", "Keynote", "SVG Optimizers"]
+    document.addEventListener('DOMContentLoaded', () => {
+      const capsuleNav = document.querySelector('.rafsan-capsule-nav');
+      const pill = document.getElementById('rafsan-capsule-pill');
+      function updatePill(targetEl) {
+        if (!pill || !targetEl || !capsuleNav) return;
+        const navRect = capsuleNav.getBoundingClientRect();
+        const itemRect = targetEl.getBoundingClientRect();
+        pill.style.width = itemRect.width + 'px';
+        pill.style.left = (itemRect.left - navRect.left) + 'px';
+        pill.style.opacity = '1';
       }
-    };
+      if (capsuleNav && pill) {
+        const servicesWrap = document.getElementById('services-nav-wrap') || capsuleNav.querySelector('.rafsan-nav-item.active') || capsuleNav.querySelector('[data-section="services"]');
+      if (servicesWrap) {
+        updatePill(servicesWrap);
+        window.addEventListener('load', () => updatePill(servicesWrap));
+        setTimeout(() => updatePill(servicesWrap), 150);
+        setTimeout(() => updatePill(servicesWrap), 400);
+      }
+        capsuleNav.querySelectorAll('.rafsan-nav-item').forEach(item => {
+          item.addEventListener('mouseenter', () => updatePill(item));
+        });
+        capsuleNav.addEventListener('mouseleave', () => {
+          const currentActive = capsuleNav.querySelector('.rafsan-nav-item.active') || activeItem;
+          if (currentActive) updatePill(currentActive);
+        });
+      }
 
-    // Modal Control Functions
-    const modalOverlay = document.getElementById('modal-overlay');
-    const serviceModal = document.getElementById('service-details-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
+      // Mobile Drawer Toggle
+      const menuToggle = document.getElementById('rafsan-menu-toggle');
+      const mobileDrawer = document.getElementById('rafsan-mobile-drawer');
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            mobileDrawer.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            mobileDrawer.classList.add('open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        document.addEventListener('click', (e) => {
+          if (!mobileDrawer.contains(e.target) && !menuToggle.contains(e.target)) {
+            mobileDrawer.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
 
-    function openServiceModal(key) {
-      const data = servicesData[key];
-      if (!data) return;
+      const navbarShell = document.getElementById('rafsan-navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbarShell.classList.add('scrolled');
+        } else {
+          navbarShell.classList.remove('scrolled');
+        }
+      }, { passive: true });
 
-      document.getElementById('modal-service-title').textContent = data.title;
-      document.getElementById('modal-service-category').textContent = data.category;
-      document.getElementById('modal-service-badge').textContent = data.badge;
-      document.getElementById('modal-service-desc').textContent = data.description;
-
-      // Update Icon Gradient
-      const iconWrap = document.getElementById('modal-service-icon');
-      iconWrap.className = `w-14 h-14 rounded-2xl bg-gradient-to-br ${data.iconGradient} flex items-center justify-center text-white shadow-lg shrink-0`;
-
-      // Update Deliverables Grid
-      const deliverablesGrid = document.getElementById('modal-deliverables-grid');
-      deliverablesGrid.innerHTML = data.deliverables.map(item => `
-        <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-white/[0.04] border border-white/5">
-          <span class="text-brand-neon font-bold text-sm shrink-0">✓</span>
-          <span>${item}</span>
-        </div>
-      `).join('');
-
-      // Update Tech Stack
-      const techStackContainer = document.getElementById('modal-tech-stack');
-      techStackContainer.innerHTML = data.techStack.map(tech => `
-        <span class="px-2.5 py-1 rounded-full bg-white/10 text-white/90 text-[11px] font-mono border border-white/10">${tech}</span>
-      `).join('');
-
-      // Update WhatsApp URL
-      const chatBtn = document.getElementById('modal-chat-btn');
-      chatBtn.href = `https://wa.me/8801600676875?text=Hello%20APPIEX%20Engineering,%20I%20am%20interested%20in%20your%20${encodeURIComponent(data.title)}%20discipline.`;
-
-      // Open Modal
-      modalOverlay.classList.add('open');
-      serviceModal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeServiceModal() {
-      modalOverlay.classList.remove('open');
-      serviceModal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    if (closeModalBtn) closeModalBtn.addEventListener('click', closeServiceModal);
-    if (modalOverlay) modalOverlay.addEventListener('click', closeServiceModal);
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeServiceModal();
-    });
-
-    // Mobile Navigation Controls
-    const hamburger = document.getElementById('hamburger');
-    const closeMobileNav = document.getElementById('close-mobile-nav');
-    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-
-    if (hamburger && mobileNavOverlay) {
-      hamburger.addEventListener('click', () => {
-        mobileNavOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    }
-    if (closeMobileNav && mobileNavOverlay) {
-      closeMobileNav.addEventListener('click', () => {
-        mobileNavOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    }
-
-    // 3D Perspective Card Tilt
-    document.querySelectorAll('.card-3d').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const xPct = (x / rect.width) - 0.5;
-        const yPct = (y / rect.height) - 0.5;
-        const rotateY = xPct * 8;
-        const rotateX = -yPct * 8;
-        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-      });
-    });
-
-    // Initialize Buttery Smooth Lenis Scroll Engine
-    let lenis;
-    if (typeof Lenis !== 'undefined') {
-      lenis = new Lenis({
-        duration: 1.2,
+      // 2. Lenis Smooth Scroll Setup
+      let lenis = null;
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+        duration: 1.0,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.1,
-        touchMultiplier: 2,
+        wheelMultiplier: 1.0,
+        syncTouch: false,
+        touchMultiplier: 1.0,
+        touchInertiaMultiplier: 15,
         infinite: false
-      });
-      window.lenis = lenis;
+      })
 
-      lenis.on('scroll', () => {
-        if (typeof ScrollTrigger !== 'undefined') {
-          ScrollTrigger.update();
-        }
-      });
-
-      if (typeof gsap !== 'undefined') {
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-      } else {
+        window.lenis = lenis;
+        if (typeof gsap === 'undefined') {
+          if (lenis) {
         function raf(time) {
           lenis.raf(time);
           requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
       }
+        }
 
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId !== '#') {
-            const targetEl = document.querySelector(targetId);
-            if (targetEl) {
-              e.preventDefault();
-              lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 });
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          lenis.on('scroll', ScrollTrigger.update);
+          if (lenis) { gsap.ticker.add((time) => { lenis.raf(time * 1000); }); }
+          gsap.ticker.lagSmoothing(500, 33);
+        }
+      }
+
+      // 3. Staggered Word Reveal on Scroll
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // Headings Reveal on Scroll
+        const triggerGroups = document.querySelectorAll('.reveal-words:not(.scrub-words)');
+        triggerGroups.forEach((group) => {
+          const chars = group.querySelectorAll('.word-char');
+          if (chars.length > 0) {
+            const isHero = group.closest('.TopheadSection') || group.closest('.IntroSection');
+            if (isHero) {
+              gsap.fromTo(chars, 
+                { yPercent: 120, opacity: 0 },
+                {
+                  yPercent: 0,
+                  opacity: 1,
+                  duration: 0.85,
+                  delay: 0.15,
+                  ease: 'power3.out',
+                  stagger: 0.03
+                }
+              );
+            } else {
+              gsap.fromTo(chars, 
+                { yPercent: 120, opacity: 0 },
+                {
+                  yPercent: 0,
+                  opacity: 1,
+                  duration: 0.85,
+                  ease: 'power3.out',
+                  stagger: 0.02,
+                  scrollTrigger: {
+                    trigger: group,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none'
+                  }
+                }
+              );
             }
           }
         });
-      });
-    }
 
-    // GSAP ScrollTrigger Animations for service cards
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-
-      gsap.utils.toArray('.service-card-block').forEach((block) => {
-        gsap.fromTo(block,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: block,
-              start: 'top 82%',
-              toggleActions: 'play reverse play reverse'
-            }
+        // Scrubbed Rolling Paragraph Words (Cuberto signature scroll effect)
+        const scrubParagraphs = document.querySelectorAll('.scrub-words');
+        scrubParagraphs.forEach((p) => {
+          const chars = p.querySelectorAll('.word-char');
+          if (chars.length > 0) {
+            gsap.fromTo(chars,
+              { yPercent: 110, opacity: 0.15 },
+              {
+                yPercent: 0,
+                opacity: 1,
+                stagger: 0.025,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: p,
+                  start: 'top 88%',
+                  end: 'bottom 45%',
+                  scrub: 0.6
+                }
+              }
+            );
           }
-        );
+        });
+
+        // 4. Parallax & Clip Reveal for Preview Showreel
+        const previewSection = document.querySelector('.PreviewSection');
+        if (previewSection) {
+          const mainBox = previewSection.querySelector('.main');
+          const mediaVideo = previewSection.querySelector('.media');
+
+          if (mainBox) {
+            gsap.fromTo(mainBox, 
+              { clipPath: 'inset(9% round 3.5rem)' },
+              {
+                clipPath: 'inset(0% round 2rem)',
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: previewSection,
+                  start: 'top 88%',
+                  end: 'top 28%',
+                  scrub: 1
+                }
+              }
+            );
+          }
+
+          if (mediaVideo) {
+            gsap.fromTo(mediaVideo,
+              { yPercent: -8, scale: 1.1 },
+              {
+                yPercent: 8,
+                scale: 1.02,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: previewSection,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: true
+                }
+              }
+            );
+          }
+        }
+      }
+
+      // 5. Interactive Elastic String SVG Dividers
+      document.querySelectorAll('.interactive-divider').forEach((divider) => {
+        const svg = divider.querySelector('svg');
+        const path = svg ? svg.querySelector('path') : null;
+        if (!svg || !path) return;
+
+        let width = divider.offsetWidth || 800;
+        let targetY = 100;
+        let isHovered = false;
+
+        function updateSvgDimensions() {
+          width = divider.offsetWidth || 800;
+          svg.setAttribute('viewBox', `0 0 ${width} 200`);
+          svg.style.width = '100%';
+          if (!isHovered) {
+            path.setAttribute('d', `M0,100 Q${width / 2},100 ${width},100`);
+          }
+        }
+        updateSvgDimensions();
+        window.addEventListener('resize', updateSvgDimensions);
+
+        let springAnim = null;
+        divider.addEventListener('mousemove', (e) => {
+          isHovered = true;
+          const rect = divider.getBoundingClientRect();
+          const mouseX = Math.max(0, Math.min(width, e.clientX - rect.left));
+          const mouseY = e.clientY - rect.top;
+          targetY = 100 + (mouseY * 1.5);
+
+          if (springAnim) springAnim.kill();
+          path.setAttribute('d', `M0,100 Q${mouseX},${targetY} ${width},100`);
+        });
+
+        divider.addEventListener('mouseleave', () => {
+          isHovered = false;
+          if (typeof gsap !== 'undefined') {
+            const snapObj = { y: targetY };
+            springAnim = gsap.to(snapObj, {
+              y: 100,
+              duration: 1.1,
+              ease: 'elastic.out(1.2, 0.25)',
+              onUpdate: () => {
+                path.setAttribute('d', `M0,100 Q${width / 2},${snapObj.y} ${width},100`);
+              }
+            });
+          } else {
+            path.setAttribute('d', `M0,100 Q${width / 2},100 ${width},100`);
+          }
+        });
       });
-    }
+
+      window.addEventListener('load', () => {
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      });
+      setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      }, 500);
+
+      // 6. Swiper Carousel for Testimonials
+      if (typeof Swiper !== 'undefined') {
+        const swiperContainer = document.getElementById('testimonials-swiper');
+        if (swiperContainer) {
+          const swiper = new Swiper(swiperContainer, {
+            slidesPerView: 'auto',
+            spaceBetween: 28,
+            grabCursor: true,
+            speed: 650,
+            navigation: {
+              prevEl: '.feedback-prev-btn',
+              nextEl: '.feedback-next-btn'
+            },
+            breakpoints: {
+              320: {
+                slidesPerView: 1.08,
+                spaceBetween: 16
+              },
+              640: {
+                slidesPerView: 1.6,
+                spaceBetween: 20
+              },
+              1024: {
+                slidesPerView: 'auto',
+                spaceBetween: 28
+              }
+            }
+          });
+        }
+      }
+    });
   </script>
+
+
+
+      <!-- Appiex Client Auth Session Sync -->
+  <script>
+    (function checkClientAuth() {
+      try {
+        const u = localStorage.getItem('appiex_user');
+        if (u) {
+          let userData = {};
+          try { userData = JSON.parse(u); } catch(err) {}
+          const avatarSrc = userData.avatar || './images/6251456506175886234.jpg';
+          const userName = userData.name || 'Profile';
+          const initial = (userName.charAt(0) || 'P').toUpperCase();
+
+          function transformToProfileCircle(el) {
+            if (!el) return;
+            el.href = 'profile.html';
+            el.title = userName + ' - Profile';
+            el.setAttribute('aria-label', userName + ' Profile');
+            el.innerText = '';
+            el.style.setProperty('width', '38px', 'important');
+            el.style.setProperty('height', '38px', 'important');
+            el.style.setProperty('min-width', '38px', 'important');
+            el.style.setProperty('min-height', '38px', 'important');
+            el.style.setProperty('max-width', '38px', 'important');
+            el.style.setProperty('max-height', '38px', 'important');
+            el.style.setProperty('border-radius', '50%', 'important');
+            el.style.setProperty('padding', '0', 'important');
+            el.style.setProperty('overflow', 'hidden', 'important');
+            el.style.setProperty('display', 'inline-flex', 'important');
+            el.style.setProperty('align-items', 'center', 'important');
+            el.style.setProperty('justify-content', 'center', 'important');
+            el.style.setProperty('background', 'transparent', 'important');
+            el.style.setProperty('border', '2px solid rgba(255, 42, 77, 0.85)', 'important');
+            el.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            el.style.setProperty('transition', 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease', 'important');
+            el.style.setProperty('cursor', 'pointer', 'important');
+
+            const img = document.createElement('img');
+            img.src = avatarSrc;
+            img.alt = userName;
+            img.style.cssText = 'width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 50% !important; display: block !important;';
+            img.onerror = function() {
+              this.remove();
+              el.style.background = 'linear-gradient(135deg, #FF2A4D, #991B1B)';
+              el.innerHTML = '<span style="font-weight:700;color:#fff;font-size:14px;">' + initial + '</span>';
+            };
+            el.innerHTML = '';
+            el.appendChild(img);
+
+            el.onmouseenter = function() {
+              this.style.setProperty('transform', 'scale(1.08)', 'important');
+              this.style.setProperty('border-color', '#FF2A4D', 'important');
+              this.style.setProperty('box-shadow', '0 0 20px rgba(255, 42, 77, 0.8)', 'important');
+            };
+            el.onmouseleave = function() {
+              this.style.setProperty('transform', 'scale(1)', 'important');
+              this.style.setProperty('border-color', 'rgba(255, 42, 77, 0.85)', 'important');
+              this.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            };
+          }
+
+          function applyAll() {
+            const loginButtons = document.querySelectorAll('#nav-login-btn, #mobile-wrap-login-btn, #mobile-nav-login-btn, .rafsan-hire-btn');
+            loginButtons.forEach(btn => transformToProfileCircle(btn));
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyAll);
+          } else {
+            applyAll();
+          }
+          setTimeout(applyAll, 50);
+          setTimeout(applyAll, 300);
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+<section class="seo-content" aria-labelledby="choosing-appiex-service">
+  <div class="seo-content__inner">
+    <p class="seo-content__eyebrow">Choosing the right service</p>
+    <h2 id="choosing-appiex-service">A connected delivery model for strategy, design, engineering, automation, and growth</h2>
+    <p class="seo-content__lead">Some projects need one focused capability; others fail when strategy, interface design, engineering, and acquisition are planned separately. Appiex can deliver a defined workstream or coordinate the connected disciplines required to move a digital product from idea to production.</p>
+    <div class="seo-content__grid">
+      <article class="seo-content__item"><h3>Start with web development</h3><p>Choose <a href="/web-development">custom web development</a> when the primary need is a company website, e-commerce platform, customer portal, dashboard, or integrated web application.</p></article>
+      <article class="seo-content__item"><h3>Start with product design</h3><p>Choose <a href="/ui-ux-3d-design">UI/UX and 3D design</a> when user journeys, interface systems, prototypes, spatial experiences, or interaction quality need to be defined before engineering.</p></article>
+      <article class="seo-content__item"><h3>Start with automation</h3><p>Choose <a href="/ai-automation">AI automation</a> when repetitive operations, customer messaging, research, internal workflows, or disconnected tools are creating avoidable manual work.</p></article>
+      <article class="seo-content__item"><h3>Start with organic growth</h3><p>Choose <a href="/seo-marketing">SEO engineering</a> when the website exists but technical crawlability, content architecture, search measurement, or AI-search visibility needs structured improvement.</p></article>
+    </div>
+    <div class="seo-content__section seo-content__faq">
+      <p class="seo-content__eyebrow">Engagement questions</p>
+      <h2>Working with Appiex</h2>
+      <details><summary>Can multiple services be combined?</summary><p>Yes. A single engagement can combine strategy, product design, development, automation, and search work when the dependencies are clear. Scope and ownership are documented so each workstream has an identifiable outcome.</p></details>
+      <details><summary>Do you work with existing products?</summary><p>Yes. We can evaluate an existing website or application, identify practical constraints, and recommend targeted improvements or a staged rebuild. Access to the current system and accurate requirements are important for reliable estimates.</p></details>
+      <details><summary>How does a project begin?</summary><p>Send the business objective, current situation, required capabilities, preferred timeline, and available materials. Appiex reviews the request, clarifies uncertainties, and proposes the appropriate scope and delivery approach.</p></details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can multiple Appiex services be combined?","acceptedAnswer":{"@type":"Answer","text":"Yes. A single engagement can combine strategy, product design, development, automation, and search work when dependencies, scope, ownership, and outcomes are documented."}},{"@type":"Question","name":"Does Appiex work with existing products?","acceptedAnswer":{"@type":"Answer","text":"Yes. Appiex can evaluate an existing website or application and recommend targeted improvements or a staged rebuild based on the current system and requirements."}},{"@type":"Question","name":"How does an Appiex project begin?","acceptedAnswer":{"@type":"Answer","text":"Share the business objective, current situation, required capabilities, preferred timeline, and available materials. Appiex reviews the request and proposes an appropriate scope and delivery approach."}}]}</script>
+<nav id="site-explore-links" class="seo-site-links" aria-label="Explore Appiex"><div class="seo-site-links__inner"><p class="seo-site-links__label">Explore Appiex</p><a href="/">Home</a><a href="/services" aria-current="page">Services</a><a href="/web-development">Web Development</a><a href="/ui-ux-3d-design">UI/UX &amp; 3D</a><a href="/seo-marketing">SEO</a><a href="/ai-automation">AI Automation</a><a href="/projects">Projects</a><a href="/case-studies">Case Studies</a><a href="/team">Team</a><a href="/partners">Partners</a><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a></div></nav>
+  <script src="./scripts/visitor-tracker.js?v=20261029_v5"></script>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+
+  <div class="rafsan-mobile-drawer appiex-cyber-drawer" id="rafsan-mobile-drawer" data-lenis-prevent="true">
+    <div class="cyber-main-pane">
+      <div class="cyber-top-header">
+        <div class="discover-tag">
+          <span class="square-dot"></span>
+          <span>DISCOVER</span>
+        </div>
+        <div class="brand-wordmark">appiex</div>
+        <div class="page-tag">
+          <span>PAGE</span>
+          001
+        </div>
+      </div>
+
+      <nav class="cyber-nav-list">
+        <a href="/index.html" class="cyber-nav-item active" data-section="home">
+          HOME
+          <span class="badge-page">PAGE<br>001</span>
+        </a>
+
+        <!-- Services Accordion with 6 Core Disciplines -->
+        <div class="cyber-services-wrap">
+          <button type="button" class="cyber-nav-item cyber-services-toggle" id="rafsan-mobile-services-toggle" aria-expanded="false" onclick="return window.__toggleMobileServices(event);">
+            <span>SERVICES</span>
+            <svg class="cyber-caret-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="cyber-services-sub" id="rafsan-mobile-services-sub">
+            <a href="/digital-strategy" class="cyber-sub-item"><span class="sub-dot"></span> DIGITAL STRATEGY</a>
+            <a href="/web-development" class="cyber-sub-item"><span class="sub-dot"></span> WEB DEVELOPMENT (FULL-STACK)</a>
+            <a href="/ui-ux-3d-design" class="cyber-sub-item"><span class="sub-dot"></span> UI/UX &amp; 3D DESIGN</a>
+            <a href="/ai-automation" class="cyber-sub-item"><span class="sub-dot"></span> AI AUTOMATION</a>
+            <a href="/seo-marketing" class="cyber-sub-item"><span class="sub-dot"></span> SEO &amp; MARKETING</a>
+            <a href="/gaming" class="cyber-sub-item"><span class="sub-dot"></span> GAMING &amp; 3D WORLDS</a>
+            <a href="/services" class="cyber-sub-item cyber-sub-explore"><span class="sub-dot"></span> EXPLORE ALL SERVICES &rarr;</a>
+          </div>
+        </div>
+
+        <a href="/refer.html" class="cyber-nav-item" data-section="refer">REFER</a>
+        <a href="/partners.html" class="cyber-nav-item" data-section="partners">PARTNERSHIP</a>
+        <a href="/projects.html" class="cyber-nav-item" data-section="projects">PROJECTS</a>
+        <a href="/index.html#contact" class="cyber-nav-item" data-section="contact">CONTACT</a>
+        <a href="/team.html" class="cyber-nav-item">ABOUT</a>
+      </nav>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>CONNECT</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="https://twitter.com/AppiexOfficial" target="_blank" rel="noopener">TWITTER</a>
+          <a href="https://discord.gg/appiex" target="_blank" rel="noopener">DISCORD</a>
+          <a href="https://wa.me/8801979493902" target="_blank" rel="noopener">WHATSAPP</a>
+        </div>
+      </div>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>ACTIONS</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="/login.html">LOGIN</a>
+          <a href="/index.html#contact">BOOK A MEETING</a>
+        </div>
+      </div>
+
+      <div class="cyber-bottom-misc">
+        <div>US-EN &#x2304;</div>
+        <div>&copy; 2026 APPIEX</div>
+      </div>
+    </div>
+
+    <div class="cyber-right-bar">
+      <button type="button" class="cyber-bar-close" id="cyber-menu-close" aria-label="Close menu" onclick="return (window.__closeMobileDrawer ? window.__closeMobileDrawer(event) : false);">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-top" style="transform: translateY(5px) rotate(45deg); background-color: #ffffff;"></span>
+          <span class="hamburger-line line-bottom" style="transform: translateY(-5px) rotate(-45deg); background-color: #ffffff;"></span>
+        </span>
+      </button>
+
+      <div class="cyber-bar-bottom">
+        <div class="cyber-audio-equalizer">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 </body>
 </html>

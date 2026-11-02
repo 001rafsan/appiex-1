@@ -1,489 +1,1903 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curated Collections — APPIEX Web Systems</title>
-  <meta name="description" content="Explore APPIEX Curated Web Editions: Nitro Commerce Flagship, Studio 3D Immersive, and SaaS Velocity Enterprise Suite.">
-  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Collections & Production Repositories | APPIEX</title>
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Explore 10 production-grade headless e-commerce storefronts, ISP automated management platforms, SaaS engines, and cloud infrastructures engineered by APPIEX.">
 
-  <!-- Fonts & CDN -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,400i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="./styles/fonts.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN for high-velocity modern styling -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            anton: ['Anton', 'Impact', 'sans-serif'],
-            satoshi: ['Satoshi', 'system-ui', 'sans-serif'],
-            oswald: ['Oswald', 'sans-serif'],
-            cormorant: ['Cormorant Garamond', 'serif'],
-          },
           colors: {
-            'brand-red': '#DC2626',
-            'brand-red-mid': '#B91C1C',
-            'brand-neon': '#FF2A4D',
-            'brand-pale': '#FEE2E2',
-            'hairline': '#E5E5E5',
+            appiexRed: '#FF2A4D',
+            appiexRedDark: '#DC2626',
+            appiexTeal: '#2DD4BF',
+            appiexDark: '#040407',
+            appiexCard: '#090A10'
+          },
+          fontFamily: {
+            heading: ['Google Sans', 'sans-serif'],
+            sans: ['Google Sans', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
           }
         }
       }
     }
   </script>
+
   <style>
-    html, body {
-      overflow-x: clip;
+    @font-face {
+      font-family: 'Google Sans';
+      font-style: normal;
+      weight: 400;
+      src: url('https://fonts.gstatic.com/s/googlesans/v71/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrwEIKli.ttf') format('truetype');
     }
-    .btn-pill {
+    @font-face {
+      font-family: 'Google Sans';
+      font-style: normal;
+      weight: 500;
+      src: url('https://fonts.gstatic.com/s/googlesans/v71/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrw2IKli.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Google Sans';
+      font-style: normal;
+      weight: 700;
+      src: url('https://fonts.gstatic.com/s/googlesans/v71/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrzjJ6li.ttf') format('truetype');
+    }
+
+    /* Global Base */
+    * {
+      font-family: 'Google Sans', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background-color: #030408;
+      color: #F8FAFC;
+      font-family: 'Google Sans', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+      overflow-x: hidden;
+      selection-background-color: #FF2A4D;
+      selection-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Google Sans', system-ui, -apple-system, sans-serif !important;
+    }
+
+    ::selection {
+      background: #FF2A4D;
+      color: #FFFFFF;
+    }
+
+    /* Ambient Glows */
+    .ambient-glow-red {
+      background: radial-gradient(circle, rgba(255, 42, 77, 0.16) 0%, rgba(220, 38, 38, 0.05) 50%, transparent 75%);
+    }
+    .ambient-glow-teal {
+      background: radial-gradient(circle, rgba(45, 212, 191, 0.14) 0%, transparent 70%);
+    }
+
+    /* Grid Texture */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Floating Capsule Navbar Styles - RED ACCENT (UNIFIED APPIEX HUNT) */
+    .rafsan-navbar-shell {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.1rem 0;
+      pointer-events: none;
+      background: transparent !important;
+      font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      transition: all 0.35s ease;
+    }
+
+    .rafsan-navbar-shell.scrolled {
+      padding: 0.75rem 0;
+    }
+
+    .rafsan-nav-container {
+      max-width: 82rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* 1. Brand Logo (Left) */
+    .rafsan-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      user-select: none;
+    }
+    .rafsan-brand:hover {
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .rafsan-brand .brand-logo-img {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      margin-right: 0.35rem;
+      filter: drop-shadow(0 2px 8px rgba(255, 42, 77, 0.4));
+    }
+    .rafsan-brand-bold {
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .rafsan-brand-light {
+      font-weight: 300;
+      color: #d1d5db;
+      margin-left: 0.2rem;
+    }
+
+    /* 2. Center Floating Glassmorphic Capsule */
+    .rafsan-capsule-nav {
+      position: relative;
+      display: none;
+      align-items: center;
+      padding: 5px 6px;
       border-radius: 9999px;
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s ease;
+    }
+
+    @media (min-width: 768px) {
+      .rafsan-capsule-nav {
+        display: flex;
+      }
+    }
+
+    /* Sliding Spring Pill Indicator - RED THEME */
+    .rafsan-capsule-pill {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      height: calc(100% - 10px);
+      width: 68px;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      border-radius: 9999px;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .rafsan-nav-item {
+      position: relative;
+      z-index: 2;
+      padding: 6px 16px;
       font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: color 0.25s ease;
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+    }
+    .rafsan-nav-item:hover {
+      color: #ffffff;
+    }
+    .rafsan-nav-item.active {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* 3. Action Buttons (Right) */
+    .rafsan-nav-actions {
+      display: none;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    @media (min-width: 768px) {
+      .rafsan-nav-actions {
+        display: flex;
+      }
+    }
+
+    .rafsan-github-btn {
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border-radius: 50%;
+      transition: color 0.25s ease, transform 0.25s ease;
+      text-decoration: none;
+    }
+    .rafsan-github-btn:hover {
+      color: #FF2A4D;
+      transform: scale(1.1);
+    }
+
+    .rafsan-resume-btn {
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      text-decoration: none;
+      background: transparent;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(8px);
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
-    .btn-pill:hover { transform: translateY(-1px); }
-    .drawer-overlay {
-      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity 350ms ease;
+    .rafsan-resume-btn:hover {
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
     }
-    .drawer-overlay.open { opacity: 1; pointer-events: all; }
-    #cart-drawer {
-      position: fixed; top: 0; right: 0; height: 100dvh; width: min(450px, 100vw);
-      background: #0C0C0C; z-index: 9100; transform: translateX(100%);
-      transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
-      border-left: 1px solid rgba(255, 255, 255, 0.08);
+
+    .rafsan-hire-btn {
+      padding: 7px 18px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+      color: #ffffff;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(255, 42, 77, 0.4);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
-    #cart-drawer.open { transform: translateX(0); }
-    #size-sheet {
-      position: fixed; bottom: 0; left: 50%; width: min(520px, 100vw);
-      background: #0C0C0C; border-radius: 24px 24px 0 0;
-      border: 1px solid rgba(255, 255, 255, 0.1); border-bottom: none;
-      z-index: 9200; transform: translateX(-50%) translateY(110%);
-      transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+    .rafsan-hire-btn:hover {
+      background: linear-gradient(135deg, #ff4767 0%, #ef4444 100%);
+      box-shadow: 0 6px 22px rgba(255, 42, 77, 0.65);
+      transform: translateY(-1px);
     }
-    #size-sheet.open { transform: translateX(-50%) translateY(0); }
-    #search-panel {
-      position: fixed; top: 0; left: 0; right: 0; background: #0C0C0C;
-      z-index: 9000; transform: translateY(-100%);
-      transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* 4. Mobile Hamburger */
+    .rafsan-mobile-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    @media (min-width: 768px) {
+      .rafsan-mobile-wrap {
+        display: none;
+      }
+    }
+    .rafsan-mobile-toggle {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      padding: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 5. Mobile Drawer Menu - RED ACCENT */
+    .rafsan-mobile-drawer { position: fixed; top: 66px; left: 0; width: 100%; background: #12070a; border-bottom: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85); padding: 1.25rem 1.5rem; transform: translate3d(0, -12px, 0); opacity: 0; visibility: hidden; pointer-events: none; transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease, visibility 0.22s; will-change: transform, opacity; z-index: 99; } .rafsan-mobile-drawer.open { transform: translate3d(0, 0, 0); opacity: 1; visibility: visible; pointer-events: auto; } @media (max-width: 768px) { body video.fixed { filter: none !important; opacity: 0.28 !important; } body div[style*="mix-blend-mode: color"] { display: none !important; } }
+    .rafsan-mobile-drawer a {
+      display: block;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: color 0.2s ease, padding-left 0.2s ease;
     }
-    #search-panel.open { transform: translateY(0); }
-    #mobile-nav-overlay {
-      position: fixed; inset: 0; background: #991B1B; z-index: 90;
-      transform: translateY(-100%); transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    .rafsan-mobile-drawer a:hover {
+      color: #FF2A4D;
+      padding-left: 0.5rem;
     }
-    #mobile-nav-overlay.open { transform: translateY(0); }
+    .rafsan-mobile-drawer-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 0.5rem;
+    }
+
+    /* Bento Card Glow & Hover */
+    .collection-card {
+      background: #07080E;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .collection-card:hover {
+      border-color: rgba(255, 42, 77, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 42, 77, 0.15);
+    }
+
+    .filter-btn.active {
+      background: #FF2A4D !important;
+      color: #FFFFFF !important;
+      border-color: #FF2A4D !important;
+      box-shadow: 0 0 20px rgba(255, 42, 77, 0.4);
+    }
+  
+  /* Uniform Navbar Montserrat Typography */
+  .rafsan-capsule-nav, .rafsan-nav-item {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+
+    /* Appiex Blog Pill Button */
+    .rafsan-blog-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 7px 18px !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 13.5px !important;
+      font-weight: 500 !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      text-decoration: none !important;
+    }
+    .rafsan-blog-btn:hover, .rafsan-blog-btn.active {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 42, 77, 0.5) !important;
+      color: #FF2A4D !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 15px rgba(255, 42, 77, 0.25) !important;
+    }
+
+</style>
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
   </style>
+  <script src="/scripts/instant-nav.js" defer></script>
+
+
+<script>
+  window.__toggleMobileServices = function(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+    var btn = document.getElementById('rafsan-mobile-services-toggle');
+    var sub = document.getElementById('rafsan-mobile-services-sub');
+    if (!sub) return false;
+
+    var isOpen = sub.classList.contains('open');
+    if (isOpen) {
+      sub.classList.remove('open');
+      if (btn) {
+        btn.classList.remove('expanded');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      sub.style.setProperty('max-height', '0px', 'important');
+      sub.style.setProperty('opacity', '0', 'important');
+      sub.style.setProperty('visibility', 'hidden', 'important');
+      sub.style.setProperty('pointer-events', 'none', 'important');
+      sub.style.setProperty('margin', '0', 'important');
+      sub.style.setProperty('padding', '0 0.5rem', 'important');
+    } else {
+      sub.classList.add('open');
+      if (btn) {
+        btn.classList.add('expanded');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      sub.style.setProperty('display', 'flex', 'important');
+      sub.style.setProperty('flex-direction', 'column', 'important');
+      sub.style.setProperty('max-height', '800px', 'important');
+      sub.style.setProperty('opacity', '1', 'important');
+      sub.style.setProperty('visibility', 'visible', 'important');
+      sub.style.setProperty('pointer-events', 'auto', 'important');
+      sub.style.setProperty('margin', '0.6rem 0 0.85rem 0', 'important');
+      sub.style.setProperty('padding', '0.5rem 0.5rem 0.75rem 0.5rem', 'important');
+      sub.style.setProperty('border', '1px solid rgba(255, 42, 77, 0.22)', 'important');
+      sub.style.setProperty('background', 'rgba(255, 42, 77, 0.06)', 'important');
+      sub.style.setProperty('border-radius', '14px', 'important');
+    }
+    return false;
+  };
+</script>
+
 </head>
-<body class="bg-[#0A0A0A] text-white antialiased">
+<body class="min-h-screen bg-[#030408] text-slate-100 flex flex-col justify-between relative selection:bg-red-600 selection:text-white">
+  <div id="appiex-cuberto-curtain" aria-hidden="true"><div class="appiex-curtain-ambient"></div></div>
 
-  <!-- OVERLAYS & MODALS -->
-  <div id="modal-overlay" class="drawer-overlay z-[8900]"></div>
+  <!-- Ambient Top Lights -->
+  <div class="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-[70rem] h-[30rem] ambient-glow-red blur-3xl z-0" aria-hidden="true"></div>
+  <div class="pointer-events-none fixed top-1/3 -right-40 w-[45rem] h-[45rem] ambient-glow-teal blur-3xl z-0" aria-hidden="true"></div>
 
-  <!-- CART DRAWER -->
-  <aside id="cart-drawer" role="dialog" aria-modal="true" class="flex flex-col text-white">
-    <div class="p-6 border-b border-white/10 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <svg class="h-6 w-auto text-brand-neon" viewBox="0 0 240 50" fill="none">
-          <g transform="translate(2, 2)">
-            <path d="M4 32 C10 20, 22 12, 36 8 C30 14, 28 20, 30 26 C26 23, 20 24, 14 28 C22 31, 30 28, 38 20 C34 27, 28 32, 18 35 C27 37, 36 35, 42 26 C38 32, 32 37, 24 39 C34 40, 46 34, 52 22 C56 16, 57 10, 58 4 C50 10, 42 13, 34 11 C44 6, 54 4, 62 1 C56 7, 52 13, 44 18 C52 13, 58 8, 64 2 C60 10, 54 16, 44 22 C52 18, 58 13, 64 7 C62 15, 54 23, 44 28 C38 32, 30 34, 20 35 Z" fill="#DC2626"/>
-            <circle cx="53" cy="11" r="1.8" fill="#FFFFFF"/>
-          </g>
-          <text x="74" y="34" font-family="'Anton', 'Oswald', sans-serif" font-size="28" font-weight="900" fill="currentColor">APPIEX</text>
-        </svg>
-        <span class="font-oswald text-xs tracking-[0.16em] uppercase text-brand-neon">YOUR ORDER BAG (<span id="cart-drawer-count">0</span>)</span>
+  <!-- FLOATING CAPSULE NAVBAR (UNIFIED APPIEX HUNT) -->
+  <header class="rafsan-navbar-shell" id="rafsan-navbar">
+    <div class="rafsan-nav-container">
+      
+      <!-- 1. Brand Logo (Left) -->
+      <a href="index.html#home" class="rafsan-brand" aria-label="Appiex">
+        <img src="./images/appiex-logo.png" alt="APPIEX" class="brand-logo-img">
+        <span class="rafsan-brand-bold">Appiex</span>
+      </a>
+
+      <!-- 2. Floating Capsule Navbar (Center) -->
+      <nav class="rafsan-capsule-nav" aria-label="Main Navigation">
+        <div class="rafsan-capsule-pill" id="rafsan-capsule-pill"></div>
+        <a href="index.html#home" class="rafsan-nav-item" data-section="home">Home</a>
+        <a href="index.html#services" class="rafsan-nav-item" data-section="services">Services</a>
+        <a href="index.html#refer" class="rafsan-nav-item" data-section="refer">Refer</a>
+        <a href="partners.html" class="rafsan-nav-item" data-section="partners">Partnership</a>
+        <a href="index.html#projects" class="rafsan-nav-item active" data-section="projects">Projects</a>
+        <a href="index.html#contact" class="rafsan-nav-item" data-section="contact">Contact</a>
+      </nav>
+
+      <!-- 3. Action Buttons (Right) -->
+      <div class="rafsan-nav-actions">
+        <!-- GitHub Icon -->
+        <a href="blog.html" class="rafsan-blog-btn" aria-label="Blog">Blog</a>
+        
+        <!-- Hire Us Button -->
+        <a href="login.html" class="rafsan-hire-btn" id="nav-login-btn">Login</a>
       </div>
-      <button id="close-cart-btn" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
-    <div id="cart-empty" class="hidden flex-1 flex flex-col items-center justify-center p-8 text-center">
-      <h3 class="font-anton text-2xl tracking-wide uppercase mb-1">YOUR BAG IS EMPTY</h3>
-      <p class="font-satoshi text-sm text-white/50 mb-6">Choose a curated collection below.</p>
-    </div>
-    <div id="cart-footer" class="p-6 border-t border-white/10 bg-[#090909] space-y-4">
-      <div class="flex items-center justify-between font-satoshi text-sm">
-        <span class="text-white/60">Subtotal (Commercial License)</span>
-        <span id="cart-subtotal" class="font-oswald text-xl font-bold text-white">৳0</span>
-      </div>
-      <p class="font-satoshi text-[11px] text-white/40">Instant GitHub Repo + Production Cloud Hosting Setup.</p>
-      <button id="checkout-btn" class="w-full btn-pill bg-brand-red hover:bg-brand-red-mid text-white py-4 font-bold text-sm tracking-[0.12em] shadow-lg shadow-brand-red/30">
-        PROCEED TO SECURE CHECKOUT
-      </button>
-    </div>
-  </aside>
 
-  <!-- TECH STACK SELECTOR SHEET -->
-  <div id="size-sheet" role="dialog" aria-modal="true" class="p-6 md:p-8 text-white">
-    <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
-      <div>
-        <span class="font-oswald text-[10px] tracking-[0.2em] text-brand-neon uppercase">APPIEX COLLECTIONS</span>
-        <h4 id="size-sheet-title" class="font-anton text-xl tracking-wide uppercase">NITRO COMMERCE</h4>
-        <span id="size-sheet-price" class="font-oswald text-base font-bold text-white/80">৳14,999</span>
-      </div>
-      <button id="close-size-sheet-btn" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="mb-5">
-      <span class="font-satoshi text-xs uppercase tracking-[0.14em] text-white/60 font-medium block mb-3">SELECT TECH STACK & ENGINE</span>
-      <div id="size-picker-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
-    </div>
-    <button id="confirm-add-cart-btn" disabled class="w-full btn-pill bg-brand-red text-white py-3.5 font-bold text-xs tracking-[0.14em] opacity-30 cursor-not-allowed">
-      SELECT A TECH STACK
-    </button>
-  </div>
-
-  <!-- SEARCH PANEL -->
-  <div id="search-panel" role="dialog" aria-modal="true" class="p-6 md:p-10 text-white">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex items-center justify-between pb-6">
-        <span class="font-oswald text-xs tracking-[0.2em] uppercase text-brand-neon">SEARCH COLLECTIONS</span>
-        <button id="close-search-btn" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      <!-- 4. Mobile Hamburger -->
+      <div class="rafsan-mobile-wrap">
+        <a href="login.html" class="rafsan-hire-btn" id="mobile-wrap-login-btn">Login</a>
+        <button type="button" class="rafsan-mobile-toggle" id="rafsan-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
       </div>
-      <input id="search-input" type="text" placeholder="SEARCH EDITIONS & ARCHITECTURES..." class="w-full bg-transparent border-b-2 border-white/20 pb-3 font-anton text-2xl md:text-4xl text-white uppercase focus:outline-none focus:border-brand-neon mb-8">
-      <div id="search-results" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto"></div>
-    </div>
-  </div>
 
-  <!-- MOBILE NAV OVERLAY -->
-  <div id="mobile-nav-overlay" class="flex flex-col justify-between p-8 text-white">
-    <div class="flex items-center justify-between">
-      <a href="index.html">
-        <svg class="h-8 w-auto text-white" viewBox="0 0 240 50" fill="none">
-          <g transform="translate(2, 2)">
-            <path d="M4 32 C10 20, 22 12, 36 8 C30 14, 28 20, 30 26 C26 23, 20 24, 14 28 C22 31, 30 28, 38 20 C34 27, 28 32, 18 35 C27 37, 36 35, 42 26 C38 32, 32 37, 24 39 C34 40, 46 34, 52 22 C56 16, 57 10, 58 4 C50 10, 42 13, 34 11 C44 6, 54 4, 62 1 C56 7, 52 13, 44 18 C52 13, 58 8, 64 2 C60 10, 54 16, 44 22 C52 18, 58 13, 64 7 C62 15, 54 23, 44 28 C38 32, 30 34, 20 35 Z" fill="#FFFFFF"/>
-          </g>
-          <text x="74" y="34" font-family="'Anton', 'Oswald', sans-serif" font-size="28" font-weight="900" fill="currentColor">APPIEX</text>
-        </svg>
-      </a>
-      <button id="close-mobile-nav" class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
     </div>
-            <div class="flex flex-col space-y-4 my-auto">
-      <a href="services.html" class="font-anton text-5xl uppercase hover:text-brand-neon">SERVICES</a>
-      <a href="refer.html" class="font-anton text-5xl uppercase text-brand-neon">REFER</a>
-      <a href="collections.html" class="font-anton text-5xl uppercase text-brand-neon">COLLECTIONS</a>
-      <a href="stories.html" class="font-anton text-5xl uppercase hover:text-brand-neon">CASE STUDIES</a>
-      <a href="index.html#contact" class="font-anton text-5xl uppercase hover:text-brand-neon">CONTACT</a>
-    </div>
-    <span class="font-satoshi text-xs uppercase tracking-widest text-white/80">APPIEX CURATED EDITIONS</span>
-  </div>
 
-  <!-- STICKY NAVBAR -->
-  <header class="fixed top-5 left-1/2 transform -translate-x-1/2 w-[calc(100%-32px)] max-w-[1120px] rounded-full z-50 bg-[#080808]/85 backdrop-blur-xl border border-white/12 shadow-2xl px-5 sm:px-6 md:px-7 py-3 flex items-center justify-between flex-nowrap">
-    <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
-      <svg class="h-[28px] md:h-[32px] w-auto text-white" viewBox="0 0 240 50" fill="none">
-        <g transform="translate(2, 2)">
-          <path d="M4 32 C10 20, 22 12, 36 8 C30 14, 28 20, 30 26 C26 23, 20 24, 14 28 C22 31, 30 28, 38 20 C34 27, 28 32, 18 35 C27 37, 36 35, 42 26 C38 32, 32 37, 24 39 C34 40, 46 34, 52 22 C56 16, 57 10, 58 4 C50 10, 42 13, 34 11 C44 6, 54 4, 62 1 C56 7, 52 13, 44 18 C52 13, 58 8, 64 2 C60 10, 54 16, 44 22 C52 18, 58 13, 64 7 C62 15, 54 23, 44 28 C38 32, 30 34, 20 35 Z" fill="url(#appiexRedNavC)"/>
-          <polygon points="10,28 22,20 36,24 26,30 14,33" fill="#DC2626"/>
-          <polygon points="26,12 40,6 52,10 42,14" fill="#FF2A4D"/>
-          <circle cx="53" cy="11" r="1.8" fill="#FFFFFF"/>
-          <circle cx="53" cy="11" r="0.9" fill="#FF2A4D"/>
-        </g>
-        <text x="74" y="34" font-family="'Anton', 'Oswald', sans-serif" font-size="28" font-weight="900" fill="currentColor">APPIEX</text>
-        <defs>
-          <linearGradient id="appiexRedNavC" x1="0" y1="0" x2="64" y2="40" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#FF4D6D"/>
-            <stop offset="50%" stop-color="#DC2626"/>
-            <stop offset="100%" stop-color="#991B1B"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </a>
-    <nav class="hidden lg:flex items-center space-x-3 xl:space-x-4 font-satoshi text-xs uppercase tracking-[0.14em] font-medium text-white/80 whitespace-nowrap flex-nowrap shrink-0">
-      <a href="services.html" class="px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition whitespace-nowrap">SERVICES</a>
-      <a href="refer.html" class="px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition whitespace-nowrap text-brand-neon font-bold flex items-center space-x-1">
-        <span>REFER</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse"></span>
-      </a>
-      <a href="collections.html" class="px-3.5 py-1.5 rounded-full bg-white/15 text-white font-bold whitespace-nowrap">COLLECTIONS</a>
-      <a href="stories.html" class="px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition whitespace-nowrap">CASE STUDIES</a>
-      <a href="index.html#contact" class="px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition whitespace-nowrap">CONTACT</a>
-    </nav>
-    <div class="flex items-center space-x-3 flex-shrink-0 whitespace-nowrap">
-      <button id="search-btn" aria-label="Search" class="p-2 rounded-full hover:bg-white/10 text-white">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      </button>
-      <a href="#flagship" class="hidden sm:inline-flex btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-4 py-2 text-[11px] font-bold whitespace-nowrap shrink-0">
-        EXPLORE EDITIONS
-      </a>
-      <button id="hamburger" aria-label="Menu" class="lg:hidden p-2 flex flex-col space-y-1.5 text-white">
-        <span class="w-5 h-0.5 bg-white"></span>
-        <span class="w-5 h-0.5 bg-white"></span>
-      </button>
-    </div>
-  </header>
+    </header>
 
-  <!-- 3 FULL-HEIGHT EDITORIAL CARDS -->
-
-  <!-- Card 1: Nitro Elite Flagship -->
-  <section id="flagship" class="min-h-[90vh] pt-32 pb-20 px-6 md:px-16 bg-[#0A0A0A] flex items-center border-b border-white/10 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
-      <div class="space-y-6">
-        <span class="font-oswald text-xs tracking-[0.22em] text-brand-neon uppercase font-bold">COLLECTION 01 · FLAGSHIP E-COMMERCE</span>
-        <h1 class="font-anton text-5xl sm:text-7xl lg:text-8xl uppercase leading-[0.9] text-white">
-          NITRO COMMERCE <br><span class="text-brand-neon">FLAGSHIP.</span>
-        </h1>
-        <p class="font-satoshi text-base text-white/70 max-w-lg leading-relaxed">
-          The pinnacle of modern digital shopping architectures. Built with Next.js 15, headless commerce APIs, real-time stock orchestration, and an interactive 3D product stage that eliminates cart drop-off.
-        </p>
-        <div class="pt-4 flex items-center space-x-4">
-          <button onclick="openSizeSheet('obsidian')" class="btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-8 py-4 text-xs font-bold tracking-[0.14em] shadow-lg shadow-brand-red/30">
-            GET ARCHITECTURE →
-          </button>
-          <span class="font-oswald text-sm text-white/80">৳14,999 · COMMERCIAL LICENSE</span>
-        </div>
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="relative z-10 pt-28 pb-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+    
+    <!-- Hero Header -->
+    <section class="text-center max-w-4xl mx-auto mb-14 pt-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-[11px] font-mono tracking-widest text-emerald-300 uppercase font-semibold">10 VERIFIED CLIENT ARCHITECTURES IN PROD</span>
       </div>
-      <div class="flex items-center justify-center">
-        <img src="./images/web_obsidian_black.png" alt="Nitro Elite Flagship" class="w-full max-w-lg object-contain drop-shadow-[0_30px_70px_rgba(220,38,38,0.25)] transform hover:scale-105 transition-transform duration-500">
+      
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-['Google_Sans',sans-serif] font-bold uppercase tracking-tight text-white mb-5 leading-[0.95]">
+        PRODUCTION <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-amber-300">COLLECTIONS</span>
+      </h1>
+      
+      <p class="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+        A curated showcase of 10 production-grade headless e-commerce storefronts, ISP automation engines, SaaS telemetry dashboards, and high-velocity cloud systems engineered by <span class="text-white font-semibold">APPIEX</span>.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-8" id="collections-filter-group">
+        <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/10 bg-white/5 hover:border-red-500 transition-all">All Architectures (10)</button>
+        <button onclick="filterProjects('ecommerce')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/10 bg-white/5 hover:border-red-500 transition-all">Headless Commerce</button>
+        <button onclick="filterProjects('isp')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/10 bg-white/5 hover:border-red-500 transition-all">ISP & Automation</button>
+        <button onclick="filterProjects('saas')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/10 bg-white/5 hover:border-red-500 transition-all">SaaS & Fintech</button>
+        <button onclick="filterProjects('special')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/10 bg-white/5 hover:border-red-500 transition-all">AI & PropTech</button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Card 2: 3D Studio Capsule -->
-  <section class="min-h-[90vh] py-24 px-6 md:px-16 relative flex items-center border-b border-white/10 overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center filter brightness-40" style="background-image: url('./images/bg_savanna.png');"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+    
+    <!-- 2-COLUMN PROJECT SHOWCASE COLLECTIONS (10 PRODUCTION ARCHITECTURES) -->
+    <div class="flex flex-col gap-10 sm:gap-14" id="collections-grid">
 
-    <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
-      <div class="space-y-6">
-        <span class="font-oswald text-xs tracking-[0.22em] text-amber-400 uppercase font-bold">COLLECTION 02 · 3D WEBGL STUDIO</span>
-        <h2 class="font-anton text-5xl sm:text-7xl lg:text-8xl uppercase leading-[0.9] text-white">
-          STUDIO 3D <br><span class="text-amber-400">IMMERSIVE.</span>
-        </h2>
-        <p class="font-satoshi text-base text-white/80 max-w-lg leading-relaxed">
-          Award-winning digital experience crafted with Three.js, React Three Fiber, custom shaders, and spatial sound. Designed for creative agencies, luxury brands, and next-generation tech portfolios.
-        </p>
-        <div class="pt-4 flex items-center space-x-4">
-          <button onclick="openSizeSheet('savanna')" class="btn-pill bg-amber-600 hover:bg-amber-500 text-white px-8 py-4 text-xs font-bold tracking-[0.14em]">
-            EXPLORE STUDIO 3D →
-          </button>
-          <span class="font-oswald text-sm text-white/90">৳14,999 · LIMITED LICENSE DROP</span>
-        </div>
-      </div>
-      <div class="flex items-center justify-center">
-        <img src="./images/web_savanna_gold.png" alt="3D Studio Immersive" class="w-full max-w-lg object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500">
-      </div>
-    </div>
-  </section>
-
-  <!-- Card 3: SaaS Velocity Suite -->
-  <section class="min-h-[90vh] py-24 px-6 md:px-16 bg-[#111111] text-white flex items-center relative overflow-hidden border-b border-white/10">
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
-      <div class="space-y-6">
-        <span class="font-oswald text-xs tracking-[0.22em] text-brand-neon uppercase font-bold">COLLECTION 03 · SAAS & ENTERPRISE</span>
-        <h2 class="font-anton text-5xl sm:text-7xl lg:text-8xl uppercase leading-[0.9] text-white">
-          SAAS VELOCITY <br><span class="text-brand-neon">ENTERPRISE.</span>
-        </h2>
-        <p class="font-satoshi text-base text-white/70 max-w-lg leading-relaxed">
-          The ultimate foundation for modern cloud software. Includes authentication, billing webhooks, real-time analytics dashboards, dark mode design system, and multi-tenant database readiness.
-        </p>
-        <div class="pt-4 flex items-center space-x-4">
-          <button onclick="openSizeSheet('arctic')" class="btn-pill bg-brand-red hover:bg-brand-red-mid text-white px-8 py-4 text-xs font-bold tracking-[0.14em] shadow-lg shadow-brand-red/30">
-            LAUNCH SAAS SUITE →
-          </button>
-          <span class="font-oswald text-sm text-white/70">FROM ৳14,999</span>
-        </div>
-      </div>
-      <div class="flex items-center justify-center">
-        <img src="./images/web_arctic_white.png" alt="SaaS Velocity Suite" class="w-full max-w-lg object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500">
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-[#050505] text-white/60 py-12 px-6 border-t border-white/10 text-center font-satoshi text-xs">
-    <div class="max-w-md mx-auto mb-4">
-      <svg class="h-7 w-auto mx-auto text-white/50" viewBox="0 0 240 50" fill="none">
-        <g transform="translate(2, 2)">
-          <path d="M4 32 C10 20, 22 12, 36 8 C30 14, 28 20, 30 26 C26 23, 20 24, 14 28 C22 31, 30 28, 38 20 C34 27, 28 32, 18 35 C27 37, 36 35, 42 26 C38 32, 32 37, 24 39 C34 40, 46 34, 52 22 C56 16, 57 10, 58 4 C50 10, 42 13, 34 11 C44 6, 54 4, 62 1 C56 7, 52 13, 44 18 C52 13, 58 8, 64 2 C60 10, 54 16, 44 22 C52 18, 58 13, 64 7 C62 15, 54 23, 44 28 C38 32, 30 34, 20 35 Z" fill="#DC2626"/>
-        </g>
-        <text x="74" y="34" font-family="'Anton', 'Oswald', sans-serif" font-size="28" font-weight="900" fill="currentColor">APPIEX</text>
-      </svg>
-    </div>
-    <p>© 2026 APPIEX Web Systems Inc. All rights reserved. Curated Digital Architecture Collections.</p>
-  </footer>
-
-  <!-- SCRIPT -->
-  <script>
-    (function(){
-      const PRODUCTS = {
-        obsidian: { id:'obsidian', name:'APPIEX NITRO COMMERCE ELITE', spec:'Obsidian Cyber Edition · 0.38s Checkout', price:14999, img:'./images/web_obsidian_black.png' },
-        savanna: { id:'savanna', name:'STUDIO 3D IMMERSIVE', spec:'Ruby Gold Edition · Interactive WebGL', price:14999, img:'./images/web_savanna_gold.png' },
-        arctic: { id:'arctic', name:'SAAS VELOCITY PRO', spec:'Arctic Red Edition · Next.js 15 & Tailwind', price:14999, img:'./images/web_arctic_white.png' }
-      };
-
-      const TECH_STACKS = [
-        'Next.js 15', 'React + Vite', 'Tailwind + Astro', 'Full-Stack Node',
-        'Shopify Liquid', 'WordPress Headless', 'HTML5 Canvas', 'SaaS Enterprise'
-      ];
-
-      let cart = [];
-      try { const s = localStorage.getItem('appiex_cart'); if (s) cart = JSON.parse(s); } catch(e){}
-      function saveCart() { try { localStorage.setItem('appiex_cart', JSON.stringify(cart)); } catch(e){} }
-
-      let pendingProductId = 'obsidian';
-      let selectedStack = null;
-
-      const cartBadge = document.getElementById('cart-badge');
-      const cartDrawer = document.getElementById('cart-drawer');
-      const cartDrawerCount = document.getElementById('cart-drawer-count');
-      const cartItemsContainer = document.getElementById('cart-items-container');
-      const cartEmpty = document.getElementById('cart-empty');
-      const cartFooter = document.getElementById('cart-footer');
-      const cartSubtotal = document.getElementById('cart-subtotal');
-      const modalOverlay = document.getElementById('modal-overlay');
-      const sizeSheet = document.getElementById('size-sheet');
-      const sizeSheetTitle = document.getElementById('size-sheet-title');
-      const sizeSheetPrice = document.getElementById('size-sheet-price');
-      const sizePickerGrid = document.getElementById('size-picker-grid');
-      const confirmAddCartBtn = document.getElementById('confirm-add-cart-btn');
-      const searchPanel = document.getElementById('search-panel');
-      const searchInput = document.getElementById('search-input');
-      const searchResults = document.getElementById('search-results');
-      const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-      const hamburger = document.getElementById('hamburger');
-
-      function renderCart() {
-        const total = cart.reduce((s, i) => s + i.qty, 0);
-        const sub = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-        if (total > 0) { cartBadge.style.display = 'flex'; cartBadge.textContent = total; } else { cartBadge.style.display = 'none'; }
-        cartDrawerCount.textContent = total;
-        cartSubtotal.textContent = '৳' + sub.toLocaleString('en-BD');
-
-        if (cart.length === 0) {
-          cartItemsContainer.innerHTML = '';
-          cartEmpty.classList.remove('hidden');
-          cartFooter.classList.add('hidden');
-          return;
-        }
-        cartEmpty.classList.add('hidden');
-        cartFooter.classList.remove('hidden');
-
-        cartItemsContainer.innerHTML = cart.map(i => `
-          <div class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
-            <div class="w-16 h-16 bg-black/60 rounded p-1 flex-shrink-0 flex items-center justify-center">
-              <img src="${i.img}" class="w-full h-full object-contain">
+      <!-- PROJECT: Watch24 BD -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="ecommerce">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                AUTHENTIC LUXURY WATCH STORE IN BANGLADESH
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                Watch24 BD
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                Designed and developed an authentic luxury watch store in Bangladesh featuring 100% genuine collections from Seiko, Casio, Tissot, Rado, and premium global watchmakers. Features a modern product catalog, dynamic price filters, real-time cart system, and fast mobile navigation.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>100% Authentic Brand Collections</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Dynamic Watch Showcase & Deals</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Real-time Cart & Checkout</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Fully Responsive Mobile Experience</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="flex-1 min-w-0">
-              <h4 class="font-satoshi font-bold text-xs truncate text-white">${i.name}</h4>
-              <p class="font-satoshi text-[11px] text-brand-neon font-medium">${i.stack || 'Standard Stack'}</p>
-              <div class="font-oswald text-xs font-bold text-white mt-1">৳${i.price.toLocaleString('en-BD')}</div>
-              <div class="flex items-center justify-between mt-1">
-                <div class="flex items-center space-x-2">
-                  <button onclick="window.colChangeQty('${i.id}', -1)" class="w-5 h-5 rounded-full border border-white/30 text-xs flex items-center justify-center hover:bg-white/20">−</button>
-                  <span class="text-xs font-bold text-white">${i.qty}</span>
-                  <button onclick="window.colChangeQty('${i.id}', 1)" class="w-5 h-5 rounded-full border border-white/30 text-xs flex items-center justify-center hover:bg-white/20">+</button>
-                </div>
-                <button onclick="window.colRemoveItem('${i.id}')" class="text-white/40 text-[10px] hover:text-brand-neon transition">Remove</button>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">React</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">TypeScript</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">E-Commerce</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Vercel</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://www.watch24bd.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#watch24"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20Watch24%20BD"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
               </div>
             </div>
           </div>
-        `).join('');
-        saveCart();
-      }
 
-      window.colChangeQty = (id, delta) => {
-        const item = cart.find(i => i.id === id);
-        if (!item) return;
-        item.qty += delta;
-        if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
-        renderCart();
-      };
-      window.colRemoveItem = (id) => { cart = cart.filter(i => i.id !== id); renderCart(); };
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/watch24bd.jpg"
+              alt="Watch24 BD"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
 
-      function addToCart(pId, stack) {
-        const prod = PRODUCTS[pId] || PRODUCTS.obsidian;
-        const id = `${pId}_${stack.replace(/[^a-zA-Z0-9]/g, '')}`;
-        const ex = cart.find(i => i.id === id);
-        if (ex) ex.qty += 1;
-        else cart.push({ id, productId: prod.id, name: prod.name, spec: prod.spec, price: prod.price, img: prod.img, stack: stack, qty: 1 });
-        renderCart();
-        openCart();
-      }
-
-      function openCart() { closeSizeSheet(); closeSearch(); cartDrawer.classList.add('open'); modalOverlay.classList.add('open'); }
-      function closeCart() { cartDrawer.classList.remove('open'); modalOverlay.classList.remove('open'); }
-
-      function openSizeSheet(pId) {
-        pendingProductId = pId; selectedStack = null;
-        const prod = PRODUCTS[pId] || PRODUCTS.obsidian;
-        sizeSheetTitle.textContent = prod.name;
-        sizeSheetPrice.textContent = '৳' + prod.price.toLocaleString('en-BD');
-        sizePickerGrid.innerHTML = TECH_STACKS.map(s => `<button type="button" class="stack-btn py-3 px-2 rounded-lg border border-white/20 font-satoshi text-xs font-semibold text-white/80 hover:border-brand-neon hover:text-white transition-all text-center" data-stack="${s}">${s}</button>`).join('');
-        confirmAddCartBtn.disabled = true;
-        confirmAddCartBtn.classList.add('opacity-30', 'cursor-not-allowed');
-        confirmAddCartBtn.textContent = 'SELECT A TECH STACK';
-
-        sizePickerGrid.querySelectorAll('.stack-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-            sizePickerGrid.querySelectorAll('.stack-btn').forEach(b => b.classList.remove('bg-brand-red', 'border-brand-neon', 'text-white'));
-            btn.classList.add('bg-brand-red', 'border-brand-neon', 'text-white');
-            selectedStack = btn.getAttribute('data-stack');
-            confirmAddCartBtn.disabled = false;
-            confirmAddCartBtn.classList.remove('opacity-30', 'cursor-not-allowed');
-            confirmAddCartBtn.textContent = `ADD ARCHITECTURE (${selectedStack})`;
-          });
-        });
-
-        closeCart(); closeSearch(); sizeSheet.classList.add('open'); modalOverlay.classList.add('open');
-      }
-      function closeSizeSheet() { sizeSheet.classList.remove('open'); modalOverlay.classList.remove('open'); }
-      window.openSizeSheet = openSizeSheet;
-
-      confirmAddCartBtn.addEventListener('click', () => { if (selectedStack) { addToCart(pendingProductId, selectedStack); closeSizeSheet(); } });
-      document.getElementById('cart-btn').addEventListener('click', openCart);
-      document.getElementById('close-cart-btn').addEventListener('click', closeCart);
-      document.getElementById('close-size-sheet-btn').addEventListener('click', closeSizeSheet);
-
-      // Search
-      document.getElementById('search-btn').addEventListener('click', () => {
-        searchPanel.classList.add('open'); modalOverlay.classList.add('open');
-        setTimeout(() => searchInput.focus(), 250);
-        renderSearchResults('');
-      });
-      document.getElementById('close-search-btn').addEventListener('click', () => { searchPanel.classList.remove('open'); modalOverlay.classList.remove('open'); });
-
-      function renderSearchResults(query) {
-        const q = (query || '').toLowerCase().trim();
-        const matches = Object.values(PRODUCTS).filter(p => !q || p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q));
-        searchResults.innerHTML = matches.map(p => `
-          <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:border-brand-red transition" onclick="openSizeSheet('${p.id}')">
-            <img src="${p.img}" class="w-12 h-12 object-contain bg-black/40 rounded p-1">
-            <div class="min-w-0 flex-1">
-              <h5 class="text-xs font-bold text-white truncate">${p.name}</h5>
-              <p class="text-[10px] text-white/50 truncate">${p.spec}</p>
-              <div class="text-xs font-oswald text-brand-neon mt-0.5">৳${p.price.toLocaleString('en-BD')}</div>
+      <!-- PROJECT: TimeDune Commerce -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="ecommerce">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                HEADLESS E-COMMERCE · 3D TIMEPIECE STORE
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                TimeDune Commerce
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                High-conversion luxury timepiece storefront engineered with Three.js WebGL 3D watch viewer, silky GSAP interactions, and sub-0.3s headless checkout velocity. Features bespoke custom dial configurators, live inventory tracking, and localized multi-currency support.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Three.js Interactive 3D Product Canvas</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Sub-0.3s Headless Checkout Velocity</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Multi-Currency & Automated Gateway Sync</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Ultra-Smooth GSAP Spatial Micro-Interactions</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js 15</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Three.js 3D</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">GSAP</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Stripe & bKash</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Vercel</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://timedune.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#timedune"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20TimeDune%20Commerce"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
             </div>
           </div>
-        `).join('');
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/timedune.jpg"
+              alt="TimeDune Commerce"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: Mamun WiFi Portal -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="isp">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                ISP AUTOMATION & BANDWIDTH BILLING ENGINE
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                Mamun WiFi Portal
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                Production-grade telecom management platform featuring real-time MikroTik router synchronization, automated bKash/Nagad subscription renewal, and live telemetry tracking. Handles thousands of concurrent subscribers with sub-second billing execution.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Real-time MikroTik Bandwidth & Router Sync</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Automated bKash & Nagad Tokenized Billing</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Live Network Telemetry & SLA Tracking</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Multi-Tenant Customer Self-Service Portal</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">React</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">MikroTik API</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">PostgreSQL</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Vercel</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://mamun-wifi.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#mamunwifi"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20Mamun%20WiFi%20Portal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/mamun-wifi.jpg"
+              alt="Mamun WiFi Portal"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: Libas-e-Nafs Couture -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="ecommerce">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                MODEST COUTURE & LUXURY APPAREL
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                Libas-e-Nafs Couture
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                Bespoke high-fashion e-commerce portal engineered for effortless luxury fashion shopping across Bangladesh and GCC. Features dynamic fabric zoom, instant size recommendation assistant, and real-time Steadfast courier fulfillment integration.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>High-Resolution Fabric Detail & Dynamic Zoom</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Instant One-Click Cash-on-Delivery Checkout</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Automated Steadfast & Pathao Logistics Sync</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Adaptive Mobile Storefront with 99+ Core Web Vitals</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js 15</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">React</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Redux Toolkit</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">SSLCommerz</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Vercel</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://libas-nafs.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#timedune"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20Libas-e-Nafs%20Couture"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/libas-nafs.jpg"
+              alt="Libas-e-Nafs Couture"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: Ghorer Bazar Market -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="ecommerce">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                NATIONWIDE FRESH ORGANIC FOOD NETWORK
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                Ghorer Bazar Market
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                Enterprise farm-to-table organic grocery platform processing over 12,000 monthly orders across Bangladesh. Built with Redis-backed cart state, automated OTP customer verification, cold-chain delivery tracking, and robust bKash direct billing.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Sub-15ms Real-Time Grocery Cart & Wishlist</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Automated SMS OTP Verification & Order Dispatch</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Localized Division & Thana Area Logistics Matrix</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Instant bKash, Nagad & Direct Cash-on-Delivery</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Node.js / Express</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Redis</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">bKash Tokenized</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Vercel</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://ghorerbazar.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#watchshopbd"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20Ghorer%20Bazar%20Market"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/ghorerbazar.jpg"
+              alt="Ghorer Bazar Market"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: WatchShopBD Horology -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="ecommerce">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                E-COMMERCE · LUXURY HOROLOGY STORE
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                WatchShopBD Horology
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                Ultra-fast horology commerce portal featuring Algolia instant search, dynamic cart recovery, Steadfast / Pathao courier tracking, and multi-currency checkout. Powers thousands of verified watch sales monthly.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Algolia Instant Search with Typo-Tolerance</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Sub-0.3s Largest Contentful Paint (LCP)</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Automated Abandoned Cart Recovery Sequences</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Secure SSLCommerz & bKash Gateway Integration</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js 15</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Prisma ORM</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Algolia Search</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">SSLCommerz</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Vercel</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://watchshopbd.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#watchshopbd"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20WatchShopBD%20Horology"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/product_watchshopbd.png"
+              alt="WatchShopBD Horology"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: NexusPay Edge FinTech -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="saas">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                FINTECH · CROSS-BORDER PAYOUT & ESCROW
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                NexusPay Edge FinTech
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                PCI-DSS compliant merchant escrow and settlement platform featuring sub-millisecond webhook routing, AI fraud scoring, and immutable double-entry ledger. Engineered for high-throughput institutional transactions.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Sub-Millisecond Webhook Event Dispatcher</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>AI-Powered Real-Time Transaction Fraud Scoring</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Immutable Double-Entry Ledger Architecture</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Bank-Grade 256-Bit TLS End-to-End Encryption</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Go Microservices</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">PostgreSQL</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Redis Sentinel</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Docker</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">PCI-DSS</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20see%20NexusPay%20Demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#nexuspay"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20NexusPay%20Edge%20FinTech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/acc_security_shield.png"
+              alt="NexusPay Edge FinTech"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: Pulse Cloud AI Assistant -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="special">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                AI SAAS · LLM ORCHESTRATION & AGENTS
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                Pulse Cloud AI Assistant
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                Multi-agent enterprise customer support platform with vector semantic retrieval (Qdrant), low-latency LLM streaming, and automated ticket resolution. Connects smoothly to Discord, Slack, and WhatsApp CRM.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Qdrant Semantic Vector Retrieval Pipeline</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Real-Time LLM Token Streaming (<35ms TTFT)</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Multi-Agent Workflow Delegation & Memory</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Omnichannel WhatsApp & Slack Live Bot Connectors</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Python FastAPI</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Qdrant Vector</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">LangChain</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js 15</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">WebSockets</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20see%20Pulse%20AI%20Demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#pulse-ai"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20Pulse%20Cloud%20AI%20Assistant"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/acc_cloud_turbo.png"
+              alt="Pulse Cloud AI Assistant"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: CyberGuard SOC Dashboard -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="saas">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                CYBERSECURITY · ZERO-TRUST LOG TELEMETRY
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                CyberGuard SOC Dashboard
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                High-throughput security event aggregation (50k events/sec) with MITRE ATT&CK visualization, ClickHouse analytics, and 60 FPS WebGL network graphs. Protects mission-critical enterprise workloads.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>ClickHouse High-Throughput Columnar Log Store</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>50,000+ Events Per Second Ingestion Pipeline</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Interactive 60 FPS Three.js Threat Topology Map</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Automated SIEM Alert Dispatch & Incident Triage</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">ClickHouse</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Apache Kafka</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">R3F WebGL</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Docker</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20see%20CyberGuard%20Demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#cyberguard"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20CyberGuard%20SOC%20Dashboard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/acc_ui_kit.png"
+              alt="CyberGuard SOC Dashboard"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT: ApexRealty Spatial Estates -->
+      <article class="collection-showcase-card w-full rounded-[2.5rem] border border-white/10 bg-[#080914]/90 backdrop-blur-xl p-6 sm:p-10 md:p-12 shadow-2xl hover:border-purple-500/30 transition-all duration-500" data-category="special">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <!-- Subtitle -->
+              <span class="inline-block text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-3 font-semibold">
+                PROPTECH · 3D TOURS & VALUATION ENGINE
+              </span>
+              <!-- Title -->
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-[1.1]" style="font-family: 'Google Sans', sans-serif;">
+                ApexRealty Spatial Estates
+              </h3>
+              <!-- Description -->
+              <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal" style="font-family: 'Google Sans', sans-serif;">
+                Photorealistic 3D architectural walkthroughs built with Three.js shaders, automated cadastral property pricing models, and private high-net-worth lead routing. Revolutionizing high-end real estate presentation.
+              </p>
+              <!-- Key Highlights -->
+              <div class="mb-6">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5" style="font-family: 'Google Sans', sans-serif;">
+                  KEY HIGHLIGHTS
+                </h4>
+                <ul class="grid grid-cols-1 gap-2.5">
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Photorealistic Three.js & Spline Spatial Walkthroughs</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Algorithmic Land Valuation & Yield Projections</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Interactive Mapbox 3D Terrain & Drone Elevation</span>
+                  </li>
+                  <li class="flex items-center gap-2.5 text-xs md:text-sm text-slate-200 font-medium" style="font-family: 'Google Sans', sans-serif;">
+                    <span class="text-[#a855f7] text-base font-bold">✓</span>
+                    <span>Secure Private Investor Deal-Room & Document Vault</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tech Pills & Buttons -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Three.js</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Spline 3D</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Mapbox GL</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Supabase</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Next.js 15</span>
+                <span class="px-3.5 py-1.5 text-xs font-medium bg-white/5 text-slate-300 rounded-xl border border-white/10 shadow-sm">Tailwind CSS</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20see%20ApexRealty%20Demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#7c3aed] text-white font-semibold text-xs md:text-sm rounded-full hover:bg-purple-600 transition-all duration-300 shadow-md shadow-purple-900/30 group"
+                >
+                  <span>Live Project Demo</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+                <a
+                  href="case-studies.html#apexrealty"
+                  class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs md:text-sm transition-all duration-300"
+                >
+                  <span>Case Study</span>
+                  <span class="text-purple-400">→</span>
+                </a>
+                <a
+                  href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20want%20to%20build%20a%20platform%20like%20ApexRealty%20Spatial%20Estates"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-5 py-4 rounded-full border border-red-500/30 bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-xs transition-all duration-300"
+                >
+                  <span>ORDER</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Image Mockup) -->
+          <div class="lg:col-span-6 relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black/60 flex items-center justify-center p-2 group">
+            <img
+              src="./images/product_timedune.png"
+              alt="ApexRealty Spatial Estates"
+              class="w-full aspect-[16/9] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- BOTTOM CALLOUT BANNER -->
+    <section class="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-red-950/40 via-black to-slate-950 border border-red-500/20 text-center relative overflow-hidden">
+      <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-red-600/10 blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <span class="text-red-400 font-mono text-xs tracking-widest uppercase font-semibold">CUSTOM ARCHITECTURAL DEPLOYMENT</span>
+        <h2 class="text-3xl sm:text-5xl font-['Google_Sans',sans-serif] font-bold uppercase text-white mt-2 mb-4">NEED A PLATFORM ENGINEERED FOR RECORD VELOCITY?</h2>
+        <p class="text-slate-300 text-xs sm:text-sm mb-7 leading-relaxed">
+          Talk directly with our lead architects Rafsan & Fayaj. We transfer complete production codebases, multi-currency gateways, and guarantee 99+ Core Web Vitals on your production domain.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="https://wa.me/8801917354847?text=Hi%20APPIEX%2C%20I%20am%20interested%20in%20building%20a%20production%20platform" target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs tracking-wider uppercase shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-2">
+            <span>WHATSAPP ARCHITECT HOTLINE</span>
+            <span>↗</span>
+          </a>
+          <a href="case-studies.html" class="w-full sm:w-auto px-7 py-3.5 rounded-full border border-white/20 hover:border-white text-white font-bold text-xs tracking-wider uppercase transition-all">
+            EXPLORE CASE STUDIES
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-white/10 bg-black/60 backdrop-blur-xl mt-auto py-12 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="appiex-brand">
+          <img src="./images/appiex-logo.png" alt="APPIEX" class="h-8">
+        </a>
+        <span>© 2026 APPIEX Systems. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-6 font-mono text-[11px]">
+        <a href="index.html" class="hover:text-white transition-colors">HOME</a>
+        <a href="collections.html" class="hover:text-white transition-colors text-red-400">COLLECTIONS</a>
+        <a href="case-studies.html" class="hover:text-white transition-colors">CASE STUDIES</a>
+        <a href="https://wa.me/8801917354847" target="_blank" class="hover:text-emerald-400 transition-colors">DIRECT HOTLINE: 01917-354847</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR DROPDOWN AND FILTER -->
+  <script>
+    // Dropdown toggle
+    (function initRafsanNavbar() {
+      const navContainer = document.querySelector('.rafsan-capsule-nav');
+      const pill = document.getElementById('rafsan-capsule-pill');
+      const navItems = document.querySelectorAll('.rafsan-nav-item');
+      const menuToggle = document.getElementById('rafsan-menu-toggle');
+      const mobileDrawer = document.getElementById('rafsan-mobile-drawer');
+
+      function updatePill(targetEl) {
+        if (!pill || !targetEl || !navContainer) return;
+        const navRect = navContainer.getBoundingClientRect();
+        const itemRect = targetEl.getBoundingClientRect();
+        pill.style.width = itemRect.width + 'px';
+        pill.style.left = (itemRect.left - navRect.left) + 'px';
+        pill.style.opacity = '1';
       }
-      searchInput.addEventListener('input', (e) => renderSearchResults(e.target.value));
 
-      modalOverlay.addEventListener('click', () => { closeCart(); closeSizeSheet(); searchPanel.classList.remove('open'); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeCart(); closeSizeSheet(); searchPanel.classList.remove('open'); mobileNavOverlay.classList.remove('open'); } });
-      document.getElementById('checkout-btn').addEventListener('click', () => alert('Instant checkout: Connecting to Stripe/Vercel enterprise gateway.'));
-      hamburger.addEventListener('click', () => mobileNavOverlay.classList.toggle('open'));
-      document.getElementById('close-mobile-nav').addEventListener('click', () => mobileNavOverlay.classList.remove('open'));
+      // Initial pill position for Projects / Collections
+      const initialActive = document.querySelector('.rafsan-nav-item.active') || navItems[4];
+      if (initialActive) {
+        setTimeout(() => updatePill(initialActive), 150);
+        window.addEventListener('load', () => updatePill(initialActive));
+      }
 
-      renderCart();
+      // Item click handling
+      navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          navItems.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+          updatePill(this);
+        });
+      });
+
+      // Window resize re-align pill
+      window.addEventListener('resize', () => {
+        const currentActive = document.querySelector('.rafsan-nav-item.active');
+        if (currentActive) updatePill(currentActive);
+      }, { passive: true });
+
+      // Mobile drawer toggle
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = mobileDrawer.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+      }
+    })();
+
+    // Filter cards
+    function filterProjects(cat) {
+      const buttons = document.querySelectorAll('#collections-filter-group button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('#collections-grid article');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      if (typeof Lenis !== 'undefined' && !window.lenis) {
+        // Smooth Lenis initialized with syncTouch: false for silky momentum
+      const isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window);
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      syncTouch: false,
+      touchMultiplier: 1.0
+    });
+        window.lenis = lenis;
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+    });
+  </script>
+
+      <!-- Appiex Client Auth Session Sync -->
+  <script>
+    (function checkClientAuth() {
+      try {
+        const u = localStorage.getItem('appiex_user');
+        if (u) {
+          let userData = {};
+          try { userData = JSON.parse(u); } catch(err) {}
+          const avatarSrc = userData.avatar || './images/6251456506175886234.jpg';
+          const userName = userData.name || 'Profile';
+          const initial = (userName.charAt(0) || 'P').toUpperCase();
+
+          function transformToProfileCircle(el) {
+            if (!el) return;
+            el.href = 'profile.html';
+            el.title = userName + ' - Profile';
+            el.setAttribute('aria-label', userName + ' Profile');
+            el.innerText = '';
+            el.style.setProperty('width', '38px', 'important');
+            el.style.setProperty('height', '38px', 'important');
+            el.style.setProperty('min-width', '38px', 'important');
+            el.style.setProperty('min-height', '38px', 'important');
+            el.style.setProperty('max-width', '38px', 'important');
+            el.style.setProperty('max-height', '38px', 'important');
+            el.style.setProperty('border-radius', '50%', 'important');
+            el.style.setProperty('padding', '0', 'important');
+            el.style.setProperty('overflow', 'hidden', 'important');
+            el.style.setProperty('display', 'inline-flex', 'important');
+            el.style.setProperty('align-items', 'center', 'important');
+            el.style.setProperty('justify-content', 'center', 'important');
+            el.style.setProperty('background', 'transparent', 'important');
+            el.style.setProperty('border', '2px solid rgba(255, 42, 77, 0.85)', 'important');
+            el.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            el.style.setProperty('transition', 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease', 'important');
+            el.style.setProperty('cursor', 'pointer', 'important');
+
+            const img = document.createElement('img');
+            img.src = avatarSrc;
+            img.alt = userName;
+            img.style.cssText = 'width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 50% !important; display: block !important;';
+            img.onerror = function() {
+              this.remove();
+              el.style.background = 'linear-gradient(135deg, #FF2A4D, #991B1B)';
+              el.innerHTML = '<span style="font-weight:700;color:#fff;font-size:14px;">' + initial + '</span>';
+            };
+            el.innerHTML = '';
+            el.appendChild(img);
+
+            el.onmouseenter = function() {
+              this.style.setProperty('transform', 'scale(1.08)', 'important');
+              this.style.setProperty('border-color', '#FF2A4D', 'important');
+              this.style.setProperty('box-shadow', '0 0 20px rgba(255, 42, 77, 0.8)', 'important');
+            };
+            el.onmouseleave = function() {
+              this.style.setProperty('transform', 'scale(1)', 'important');
+              this.style.setProperty('border-color', 'rgba(255, 42, 77, 0.85)', 'important');
+              this.style.setProperty('box-shadow', '0 0 14px rgba(255, 42, 77, 0.5)', 'important');
+            };
+          }
+
+          function applyAll() {
+            const loginButtons = document.querySelectorAll('#nav-login-btn, #mobile-wrap-login-btn, #mobile-nav-login-btn, .rafsan-hire-btn');
+            loginButtons.forEach(btn => transformToProfileCircle(btn));
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyAll);
+          } else {
+            applyAll();
+          }
+          setTimeout(applyAll, 50);
+          setTimeout(applyAll, 300);
+        }
+      } catch(e) {}
     })();
   </script>
+
+  <script src="./scripts/visitor-tracker.js?v=20261029_v5"></script>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+
+<div class="rafsan-mobile-drawer appiex-cyber-drawer" id="rafsan-mobile-drawer" data-lenis-prevent="true">
+    <div class="cyber-main-pane">
+      <div class="cyber-top-header">
+        <div class="discover-tag">
+          <span class="square-dot"></span>
+          <span>DISCOVER</span>
+        </div>
+        <div class="brand-wordmark">appiex</div>
+        <div class="page-tag">
+          <span>PAGE</span>
+          001
+        </div>
+      </div>
+
+      <nav class="cyber-nav-list">
+        <a href="/index.html" class="cyber-nav-item active" data-section="home">
+          HOME
+          <span class="badge-page">PAGE&#10;001</span>
+        </a>
+
+        <!-- Services Accordion with 6 Core Disciplines -->
+        <div class="cyber-services-wrap">
+          <button type="button" class="cyber-nav-item cyber-services-toggle" id="rafsan-mobile-services-toggle" aria-expanded="false" onclick="return window.__toggleMobileServices(event);">
+            <span>SERVICES</span>
+            <svg class="cyber-caret-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="cyber-services-sub" id="rafsan-mobile-services-sub">
+            <a href="/digital-strategy" class="cyber-sub-item"><span class="sub-dot"></span> DIGITAL STRATEGY</a>
+            <a href="/web-development" class="cyber-sub-item"><span class="sub-dot"></span> WEB DEVELOPMENT (FULL-STACK)</a>
+            <a href="/ui-ux-3d-design" class="cyber-sub-item"><span class="sub-dot"></span> UI/UX &amp; 3D DESIGN</a>
+            <a href="/ai-automation" class="cyber-sub-item"><span class="sub-dot"></span> AI AUTOMATION</a>
+            <a href="/seo-marketing" class="cyber-sub-item"><span class="sub-dot"></span> SEO &amp; MARKETING</a>
+            <a href="/gaming" class="cyber-sub-item"><span class="sub-dot"></span> GAMING &amp; 3D WORLDS</a>
+            <a href="/services" class="cyber-sub-item cyber-sub-explore"><span class="sub-dot"></span> EXPLORE ALL SERVICES &rarr;</a>
+          </div>
+        </div>
+
+        <a href="/refer.html" class="cyber-nav-item" data-section="refer">REFER</a>
+        <a href="/partners.html" class="cyber-nav-item" data-section="partners">PARTNERSHIP</a>
+        <a href="/projects.html" class="cyber-nav-item" data-section="projects">PROJECTS</a>
+        <a href="/index.html#contact" class="cyber-nav-item" data-section="contact">CONTACT</a>
+        <a href="/team.html" class="cyber-nav-item">ABOUT</a>
+      </nav>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>CONNECT</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="https://twitter.com/AppiexOfficial" target="_blank" rel="noopener">TWITTER</a>
+          <a href="https://discord.gg/appiex" target="_blank" rel="noopener">DISCORD</a>
+          <a href="https://wa.me/8801979493902" target="_blank" rel="noopener">WHATSAPP</a>
+        </div>
+      </div>
+
+      <div class="cyber-meta-section">
+        <div class="cyber-meta-label">
+          <span class="square-dot"></span>
+          <span>ACTIONS</span>
+        </div>
+        <div class="cyber-meta-content">
+          <a href="/login.html">LOGIN</a>
+          <a href="/index.html#contact">BOOK A MEETING</a>
+        </div>
+      </div>
+
+      <div class="cyber-bottom-misc">
+        <div>US-EN &#x2304;</div>
+        <div>&copy; 2026 APPIEX</div>
+      </div>
+    </div>
+
+    <div class="cyber-right-bar">
+      <button type="button" class="cyber-bar-close" id="cyber-menu-close" aria-label="Close menu">
+        <svg viewBox="0 0 12.82 12.28">
+          <path d="M12.82 12.16 8.34 7.91M0 0l4.56 4.32" stroke="currentColor" stroke-width="2"/>
+          <path d="M.34 12.28 12.54.22" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+
+      
+
+      <div class="cyber-bar-bottom">
+        <div class="cyber-audio-equalizer">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

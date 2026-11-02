@@ -1,0 +1,166 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * instrument-serif:
+ *   - http://typekit.com/eulas/0000000000000000774dc260
+ * neue-haas-grotesk-display:
+ *   - http://typekit.com/eulas/00000000000000007735bb34
+ *   - http://typekit.com/eulas/00000000000000007735bb36
+ *   - http://typekit.com/eulas/00000000000000007735bb38
+ *   - http://typekit.com/eulas/00000000000000007735bb4c
+ *   - http://typekit.com/eulas/00000000000000007735bb55
+ *   - http://typekit.com/eulas/00000000000000007735bb42
+ *   - http://typekit.com/eulas/00000000000000007735bb48
+ *   - http://typekit.com/eulas/00000000000000007735bb53
+ *   - http://typekit.com/eulas/00000000000000007735bb5a
+ *   - http://typekit.com/eulas/00000000000000007735bb5e
+ *   - http://typekit.com/eulas/00000000000000007735bb62
+ *   - http://typekit.com/eulas/00000000000000007735bb67
+ *   - http://typekit.com/eulas/00000000000000007735bb6a
+ *   - http://typekit.com/eulas/00000000000000007735bb6c
+ * neue-haas-grotesk-text:
+ *   - http://typekit.com/eulas/00000000000000007735bb33
+ *   - http://typekit.com/eulas/00000000000000007735bb35
+ *   - http://typekit.com/eulas/00000000000000007735bb32
+ *   - http://typekit.com/eulas/00000000000000007735bb4b
+ *   - http://typekit.com/eulas/00000000000000007735bb39
+ *   - http://typekit.com/eulas/00000000000000007735bb3d
+ *
+ * © 2009-2026 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2025-05-08 12:25:53 UTC"}*/
+
+@import url("../images/p.css");
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:100;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:100;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:200;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:200;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:300;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:300;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:500;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:500;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:600;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:600;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:500;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:500;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:italic;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"instrument-serif";
+src:url("../images/l.bin") format("woff2"),url("../images/d.bin") format("woff"),url("../images/a.bin") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+.tk-neue-haas-grotesk-display { font-family: "neue-haas-grotesk-display",sans-serif; }
+.tk-neue-haas-grotesk-text { font-family: "neue-haas-grotesk-text",sans-serif; }
+.tk-instrument-serif { font-family: "instrument-serif",sans-serif; }

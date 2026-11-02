@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ISP Billing &amp; Customer Portal Development | Appiex</title>
+  <link rel="canonical" href="https://appiex.com/isp-software-development">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Discuss ISP billing and customer portal development with Appiex. Define subscriber workflows, MikroTik integration, reporting and implementation requirements.">
+  <meta name="keywords" content="isp billing software development, mikrotik billing software bangladesh, isp billing software bangladesh, custom isp management software, mikrotik billing integration, isp customer portal development, isp bkash payment integration, isp nagad payment integration, আইএসপি বিলিং সফটওয়্যার, মাইক্রোটিক বিলিং অটোমেশন">
+  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appiex.com/isp-software-development">
+  <meta property="og:site_name" content="Appiex">
+  <meta property="og:title" content="ISP Billing &amp; Customer Portal Development | Appiex">
+  <meta property="og:description" content="Discuss ISP billing and customer portal development with Appiex. Define subscriber workflows, MikroTik integration, reporting and implementation requirements.">
+  <meta property="og:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://appiex.com/isp-software-development">
+  <meta name="twitter:title" content="ISP Billing &amp; Customer Portal Development | Appiex">
+  <meta name="twitter:description" content="Discuss ISP billing and customer portal development with Appiex. Define subscriber workflows, MikroTik integration, reporting and implementation requirements.">
+  <meta name="twitter:image" content="https://appiex.com/images/appiex-logo.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://appiex.com/isp-software-development#main",
+      "name": "Custom ISP Billing Software & MikroTik Portal Development",
+      "description": "Custom ISP billing software, MikroTik RouterOS API integration, bKash/Nagad auto-recharge, and broadband subscriber portals engineered in Bangladesh by Appiex.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Appiex",
+        "url": "https://appiex.com/"
+      },
+      "areaServed": [
+        "Bangladesh",
+        "United States",
+        "United Kingdom",
+        "United Arab Emirates",
+        "Australia",
+        "Worldwide"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://appiex.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Web Development",
+          "item": "https://appiex.com/web-development"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ISP Billing & Portal Development",
+          "item": "https://appiex.com/isp-software-development"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://appiex.com/isp-software-development#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does automated MikroTik reconnection work when a user pays via bKash or Nagad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When a subscriber completes payment via bKash or Nagad, the payment gateway sends an instant cryptographic webhook to our backend. The system marks the invoice paid, logs the transaction in PostgreSQL, and triggers a MikroTik RouterOS API command to re-enable the user's PPPoE profile or queue within seconds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you sell a ready-made monthly SaaS script or build custom ISP software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We specialize in custom ISP software, customer portals, and broadband provider websites tailored to your operation—giving you dedicated infrastructure and full ownership without per-user SaaS lock-in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "আইএসপি বিলিং সফটওয়্যার এবং মাইক্রোটিক অটোমেশন কীভাবে কাজ করে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "আমাদের কাস্টম আইএসপি বিলিং সফটওয়্যার সরাসরি মাইক্রোটিক রাউটার এবং বিকাশ/নগদ পেমেন্ট গেটওয়ের সাথে যুক্ত থাকে। গ্রাহক বিল পরিশোধ করার সাথে সাথে স্বয়ংক্রিয়ভাবে ইন্টারনেট সংযোগ চালু হয়ে যায় এবং এসএমএস কনফার্মেশন চলে যায়।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you also design our broadband provider's public marketing website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Alongside the billing portal, we design high-converting broadband websites with coverage map checks, package comparison tables, corporate leased-line inquiry forms, and instant online connection booking."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background-color: #030408;
+      color: #f8fafc;
+      overflow-x: hidden;
+      margin: 0;
+      font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .ambient-glow-red {
+      background: radial-gradient(circle, rgba(255, 42, 77, 0.16) 0%, rgba(220, 38, 38, 0.08) 35%, transparent 70%);
+    }
+    .rafsan-navbar-shell {
+      position: fixed;
+      top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 1.15rem 0;
+      background: rgba(3, 4, 8, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .rafsan-nav-container {
+      max-width: 82rem; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .rafsan-capsule-nav {
+      display: none; align-items: center; gap: 0.25rem;
+      background: rgba(10, 11, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.35rem 0.5rem; border-radius: 9999px;
+    }
+    @media (min-width: 860px) { .rafsan-capsule-nav { display: flex; } }
+    .rafsan-nav-item {
+      padding: 0.45rem 1rem; color: #cbd5e1; font-size: 0.85rem;
+      font-weight: 500; border-radius: 9999px; text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .rafsan-nav-item:hover, .rafsan-nav-item.active {
+      color: #ffffff; background: rgba(255, 255, 255, 0.08);
+    }
+    .rafsan-hire-btn {
+      padding: 0.5rem 1.25rem; background: #FF2A4D; color: #ffffff;
+      font-weight: 600; font-size: 0.85rem; border-radius: 9999px;
+      text-decoration: none; transition: all 0.2s ease;
+    }
+    .rafsan-hire-btn:hover { background: #e11d48; }
+  </style>
+  <script src="/scripts/instant-nav.js" defer></script>
+</head>
+<body class="relative min-h-screen">
+
+  <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div class="ambient-glow-red absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full blur-[120px] opacity-60"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="rafsan-navbar-shell">
+    <div class="rafsan-nav-container">
+      <a href="/" class="flex items-center" aria-label="Appiex Home">
+        <img src="/images/appiex-wordmark-white.png" alt="Appiex" style="height: 28px; width: auto;">
+      </a>
+      <nav class="rafsan-capsule-nav" aria-label="Main Navigation">
+        <a href="/" class="rafsan-nav-item">Home</a>
+        <a href="/services" class="rafsan-nav-item active">Services</a>
+        <a href="/refer" class="rafsan-nav-item">Refer</a>
+        <a href="/partners" class="rafsan-nav-item">Partnership</a>
+        <a href="/projects" class="rafsan-nav-item">Projects</a>
+        <a href="/blog" class="rafsan-nav-item">Blog</a>
+        <a href="/#contact" class="rafsan-nav-item">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="/#contact" class="rafsan-hire-btn">Book a Software Discovery Call</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
+      <a href="/" class="hover:text-white transition-colors">Home</a>
+      <span>/</span>
+      <a href="/web-development" class="hover:text-white transition-colors">Web Development</a>
+      <span>/</span>
+      <span class="text-[#FF2A4D]">ISP Billing & Portal Development</span>
+    </nav>
+
+    <!-- HERO -->
+    <section class="mb-16">
+      <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-[#FF2A4D] font-mono font-bold text-xs uppercase tracking-widest mb-4">
+        TELECOM & BROADBAND INFRASTRUCTURE SOFTWARE
+      </span>
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] max-w-4xl" style="font-family: 'Space Grotesk', sans-serif;">
+        Custom ISP Billing and Customer Portal Development
+      </h1>
+      <p class="text-slate-300 text-base sm:text-lg mt-5 leading-relaxed max-w-3xl">
+        We engineer custom ISP management platforms, subscriber self-service portals, and automated MikroTik RouterOS billing systems with instant bKash/Nagad payment reconnection—proven in production across 15,000+ active broadband subscribers.
+      </p>
+      <div class="flex flex-wrap items-center gap-4 mt-8">
+        <a href="/#contact" class="px-7 py-3.5 rounded-full bg-[#FF2A4D] hover:bg-red-600 text-white font-bold text-sm transition-all shadow-lg shadow-red-500/25">
+          Book a Software Discovery Call &rarr;
+        </a>
+        <a href="/case-studies" class="px-6 py-3.5 rounded-full border border-white/20 hover:border-white text-white font-medium text-sm transition-colors">
+          View Verified Case Studies
+        </a>
+      </div>
+    </section>
+
+    <!-- BENTO CAPABILITIES -->
+    <section class="mb-16">
+      <div class="mb-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-[#FF2A4D] font-bold block mb-2">DELIVERABLES &amp; ARCHITECTURE</span>
+        <h2 class="text-2xl sm:text-4xl font-bold text-white" style="font-family: 'Space Grotesk', sans-serif;">
+          Core Modules for Modern Broadband & ISP Operators
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+      <div class="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#FF2A4D]/50 hover:bg-white/[0.04] transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider">MIKROTIK API</span>
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-white/10 text-slate-300">RouterOS Automation</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#FF2A4D] transition-colors">Automated Queue & PPPoE Sync</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">Instant subscriber bandwidth provisioning, expired account suspension, and automatic reconnection within seconds of bill payment via MikroTik RouterOS API.</p>
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>Provisioning</span>
+          <span class="text-emerald-400 font-semibold">Zero Manual Click</span>
+        </div>
+      </div>
+      <div class="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#FF2A4D]/50 hover:bg-white/[0.04] transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider">AUTO RECHARGE</span>
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-white/10 text-slate-300">bKash & Nagad Webhooks</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#FF2A4D] transition-colors">24/7 Mobile Money Bill Collection</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">Subscribers pay monthly broadband bills via bKash, Nagad, or cards with instant webhook verification, ledger reconciliation, and PDF invoice generation.</p>
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>Collection</span>
+          <span class="text-emerald-400 font-semibold">Instant Reconnect</span>
+        </div>
+      </div>
+      <div class="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#FF2A4D]/50 hover:bg-white/[0.04] transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider">SUBSCRIBER PORTAL</span>
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-white/10 text-slate-300">Self-Service Web/App</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#FF2A4D] transition-colors">Customer Dashboard & Support Tickets</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">Clean subscriber portal to check current package, usage status, payment history, upgrade speed tiers, and submit support tickets.</p>
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>UX</span>
+          <span class="text-emerald-400 font-semibold">Mobile Friendly</span>
+        </div>
+      </div>
+      <div class="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#FF2A4D]/50 hover:bg-white/[0.04] transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider">RESELLER & POP</span>
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-white/10 text-slate-300">Multi-Zone RBAC</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#FF2A4D] transition-colors">Sub-ISP, Reseller & Collector Portals</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">Role-based access control for zone managers, field bill collectors, and sub-operators with commission tracking and daily cash settlement logs.</p>
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>Governance</span>
+          <span class="text-emerald-400 font-semibold">Audit Logged</span>
+        </div>
+      </div>
+      <div class="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#FF2A4D]/50 hover:bg-white/[0.04] transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider">ALERTS</span>
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-white/10 text-slate-300">SMS & WhatsApp</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#FF2A4D] transition-colors">Automated Billing Reminders</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">Scheduled SMS and WhatsApp notifications 3 days before expiry, on due date, and upon successful payment confirmation.</p>
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>Retention</span>
+          <span class="text-emerald-400 font-semibold">Automated Cron</span>
+        </div>
+      </div>
+      <div class="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#FF2A4D]/50 hover:bg-white/[0.04] transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-wider">TELEMETRY</span>
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-white/10 text-slate-300">Redis & PostgreSQL</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#FF2A4D] transition-colors">High-Uptime Network & Billing Core</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">Engineered on Node.js, Next.js, PostgreSQL, and Redis queues to handle thousands of simultaneous end-of-month bill payments without lag.</p>
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>Reliability</span>
+          <span class="text-emerald-400 font-semibold">High Concurrency</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- VERIFIED PROOF & CASE EXAMPLES -->
+    <section class="mb-16">
+      <div class="mb-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-[#FF2A4D] font-bold block mb-2">PRODUCTION PROOF</span>
+        <h2 class="text-2xl sm:text-4xl font-bold text-white" style="font-family: 'Space Grotesk', sans-serif;">
+          Verified ISP Architecture: Mamun WiFi ISP
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+      <div class="rounded-2xl border border-white/15 bg-white/[0.02] p-6 sm:p-8">
+        <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-widest block mb-2">PRODUCTION CASE STUDY • 15,000+ ACTIVE SUBSCRIBERS</span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-3" style="font-family: 'Space Grotesk', sans-serif;">Mamun WiFi ISP — Automated MikroTik Billing & Subscriber Portal</h3>
+        <p class="text-slate-300 text-sm leading-relaxed mb-4">Engineered a mission-critical broadband billing and bandwidth management platform serving over 15,000 active internet subscribers.</p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-300 mb-5">
+          <li class="flex items-start gap-2"><span class="text-[#FF2A4D] font-bold">✓</span><span>Direct MikroTik RouterOS API synchronization for automated PPPoE/queue control</span></li><li class="flex items-start gap-2"><span class="text-[#FF2A4D] font-bold">✓</span><span>Instant bKash and Nagad webhook billing with automatic line reconnection</span></li><li class="flex items-start gap-2"><span class="text-[#FF2A4D] font-bold">✓</span><span>Automated SMS gateway expiry alerts and real-time network telemetry dashboard</span></li>
+        </ul>
+        <a href="/projects" class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#FF2A4D] hover:underline">View Mamun WiFi ISP in Projects &rarr;</a>
+      </div>
+      <div class="rounded-2xl border border-white/15 bg-white/[0.02] p-6 sm:p-8">
+        <span class="text-xs font-mono font-bold text-[#FF2A4D] uppercase tracking-widest block mb-2">CUSTOM VS READY-MADE ISP SOFTWARE</span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-3" style="font-family: 'Space Grotesk', sans-serif;">Why Growing ISPs Choose Custom Architecture Over Generic Scripts</h3>
+        <p class="text-slate-300 text-sm leading-relaxed mb-4">Off-the-shelf billing scripts often break under custom reseller rules, multi-router load, or brand-specific customer portals.</p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-300 mb-5">
+          <li class="flex items-start gap-2"><span class="text-[#FF2A4D] font-bold">✓</span><span>Full source-code and database ownership with zero per-subscriber monthly SaaS tax</span></li><li class="flex items-start gap-2"><span class="text-[#FF2A4D] font-bold">✓</span><span>Custom workflows tailored to your exact POP zones, reseller splits, and BTRC reporting needs</span></li><li class="flex items-start gap-2"><span class="text-[#FF2A4D] font-bold">✓</span><span>Modern Next.js broadband website + high-converting package sign-up funnel included</span></li>
+        </ul>
+        <a href="/#contact" class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#FF2A4D] hover:underline">Request a Custom ISP Architecture Audit &rarr;</a>
+      </div>
+      </div>
+    </section>
+
+    <!-- SCOPE, TIMELINE & COST FACTORS TABLE -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-[#FF2A4D] font-bold block mb-2">SCOPE &amp; BUDGET BREAKDOWN</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white" style="font-family: 'Space Grotesk', sans-serif;">
+          Custom ISP Software vs. Generic Ready-Made Billing Scripts
+        </h2>
+      </div>
+      <div class="overflow-x-auto rounded-2xl border border-white/15 bg-white/[0.02] p-5">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead>
+            <tr class="border-b border-white/15 text-slate-400 font-mono">
+              <th class="py-3 px-4">Feature / Requirement</th><th class="py-3 px-4">Appiex Custom ISP Platform</th><th class="py-3 px-4">Generic Ready-Made ISP Script</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/10">
+            <tr><td class="py-3.5 px-4 font-semibold text-white">Per-Subscriber Recurring License Fee</td><td class="py-3.5 px-4 text-emerald-400 font-semibold">None (Full Custom Ownership)</td><td class="py-3.5 px-4 text-slate-300">Monthly fee increases as subscribers grow</td></tr>
+<tr><td class="py-3.5 px-4 font-semibold text-white">MikroTik Multi-Router Queue Sync</td><td class="py-3.5 px-4 text-emerald-400 font-semibold">Redis-queued asynchronous worker sync</td><td class="py-3.5 px-4 text-slate-300">Often lags or times out on large router fleets</td></tr>
+<tr><td class="py-3.5 px-4 font-semibold text-white">bKash / Nagad Instant Reconnection</td><td class="py-3.5 px-4 text-emerald-400 font-semibold">Direct merchant webhook (< 5s reconnect)</td><td class="py-3.5 px-4 text-slate-300">Manual verification or fragile plugins</td></tr>
+<tr><td class="py-3.5 px-4 font-semibold text-white">Custom Reseller & Zone Collector Logic</td><td class="py-3.5 px-4 text-emerald-400 font-semibold">Built to your exact operational rules</td><td class="py-3.5 px-4 text-slate-300">Fixed rigid templates</td></tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (ENGLISH + BANGLA QUERIES) -->
+    <section id="faq" class="mb-16">
+      <div class="mb-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-[#FF2A4D] font-bold block mb-2">BUYER QUESTIONS &amp; ANSWERS</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white" style="font-family: 'Space Grotesk', sans-serif;">
+          Frequently Asked Questions
+        </h2>
+      </div>
+      <div class="space-y-4">
+        
+        <details open class="group rounded-2xl border border-white/15 bg-white/[0.02] p-5 hover:border-[#FF2A4D]/50 transition-colors">
+          <summary class="list-none flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base gap-4">
+            <span>How does automated MikroTik reconnection work when a user pays via bKash or Nagad?</span>
+            <span class="text-[#FF2A4D] text-lg font-mono group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3 pt-3 border-t border-white/10">When a subscriber completes payment via bKash or Nagad, the payment gateway sends an instant cryptographic webhook to our backend. The system marks the invoice paid, logs the transaction in PostgreSQL, and triggers a MikroTik RouterOS API command to re-enable the user's PPPoE profile or queue within seconds.</p>
+        </details>
+        <details  class="group rounded-2xl border border-white/15 bg-white/[0.02] p-5 hover:border-[#FF2A4D]/50 transition-colors">
+          <summary class="list-none flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base gap-4">
+            <span>Do you sell a ready-made monthly SaaS script or build custom ISP software?</span>
+            <span class="text-[#FF2A4D] text-lg font-mono group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3 pt-3 border-t border-white/10">We specialize in custom ISP software, customer portals, and broadband provider websites tailored to your operation—giving you dedicated infrastructure and full ownership without per-user SaaS lock-in.</p>
+        </details>
+        <details  class="group rounded-2xl border border-white/15 bg-white/[0.02] p-5 hover:border-[#FF2A4D]/50 transition-colors">
+          <summary class="list-none flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base gap-4">
+            <span>আইএসপি বিলিং সফটওয়্যার এবং মাইক্রোটিক অটোমেশন কীভাবে কাজ করে?</span>
+            <span class="text-[#FF2A4D] text-lg font-mono group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3 pt-3 border-t border-white/10">আমাদের কাস্টম আইএসপি বিলিং সফটওয়্যার সরাসরি মাইক্রোটিক রাউটার এবং বিকাশ/নগদ পেমেন্ট গেটওয়ের সাথে যুক্ত থাকে। গ্রাহক বিল পরিশোধ করার সাথে সাথে স্বয়ংক্রিয়ভাবে ইন্টারনেট সংযোগ চালু হয়ে যায় এবং এসএমএস কনফার্মেশন চলে যায়।</p>
+        </details>
+        <details  class="group rounded-2xl border border-white/15 bg-white/[0.02] p-5 hover:border-[#FF2A4D]/50 transition-colors">
+          <summary class="list-none flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base gap-4">
+            <span>Can you also design our broadband provider's public marketing website?</span>
+            <span class="text-[#FF2A4D] text-lg font-mono group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3 pt-3 border-t border-white/10">Yes. Alongside the billing portal, we design high-converting broadband websites with coverage map checks, package comparison tables, corporate leased-line inquiry forms, and instant online connection booking.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- RELATED SEARCH TOPICS & INTERNAL CLUSTER LINKS -->
+    <section class="mb-16 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+      <h3 class="text-sm font-mono uppercase tracking-widest text-slate-400 mb-4">Supported Capabilities &amp; Search Topics</h3>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">isp billing software development</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">mikrotik billing software bangladesh</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">isp billing software bangladesh</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">custom isp management software</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">mikrotik billing integration</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">isp customer portal development</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">isp bkash payment integration</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">isp nagad payment integration</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">broadband provider website design</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">আইএসপি বিলিং সফটওয়্যার</span><span class="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">মাইক্রোটিক বিলিং অটোমেশন</span>
+      </div>
+      <div class="pt-4 border-t border-white/10 flex flex-wrap items-center gap-5 text-xs font-mono text-[#FF2A4D]">
+        <a href="/web-development" class="hover:underline">Web Development &rarr;</a>
+        <a href="/ecommerce-development" class="hover:underline">Ecommerce Development &rarr;</a>
+        <a href="/ai-automation" class="hover:underline">AI Automation &rarr;</a>
+        <a href="/n8n-automation" class="hover:underline">n8n Workflows &rarr;</a>
+        <a href="/whatsapp-automation" class="hover:underline">WhatsApp Chatbots &rarr;</a>
+        <a href="/isp-software-development" class="hover:underline">ISP Billing Software &rarr;</a>
+        <a href="/website-redesign" class="hover:underline">Website Redesign &rarr;</a>
+        <a href="/blog/website-development-cost-bangladesh" class="hover:underline">Website Cost Guide BD &rarr;</a>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <div class="rounded-3xl border border-red-500/40 bg-gradient-to-r from-red-500/20 via-black to-slate-900/80 p-8 sm:p-12 text-center">
+      <span class="text-xs font-mono uppercase tracking-[0.2em] text-[#FF2A4D] font-bold block mb-2">START YOUR PROJECT</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mb-4" style="font-family: 'Space Grotesk', sans-serif;">
+        Ready to Automate Your ISP Billing & Subscriber Operations?
+      </h2>
+      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8">
+        Speak with the engineering team behind the 15,000+ subscriber Mamun WiFi platform to scope your custom ISP portal and MikroTik integration.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/#contact" class="px-8 py-3.5 rounded-full bg-[#FF2A4D] hover:bg-red-600 text-white font-bold text-sm transition-all">
+          Book a Software Discovery Call
+        </a>
+        <a href="/refer" class="px-6 py-3.5 rounded-full border border-white/20 hover:border-white text-white font-medium text-sm transition-colors">
+          Refer a Client (Earn Up to 15% Commission)
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 mx-auto w-full max-w-6xl px-4 pb-14 pt-8 sm:px-6 border-t border-white/10 text-xs text-slate-400 font-mono flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>&copy; 2026 Appiex Technologies. Dhaka, Bangladesh &amp; Worldwide Delivery.</div>
+    <div class="flex flex-wrap items-center gap-5">
+      <a href="/services" class="hover:text-white">Services</a>
+      <a href="/case-studies" class="hover:text-white">Case Studies</a>
+      <a href="/partners" class="hover:text-white">White-Label Partners</a>
+      <a href="/refer" class="hover:text-white">Referral Program</a>
+      <a href="/privacy-policy" class="hover:text-white">Privacy</a>
+      <a href="/terms-of-service" class="hover:text-white">Terms</a>
+    </div>
+  </footer>
+
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+</body>
+</html>

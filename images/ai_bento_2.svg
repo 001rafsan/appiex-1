@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 250" width="504" height="250" fill="none">
+  <defs>
+    <filter id="shadow2" x="-15%" y="-15%" width="130%" height="140%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#1e293b" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="mintBg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e0f8f3"/>
+      <stop offset="100%" stop-color="#ccf3eb"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left Floating Circle: SEO Search & Automation Badge -->
+  <g filter="url(#shadow2)">
+    <circle cx="112" cy="125" r="54" fill="#ffffff"/>
+    <circle cx="112" cy="125" r="46" fill="url(#mintBg2)"/>
+    <!-- Search Magnifying Glass + Rising Bar inside -->
+    <circle cx="108" cy="120" r="18" stroke="#0d9488" stroke-width="3.5" fill="#ffffff"/>
+    <path d="M121 133 L133 145" stroke="#0d9488" stroke-width="4" stroke-linecap="round"/>
+    <rect x="100" y="121" width="4" height="7" rx="1.5" fill="#14b8a6"/>
+    <rect x="106" y="116" width="4" height="12" rx="1.5" fill="#0d9488"/>
+    <rect x="112" y="111" width="4" height="17" rx="1.5" fill="#0f766e"/>
+  </g>
+
+  <!-- Center Connecting Flow Node -->
+  <path d="M168 125 H225" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="5 5"/>
+  <g filter="url(#shadow2)">
+    <rect x="180" y="103" width="44" height="44" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <!-- Lightning / Automation Bolt -->
+    <path d="M204 113 L195 126 H202 L200 137 L209 124 H202 L204 113 Z" fill="#14b8a6"/>
+  </g>
+
+  <!-- Right Sleek Browser Window: Automated SEO & Data Report -->
+  <g filter="url(#shadow2)">
+    <rect x="236" y="34" width="224" height="182" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <!-- Browser Top Dots -->
+    <circle cx="256" cy="52" r="3.5" fill="#cbd5e1"/>
+    <circle cx="268" cy="52" r="3.5" fill="#cbd5e1"/>
+    <circle cx="280" cy="52" r="3.5" fill="#cbd5e1"/>
+    <rect x="296" y="48" width="90" height="8" rx="4" fill="#e2e8f0"/>
+    <rect x="406" y="45" width="38" height="14" rx="7" fill="#dcfce7"/>
+    <text x="425" y="55" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#15803d" text-anchor="middle">AUTO</text>
+
+    <!-- Inner Mint Screen -->
+    <rect x="248" y="68" width="200" height="136" rx="14" fill="url(#mintBg2)"/>
+
+    <!-- Automated Keyword & Task Rows -->
+    <rect x="262" y="82" width="172" height="32" rx="9" fill="#ffffff"/>
+    <circle cx="278" cy="98" r="8" fill="#ccfbf1"/>
+    <path d="M274.5 98 L277 100.5 L282 95.5" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="294" y="91" width="76" height="7" rx="3.5" fill="#64748b"/>
+    <rect x="294" y="101" width="48" height="5" rx="2.5" fill="#94a3b8"/>
+    <rect x="386" y="91" width="38" height="14" rx="7" fill="#e0f8f3"/>
+    <text x="405" y="101" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#0f766e" text-anchor="middle">#1 SEO</text>
+
+    <rect x="262" y="122" width="172" height="32" rx="9" fill="#ffffff"/>
+    <circle cx="278" cy="138" r="8" fill="#ccfbf1"/>
+    <path d="M274.5 138 L277 140.5 L282 135.5" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="294" y="131" width="86" height="7" rx="3.5" fill="#64748b"/>
+    <rect x="294" y="141" width="54" height="5" rx="2.5" fill="#94a3b8"/>
+    <rect x="386" y="131" width="38" height="14" rx="7" fill="#e0f8f3"/>
+    <text x="405" y="141" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#0f766e" text-anchor="middle">+240%</text>
+
+    <rect x="262" y="162" width="172" height="30" rx="9" fill="#ffffff"/>
+    <circle cx="278" cy="177" r="8" fill="#ccfbf1"/>
+    <path d="M274.5 177 L277 179.5 L282 174.5" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="294" y="171" width="68" height="7" rx="3.5" fill="#64748b"/>
+    <rect x="386" y="170" width="38" height="14" rx="7" fill="#0d9488"/>
+    <text x="405" y="180" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle">SYNCED</text>
+  </g>
+</svg>

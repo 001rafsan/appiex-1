@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 40" fill="none">
+  <g fill="#FFFFFF">
+    <!-- n8n Node connection icon -->
+    <circle cx="10" cy="20" r="4.5"/>
+    <circle cx="24" cy="12" r="4.5"/>
+    <circle cx="24" cy="28" r="4.5"/>
+    <circle cx="38" cy="20" r="4.5"/>
+    <path d="M10 20h14m0-8v16m0-8h14" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- n8n Text -->
+    <text x="50" y="27" font-family="'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800" letter-spacing="-0.04em">n8n</text>
+  </g>
+</svg>

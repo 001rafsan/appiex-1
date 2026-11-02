@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175 44" fill="none" width="175" height="44">
+  <!-- BRAC Bank -->
+  <rect x="10" y="10" width="24" height="24" fill="#0284C7"/>
+  <rect x="15" y="15" width="14" height="14" fill="white"/>
+  <rect x="19" y="19" width="6" height="6" fill="#0284C7"/>
+  <text x="44" y="27" fill="white" font-family="'Oswald', system-ui, sans-serif" font-size="17" font-weight="700" letter-spacing="1.5">BRAC BANK</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 44" fill="none" width="150" height="44">
+  <!-- bKash Financial Service -->
+  <polygon points="28,12 34,20 18,28 28,12" fill="white"/>
+  <polygon points="18,28 34,20 30,36 18,28" fill="#FCDDEC"/>
+  <polygon points="18,28 30,36 14,32 18,28" fill="white"/>
+  <polygon points="18,28 14,32 6,24 18,28" fill="#F7A1C8"/>
+  <polygon points="14,32 6,24 16,38 14,32" fill="white"/>
+  <text x="44" y="27" fill="white" font-family="'Oswald', system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="1">bKash</text>
+</svg>

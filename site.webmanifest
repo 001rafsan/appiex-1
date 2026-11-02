@@ -1,0 +1,35 @@
+{
+  "name": "Appiex — Software & Digital Engineering Agency",
+  "short_name": "Appiex",
+  "description": "Custom web development, 3D WebGL design, SEO, and AI workflow automation agency in Bangladesh & worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030408",
+  "theme_color": "#FF2A4D",
+  "icons": [
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

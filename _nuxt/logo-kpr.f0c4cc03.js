@@ -1,0 +1,1 @@
+import{o as c,l,m as a}from"./entry.9cfb39b7.js";const h={xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 100 24"},n=[a("text",{x:"0",y:"18",fill:"currentColor","font-family":"system-ui, sans-serif","font-size":"16","font-weight":"900","letter-spacing":"0.1em"},"APPIEX",-1)];const o={render:function(a,o){return c(),l("svg",h,n)}};export{o as L};

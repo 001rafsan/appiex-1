@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 44" fill="none" width="160" height="44">
+  <!-- TimeDune Luxury Horology -->
+  <path d="M8 28 C16 16 26 32 38 14 C34 30 24 34 8 28 Z" fill="white" opacity="0.95"/>
+  <path d="M12 22 C22 14 30 24 38 14 C33 26 22 28 12 22 Z" fill="#F59E0B" opacity="0.8"/>
+  <text x="46" y="27" fill="white" font-family="'Oswald', system-ui, sans-serif" font-size="18" font-weight="700" letter-spacing="2">TIMEDUNE</text>
+</svg>

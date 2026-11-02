@@ -1,926 +1,569 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APPIEX — Central Command & Hero Video Studio</title>
-  <meta name="description" content="APPIEX Enterprise Admin Panel — Manage Hero Video, Track Inquiries, and Optimize Platform Performance.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0A0A'/><path d='M20 70 L50 20 L80 70 Z' fill='%23DC2626'/></svg>">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              red: '#DC2626',
-              'red-mid': '#B91C1C',
-              dark: '#070709',
-              card: '#0D0D12',
-              neon: '#FF334B',
-              pale: '#FEE2E2',
-            },
-            accent: {
-              teal: '#00F0FF',
-              emerald: '#10B981',
-              amber: '#F59E0B'
-            }
-          },
-          fontFamily: {
-            anton: ['Anton', 'sans-serif'],
-            oswald: ['Oswald', 'sans-serif'],
-            satoshi: ['Satoshi', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace']
-          }
-        }
-      }
-    };
-  </script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
-
-  <!-- Firebase SDKs (Compat v10) -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-
-  <!-- Backend Integration Script -->
-  <script src="firebase-backend.js"></script>
-  <!-- High-Velocity Lossless Video Engine -->
-  <script src="hero-video-store.js"></script>
-
-  <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.4); }
-    ::-webkit-scrollbar-thumb { background: rgba(220, 38, 38, 0.5); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(220, 38, 38, 0.9); }
-
-    .glow-card {
-      box-shadow: 0 0 35px rgba(220, 38, 38, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-    }
-    .glow-card:hover {
-      box-shadow: 0 0 50px rgba(220, 38, 38, 0.22), inset 0 0 0 1px rgba(220, 38, 38, 0.35);
-    }
-    .tab-btn.active {
-      background: #DC2626;
-      color: #FFFFFF;
-      box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
-    }
-    .dropzone.dragover {
-      border-color: #FF334B;
-      background: rgba(220, 38, 38, 0.08);
-      transform: scale(1.01);
-    }
-  </style>
-</head>
-
-<body class="bg-[#050508] text-white font-satoshi antialiased min-h-screen selection:bg-brand-red selection:text-white">
-
-  <!-- ================= AUTHENTICATION MODAL (PIN GATE) ================= -->
-  <div id="auth-gate-modal" class="fixed inset-0 z-[99999] bg-[#030305]/95 backdrop-blur-2xl flex items-center justify-center p-4">
-    <div class="w-full max-w-md p-8 md:p-10 rounded-3xl bg-[#0C0C12] border border-white/12 shadow-[0_0_80px_rgba(220,38,38,0.25)] text-center relative overflow-hidden">
-      <!-- Glow Accent -->
-      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-brand-red/30 rounded-full blur-3xl pointer-events-none"></div>
-
-      <!-- Icon -->
-      <div class="w-16 h-16 rounded-2xl bg-brand-red/15 border border-brand-red/30 text-brand-neon flex items-center justify-center mx-auto mb-6 shadow-lg shadow-brand-red/20">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-      </div>
-
-      <span class="font-mono text-[10px] tracking-[0.2em] text-brand-neon uppercase font-bold block mb-1">SECURITY ACCESS GATE</span>
-      <h2 class="font-anton text-3xl uppercase tracking-wide mb-2">APPIEX COMMAND</h2>
-      <p class="font-satoshi text-xs text-white/60 mb-6">
-        Enter administrator master passkey to access Hero Video Studio & Firestore database controls.
-      </p>
-
-      <form id="auth-gate-form" onsubmit="event.preventDefault(); verifyAdminPass();" class="space-y-4">
-        <div class="relative">
-          <input id="admin-pass-input" type="password" required autofocus placeholder="Passkey (Default: appiex2026)" class="w-full bg-white/[0.04] border border-white/15 focus:border-brand-red focus:bg-white/[0.08] rounded-xl px-4 py-3.5 text-center text-sm font-mono tracking-widest text-white placeholder-white/30 focus:outline-none transition-all">
-          <button type="button" onclick="togglePassVisibility()" class="absolute right-3.5 top-3.5 text-white/40 hover:text-white text-xs font-mono">
-            <span id="pass-vis-icon">👁</span>
-          </button>
-        </div>
-        <p id="auth-error-msg" class="text-rose-400 font-satoshi text-xs font-semibold hidden">Incorrect Passkey. Please verify and try again.</p>
-
-        <button type="submit" class="w-full py-4 rounded-xl bg-brand-red hover:bg-brand-red-mid text-white font-satoshi font-bold text-xs tracking-[0.14em] uppercase transition-all shadow-xl shadow-brand-red/30">
-          UNLOCK CENTRAL COMMAND →
-        </button>
-      </form>
-
-      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/40">
-        <span>SESSION: ENCRYPTED</span>
-        <a href="index.html" class="text-brand-red hover:underline font-bold">RETURN TO SITE ↗</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= TOP NAVIGATION BAR ================= -->
-  <header class="sticky top-0 z-50 bg-[#07070A]/90 backdrop-blur-xl border-b border-white/10 px-6 py-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <!-- Left: Logo & Badge -->
-      <div class="flex items-center space-x-4">
-        <a href="index.html" class="flex items-center group transition-transform hover:scale-105">
-          <img src="./assets/appiex-panther-logo.png" alt="APPIEX" class="h-8 md:h-10 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(255,42,77,0.45)]">
-        </a>
-        <div class="hidden sm:inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-white/70 font-mono text-[10px]">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>ADMIN STUDIO v2.6</span>
-        </div>
-      </div>
-
-      <!-- Center: Tab Nav -->
-      <div class="flex items-center space-x-1.5 p-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-satoshi font-semibold">
-        <button onclick="switchTab('hero-tab')" id="nav-btn-hero" class="tab-btn active px-4 py-2 rounded-full transition-all">
-          🎬 Hero Video Studio
-        </button>
-        <button onclick="switchTab('leads-tab')" id="nav-btn-leads" class="tab-btn px-4 py-2 rounded-full text-white/70 hover:text-white transition-all">
-          📋 Client Leads & Orders
-        </button>
-        <button onclick="switchTab('settings-tab')" id="nav-btn-settings" class="tab-btn px-4 py-2 rounded-full text-white/70 hover:text-white transition-all">
-          ⚙️ Telemetry & Cloud
-        </button>
-      </div>
-
-      <!-- Right: Action & Live Link -->
-      <div class="flex items-center space-x-3">
-        <a href="index.html" target="_blank" class="btn-pill bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-4 py-2 rounded-full transition flex items-center space-x-1.5 border border-white/15">
-          <span>VIEW SITE</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-        </a>
-        <button onclick="adminLogout()" class="p-2 text-white/50 hover:text-rose-400 transition" title="Lock Admin Session">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ================= MAIN CONTAINER ================= -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-
-    <!-- ================= TAB 1: HERO VIDEO STUDIO ================= -->
-    <div id="hero-tab" class="tab-content space-y-10">
-
-      <!-- Header Banner -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
-        <div>
-          <div class="inline-flex items-center space-x-2 bg-brand-red/15 border border-brand-red/35 px-3 py-1 rounded-full text-brand-neon font-mono text-[10px] uppercase font-bold tracking-widest mb-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping"></span>
-            <span>HIGH-FIDELITY ZERO-LAG ARCHITECTURE</span>
-          </div>
-          <h1 class="font-anton text-4xl sm:text-5xl uppercase tracking-tight">HERO VIDEO STUDIO</h1>
-          <p class="font-satoshi text-sm text-white/60 max-w-2xl mt-1 leading-relaxed">
-            Upload custom hero videos at pristine original resolution (1080p, 4K, 60fps). Videos stream in chunks with hardware acceleration and auto-pause when scrolled, ensuring zero website lag.
-          </p>
-        </div>
-
-        <!-- Quick Status Pills -->
-        <div class="flex flex-wrap items-center gap-2">
-          <div class="px-3.5 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 font-mono text-xs text-white/80">
-            <span class="text-white/40">STORAGE:</span> <span id="storage-status-chip" class="text-emerald-400 font-bold">Cloud + Fast Buffer</span>
-          </div>
-          <div class="px-3.5 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 font-mono text-xs text-white/80">
-            <span class="text-white/40">QUALITY:</span> <span class="text-brand-neon font-bold">100% Lossless Raw</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2-Column Studio Grid: Left Player Preview / Right Upload Engine -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-        <!-- Left 6 Cols: Active Video Preview & Live Stats -->
-        <div class="lg:col-span-6 space-y-6">
-          <div class="p-6 rounded-3xl bg-[#0B0B10] border border-white/10 glow-card transition-all relative overflow-hidden">
-            <div class="flex items-center justify-between mb-4">
-              <span class="font-oswald text-xs tracking-[0.2em] text-brand-neon uppercase font-bold">LIVE PREVIEW</span>
-              <span id="active-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                ACTIVE ON SITE
-              </span>
-            </div>
-
-            <!-- Video Player Window -->
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-white/15 shadow-2xl group">
-              <video id="preview-video-player" autoplay loop muted playsinline class="w-full h-full object-cover">
-                <source id="preview-video-source" src="./assets/developer-coding.mp4" type="video/mp4">
-              </video>
-              <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
-
-              <!-- Overlaid Controls & Info -->
-              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white/80">
-                <span id="video-timer" class="bg-black/60 backdrop-blur-md px-2 py-1 rounded-md">00:00 / 00:00</span>
-                <button type="button" onclick="togglePreviewPlay()" id="preview-play-btn" class="bg-black/60 hover:bg-brand-red px-3 py-1 rounded-md transition font-bold text-[11px]">
-                  PAUSE
-                </button>
-              </div>
-            </div>
-
-            <!-- Video Metadata Matrix -->
-            <div class="grid grid-cols-3 gap-3 mt-4 text-center">
-              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/08">
-                <span class="font-mono text-[9px] text-white/40 uppercase block mb-0.5">RESOLUTION</span>
-                <span id="meta-resolution" class="font-anton text-lg text-white">Detecting...</span>
-              </div>
-              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/08">
-                <span class="font-mono text-[9px] text-white/40 uppercase block mb-0.5">FILE SIZE</span>
-                <span id="meta-filesize" class="font-anton text-lg text-brand-neon">Default MP4</span>
-              </div>
-              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/08">
-                <span class="font-mono text-[9px] text-white/40 uppercase block mb-0.5">FPS & CODEC</span>
-                <span id="meta-fps" class="font-anton text-lg text-emerald-400">60 FPS · H.264</span>
-              </div>
-            </div>
-
-            <!-- Revert to Default Action -->
-            <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="font-satoshi text-xs text-white/50">Current URL: <span id="current-url-display" class="font-mono text-[10px] text-white/80 truncate inline-block max-w-[200px] align-bottom">./assets/developer-coding.mp4</span></span>
-              <button onclick="revertToDefaultVideo()" class="text-xs font-satoshi font-bold text-rose-400 hover:text-rose-300 underline">
-                Restore Default Video
-              </button>
-            </div>
-          </div>
-
-          <!-- Anti-Lag Diagnostics Card -->
-          <div class="p-5 rounded-2xl bg-[#09090D] border border-white/10 space-y-3">
-            <span class="font-oswald text-xs tracking-wider text-emerald-400 uppercase font-bold flex items-center space-x-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span>BUILT-IN ZERO-LAG ARCHITECTURE</span>
-            </span>
-            <ul class="text-xs font-satoshi text-white/70 space-y-1.5 list-disc pl-4 leading-relaxed">
-              <li><strong>IntersectionObserver GPU Saver:</strong> The video automatically pauses when user scrolls out of the Hero section, releasing 100% GPU frame budget for 120Hz smooth scrolling.</li>
-              <li><strong>Progressive Metadata Chunking:</strong> Browser streams chunks on demand (`preload="metadata"`), preventing site network slowdowns.</li>
-              <li><strong>Auto-Generated Poster Image:</strong> A crisp snapshot frame is displayed while buffering to guarantee zero blank flashes.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Right 6 Cols: Upload & Direct Stream Engine -->
-        <div class="lg:col-span-6 space-y-6">
-
-          <!-- Dropzone Box -->
-          <div class="p-6 md:p-8 rounded-3xl bg-[#0B0B10] border border-white/10 glow-card space-y-6">
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="font-oswald text-xs tracking-[0.2em] text-brand-red uppercase font-bold block mb-1">UPLOAD ENGINE</span>
-                <h3 class="font-anton text-2xl uppercase tracking-wide">DROP YOUR HERO VIDEO</h3>
-              </div>
-              <span class="font-mono text-[10px] text-white/50 bg-white/5 px-2.5 py-1 rounded-lg border border-white/10">MP4 / WEBM / MOV</span>
-            </div>
-
-            <!-- Drag & Drop Zone -->
-            <div id="video-dropzone" class="dropzone border-2 border-dashed border-white/20 hover:border-brand-red/80 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 bg-white/[0.02]">
-              <input type="file" id="video-file-input" accept="video/mp4,video/webm,video/quicktime" class="hidden" onchange="handleFileSelected(event)">
-              <div class="w-16 h-16 rounded-2xl bg-brand-red/10 border border-brand-red/30 text-brand-neon flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-              </div>
-              <h4 class="font-satoshi font-bold text-sm text-white mb-1">Click to browse or drag & drop high-res video</h4>
-              <p class="font-satoshi text-xs text-white/50 max-w-sm mx-auto">
-                No quality reduction applied. The exact bitrate and resolution will be preserved.
-              </p>
-            </div>
-
-            <!-- Upload Progress Bar (Hidden by default) -->
-            <div id="upload-progress-container" class="hidden space-y-2 p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span id="upload-stage-label" class="text-brand-neon font-bold">Uploading Raw Video...</span>
-                <span id="upload-pct" class="text-white font-bold">0%</span>
-              </div>
-              <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-                <div id="upload-progress-fill" class="h-full bg-gradient-to-r from-brand-red to-brand-neon transition-all duration-200" style="width: 0%;"></div>
-              </div>
-              <div class="flex items-center justify-between text-[11px] font-mono text-white/50 pt-1">
-                <span id="upload-speed">Streaming to Firebase Cloud...</span>
-                <span id="upload-bytes">0 MB / 0 MB</span>
-              </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="flex items-center space-x-3 text-xs font-mono text-white/40">
-              <div class="flex-1 h-px bg-white/10"></div>
-              <span>OR ENTER DIRECT VIDEO URL</span>
-              <div class="flex-1 h-px bg-white/10"></div>
-            </div>
-
-            <!-- Direct URL Input -->
-            <div class="space-y-2">
-              <label for="direct-url-input" class="font-satoshi font-bold text-xs uppercase tracking-wider text-white/70 block">
-                Direct Cloud Storage / CDN Video URL
-              </label>
-              <div class="flex items-center space-x-2">
-                <input id="direct-url-input" type="url" placeholder="https://firebasestorage.googleapis.com/... or https://domain.com/video.mp4" class="flex-1 bg-white/[0.04] border border-white/15 focus:border-brand-red focus:bg-white/[0.08] rounded-xl px-4 py-3 text-xs font-mono text-white placeholder-white/30 focus:outline-none transition-all">
-                <button type="button" onclick="loadVideoFromUrl()" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-satoshi font-bold text-xs uppercase tracking-wider transition">
-                  PREVIEW
-                </button>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="pt-2 flex flex-col sm:flex-row gap-3">
-              <button id="apply-video-btn" onclick="saveAndApplyHeroVideo()" class="flex-1 btn-pill bg-brand-red hover:bg-brand-red-mid text-white font-satoshi font-bold text-xs uppercase tracking-[0.14em] py-4 shadow-xl shadow-brand-red/30 transition-all flex items-center justify-center space-x-2">
-                <span id="apply-btn-label">🚀 APPLY TO LIVE WEBSITE</span>
-              </button>
-            </div>
-
-            <!-- Success Alert Banner -->
-            <div id="studio-success-banner" class="hidden p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-satoshi flex items-center space-x-2">
-              <svg class="w-5 h-5 shrink-0 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span id="studio-success-text">Hero video updated in Firebase Firestore & live platform!</span>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ================= TAB 2: CLIENT LEADS & ORDERS ================= -->
-    <div id="leads-tab" class="tab-content hidden space-y-8">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
-        <div>
-          <span class="font-oswald text-xs tracking-[0.2em] text-brand-red uppercase font-bold block mb-1">FIRESTORE DATABASE</span>
-          <h2 class="font-anton text-4xl uppercase tracking-tight">CLIENT LEADS & INQUIRIES</h2>
-          <p class="font-satoshi text-xs text-white/60">Live project requests submitted from the "UNLEASH YOUR PLATFORM" build form.</p>
-        </div>
-        <button onclick="fetchLeadsFromFirestore()" class="btn-pill bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-4 py-2.5 rounded-full transition flex items-center space-x-2 border border-white/15">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          <span>REFRESH LEADS</span>
-        </button>
-      </div>
-
-      <!-- Leads Container -->
-      <div id="leads-container" class="space-y-4">
-        <div class="p-12 text-center rounded-3xl bg-[#0C0C12] border border-white/10">
-          <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 mx-auto mb-3">
-            <svg class="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-          </div>
-          <p class="font-satoshi text-xs text-white/60">Connecting to Firestore collection ('inquiries')...</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= TAB 3: TELEMETRY & CLOUD SETTINGS ================= -->
-    <div id="settings-tab" class="tab-content hidden space-y-8">
-      <div class="pb-6 border-b border-white/10">
-        <span class="font-oswald text-xs tracking-[0.2em] text-brand-neon uppercase font-bold block mb-1">SYSTEM CONTROLS</span>
-        <h2 class="font-anton text-4xl uppercase tracking-tight">TELEMETRY & FIREBASE CONFIG</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Telemetry Info -->
-        <div class="p-6 rounded-3xl bg-[#0B0B10] border border-white/10 space-y-4">
-          <h3 class="font-anton text-xl uppercase tracking-wide">PERFORMANCE TELEMETRY</h3>
-          <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 rounded-xl bg-white/[0.02] border border-white/08">
-              <span class="font-mono text-[9px] text-white/40 uppercase block mb-1">PAGESPEED SCORE</span>
-              <span class="font-anton text-3xl text-emerald-400">99+</span>
-            </div>
-            <div class="p-4 rounded-xl bg-white/[0.02] border border-white/08">
-              <span class="font-mono text-[9px] text-white/40 uppercase block mb-1">TIME TO FIRST BYTE</span>
-              <span class="font-anton text-3xl text-brand-neon">18ms</span>
-            </div>
-          </div>
-          <p class="font-satoshi text-xs text-white/60 leading-relaxed">
-            All video background assets operate on progressive byte streaming with zero main-thread freezing.
-          </p>
-        </div>
-
-        <!-- Firebase Config Editor -->
-        <div class="p-6 rounded-3xl bg-[#0B0B10] border border-white/10 space-y-4">
-          <h3 class="font-anton text-xl uppercase tracking-wide">ACTIVE FIREBASE PROJECT</h3>
-          <div class="font-mono text-xs bg-black/60 p-4 rounded-xl border border-white/10 space-y-1 text-white/80 overflow-x-auto">
-            <p><span class="text-white/40">Project ID:</span> watchshop-6ab95</p>
-            <p><span class="text-white/40">Storage Bucket:</span> watchshop-6ab95.firebasestorage.app</p>
-            <p><span class="text-white/40">Auth Domain:</span> watchshop-6ab95.firebaseapp.com</p>
-            <p><span class="text-white/40">Status:</span> <span class="text-emerald-400 font-bold">ONLINE & SYNCED</span></p>
-          </div>
-          <button onclick="testFirebaseConnection()" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-satoshi font-bold text-xs uppercase tracking-wider transition">
-            PING FIREBASE CONNECTION
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- ================= JAVASCRIPT STUDIO ENGINE ================= -->
-  <script>
-    (function () {
-      'use strict';
-
-      // 1. Password Protection Gate
-      const MASTER_PIN = 'appiex2026';
-      const ALT_PIN = 'admin123';
-      const authModal = document.getElementById('auth-gate-modal');
-      const passInput = document.getElementById('admin-pass-input');
-      const authError = document.getElementById('auth-error-msg');
-
-      function checkSessionAuth() {
-        if (sessionStorage.getItem('appiex_admin_auth') === 'true') {
-          if (authModal) authModal.classList.add('hidden');
-        }
-      }
-      checkSessionAuth();
-
-      window.verifyAdminPass = function () {
-        const val = passInput.value.trim();
-        if (val === MASTER_PIN || val === ALT_PIN) {
-          sessionStorage.setItem('appiex_admin_auth', 'true');
-          authModal.classList.add('hidden');
-        } else {
-          authError.classList.remove('hidden');
-          passInput.focus();
-        }
-      };
-
-      window.togglePassVisibility = function () {
-        passInput.type = passInput.type === 'password' ? 'text' : 'password';
-      };
-
-      window.adminLogout = function () {
-        sessionStorage.removeItem('appiex_admin_auth');
-        window.location.reload();
-      };
-
-      // 2. Tab Navigation
-      window.switchTab = function (tabId) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-
-        const target = document.getElementById(tabId);
-        if (target) target.classList.remove('hidden');
-
-        if (tabId === 'hero-tab') document.getElementById('nav-btn-hero').classList.add('active');
-        if (tabId === 'leads-tab') {
-          document.getElementById('nav-btn-leads').classList.add('active');
-          fetchLeadsFromFirestore();
-        }
-        if (tabId === 'settings-tab') document.getElementById('nav-btn-settings').classList.add('active');
-      };
-
-      // 3. Hero Video Studio Controller
-      const player = document.getElementById('preview-video-player');
-      const playerSource = document.getElementById('preview-video-source');
-      const dropzone = document.getElementById('video-dropzone');
-      const fileInput = document.getElementById('video-file-input');
-      const progressContainer = document.getElementById('upload-progress-container');
-      const progressFill = document.getElementById('upload-progress-fill');
-      const progressPct = document.getElementById('upload-pct');
-      const progressBytes = document.getElementById('upload-bytes');
-      const progressStage = document.getElementById('upload-stage-label');
-      const successBanner = document.getElementById('studio-success-banner');
-      const currentUrlDisplay = document.getElementById('current-url-display');
-      const metaRes = document.getElementById('meta-resolution');
-      const metaSize = document.getElementById('meta-filesize');
-      const metaFps = document.getElementById('meta-fps');
-
-      let currentVideoUrl = localStorage.getItem('appiex_hero_video') || './assets/developer-coding.mp4';
-      let currentPosterData = localStorage.getItem('appiex_hero_poster') || null;
-      let selectedRawFile = null;
-
-      // Initialize player with active video
-      async function initActiveHeroVideo() {
-        if (window.AppiexVideoStore && window.AppiexVideoStore.getHeroVideo) {
-          try {
-            const record = await window.AppiexVideoStore.getHeroVideo();
-            if (record && record.blob) {
-              const localBlobUrl = URL.createObjectURL(record.blob);
-              currentVideoUrl = localBlobUrl;
-              player.src = localBlobUrl;
-              player.play().catch(() => {});
-              if (currentUrlDisplay) currentUrlDisplay.textContent = `IndexedDB Binary: ${record.name} (${(record.size / (1024 * 1024)).toFixed(1)} MB)`;
-              if (metaSize) metaSize.textContent = `${(record.size / (1024 * 1024)).toFixed(1)} MB`;
-              if (record.resolution && metaRes) metaRes.textContent = record.resolution;
-              return;
-            }
-          } catch (e) {
-            console.warn('Error reading hero video from IndexedDB:', e);
-          }
-        }
-
-        if (currentVideoUrl) {
-          player.src = currentVideoUrl;
-          if (currentUrlDisplay) currentUrlDisplay.textContent = currentVideoUrl.startsWith('data:') ? 'Indexed / Raw Buffer' : currentVideoUrl;
-        }
-
-        // Fetch from Firestore if available
-        const db = window.AppiexBackend ? window.AppiexBackend.getDb() : null;
-        if (db) {
-          db.collection('site_settings').doc('hero_video').get().then(doc => {
-            if (doc.exists && doc.data().url) {
-              const data = doc.data();
-              currentVideoUrl = data.url;
-              player.src = currentVideoUrl;
-              if (currentUrlDisplay) currentUrlDisplay.textContent = data.url;
-              if (data.resolution && metaRes) metaRes.textContent = data.resolution;
-              if (data.size && metaSize) metaSize.textContent = data.size;
-            }
-          }).catch(() => {});
-        }
-      }
-      initActiveHeroVideo();
-
-      // Video metadata detector
-      player.addEventListener('loadedmetadata', () => {
-        const w = player.videoWidth || 1920;
-        const h = player.videoHeight || 1080;
-        if (metaRes) metaRes.textContent = `${w} x ${h} (${h >= 2160 ? '4K UHD' : h >= 1440 ? '2K QHD' : '1080p FHD'})`;
-        if (metaFps) metaFps.textContent = '60 FPS · Hardware Accel';
-      });
-
-      player.addEventListener('timeupdate', () => {
-        const cur = formatTime(player.currentTime);
-        const dur = formatTime(player.duration || 0);
-        const timer = document.getElementById('video-timer');
-        if (timer) timer.textContent = `${cur} / ${dur}`;
-      });
-
-      function formatTime(s) {
-        const m = Math.floor(s / 60);
-        const sec = Math.floor(s % 60);
-        return `${m < 10 ? '0' : ''}${m}:${sec < 10 ? '0' : ''}${sec}`;
-      }
-
-      window.togglePreviewPlay = function () {
-        const btn = document.getElementById('preview-play-btn');
-        if (player.paused) {
-          player.play();
-          if (btn) btn.textContent = 'PAUSE';
-        } else {
-          player.pause();
-          if (btn) btn.textContent = 'PLAY';
-        }
-      };
-
-      // Dropzone interactions
-      if (dropzone) {
-        dropzone.addEventListener('click', () => fileInput.click());
-
-        ['dragenter', 'dragover'].forEach(event => {
-          dropzone.addEventListener(event, (e) => {
-            e.preventDefault();
-            dropzone.classList.add('dragover');
-          });
-        });
-
-        ['dragleave', 'drop'].forEach(event => {
-          dropzone.addEventListener(event, (e) => {
-            e.preventDefault();
-            dropzone.classList.remove('dragover');
-          });
-        });
-
-        dropzone.addEventListener('drop', (e) => {
-          const files = e.dataTransfer.files;
-          if (files && files.length > 0) {
-            handleVideoFile(files[0]);
-          }
-        });
-      }
-
-      window.handleFileSelected = function (e) {
-        if (e.target.files && e.target.files.length > 0) {
-          handleVideoFile(e.target.files[0]);
-        }
-      };
-
-      // Process uploaded video file without degradation
-      async function handleVideoFile(file) {
-        if (!file.type.startsWith('video/')) {
-          alert('Please select a valid video file (MP4, WebM, or MOV).');
-          return;
-        }
-
-        selectedRawFile = file;
-        const fileSizeMb = (file.size / (1024 * 1024)).toFixed(1);
-        if (metaSize) metaSize.textContent = `${fileSizeMb} MB`;
-
-        // 1. Instant local object URL for zero-delay preview
-        const localBlobUrl = URL.createObjectURL(file);
-        player.src = localBlobUrl;
-        player.play().catch(() => {});
-        currentVideoUrl = localBlobUrl;
-
-        // 2. Generate smooth poster snapshot from frame to prevent blank flash
-        generatePosterSnapshot(localBlobUrl);
-      }
-
-      // Generate off-screen canvas poster snapshot
-      function generatePosterSnapshot(videoUrl) {
-        const snapVideo = document.createElement('video');
-        snapVideo.src = videoUrl;
-        snapVideo.crossOrigin = 'anonymous';
-        snapVideo.muted = true;
-        snapVideo.currentTime = 0.5;
-
-        snapVideo.addEventListener('seeked', () => {
-          try {
-            const canvas = document.createElement('canvas');
-            canvas.width = snapVideo.videoWidth || 1280;
-            canvas.height = snapVideo.videoHeight || 720;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(snapVideo, 0, 0, canvas.width, canvas.height);
-            currentPosterData = canvas.toDataURL('image/jpeg', 0.85);
-            localStorage.setItem('appiex_hero_poster', currentPosterData);
-          } catch (e) {
-            console.warn('Poster snapshot notice:', e);
-          }
-        });
-      }
-
-      window.loadVideoFromUrl = function () {
-        const input = document.getElementById('direct-url-input');
-        const url = input ? input.value.trim() : '';
-        if (!url) return;
-
-        player.src = url;
-        player.play().catch(() => {});
-        currentVideoUrl = url;
-        selectedRawFile = null;
-        if (currentUrlDisplay) currentUrlDisplay.textContent = url;
-        if (metaSize) metaSize.textContent = 'Cloud CDN';
-        generatePosterSnapshot(url);
-      };
-
-      // Save and apply hero video
-      window.saveAndApplyHeroVideo = async function () {
-        const applyBtn = document.getElementById('apply-video-btn');
-        const label = document.getElementById('apply-btn-label');
-
-        if (!currentVideoUrl && !selectedRawFile) {
-          alert('Please drop a video file or enter a video URL first.');
-          return;
-        }
-
-        if (applyBtn) applyBtn.disabled = true;
-        if (label) label.textContent = 'SAVING LOSSLESS STREAM...';
-
-        let finalVideoUrl = currentVideoUrl;
-
-        // If user uploaded a raw local file, save losslessly to IndexedDB with fast progress visualization
-        if (selectedRawFile) {
-          try {
-            if (progressContainer) progressContainer.classList.remove('hidden');
-            if (progressStage) progressStage.textContent = 'Saving 100% Raw Video to Lossless Stream Engine...';
-
-            const totalBytes = selectedRawFile.size;
-            const totalMb = (totalBytes / (1024 * 1024)).toFixed(1);
-            if (progressBytes) progressBytes.textContent = `0.0 MB / ${totalMb} MB`;
-
-            // 1. Smooth, guaranteed progress ticker (using setInterval for 100% reliability)
-            let curPct = 12;
-            if (progressFill) progressFill.style.width = `${curPct}%`;
-            if (progressPct) progressPct.textContent = `${curPct}%`;
-
-            const progressInterval = setInterval(() => {
-              if (curPct < 88) {
-                curPct += Math.floor(Math.random() * 15) + 12;
-                if (curPct > 88) curPct = 88;
-                if (progressFill) progressFill.style.width = `${curPct}%`;
-                if (progressPct) progressPct.textContent = `${curPct}%`;
-                if (progressBytes) {
-                  const transferred = ((curPct / 100) * totalMb).toFixed(1);
-                  progressBytes.textContent = `${transferred} MB / ${totalMb} MB`;
-                }
-              }
-            }, 80);
-
-            // 2. Commit raw binary file byte-for-byte to IndexedDB
-            if (window.AppiexVideoStore && window.AppiexVideoStore.saveHeroVideo) {
-              await window.AppiexVideoStore.saveHeroVideo(selectedRawFile, {
-                resolution: metaRes ? metaRes.textContent : '1080p FHD',
-                poster: currentPosterData || '',
-                fps: metaFps ? metaFps.textContent : '60 FPS'
-              });
-            }
-
-            // Brief pacing pause for buttery smooth visual completion
-            await new Promise(r => setTimeout(r, 200));
-            clearInterval(progressInterval);
-
-            // 3. Mark progress complete
-            if (progressFill) progressFill.style.width = '100%';
-            if (progressPct) progressPct.textContent = '100%';
-            if (progressBytes) progressBytes.textContent = `${totalMb} MB / ${totalMb} MB`;
-            if (progressStage) progressStage.textContent = 'Video Stream Saved (100% Lossless Quality Active)';
-
-            // 4. Background attempt for Firebase Storage sync without blocking UI
-            const storage = window.AppiexBackend ? window.AppiexBackend.getStorage() : null;
-            if (storage && typeof storage.ref === 'function') {
-              try {
-                const filename = `hero_${Date.now()}_${selectedRawFile.name.replace(/[^a-zA-Z0-9._-]/g, '')}`;
-                const storageRef = storage.ref().child(`hero_videos/${filename}`);
-                const task = storageRef.put(selectedRawFile, {
-                  contentType: selectedRawFile.type,
-                  customMetadata: { quality: 'raw_lossless', uploadedBy: 'APPIEX_ADMIN' }
-                });
-                task.then(async (snap) => {
-                  const cloudUrl = await snap.ref.getDownloadURL();
-                  console.log('☁️ Background Cloud Storage synced:', cloudUrl);
-                  localStorage.setItem('appiex_hero_video', cloudUrl);
-                  const db = window.AppiexBackend ? window.AppiexBackend.getDb() : null;
-                  if (db) {
-                    await db.collection('site_settings').doc('hero_video').set({
-                      url: cloudUrl,
-                      poster: currentPosterData || '',
-                      resolution: metaRes ? metaRes.textContent : 'Full HD',
-                      size: metaSize ? metaSize.textContent : 'Standard',
-                      updatedAt: new Date().toISOString()
-                    });
-                  }
-                }).catch((err) => {
-                  console.log('Local IndexedDB stream active; cloud background notice:', err.message);
-                });
-              } catch (e) {
-                console.log('Background upload skipped:', e.message);
-              }
-            }
-
-          } catch (err) {
-            console.error('Video store error:', err);
-          }
-        } else if (finalVideoUrl) {
-          // If direct URL was entered
-          if (window.AppiexVideoStore && window.AppiexVideoStore.clearHeroVideo) {
-            await window.AppiexVideoStore.clearHeroVideo();
-          }
-          localStorage.setItem('appiex_hero_video', finalVideoUrl);
-        }
-
-        // Save active poster & metadata to LocalStorage
-        if (currentPosterData) {
-          localStorage.setItem('appiex_hero_poster', currentPosterData);
-        }
-        localStorage.setItem('appiex_has_custom_video', 'true');
-
-        // Update Firestore site_settings if available
-        const db = window.AppiexBackend ? window.AppiexBackend.getDb() : null;
-        if (db && !selectedRawFile) {
-          try {
-            await db.collection('site_settings').doc('hero_video').set({
-              url: finalVideoUrl,
-              poster: currentPosterData || '',
-              resolution: metaRes ? metaRes.textContent : 'Full HD',
-              size: metaSize ? metaSize.textContent : 'Standard',
-              updatedAt: (typeof firebase !== 'undefined' && firebase.firestore)
-                ? firebase.firestore.FieldValue.serverTimestamp()
-                : new Date().toISOString()
-            });
-          } catch (e) {
-            console.warn('Firestore settings update notice:', e);
-          }
-        }
-
-        setTimeout(() => {
-          if (progressContainer) progressContainer.classList.add('hidden');
-        }, 600);
-
-        if (applyBtn) applyBtn.disabled = false;
-        if (label) label.textContent = '🚀 APPLY TO LIVE WEBSITE';
-
-        if (successBanner) {
-          successBanner.classList.remove('hidden');
-          const successText = document.getElementById('studio-success-text');
-          if (successText) {
-            successText.textContent = selectedRawFile 
-              ? '✅ 100% Original Quality Video Saved & Applied to Live Platform with Anti-Lag Acceleration!' 
-              : '✅ Hero video URL updated and synced across live platform!';
-          }
-          setTimeout(() => successBanner.classList.add('hidden'), 6000);
-        }
-
-        alert('✅ SUCCESS!\n\nHero video updated without quality loss! The live website (index.html) now streams this video in 100% original quality with hardware acceleration and anti-lag auto-pause.');
-      };
-
-      // Revert to original developer coding video
-      window.revertToDefaultVideo = async function () {
-        if (!confirm('Revert hero section to default developer coding video?')) return;
-
-        const defaultUrl = './assets/developer-coding.mp4';
-        if (window.AppiexVideoStore && window.AppiexVideoStore.clearHeroVideo) {
-          await window.AppiexVideoStore.clearHeroVideo();
-        }
-        localStorage.removeItem('appiex_hero_video');
-        localStorage.removeItem('appiex_hero_poster');
-        localStorage.removeItem('appiex_has_custom_video');
-        localStorage.removeItem('appiex_hero_video_meta');
-
-        const db = window.AppiexBackend ? window.AppiexBackend.getDb() : null;
-        if (db) {
-          try {
-            await db.collection('site_settings').doc('hero_video').delete();
-          } catch (e) {}
-        }
-
-        currentVideoUrl = defaultUrl;
-        selectedRawFile = null;
-        player.src = defaultUrl;
-        player.play().catch(() => {});
-        if (currentUrlDisplay) currentUrlDisplay.textContent = defaultUrl;
-        if (metaSize) metaSize.textContent = 'Default MP4';
-
-        alert('Restored default hero video asset.');
-      };
-
-      // 4. Fetch Client Leads & Orders from Firestore
-      window.fetchLeadsFromFirestore = async function () {
-        const container = document.getElementById('leads-container');
-        if (!container) return;
-
-        const db = window.AppiexBackend ? window.AppiexBackend.getDb() : null;
-        if (!db) {
-          const offlineLeads = JSON.parse(localStorage.getItem('appiex_inquiries') || '[]');
-          renderLeadsList(offlineLeads, true);
-          return;
-        }
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appiex Admin OS — Control Panel & Subscriptions</title>
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+    <meta name="description" content="Minimalist command center & control panel for Appiex digital engineering — subscriptions, system analytics, SEO, CRM pipeline, and content studio." />
+    <meta property="og:title" content="Appiex Admin OS — Control Panel & Subscriptions" />
+    <meta property="og:description" content="Minimalist command center & control panel for Appiex digital engineering — subscriptions, system analytics, SEO, CRM pipeline, and content studio." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Check admin authorization early to avoid flash of gate for authed sessions
+      (function() {
+        var AUTH_KEY = 'appiex_admin_authed';
         try {
-          const snapshot = await db.collection('inquiries').orderBy('createdAt', 'desc').limit(25).get();
-          if (snapshot.empty) {
-            container.innerHTML = `
-              <div class="p-12 text-center rounded-3xl bg-[#0C0C12] border border-white/10">
-                <span class="text-3xl block mb-2">📬</span>
-                <h4 class="font-anton text-xl uppercase">NO INQUIRIES YET</h4>
-                <p class="font-satoshi text-xs text-white/50 mt-1">Submitted inquiries from the "UNLEASH YOUR PLATFORM" build form will appear here in real-time.</p>
-              </div>
-            `;
-            return;
+          if (sessionStorage.getItem(AUTH_KEY) === 'rtx5090_verified' || localStorage.getItem(AUTH_KEY) === 'rtx5090_verified') {
+            document.documentElement.classList.add('admin-authorized');
           }
+        } catch(e) {}
+      })();
 
-          const leads = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          renderLeadsList(leads, false);
-        } catch (err) {
-          console.warn('Leads fetch notice:', err);
-          const offlineLeads = JSON.parse(localStorage.getItem('appiex_inquiries') || '[]');
-          renderLeadsList(offlineLeads, true);
+      // Compatibility shim for browser extensions/iframes that reassign window.fetch
+      (function() {
+        try {
+          var _origFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : undefined;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _origFetch;
+            },
+            set: function(val) {
+              _origFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var _f = window.fetch;
+            Object.defineProperty(window, 'fetch', {
+              value: _f,
+              writable: true,
+              configurable: true,
+              enumerable: true
+            });
+          } catch (err) {}
         }
-      };
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/admin/assets/index-Cv8Jj2gc.js?v=20261029_live_v5"></script>
+    <link rel="stylesheet" crossorigin href="/admin/assets/index-Bp4O11Jc.css">
 
-      function renderLeadsList(leads, isOffline) {
-        const container = document.getElementById('leads-container');
-        if (!leads || leads.length === 0) {
-          container.innerHTML = `
-            <div class="p-12 text-center rounded-3xl bg-[#0C0C12] border border-white/10">
-              <span class="text-3xl block mb-2">📬</span>
-              <h4 class="font-anton text-xl uppercase">NO INQUIRIES FOUND</h4>
-              <p class="font-satoshi text-xs text-white/50 mt-1">All new client submissions will appear here automatically.</p>
-            </div>
-          `;
-          return;
-        }
-
-        container.innerHTML = leads.map(l => {
-          const waPhone = l.whatsapp || '01600676875';
-          const cleanWa = waPhone.replace(/[^0-9]/g, '');
-          const waLink = `https://wa.me/${cleanWa.startsWith('880') ? cleanWa : '880' + cleanWa.replace(/^0+/, '')}?text=Hi%20${encodeURIComponent(l.name || 'there')},%20we%20received%20your%20project%20specifications%20on%20APPIEX.`;
-
-          return `
-            <div class="p-6 rounded-2xl bg-[#0B0B10] border border-white/10 hover:border-brand-red/40 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div class="space-y-1.5 min-w-0 flex-1">
-                <div class="flex items-center space-x-2">
-                  <span class="font-anton text-lg uppercase text-white">${l.name || 'Anonymous Client'}</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-brand-red/20 text-brand-neon border border-brand-red/30">
-                    ${l.category || 'Platform Spec'}
-                  </span>
-                </div>
-                <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-white/60">
-                  <span class="text-emerald-400 font-bold">📱 ${l.whatsapp || 'N/A'}</span>
-                  <span>⏱ ${l.timeline || 'Standard'}</span>
-                  <span>📅 ${l.createdAt ? (l.createdAt.toDate ? l.createdAt.toDate().toLocaleDateString() : l.createdAt) : 'Just now'}</span>
-                </div>
-                <p class="font-satoshi text-xs text-white/80 leading-relaxed pt-1">
-                  ${l.details || 'No detailed scope provided.'}
-                </p>
-              </div>
-
-              <div class="shrink-0 flex items-center space-x-2">
-                <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="btn-pill bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase px-4 py-2.5 rounded-xl transition flex items-center space-x-1.5 shadow-md shadow-emerald-600/30">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                  <span>WHATSAPP CHAT</span>
-                </a>
-              </div>
-            </div>
-          `;
-        }).join('');
+    <style>
+      /* Admin Security Gate Styles */
+      html.admin-authorized #admin-auth-gate {
+        display: none !important;
       }
-
-      // Test connection
-      window.testFirebaseConnection = function () {
-        const db = window.AppiexBackend ? window.AppiexBackend.getDb() : null;
-        if (db) {
-          alert('✅ Firebase Connection Active!\n\nConnected to project: watchshop-6ab95\nFirestore & Cloud Storage channels ready.');
-        } else {
-          alert('⚠️ Firebase client in offline-queue mode. Local storage active.');
+      html:not(.admin-authorized) #admin-lock-pill {
+        display: none !important;
+      }
+      #admin-auth-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 9999999;
+        background: #030712;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        color: #f8fafc;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      #admin-auth-gate.gate-closing {
+        opacity: 0;
+        transform: scale(1.03);
+        pointer-events: none;
+      }
+      .gate-bg-spotlight {
+        position: absolute;
+        top: -20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 600px;
+        background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.28) 0%, rgba(15, 23, 42, 0) 70%);
+        filter: blur(80px);
+        pointer-events: none;
+      }
+      .gate-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
+        -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
+        pointer-events: none;
+      }
+      .gate-card-wrapper {
+        perspective: 1200px;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 440px;
+        padding: 16px;
+      }
+      .gate-card {
+        background: rgba(11, 17, 32, 0.85);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        padding: 40px 32px 32px 32px;
+        box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.9), 0 0 60px -15px rgba(225, 29, 72, 0.22);
+        transform-style: preserve-3d;
+        transition: transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+        text-align: center;
+      }
+      .gate-card.shake {
+        animation: gateShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+      .gate-card.granted {
+        border-color: rgba(16, 185, 129, 0.6) !important;
+        box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.9), 0 0 70px -10px rgba(16, 185, 129, 0.4) !important;
+      }
+      @keyframes gateShake {
+        10%, 90% { transform: translate3d(-3px, 0, 0); }
+        20%, 80% { transform: translate3d(5px, 0, 0); }
+        30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+        40%, 60% { transform: translate3d(6px, 0, 0); }
+      }
+      .gate-icon-badge {
+        width: 68px;
+        height: 68px;
+        margin: 0 auto 20px auto;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%);
+        border: 1px solid rgba(225, 29, 72, 0.5);
+        box-shadow: 0 0 30px rgba(225, 29, 72, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fb7185;
+        position: relative;
+      }
+      .gate-icon-badge::after {
+        content: '';
+        position: absolute;
+        inset: -3px;
+        border-radius: 23px;
+        border: 1px dashed rgba(225, 29, 72, 0.4);
+        animation: spinSlow 20s linear infinite;
+      }
+      @keyframes spinSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .gate-input-box {
+        position: relative;
+        text-align: left;
+        margin-top: 24px;
+      }
+      .gate-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 46px 14px 44px;
+        background: rgba(3, 7, 18, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        color: #ffffff;
+        font-size: 15px;
+        font-family: 'JetBrains Mono', monospace;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+      .gate-input:focus {
+        border-color: #f43f5e;
+        box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.2), 0 0 20px rgba(244, 63, 94, 0.25);
+        background: rgba(3, 7, 18, 0.95);
+      }
+      .gate-input.error {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+      }
+      .gate-btn {
+        width: 100%;
+        margin-top: 20px;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+      .gate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 35px -5px rgba(225, 29, 72, 0.65);
+        background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+      }
+      .gate-btn:active {
+        transform: translateY(0);
+      }
+      .gate-btn.btn-granted {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.5) !important;
+      }
+      #admin-lock-pill {
+        position: fixed;
+        top: 14px;
+        right: 20px;
+        z-index: 999999;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 16px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
+        color: #e2e8f0;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s ease;
+      }
+      #admin-lock-pill:hover {
+        background: rgba(225, 29, 72, 0.9);
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        box-shadow: 0 10px 28px rgba(225, 29, 72, 0.4);
+      }
+    </style>
+  
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
         }
-      };
-
+      } catch (e) {}
     })();
   </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+  </style>
+  <script src="/scripts/instant-nav.js" defer></script>
+
+<meta name="robots" content="noindex, nofollow, noarchive">
+</head>
+  <body class="bg-[#0B0D10] text-slate-100 antialiased selection:bg-rose-500/20 selection:text-rose-600">
+  <div id="appiex-cuberto-curtain" aria-hidden="true"><div class="appiex-curtain-ambient"></div></div>
+    <!-- Floating Lock Button for Authenticated Admin -->
+    <button id="admin-lock-pill" onclick="lockAdminSession()" title="Lock Admin Session">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      <span>Lock Admin</span>
+    </button>
+
+    <!-- Admin Authentication Gate -->
+    <div id="admin-auth-gate">
+      <div class="gate-bg-spotlight"></div>
+      <div class="gate-bg-grid"></div>
+
+      <div class="gate-card-wrapper" id="gateCardWrapper">
+        <div class="gate-card" id="gateCard">
+          <div class="gate-icon-badge">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <circle cx="12" cy="11" r="2.5"/>
+              <path d="M12 13.5V16"/>
+            </svg>
+          </div>
+
+          <div style="display:inline-block; padding: 4px 12px; border-radius: 9999px; background: rgba(225, 29, 72, 0.15); border: 1px solid rgba(225, 29, 72, 0.35); color: #fb7185; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">
+            Authorized Access Only
+          </div>
+
+          <h1 style="color: #ffffff; font-size: 24px; font-weight: 800; margin: 14px 0 6px 0; letter-spacing: -0.02em;">
+            Appiex Admin OS
+          </h1>
+          <p style="color: #94a3b8; font-size: 13px; margin: 0 0 22px 0; line-height: 1.5;">
+            Enter administrator master password to unlock command center & telemetry
+          </p>
+
+          <form id="gateForm" onsubmit="handleAdminAuth(event)" autocomplete="off">
+            <div class="gate-input-box">
+              <label for="adminAuthInput" style="display: block; font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">
+                Master Password
+              </label>
+
+              <div style="position: relative; display: flex; align-items: center;">
+                <svg style="position: absolute; left: 14px; color: #64748b; pointer-events: none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+
+                <input
+                  type="password"
+                  id="adminAuthInput"
+                  class="gate-input"
+                  placeholder="Enter password"
+                  autocomplete="current-password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  id="togglePasswordBtn"
+                  onclick="togglePasswordVisibility()"
+                  style="position: absolute; right: 12px; background: none; border: none; color: #64748b; cursor: pointer; padding: 6px; display: flex; align-items: center; justify-content: center; transition: color 0.2s;"
+                  title="Show/Hide Password"
+                >
+                  <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+
+              <div id="gateError" style="display: none; margin-top: 10px; padding: 10px 14px; border-radius: 10px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; font-size: 12px; font-weight: 600; text-align: left; align-items: center; gap: 8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="15" y1="9" x2="9" y2="15"></line>
+                  <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                <span>Incorrect password. Access denied.</span>
+              </div>
+            </div>
+
+            <button type="submit" id="gateSubmitBtn" class="gate-btn">
+              <span id="gateBtnText">Authenticate & Enter</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </form>
+
+          <div style="margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #64748b; font-size: 11px;">
+            <span>🛡️ Hardware Key / Encrypted Session</span>
+            <span>•</span>
+            <span>v4.2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive script for 3D card tilt, authentication verification & session handling -->
+    <script>
+      (function() {
+        var AUTH_KEY = 'appiex_admin_authed';
+        var REQUIRED_PASS = 'rtx5090';
+
+        window.lockAdminSession = function() {
+          try {
+            sessionStorage.removeItem(AUTH_KEY);
+            localStorage.removeItem(AUTH_KEY);
+          } catch(e) {}
+          window.location.reload();
+        };
+
+        window.togglePasswordVisibility = function() {
+          var inp = document.getElementById('adminAuthInput');
+          var eye = document.getElementById('eyeIcon');
+          if (!inp) return;
+          if (inp.type === 'password') {
+            inp.type = 'text';
+            eye.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+          } else {
+            inp.type = 'password';
+            eye.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+          }
+        };
+
+        // 3D Card Hover Tilt Effect
+        var cardWrapper = document.getElementById('gateCardWrapper');
+        var card = document.getElementById('gateCard');
+        if (cardWrapper && card) {
+          cardWrapper.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            var rotateX = (-y / rect.height) * 14;
+            var rotateY = (x / rect.width) * 14;
+            card.style.transform = 'perspective(1000px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.02, 1.02, 1.02)';
+          });
+          cardWrapper.addEventListener('mouseleave', function() {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          });
+        }
+
+        // Autofocus input if gate is active
+        var input = document.getElementById('adminAuthInput');
+        if (input && !document.documentElement.classList.contains('admin-authorized')) {
+          setTimeout(function() { input.focus(); }, 150);
+        }
+
+        window.handleAdminAuth = function(e) {
+          if (e) e.preventDefault();
+          var pass = (input ? input.value : '').trim();
+          var errorEl = document.getElementById('gateError');
+          var submitBtn = document.getElementById('gateSubmitBtn');
+          var btnText = document.getElementById('gateBtnText');
+
+          if (pass === REQUIRED_PASS) {
+            // Success
+            if (errorEl) errorEl.style.display = 'none';
+            if (input) input.classList.remove('error');
+            if (card) {
+              card.classList.remove('shake');
+              card.classList.add('granted');
+            }
+            if (submitBtn) {
+              submitBtn.classList.add('btn-granted');
+              submitBtn.disabled = true;
+            }
+            if (btnText) {
+              btnText.innerHTML = '✓ Access Granted — Decrypting OS...';
+            }
+
+            try {
+              sessionStorage.setItem(AUTH_KEY, 'rtx5090_verified');
+              localStorage.setItem(AUTH_KEY, 'rtx5090_verified');
+            } catch(err) {}
+
+            document.documentElement.classList.add('admin-authorized');
+
+            var gate = document.getElementById('admin-auth-gate');
+            if (gate) {
+              gate.classList.add('gate-closing');
+              setTimeout(function() {
+                gate.remove();
+              }, 400);
+            }
+          } else {
+            // Failure
+            if (errorEl) {
+              errorEl.style.display = 'flex';
+            }
+            if (input) {
+              input.classList.add('error');
+              input.value = '';
+              input.focus();
+            }
+            if (card) {
+              card.classList.remove('shake');
+              void card.offsetWidth; // trigger reflow
+              card.classList.add('shake');
+            }
+          }
+        };
+      })();
+    </script>
+
+    <div id="root"></div>
+    <script src="/scripts/seo-conversion-tracker.js" defer></script>
 </body>
 </html>

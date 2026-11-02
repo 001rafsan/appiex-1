@@ -1,0 +1,1447 @@
+.seo-site-links {
+  position: relative;
+  z-index: 5;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 32px clamp(20px, 5vw, 72px);
+  color: #f8fafc;
+  background: #030408;
+  border-top: 1px solid rgba(248, 250, 252, 0.14);
+  font-family: Montserrat, Arial, sans-serif;
+}
+
+.seo-site-links__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.seo-site-links__label {
+  margin: 0 8px 0 0;
+  color: rgba(248, 250, 252, 0.56);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.seo-site-links a {
+  color: rgba(248, 250, 252, 0.88);
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.seo-site-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.seo-site-links a:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid #ff2a4d;
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .seo-site-links {
+    padding-block: 24px;
+  }
+
+  .seo-site-links__inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .seo-site-links__label {
+    margin-bottom: 4px;
+  }
+}
+
+
+
+
+
+
+
+/* ========================================================
+   APPIEX FLOATING CAPSULE NAVBAR (DESKTOP)
+   ======================================================== */
+.rafsan-navbar-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100000;
+  padding: 1.1rem 0;
+  pointer-events: none;
+  background: transparent !important;
+  font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: all 0.35s ease;
+}
+
+.rafsan-navbar-shell.scrolled {
+  padding: 0.75rem 0;
+}
+
+.rafsan-nav-container {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 1. Brand Logo (Left) */
+.rafsan-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  user-select: none;
+}
+.rafsan-brand:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+.rafsan-brand .brand-logo-img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 0.35rem;
+}
+.rafsan-brand-bold {
+  font-weight: 700;
+  color: #ffffff;
+}
+.rafsan-brand-light {
+  font-weight: 300;
+  color: #d1d5db;
+  margin-left: 0.2rem;
+}
+
+/* 2. Center Floating Glassmorphic Capsule */
+.rafsan-capsule-nav {
+  position: relative;
+  display: none;
+  align-items: center;
+  padding: 5px 6px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.35s ease;
+}
+
+@media (min-width: 1025px) {
+  .rafsan-capsule-nav {
+    display: flex !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Sliding Spring Pill Indicator */
+.rafsan-capsule-pill {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  height: calc(100% - 10px);
+  width: 68px;
+  background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rafsan-nav-item {
+  position: relative;
+  z-index: 2;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  border-radius: 9999px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+}
+.rafsan-nav-item:hover {
+  color: #ffffff;
+}
+.rafsan-nav-item.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Services Dropdown & Up Caret */
+.services-nav-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.services-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+.services-nav-wrap:hover .services-caret,
+.services-nav-wrap.is-open .services-caret {
+  transform: rotate(180deg);
+  color: #FF2A4D;
+}
+.services-popup-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 650px;
+  max-width: calc(100vw - 2rem);
+  background: #000000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 42, 77, 0.2);
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  overflow: hidden;
+}
+.services-nav-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  width: 100%;
+  height: 18px;
+}
+.services-nav-wrap:hover .services-popup-menu,
+.services-nav-wrap.is-open .services-popup-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.services-mega-left {
+  width: 250px;
+  background: linear-gradient(180deg, rgba(10, 10, 15, 0.42) 0%, rgba(5, 5, 10, 0.90) 100%), url('./images/panther_cover.png') center/cover no-repeat !important;
+  padding: 28px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  text-align: left;
+  position: relative;
+  font-family: 'Figtree', sans-serif !important;
+}
+.services-mega-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ff2a4d;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Figtree', sans-serif !important;
+}
+.services-mega-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.35;
+  text-transform: uppercase;
+  font-family: 'Figtree', sans-serif !important;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+.services-mega-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 1px solid #ffffff;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-top: 20px;
+  font-family: 'Figtree', sans-serif !important;
+}
+.services-mega-btn:hover {
+  background-color: #ff2a4d;
+  color: #ffffff;
+  border-color: #ff2a4d;
+  box-shadow: 0 4px 14px rgba(255, 42, 77, 0.4);
+}
+.services-mega-right {
+  flex: 1;
+  padding: 28px 24px;
+  background: #000000 !important;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: 'Figtree', sans-serif !important;
+}
+.services-mega-subtitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5) !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+  font-family: 'Figtree', sans-serif !important;
+}
+.services-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 18px;
+}
+.services-mega-item {
+  padding: 8px 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.6px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  border: none !important;
+  background: transparent !important;
+  font-family: 'Figtree', sans-serif !important;
+}
+.services-mega-item:hover {
+  background: transparent !important;
+  color: #FF2A4D !important;
+  transform: translateX(4px);
+  text-shadow: 0 0 14px rgba(255, 42, 77, 0.7);
+}
+
+/* 3. Action Buttons (Right) */
+.rafsan-nav-actions {
+  display: none;
+  align-items: center;
+  gap: 0.85rem;
+}
+@media (min-width: 1025px) {
+  .rafsan-nav-actions {
+    display: flex !important;
+  }
+}
+.rafsan-btn-blog {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 18px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+.rafsan-btn-blog:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.rafsan-btn-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 20px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%);
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45);
+  transition: all 0.25s ease;
+}
+.rafsan-btn-login:hover {
+  box-shadow: 0 6px 22px rgba(255, 42, 77, 0.65);
+  transform: translateY(-1px);
+}
+
+/* ========================================================
+   APPIEX CYBER RED & 2-LINE MORPHING TOGGLE (PICTURE 1 & 2)
+   ======================================================== */
+@media (max-width: 1024px) {
+  .rafsan-navbar-shell {
+    pointer-events: auto !important;
+    z-index: 1000000001 !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+  }
+  .rafsan-nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    box-sizing: border-box !important;
+  }
+  .rafsan-nav-actions {
+    display: none !important;
+  }
+  .rafsan-mobile-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
+    pointer-events: auto !important;
+    z-index: 1000000005 !important;
+  }
+  .rafsan-capsule-nav {
+    display: none !important;
+  }
+
+  /* 2-Line Minimal Futuristic Hamburger Button */
+  .rafsan-mobile-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    padding: 0 !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 1000000010 !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease !important;
+  }
+  .rafsan-mobile-toggle svg {
+    display: none !important;
+  }
+
+  .hamburger-box {
+    width: 22px !important;
+    height: 12px !important;
+    position: relative !important;
+    display: block !important;
+    pointer-events: none !important;
+  }
+
+  .hamburger-line {
+    position: absolute !important;
+    left: 0 !important;
+    width: 22px !important;
+    height: 2px !important;
+    background-color: #ffffff !important;
+    border-radius: 2px !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease !important;
+    transform-origin: center center !important;
+  }
+
+  /* Default state: 2 parallel lines (1st pic) */
+  .hamburger-line.line-top {
+    top: 0px !important;
+    transform: translateY(0px) rotate(0deg) !important;
+  }
+  .hamburger-line.line-bottom {
+    top: 10px !important;
+    transform: translateY(0px) rotate(0deg) !important;
+  }
+
+  /* When Menu is OPEN: Morph smoothly into an X (1st pic button) */
+  .rafsan-mobile-toggle.is-active .hamburger-line.line-top,
+  .rafsan-mobile-toggle[aria-expanded="true"] .hamburger-line.line-top {
+    transform: translateY(5px) rotate(45deg) !important;
+    background-color: #ffffff !important;
+  }
+
+  .rafsan-mobile-toggle.is-active .hamburger-line.line-bottom,
+  .rafsan-mobile-toggle[aria-expanded="true"] .hamburger-line.line-bottom {
+    transform: translateY(-5px) rotate(-45deg) !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Drawer Top-Right Close Button (Circled in 2nd pic) */
+  .cyber-bar-close {
+    width: 48px !important;
+    height: 48px !important;
+    background: #FF2A4D !important; /* Brand Red */
+    border: none !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: background-color 0.2s ease, transform 0.2s ease !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .cyber-bar-close:hover,
+  .cyber-bar-close:active {
+    background: #dc2626 !important;
+  }
+  .cyber-bar-close .hamburger-box {
+    width: 20px !important;
+    height: 12px !important;
+  }
+  .cyber-bar-close .hamburger-line {
+    width: 20px !important;
+  }
+  /* Close Button in Cyber Bar: Crossed into an X */
+  .cyber-bar-close .hamburger-line.line-top {
+    transform: translateY(5px) rotate(45deg) !important;
+    background-color: #ffffff !important;
+  }
+  .cyber-bar-close .hamburger-line.line-bottom {
+    transform: translateY(-5px) rotate(-45deg) !important;
+    background-color: #ffffff !important;
+  }
+
+
+  /* Hide the login button in header when drawer is open */
+  body.menu-open #mobile-wrap-login-btn {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* ========================================================
+     CYBER RED GAMING MOBILE MENU DRAWER
+     Opens smoothly from the RIGHT SIDE with 60fps spring animation
+     Brand Color: RED (#FF2A4D)
+     ======================================================== */
+  .rafsan-mobile-drawer {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    background: #000000 !important;
+    z-index: 999999999 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    transform: translate3d(100%, 0, 0) !important; /* Slide from RIGHT */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.4s !important;
+    will-change: transform, opacity;
+  }
+
+  .rafsan-mobile-drawer.open {
+    transform: translate3d(0, 0, 0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Left Content Pane (Scrollable) */
+  .cyber-main-pane {
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 1.25rem 1.25rem 1.5rem 1.4rem !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.14) !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    background: #000000 !important;
+  }
+
+  /* Top Discover Header Bar */
+  .cyber-top-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 1.25rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    font-family: 'Space Mono', 'IBM Plex Mono', monospace, -apple-system, sans-serif !important;
+    font-size: 10px !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+  }
+  .cyber-top-header .discover-tag {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  .cyber-top-header .discover-tag .square-dot {
+    width: 5px !important;
+    height: 5px !important;
+    background: #ffffff !important;
+    display: inline-block !important;
+  }
+  .cyber-top-header .brand-wordmark {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 19px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.04em !important;
+    color: #ffffff !important;
+  }
+  .cyber-top-header .page-tag {
+    color: #FF2A4D !important; /* RED */
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    text-align: right !important;
+  }
+  .cyber-top-header .page-tag span {
+    display: block !important;
+    font-size: 8px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  /* Primary Big Editorial Navigation Links */
+  .cyber-nav-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+    padding: 1.4rem 0 1.25rem 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  }
+  .cyber-nav-item {
+    display: inline-flex !important;
+    align-items: baseline !important;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    font-size: clamp(2.2rem, 9.2vw, 3.1rem) !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.05em !important;
+    line-height: 0.96 !important;
+    text-transform: uppercase !important;
+    position: relative !important;
+    width: fit-content !important;
+    padding: 0.18rem 0.55rem !important;
+    border-radius: 4px !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .cyber-nav-item:hover,
+  .cyber-nav-item.active {
+    background: #FF2A4D !important; /* RED */
+    color: #ffffff !important;
+  }
+  .cyber-nav-item .badge-page {
+    position: absolute !important;
+    left: 100% !important;
+    top: 0 !important;
+    margin-left: 8px !important;
+    font-family: 'Space Mono', 'IBM Plex Mono', monospace !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+    color: #FF2A4D !important; /* RED */
+    white-space: pre !important;
+  }
+  .cyber-nav-item.active .badge-page,
+  .cyber-nav-item:hover .badge-page {
+    color: #FF2A4D !important;
+  }
+
+  /* Services Accordion in Cyber Red */
+  .cyber-services-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .cyber-services-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: fit-content !important;
+    cursor: pointer !important;
+  }
+  .cyber-services-toggle svg.cyber-caret-icon {
+    width: 18px !important;
+    height: 18px !important;
+    margin-left: 10px !important;
+    stroke: currentColor !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .cyber-services-toggle.expanded svg.cyber-caret-icon {
+    transform: rotate(180deg) !important;
+  }
+  .cyber-services-sub {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+    padding: 0 0.75rem !important;
+    margin: 0 !important;
+    background: rgba(255, 42, 77, 0.05) !important;
+    border-left: 2px solid #FF2A4D !important; /* RED */
+    transition: max-height 0.36s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, margin 0.3s ease, padding 0.3s ease !important;
+  }
+  .cyber-services-sub.open {
+    max-height: 480px !important;
+    opacity: 1 !important;
+    padding: 0.6rem 0.75rem !important;
+    margin: 0.4rem 0 0.8rem 0 !important;
+  }
+  .cyber-services-sub a.cyber-sub-item {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-family: 'Space Mono', 'IBM Plex Mono', monospace, -apple-system, sans-serif !important;
+    font-size: 11px !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    padding: 0.35rem 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: color 0.2s ease, padding-left 0.2s ease !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  }
+  .cyber-services-sub a.cyber-sub-item:last-child {
+    border-bottom: none !important;
+  }
+  .cyber-services-sub a.cyber-sub-item:hover,
+  .cyber-services-sub a.cyber-sub-item:active {
+    color: #FF2A4D !important; /* RED */
+    padding-left: 4px !important;
+  }
+  .cyber-services-sub a.cyber-sub-item .sub-dot {
+    width: 4px !important;
+    height: 4px !important;
+    background: #FF2A4D !important; /* RED */
+    box-shadow: 0 0 6px #FF2A4D !important;
+    display: inline-block !important;
+    flex-shrink: 0 !important;
+  }
+  .cyber-services-sub a.cyber-sub-explore {
+    color: #FF2A4D !important; /* RED */
+    font-weight: 700 !important;
+    margin-top: 0.25rem !important;
+  }
+
+  /* Section: Connect & Actions */
+  .cyber-meta-section {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    font-family: 'Space Mono', 'IBM Plex Mono', monospace, sans-serif !important;
+    font-size: 11px !important;
+    letter-spacing: 0.06em !important;
+  }
+  .cyber-meta-label {
+    width: 6.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+    text-transform: uppercase !important;
+    font-size: 10px !important;
+    flex-shrink: 0 !important;
+  }
+  .cyber-meta-label .square-dot {
+    width: 4px !important;
+    height: 4px !important;
+    background: #ffffff !important;
+    opacity: 0.7 !important;
+  }
+  .cyber-meta-content {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  .cyber-meta-content a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    transition: color 0.2s ease !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  .cyber-meta-content a:hover,
+  .cyber-meta-content a:active {
+    color: #FF2A4D !important; /* RED */
+  }
+
+  /* Bottom Misc Bar */
+  .cyber-bottom-misc {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-top: 1.25rem !important;
+    font-family: 'Space Mono', 'IBM Plex Mono', monospace, sans-serif !important;
+    font-size: 10px !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    margin-top: auto !important;
+  }
+
+  /* Right Dedicated Cyber Bar Strip */
+  .cyber-right-bar {
+    width: 48px !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    background: #000000 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Bottom Equalizer Audio Bars in Red */
+  .cyber-bar-bottom {
+    padding-bottom: 1.2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .cyber-audio-equalizer {
+    display: flex !important;
+    align-items: flex-end !important;
+    gap: 2.5px !important;
+    height: 14px !important;
+  }
+  .cyber-audio-equalizer span {
+    width: 2px !important;
+    background: #FF2A4D !important; /* RED audio bars */
+    border-radius: 1px !important;
+    opacity: 0.85 !important;
+    animation: audioPulse 1.2s ease-in-out infinite alternate !important;
+  }
+  .cyber-audio-equalizer span:nth-child(1) { height: 6px !important; animation-delay: 0s !important; }
+  .cyber-audio-equalizer span:nth-child(2) { height: 12px !important; animation-delay: 0.2s !important; }
+  .cyber-audio-equalizer span:nth-child(3) { height: 9px !important; animation-delay: 0.4s !important; }
+  .cyber-audio-equalizer span:nth-child(4) { height: 14px !important; animation-delay: 0.15s !important; }
+  .cyber-audio-equalizer span:nth-child(5) { height: 7px !important; animation-delay: 0.35s !important; }
+
+  @keyframes audioPulse {
+    0% { transform: scaleY(0.4); opacity: 0.5; }
+    100% { transform: scaleY(1); opacity: 1; }
+  }
+}
+
+/* Desktop Navigation (>= 1025px) - STRICTLY HIDDEN */
+@media (min-width: 1025px) {
+  .rafsan-capsule-nav {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+  }
+  .rafsan-mobile-wrap {
+    display: none !important;
+  }
+  .rafsan-mobile-drawer {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .rafsan-nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.85rem !important;
+  }
+}
+
+
+/* ========================================================
+   APPIEX BENTO GRID & MOBILE LOGIN CAPSULE
+   ======================================================== */
+#mobile-wrap-login-btn,
+.rafsan-mobile-wrap .rafsan-hire-btn,
+.rafsan-mobile-wrap .rafsan-btn-login {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px 18px !important;
+  border-radius: 9999px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+  box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45) !important;
+  border: none !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+#mobile-wrap-login-btn:hover {
+  background: linear-gradient(135deg, #ff4767 0%, #ef4444 100%) !important;
+  box-shadow: 0 6px 22px rgba(255, 42, 77, 0.65) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Bento Column 2 - Desktop & Mobile */
+.numbers-center-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+@media (min-width: 1024px) {
+  .numbers-center-col {
+    height: 488px !important;
+    min-height: 488px !important;
+  }
+  #bento-video-card {
+    height: 232px !important;
+    min-height: 232px !important;
+    flex: 1 !important;
+  }
+  .numbers-center-bottom {
+    height: 232px !important;
+    min-height: 232px !important;
+    flex: 1 !important;
+  }
+}
+@media (max-width: 1023px) {
+  .numbers-center-col {
+    gap: 20px !important;
+  }
+  #bento-video-card {
+    height: 220px !important;
+    min-height: 220px !important;
+    width: 100% !important;
+  }
+  .numbers-center-bottom {
+    min-height: 180px !important;
+    width: 100% !important;
+  }
+}
+
+#bento-video-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 1.75rem !important;
+  background: #000000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+#bento-video-card video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.numbers-center-bottom {
+  border-radius: 1.75rem !important;
+}
+
+.numbers-tall-card {
+  border-radius: 1.75rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+
+/* ========================================================
+   DESKTOP & MOBILE ACTION BUTTON CAPSULES (BLOG & LOGIN)
+   ======================================================== */
+.rafsan-nav-actions {
+  display: none;
+  align-items: center;
+  gap: 0.85rem;
+}
+@media (min-width: 1025px) {
+  .rafsan-nav-actions {
+    display: flex !important;
+  }
+}
+
+.rafsan-blog-btn,
+.rafsan-resume-btn,
+.rafsan-btn-blog {
+  padding: 6px 16px !important;
+  border-radius: 9999px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  transition: all 0.25s ease !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+.rafsan-blog-btn:hover,
+.rafsan-resume-btn:hover,
+.rafsan-btn-blog:hover {
+  border-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+  transform: translateY(-1px) !important;
+}
+
+.rafsan-hire-btn,
+.rafsan-btn-login,
+#nav-login-btn,
+#mobile-wrap-login-btn {
+  padding: 7px 18px !important;
+  border-radius: 9999px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45) !important;
+  transition: all 0.25s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+.rafsan-hire-btn:hover,
+.rafsan-btn-login:hover,
+#nav-login-btn:hover,
+#mobile-wrap-login-btn:hover {
+  background: linear-gradient(135deg, #ff4767 0%, #ef4444 100%) !important;
+  box-shadow: 0 6px 22px rgba(255, 42, 77, 0.65) !important;
+  transform: translateY(-1px) !important;
+}
+
+  /* ========================================================
+     THE ESSENTIALS: CHIKON / THIN TITLE & HAIRLINE GRID (PIC 1)
+     ======================================================== */
+  .essentials-title-thin {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.18em !important;
+    font-size: clamp(2.2rem, 4.2vw, 3.8rem) !important;
+    text-transform: uppercase !important;
+    color: #FFFFFF !important;
+    line-height: 1 !important;
+    color: #FFFFFF !important;
+  }
+  .essentials-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 2px !important; /* Hairline Gap */
+    background-color: rgba(255, 255, 255, 0.14) !important; /* Hairline border color */
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 1.25rem !important;
+    overflow: hidden !important;
+  }
+  @media (max-width: 768px) {
+    .essentials-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  .essentials-card-box {
+    position: relative !important;
+    height: 520px !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    background: #000000 !important;
+  }
+  .essentials-card-box .card-bg-zoom {
+    position: absolute !important;
+    inset: 0 !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .essentials-card-box:hover .card-bg-zoom {
+    transform: scale(1.06) !important;
+  }
+  .essentials-card-box .card-dark-gradient {
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.42) 50%, transparent 100%) !important;
+  }
+  .essentials-card-box .card-content-wrap {
+    position: absolute !important;
+    bottom: 24px !important;
+    left: 24px !important;
+    right: 24px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    color: #ffffff !important;
+    z-index: 10 !important;
+  }
+  .essentials-card-box .card-tag-red {
+    font-family: 'Oswald', sans-serif !important;
+    font-size: 10px !important;
+    letter-spacing: 0.18em !important;
+    color: #FF2A4D !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    display: block !important;
+    margin-bottom: 4px !important;
+  }
+  .essentials-card-box .card-heading-title {
+    font-size: 19px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.25 !important;
+    margin: 4px 0 2px 0 !important;
+  }
+  .essentials-card-box .card-sub-info {
+    font-family: 'Oswald', sans-serif !important;
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    margin-top: 4px !important;
+    display: block !important;
+  }
+  .essentials-card-box .card-details-btn {
+    background: transparent !important;
+    border: none !important;
+    color: #FF2A4D !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    margin-left: 1rem !important;
+    transition: all 0.2s ease !important;
+  }
+  .essentials-card-box:hover .card-details-btn {
+    text-decoration: underline !important;
+    transform: translateX(3px) !important;
+  }
+
+  /* ========================================================
+     NUMBERS SECTION: THE MARKETPLACE BUILT ON REAL RESULTS (PIC 3)
+     ======================================================== */
+  .numbers-bento-card {
+    background: #000000 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9) !important;
+    border-radius: 1.75rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+  }
+  .numbers-tall-card {
+    height: 488px !important;
+    min-height: 488px !important;
+  }
+  .numbers-bento-card:hover {
+    border-color: rgba(220, 38, 38, 0.3) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(220, 38, 38, 0.12) !important;
+  }
+  .numbers-dot-bg {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px) !important;
+    background-size: 18px 18px !important;
+  }
+
+
+  .numbers-center-col {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    justify-content: space-between !important;
+  }
+  .numbers-center-top {
+    height: 232px !important;
+    min-height: 232px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .numbers-center-bottom {
+    height: 232px !important;
+    min-height: 232px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+
+  /* ========================================================
+     STORY SECTION: WATERMARK ON RIGHT SIDE & CASIO FONT
+     ======================================================== */
+  .story-watermark,
+  #story-watermark {
+    font-family: 'Anton', 'Impact', sans-serif !important;
+    font-size: clamp(5rem, 17vw, 15rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.08em !important; /* Majkhane gap bariye dewa (Pic 2) */
+    text-transform: uppercase !important;
+    position: absolute !important;
+    top: 1.5rem !important; /* Ektu niche (Pic 2) */
+    right: 0 !important;
+    left: auto !important;
+    text-align: right !important;
+    color: rgba(255, 255, 255, 0.14) !important;
+    user-select: none !important;
+    pointer-events: none !important;
+    white-space: nowrap !important;
+    z-index: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-shadow: 0 0 35px rgba(220, 38, 38, 0.08) !important;
+  }
+  .story-casio-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 300 !important; /* Light geometric like THE SPIRIT OF CASIO */
+    letter-spacing: 0.08em !important;
+    font-size: clamp(0.95rem, 1.8vw, 1.35rem) !important;
+    text-transform: uppercase !important;
+    color: #FFFFFF !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+  .story-casio-title::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 2px !important;
+    background: #DC2626 !important;
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.9) !important;
+  }
+
+  /* ========================================================
+     CONTACT SECTION: PIC 4 MINIMALIST DESIGN & UNDERLINE INPUTS
+     ======================================================== */
+  .contact-pic4-heading {
+    font-family: 'Sora', system-ui, -apple-system, sans-serif !important;
+    font-size: clamp(2.2rem, 5.2vw, 4.2rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.025em !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+  }
+  .contact-pic4-heading span:first-child {
+    margin-bottom: 0.35rem !important;
+  }
+  .contact-editorial-desc {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-style: italic !important;
+    font-size: clamp(0.95rem, 1.6vw, 1.25rem) !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    max-width: 44rem !important;
+    margin: 1.5rem auto 2.8rem !important;
+    line-height: 1.65 !important;
+    text-align: center !important;
+  }
+  .contact-underline-input {
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+    color: #FFFFFF !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    padding: 0.95rem 0.25rem !important;
+    outline: none !important;
+    border-radius: 0 !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+  }
+  .contact-underline-input::placeholder {
+    color: rgba(255, 255, 255, 0.45) !important;
+    letter-spacing: 0.14em !important;
+    font-size: 0.8rem !important;
+  }
+  .contact-underline-input:focus {
+    border-bottom-color: #DC2626 !important;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.25) !important;
+  }
+  .contact-underline-select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    cursor: pointer !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.5rem center !important;
+  }
+  .contact-join-pack-btn {
+    background: #DC2626 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 9999px !important;
+    padding: 0.95rem 3.5rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    box-shadow: 0 6px 25px rgba(220, 38, 38, 0.45) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .contact-join-pack-btn:hover {
+    background: #EF4444 !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 10px 35px rgba(220, 38, 38, 0.65) !important;
+  }
+
+  /* ========================================================
+     FOOTER: PIC 5 HUGE TYPOGRAPHY & TRANSPARENT BG
+     ======================================================== */
+  .footer-huge-title {
+    font-family: 'Anton', 'Impact', sans-serif !important;
+    font-size: clamp(4.5rem, 13vw, 11rem) !important;
+    font-weight: 900 !important;
+    line-height: 0.88 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #FFFFFF !important;
+  }
+  .footer-huge-title.footer-title-red {
+    color: #FF2A4D !important;
+  }
+  .footer-kicker-red {
+    color: #FF2A4D !important;
+    font-family: 'Oswald', sans-serif !important;
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
+    letter-spacing: 0.22em !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+  }
+
+  /* ========================================================
+     SCROLL-DRIVEN TEXT REVEAL (PIC 3 -> PIC 4 ILLUMINATION)
+     ======================================================== */
+  .scroll-reveal-text {
+    position: relative;
+    user-select: text;
+  }
+  .reveal-word {
+    display: inline;
+    color: rgba(255, 255, 255, 0.16) !important;
+    transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: color;
+  }
+  .reveal-word.is-lit {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 16px rgba(255, 255, 255, 0.45) !important;
+  }
+
+  /* ========================================================
+     SCROLL ENTRANCE ANIMATIONS (PIC 3 & 4 SPECIFICATION)
+     ======================================================== */
+  .scroll-fade-up {
+    opacity: 0 !important;
+    transform: translateY(45px) !important;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: opacity, transform;
+  }
+  .scroll-fade-up.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .scroll-slide-left {
+    opacity: 0 !important;
+    transform: translateX(-75px) !important;
+    transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: opacity, transform;
+  }
+  .scroll-slide-left.is-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  .scroll-slide-right {
+    opacity: 0 !important;
+    transform: translateX(75px) !important;
+    transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: opacity, transform;
+  }
+  .scroll-slide-right.is-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  .scroll-stagger-up {
+    opacity: 0 !important;
+    transform: translateY(65px) !important;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: opacity, transform;
+  }
+  .scroll-stagger-up.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  .scroll-delay-1 { transition-delay: 0.12s !important; }
+  .scroll-delay-2 { transition-delay: 0.25s !important; }
+

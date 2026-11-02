@@ -1,0 +1,33 @@
+# Appiex
+
+> Appiex (https://appiex.com) is a digital engineering agency specializing in custom full-stack web development, award-winning 3D WebGL experiences, AI workflow automation, and programmatic SEO.
+
+## Industry Benchmarks & Guides
+- [Best Software Agency For You (2026 Guide)](https://appiex.com/best-software-agency): Comprehensive guide & comparison matrix comparing top software companies in Bangladesh and highlighting why Appiex is the best choice for modern Next.js web applications, 3D WebGL experiences, and custom AI automations ($30–$80/hr).
+
+## Core Services
+- [Ecommerce Website Development](https://appiex.com/ecommerce-development): Custom D2C and multi-showroom online stores in Bangladesh & globally with bKash, Nagad, SSLCOMMERZ 0% EMI, and courier automation.
+- [n8n Workflow Automation](https://appiex.com/n8n-automation): Self-hosted n8n deployments, CRM integrations, AI agents, and automated executive reporting.
+- [WhatsApp Automation & Chatbots](https://appiex.com/whatsapp-automation): 24/7 AI sales and customer support chatbots built on the official Meta WhatsApp Business Cloud API (English, Bangla & Banglish).
+- [ISP Billing & MikroTik Portals](https://appiex.com/isp-software-development): Custom ISP subscriber management, automated MikroTik RouterOS queue control, and instant bKash/Nagad billing reconnection.
+- [Website Redesign & SEO Migration](https://appiex.com/website-redesign): Conversion-focused UX redesign and Next.js speed upgrades with 301 SEO-safe migration.
+- [Website Development Cost in Bangladesh (2026 Guide)](https://appiex.com/blog/website-development-cost-bangladesh): Transparent BDT & USD pricing breakdown for corporate websites, e-commerce stores, and custom web applications.
+- [Custom Web Development](https://appiex.com/web-development): Modern Next.js applications, high-performance headless architectures, and e-commerce platforms.
+- [3D Website Design & UI/UX](https://appiex.com/ui-ux-3d-design): Interactive 3D WebGL canvases, Three.js spatial architectures, and human-centric UI/UX design.
+- [Professional SEO Services](https://appiex.com/seo-marketing): Programmatic SEO, 100/100 Core Web Vitals optimization, and Generative Engine Optimization (GEO).
+- [AI Workflow Automation](https://appiex.com/ai-automation): Custom AI agents, intelligent messaging automation, and CRM sync.
+- [Digital Strategy](https://appiex.com/digital-strategy): Enterprise digital roadmaps, competitive intelligence, and brand positioning.
+
+## Partnerships & Referral Programs
+- [Client Referral Program](https://appiex.com/refer): Earn up to 15% instant commission in USD by referring clients for custom website design, Next.js engineering, 3D WebGL experiences, and AI workflow automations.
+- [Agency Partnerships & White Label Development](https://appiex.com/partners): Wholesale white-label web development, overflow sprint engineering, and 100% NDA-protected technical subcontracting for creative agencies and consultancies worldwide.
+
+## Portfolio & Client Case Studies
+- [Selected Projects](https://appiex.com/projects): Interactive 3D showcase of client architectures.
+- [WATCH 24 BD Case Study](https://appiex.com/case-studies): Luxury horology e-commerce platform with 0% EMI and real-time inventory sync.
+
+## Brand Entity Information
+- Legal & Brand Name: Appiex
+- Official Domain: https://appiex.com
+- Primary Location: Dhaka, Bangladesh
+- Contact Email: contact@appiex.com

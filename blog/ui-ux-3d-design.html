@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX Architecture, Website Redesign &amp; 3D WebGL Design Hub | Appiex SEO Knowledge Ecosystem</title>
+  <link rel="canonical" href="https://appiex.com/blog/ui-ux-3d-design">
+  <!-- Favicon & Google Search Brand Icon SEO (48px multiples + ICO + Apple Touch + Manifest) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Where visual craftsmanship meets measurable conversion outcomes—covering UX research, SaaS design systems, website redesign ROI, and 60fps WebGL/Three.js interactive experiences.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appiex.com/blog/ui-ux-3d-design">
+  <meta property="og:title" content="UI/UX Architecture, Website Redesign &amp; 3D WebGL Design Hub | Appiex">
+  <meta property="og:description" content="Where visual craftsmanship meets measurable conversion outcomes—covering UX research, SaaS design systems, website redesign ROI, and 60fps WebGL/Three.js interactive experiences.">
+  <meta property="og:image" content="https://appiex.com/images/appiex-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UI/UX Architecture, Website Redesign &amp; 3D WebGL Design Hub | Appiex">
+  <meta name="twitter:description" content="Where visual craftsmanship meets measurable conversion outcomes—covering UX research, SaaS design systems, website redesign ROI, and 60fps WebGL/Three.js interactive experiences.">
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"CollectionPage","name":"UI/UX Architecture, Website Redesign & 3D WebGL Design Hub","description":"Where visual craftsmanship meets measurable conversion outcomes—covering UX research, SaaS design systems, website redesign ROI, and 60fps WebGL/Three.js interactive experiences.","url":"https://appiex.com/blog/ui-ux-3d-design","publisher":{"@type":"Organization","name":"Appiex","url":"https://appiex.com/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://appiex.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://appiex.com/blog"},{"@type":"ListItem","position":3,"name":"UI/UX & 3D Design Insights","item":"https://appiex.com/blog/ui-ux-3d-design"}]}]</script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;700&family=Anton&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/scripts/visitor-tracker.js?v=20261029_v5" defer></script>
+
+  <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
+  <script id="appiex-prepaint-curtain-script">
+    (function() {
+      try {
+        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
+          window.__appiexFadeCurtain = true;
+          document.documentElement.classList.add('appiex-page-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style id="appiex-cuberto-curtain-style">
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexVtFadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.992); }
+    }
+    @keyframes appiexVtFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #appiex-cuberto-curtain {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999999 !important;
+      background: #030408 !important;
+      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      will-change: opacity, visibility;
+      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
+    }
+    .appiex-curtain-ambient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: min(90vw, 76rem);
+      height: 36rem;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html.appiex-page-entering #appiex-cuberto-curtain,
+    #appiex-cuberto-curtain.is-holding {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+    #appiex-cuberto-curtain.is-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
+    }
+    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    #appiex-cuberto-curtain.is-fading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+    }
+    body.appiex-body-leaving > main,
+    body.appiex-body-leaving > section,
+    body.appiex-body-leaving > article {
+      opacity: 0.25 !important;
+      transform: translate3d(0, -6px, 0) scale(0.994) !important;
+      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    body.appiex-body-entering > main,
+    body.appiex-body-entering > section,
+    body.appiex-body-entering > article {
+      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes appiexMainReveal {
+      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+  </style>
+  <script src="/scripts/instant-nav.js" defer></script>
+
+</head>
+<body class="bg-[#030408] text-slate-100 font-['Montserrat',sans-serif] min-h-screen selection:bg-rose-600 selection:text-white">
+  <div id="appiex-cuberto-curtain" aria-hidden="true"><div class="appiex-curtain-ambient"></div></div>
+
+  <!-- Top Navigation -->
+  <header class="w-full border-b border-white/10 bg-[#05070e]/90 backdrop-blur-xl sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <a href="/index.html"><img src="/images/appiex-wordmark-white.png" alt="Appiex" class="h-7"></a>
+      <nav class="hidden md:flex items-center gap-2 text-xs font-bold">
+        <a href="/blog.html" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-300">All 6 Ecosystems</a>
+        <a href="/blog/digital-strategy/index.html" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-300">Digital Strategy</a>
+        <a href="/blog/web-development/index.html" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-300">Web Development</a>
+        <a href="/blog/ui-ux-3d-design/index.html" class="px-3.5 py-1.5 rounded-full bg-[#FF2A4D] text-white">UI/UX &amp; 3D</a>
+        <a href="/blog/ai-automation/index.html" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-300">AI Automation</a>
+        <a href="/blog/seo-marketing/index.html" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-300">SEO &amp; Marketing</a>
+        <a href="/blog/gaming-3d-worlds/index.html" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-300">Gaming &amp; 3D</a>
+      </nav>
+      <a href="/ui-ux-3d-design.html" class="px-4 py-2 rounded-full bg-[#FF2A4D] text-white text-xs font-extrabold shadow-lg shadow-rose-600/30">
+        Explore Service &rarr;
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-12 space-y-14">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="text-xs text-slate-400 flex items-center gap-2">
+      <a href="/index.html" class="hover:text-white">Home</a> <span>/</span>
+      <a href="/blog.html" class="hover:text-white">Blog</a> <span>/</span>
+      <span class="text-rose-400 font-bold">UI/UX &amp; 3D Design Insights</span>
+    </nav>
+
+    <!-- Ecosystem Hero Header -->
+    <section class="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-rose-600/15 via-[#090d18] to-[#05070e] border border-white/15 space-y-6">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="px-3 py-1 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-400 font-['Oswald',sans-serif] text-xs font-bold tracking-widest uppercase">
+          INDEXABLE SEO ECOSYSTEM HUB
+        </span>
+        <span class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold">
+          Target Depth: Design Authority + Measurable Conversion Outcomes (15–25 Pages)
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight">UI/UX &amp; 3D Design Insights</h1>
+      <p class="text-base md:text-lg text-slate-300 max-w-4xl leading-relaxed">Where visual craftsmanship meets measurable conversion outcomes—covering UX research, SaaS design systems, website redesign ROI, and 60fps WebGL/Three.js interactive experiences.</p>
+
+      <div class="pt-2 flex flex-wrap items-center gap-6 text-xs text-slate-300 border-t border-white/10">
+        <div>Lead Author: <a href="/authors/adil-alim.html" class="text-white font-bold underline hover:text-rose-400">Adil Alim</a></div>
+        <div>Technical Reviewer: <a href="/authors/tanvir-rahman.html" class="text-white font-bold underline hover:text-rose-400">Tanvir Rahman</a></div>
+        <div>Published Guides in Cluster: <strong class="text-emerald-400">12 Articles</strong></div>
+      </div>
+    </section>
+
+    <!-- Featured Pillar Guide + Flagship Original Research -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="p-7 rounded-3xl bg-white/[0.03] border-2 border-rose-500/40 flex flex-col justify-between space-y-4">
+        <div>
+          <span class="px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-400 text-[11px] font-extrabold uppercase tracking-wider">★ 1. Ultimate Pillar Guide</span>
+          <h2 class="text-2xl font-extrabold text-white mt-3">Website Redesign: Complete Strategy, Cost, Timeline &amp; SEO Checklist</h2>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">Core topic authority blueprint connecting all supporting guides, cost breakdowns, architecture comparisons, and service deliverables.</p>
+        </div>
+        <div class="pt-3 flex items-center justify-between border-t border-white/10">
+          <span class="text-xs text-slate-400">Updated Oct 2026</span>
+          <a href="/blog/website-redesign-when-is-it-worth-it.html" class="px-4 py-2 rounded-full bg-[#FF2A4D] text-white text-xs font-bold">Read Pillar Guide &rarr;</a>
+        </div>
+      </div>
+
+      <div class="p-7 rounded-3xl bg-white/[0.03] border-2 border-emerald-500/40 flex flex-col justify-between space-y-4">
+        <div>
+          <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider">🔬 2. Original Research &amp; First-Hand Engineering</span>
+          <h2 class="text-2xl font-extrabold text-white mt-3">We Analyzed 50 SaaS Homepages — Here Are the 12 UX Patterns That Convert Best (Original Study)</h2>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">Verified production data: Replaced generic stock hero with interactive product sandbox + transparent pricing matrix → +62% interactive engagement &amp; +38% qualified demo requests.</p>
+        </div>
+        <div class="pt-3 flex items-center justify-between border-t border-white/10">
+          <span class="text-xs text-emerald-400 font-bold">Non-Commodity Original Study</span>
+          <a href="/blog/we-analyzed-50-saas-homepages-12-ux-patterns.html" class="px-4 py-2 rounded-full bg-emerald-500 text-slate-950 text-xs font-extrabold">Explore Research Data &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sub-Cluster Architecture Matrix -->
+    <section class="space-y-6">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-rose-400">Topic Cluster Taxonomy</span>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">UI/UX &amp; 3D Design Insights — Sub-Clusters &amp; Buyer Journey</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+            <h3 class="text-sm font-extrabold text-white border-b border-white/10 pb-2">UX &amp; Conversion Cluster</h3>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Complete UX Design Guide</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Conversion-Focused UX Design</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>UX Audit Checklist</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Information Architecture &amp; Journey Mapping</span></li>
+            </ul>
+          </div>
+        
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+            <h3 class="text-sm font-extrabold text-white border-b border-white/10 pb-2">UI &amp; Design Systems</h3>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Design Systems Guide</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>SaaS Dashboard UI Design</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Dark Mode &amp; Glassmorphic UI Engineering</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Responsive Mobile-First UI Guide</span></li>
+            </ul>
+          </div>
+        
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+            <h3 class="text-sm font-extrabold text-white border-b border-white/10 pb-2">Website Redesign Cluster</h3>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Website Redesign: When Is It Worth It?</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>How Much Does a Website Redesign Cost in 2026?</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Website Redesign Process: Phases &amp; Checklist</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Website Redesign RFP Template</span></li>
+            </ul>
+          </div>
+        
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+            <h3 class="text-sm font-extrabold text-white border-b border-white/10 pb-2">3D Web &amp; Interactive Motion</h3>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>3D Website Design Guide</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>Three.js &amp; WebGL Guide for Businesses</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>3D Website Performance Optimization</span></li><li class="flex items-start gap-2"><span class="text-rose-400 font-bold">&rarr;</span><span>GSAP ScrollTrigger vs WebGL Shaders</span></li>
+            </ul>
+          </div>
+        
+      </div>
+    </section>
+
+    <!-- Interactive Digital Readiness Assessment & ROI Tool (Unique Linkable Asset) -->
+    <section id="interactive-readiness-tool" class="p-8 rounded-3xl bg-gradient-to-r from-[#0b1120] to-[#111827] border border-blue-500/40 space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-extrabold uppercase tracking-wider">
+            ⚡ INTERACTIVE DIAGNOSTIC ASSET • FREE TOOL
+          </span>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-2">Appiex Digital Readiness &amp; Architecture Assessment</h2>
+          <p class="text-xs text-slate-300 mt-1">Answer 5 quick diagnostic questions to calculate your Digital Readiness Score (0–100) and receive a tailored system recommendation.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-black/50 border border-white/15 text-center min-w-[200px]">
+          <div class="text-[11px] uppercase font-bold text-slate-400">Your Digital Readiness</div>
+          <div id="readiness-score-val" class="text-3xl font-black text-emerald-400 my-1">68 / 100</div>
+          <div id="readiness-rec-val" class="text-[11px] font-bold text-rose-400">Recommended: CRM Automation + Website Upgrade</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs">
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <label class="font-bold text-white block">1. Mobile Load Speed (LCP)</label>
+          <select onchange="recalcReadiness()" id="rq-1" class="w-full p-2 rounded-lg bg-slate-900 border border-white/15 text-white">
+            <option value="20">Under 2.0s (Fast SSR/Edge)</option>
+            <option value="12" selected>2.5s – 4.0s (Moderate)</option>
+            <option value="5">Over 4.0s / Unsure</option>
+          </select>
+        </div>
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <label class="font-bold text-white block">2. Lead &amp; CRM Workflow</label>
+          <select onchange="recalcReadiness()" id="rq-2" class="w-full p-2 rounded-lg bg-slate-900 border border-white/15 text-white">
+            <option value="20">Automated AI + Instant WhatsApp</option>
+            <option value="12" selected>Manual Email / Spreadsheet</option>
+            <option value="5">No Tracking / Lost Leads</option>
+          </select>
+        </div>
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <label class="font-bold text-white block">3. SEO &amp; Topic Clusters</label>
+          <select onchange="recalcReadiness()" id="rq-3" class="w-full p-2 rounded-lg bg-slate-900 border border-white/15 text-white">
+            <option value="20">Pillar Clusters + JSON-LD Schema</option>
+            <option value="14" selected>Basic Blog / Few Keywords</option>
+            <option value="6">No Organic Traffic</option>
+          </select>
+        </div>
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <label class="font-bold text-white block">4. Conversion UX System</label>
+          <select onchange="recalcReadiness()" id="rq-4" class="w-full p-2 rounded-lg bg-slate-900 border border-white/15 text-white">
+            <option value="20">Interactive Calculators + Proof</option>
+            <option value="16" selected>Standard Contact Us Form</option>
+            <option value="6">Outdated UI / High Bounce</option>
+          </select>
+        </div>
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <label class="font-bold text-white block">5. Software Stack Ownership</label>
+          <select onchange="recalcReadiness()" id="rq-5" class="w-full p-2 rounded-lg bg-slate-900 border border-white/15 text-white">
+            <option value="20">100% Custom Modular Code</option>
+            <option value="14" selected>Fragmented SaaS Plugins</option>
+            <option value="6">Legacy / Locked Template</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+        <p id="readiness-detail-text" class="text-xs text-slate-300">
+          Based on your score of <strong>68/100</strong>, prioritizing <strong>CRM Lead Automation + Core Web Vitals Website Upgrade</strong> will unlock the fastest 60-day ROI.
+        </p>
+        <a href="https://wa.me/8801917354847?text=Hi%20Appiex%2C%20I%20completed%20the%20Digital%20Readiness%20Assessment%20on%20your%20UI%2FUX%20%26%203D%20Design%20Insights%20hub%20and%20want%20to%20discuss%20our%20roadmap." target="_blank" class="px-6 py-3 rounded-full bg-emerald-500 text-slate-950 font-extrabold text-xs">
+          Send Score to Appiex Architects on WhatsApp &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- All Published Articles in This Department Ecosystem -->
+    <section class="space-y-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">All Guides &amp; Case Studies in UI/UX &amp; 3D Design Insights (12)</h2>
+        <a href="/blog.html" class="text-xs font-bold text-rose-400 hover:underline">View All 65 Articles &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+          <a href="/blog/we-analyzed-50-saas-homepages-12-ux-patterns.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/article_5_1_49e6aa2703_i2smm.webp" alt="We Analyzed 50 SaaS Homepages — Here Are the 12 UX Patterns That Convert Best" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">ORIGINAL UX RESEARCH STUDY</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Original Research</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">We Analyzed 50 SaaS Homepages — Here Are the 12 UX Patterns That Convert Best</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>10/26/2026</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-9.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/7f4850f9811eb63332f1df6c48db0b65_ecc1f5bc6e_p1Ebc.webp" alt="UI/UX Design Tips / Volume 9" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 9</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>11/16/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-7.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/42afa4ddc89294a7d37c04c103748025_09aec32683_ZkcaKx.webp" alt="UI/UX Design Tips / Volume 7" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 7</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>7/15/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-8.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/c939a1c5718171246b575b420003d062_750393d989_Z1AoqfY.webp" alt="UI/UX Design Tips / Volume 8" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 8</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-6.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/9b58ca47a0ae09b59311e073d12eada4_fe21dbfc91_Z2hYIXu.webp" alt="UI/UX Design Tips / Volume 6" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 6</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-5.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/685f53ac7a3fd6aec1394713f058eb5e_0354bba4f6_Zj1Rl8.webp" alt="UI/UX Design Tips / Volume 5" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 5</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-4.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/c259c53adfa46e52057ad98dc131c2db_f7c066e022_Z1yQESl.webp" alt="UI/UX Design Tips / Volume 4" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 4</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-3.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/5580a19803dc593e8fcaab9e3d252f80_cea1fd98ae_ZfCK7n.webp" alt="UI/UX Design Tips / Volume 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 3</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-2.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/95d6f0cfeedecc785403e64526932cdb_e730ce5afe_2g8gzD.webp" alt="UI/UX Design Tips / Volume 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 2</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ui-ux-design-tips-volume-1.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/f273e211f1641720536429553dca8fdd_b6c9939116_1rXdoP.webp" alt="UI/UX Design Tips / Volume 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">UI/UX Design Tips / Volume 1</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/how-prepare-your-design-portfolio.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/05ce477944c41c721c30dc2b21ff61ea_0aba3f8cba_2vS06G.webp" alt="How to Prepare Your Design Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">How to Prepare Your Design Portfolio</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+          <a href="/blog/ordering-balloon-bouquets-ui-design-and-animation.html" class="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-rose-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="overflow-hidden rounded-xl mb-4 border border-white/10 aspect-video bg-slate-900">
+                <img src="/images/blog/a8516f28f015a636b825d54994347688_bc3b2ea855_Z2b7xeI.webp" alt="Ordering Balloon Bouquets UI Design and Animation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-[10px] font-bold uppercase">UI/UX &amp; 3D DESIGN</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-bold uppercase">Informational</span>
+              </div>
+              <h3 class="text-base font-extrabold text-white group-hover:text-rose-400 transition leading-snug">Ordering Balloon Bouquets UI Design and Animation</h3>
+            </div>
+            <div class="text-xs text-slate-400 mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span>5/27/2021</span>
+              <span class="text-white font-bold group-hover:translate-x-1 transition">&rarr;</span>
+            </div>
+          </a>
+        
+      </div>
+    </section>
+
+    <!-- Contextual Department Service Banner -->
+    <section class="p-8 rounded-3xl bg-gradient-to-r from-rose-600/20 to-indigo-600/20 border border-rose-500/40 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-2">
+        <span class="text-xs font-bold uppercase tracking-widest text-rose-400">Commercial Service Integration</span>
+        <h2 class="text-2xl font-extrabold text-white">Planning a website redesign or interactive 3D product experience? Request a UX &amp; Conversion Teardown.</h2>
+        <p class="text-xs text-slate-300">Typical Investment: $2,200 – $14,000 • Sprint Delivery: 3 – 6 Weeks • 100% IP Ownership</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="/ui-ux-3d-design.html" class="px-6 py-3 rounded-full bg-[#FF2A4D] text-white text-xs font-extrabold">Appiex UI/UX Architecture, Design Systems &amp; 3D WebGL Studio &rarr;</a>
+        <a href="/case-studies.html" class="px-6 py-3 rounded-full bg-white/10 text-white text-xs font-bold">Verified Case Studies</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function recalcReadiness() {
+      var s = 0;
+      for (var i = 1; i <= 5; i++) {
+        s += parseInt(document.getElementById('rq-' + i).value || '12', 10);
+      }
+      document.getElementById('readiness-score-val').textContent = s + ' / 100';
+      var rec = s >= 85
+        ? 'Recommended: AI Agent Scaling + Advanced 3D Interactive UX'
+        : s >= 60
+        ? 'Recommended: CRM Automation + Core Web Vitals Website Upgrade'
+        : 'Recommended: Full Digital Transformation & Custom Architecture Overhaul';
+      document.getElementById('readiness-rec-val').textContent = rec;
+      document.getElementById('readiness-detail-text').innerHTML = 'Based on your score of <strong>' + s + '/100</strong>, prioritizing <strong>' + rec.replace('Recommended: ', '') + '</strong> will unlock the fastest 60-day ROI.';
+    }
+  </script>
+  <script src="/scripts/seo-conversion-tracker.js" defer></script>
+</body>
+</html>
