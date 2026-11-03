@@ -1108,41 +1108,138 @@
     }
   }
 
-  // 4. High-Priority Prefetch Engine on Hover / Touch / PointerDown
-  const prefetched = new Set();
+  // ========================================================
+  // 4. ZION-MIZ STYLE ULTRA-FAST SPA ROUTER & 60FPS ENGINE
+  // ========================================================
+  const pageCache = new Map();
+  const prefetchedUrls = new Set();
+
+  // Inject 60FPS GPU & SPA Transition Styles
+  function injectSpaStyles() {
+    if (document.getElementById('appiex-spa-style')) return;
+    const style = document.createElement('style');
+    style.id = 'appiex-spa-style';
+    style.textContent = `
+      /* ZION-MIZ 60FPS HARDWARE ACCELERATION & BENTO TRANSITIONS */
+      .shadow-box,
+      .bento-card,
+      .home-logo-card,
+      .appiex-service-card,
+      .cyber-nav-item,
+      .rafsan-capsule-nav,
+      .CtaButton,
+      .project-item {
+        transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        will-change: transform, opacity;
+      }
+
+      .shadow-box,
+      .bento-card {
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      }
+      .shadow-box:hover,
+      .bento-card:hover {
+        transform: translate3d(0, -4px, 0) !important;
+      }
+
+      /* SPA PAGE TRANSITION (0ms Instant Swap with Buttery 60fps Reveal) */
+      main.appiex-spa-leaving {
+        opacity: 0.15 !important;
+        transform: translate3d(0, -6px, 0) scale(0.996) !important;
+        transition: opacity 0.14s cubic-bezier(0.22, 1, 0.36, 1), transform 0.14s cubic-bezier(0.22, 1, 0.36, 1) !important;
+      }
+      main.appiex-spa-entering {
+        opacity: 0.01 !important;
+        transform: translate3d(0, 8px, 0) scale(0.996) !important;
+        transition: none !important;
+      }
+      main.appiex-spa-revealed {
+        opacity: 1 !important;
+        transform: translate3d(0, 0, 0) scale(1) !important;
+        transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  injectSpaStyles();
+
+  // High-Priority Prefetch Engine (fetches into memory in background)
   function prefetch(url) {
     if (!url) return;
     try {
       const u = new URL(url, location.href);
       if (u.origin !== location.origin || u.pathname.includes('/admin')) return;
       const clean = u.pathname + u.search;
-      if (prefetched.has(clean)) return;
-      prefetched.add(clean);
+      if (prefetchedUrls.has(clean)) return;
+      prefetchedUrls.add(clean);
 
+      // 1. Browser link rel prefetch
       const link = document.createElement('link');
       link.rel = 'prefetch';
       link.href = clean;
       link.as = 'document';
       document.head.appendChild(link);
 
-      fetch(clean, { priority: 'high', cache: 'force-cache' }).catch(() => {});
+      // 2. In-Memory SPA Cache
+      fetch(clean, { priority: 'high', cache: 'force-cache' })
+        .then(res => {
+          if (res.ok) return res.text();
+          throw new Error('Prefetch error');
+        })
+        .then(html => {
+          pageCache.set(clean, html);
+          pageCache.set(u.href, html);
+        })
+        .catch(() => {});
     } catch (e) {}
   }
 
+  // Pre-cache current page in memory
+  if (typeof document !== 'undefined') {
+    const curPath = location.pathname + location.search;
+    pageCache.set(curPath, document.documentElement.outerHTML);
+    pageCache.set(location.href, document.documentElement.outerHTML);
+  }
+
+  // Idle Prefetch Top Pages (instantly available before click)
+  if (typeof window !== 'undefined') {
+    const idlePrefetch = () => {
+      const topPages = [
+        '/',
+        '/index.html',
+        '/services.html',
+        '/projects.html',
+        '/refer.html',
+        '/partners.html',
+        '/team.html',
+        '/blog.html',
+        '/best-software-agency.html'
+      ];
+      topPages.forEach((p, idx) => {
+        setTimeout(() => prefetch(p), idx * 120);
+      });
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(idlePrefetch, { timeout: 1500 });
+    } else {
+      setTimeout(idlePrefetch, 800);
+    }
+  }
+
+  // Hover & Touch Prefetch Triggers
   const onHover = (e) => {
     const a = e.target.closest('a');
     if (a && a.href && a.origin === location.origin) {
       prefetch(a.href);
     }
   };
-
   document.addEventListener('mouseover', onHover, { passive: true });
 
-  // Intelligent Touch Prefetch: Only prefetch on intentional tap/hold, NEVER while scrolling!
   let touchStartX = 0;
   let touchStartY = 0;
   let touchPrefetchTimer = null;
-
   document.addEventListener('touchstart', (e) => {
     if (!e.touches || !e.touches[0]) return;
     const a = e.target.closest('a');
@@ -1152,7 +1249,7 @@
     clearTimeout(touchPrefetchTimer);
     touchPrefetchTimer = setTimeout(() => {
       prefetch(a.href);
-    }, 150);
+    }, 80);
   }, { passive: true });
 
   document.addEventListener('touchmove', (e) => {
@@ -1160,7 +1257,7 @@
     const dx = Math.abs(e.touches[0].clientX - touchStartX);
     const dy = Math.abs(e.touches[0].clientY - touchStartY);
     if (dx > 8 || dy > 8) {
-      clearTimeout(touchPrefetchTimer); // User is scrolling, cancel prefetch!
+      clearTimeout(touchPrefetchTimer);
     }
   }, { passive: true });
 
@@ -1168,23 +1265,154 @@
     clearTimeout(touchPrefetchTimer);
   }, { passive: true });
 
-  // Pause heavy background videos on mobile screens to save battery & GPU
-  if (typeof window !== 'undefined') {
-    const isMobileDevice = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
-    if (isMobileDevice) {
-      window.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('video[class*="fixed"], video.fixed').forEach(v => {
-          try {
-            v.pause();
-            v.removeAttribute('autoplay');
-          } catch (err) {}
+  // Re-run interactive page features after instant SPA swap
+  function reinitPage(container) {
+    if (!container) return;
+
+    // 1. Re-initialize mobile nav toggles & drawer
+    if (typeof ensureMobileNavigation === 'function') {
+      ensureMobileNavigation();
+    }
+
+    // 2. Execute any embedded scripts in the newly swapped container
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+      newScript.textContent = oldScript.textContent;
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+
+    // 3. Autoplay active videos
+    container.querySelectorAll('video[autoplay]').forEach(v => {
+      try { v.play().catch(() => {}); } catch(err) {}
+    });
+
+    // 4. Smooth Lenis scroll recalculation
+    if (window.lenis) {
+      try {
+        window.lenis.resize();
+        window.lenis.scrollTo(0, { immediate: true });
+      } catch (err) {}
+    }
+
+    // 5. Update Navbar Active States to match new route
+    const currentPath = location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '') || '/';
+    document.querySelectorAll('.rafsan-nav-item, .cyber-nav-item').forEach(el => {
+      const href = el.getAttribute('href');
+      if (!href) return;
+      const targetPath = href.replace(/\/index\.html$/, '/').replace(/\.html$/, '') || '/';
+      if (targetPath === currentPath || (currentPath === '/' && (href === '/' || href === 'index.html' || href === '#home'))) {
+        el.classList.add('active');
+      } else if (!href.startsWith('#')) {
+        el.classList.remove('active');
+      }
+    });
+  }
+
+  // 5. True Zero-Reload SPA Route Navigation (zion-miz style)
+  let isNavigating = false;
+  let navTimer = null;
+  async function navigateSPA(targetUrl, isPopState = false) {
+    if (isNavigating && !isPopState) return;
+    isNavigating = true;
+    clearTimeout(navTimer);
+    navTimer = setTimeout(() => { isNavigating = false; }, 650);
+
+    // Close mobile drawer immediately if open
+    if (window.__closeMobileDrawer) {
+      try { window.__closeMobileDrawer(); } catch(e) {}
+    }
+
+    const currentMain = document.querySelector('main');
+    const cleanUrl = targetUrl.pathname + targetUrl.search;
+
+    // Start 60fps GPU exit animation
+    if (currentMain) {
+      currentMain.classList.add('appiex-spa-leaving');
+    }
+
+    // Retrieve from memory or fetch immediately
+    let html = pageCache.get(cleanUrl) || pageCache.get(targetUrl.href);
+    if (!html) {
+      try {
+        const resp = await fetch(targetUrl.href, { priority: 'high' });
+        if (!resp.ok) throw new Error('Fetch failed');
+        html = await resp.text();
+        pageCache.set(cleanUrl, html);
+        pageCache.set(targetUrl.href, html);
+      } catch (err) {
+        isNavigating = false;
+        if (!isPopState) window.location.href = targetUrl.href;
+        return;
+      }
+    }
+
+    // Wait 120ms for buttery exit
+    await new Promise(r => setTimeout(r, 120));
+
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const newMain = doc.querySelector('main');
+
+      if (!newMain || !currentMain) {
+        // Fallback for standalone pages without <main> (e.g. /gaming)
+        isNavigating = false;
+        if (!isPopState) window.location.href = targetUrl.href;
+        return;
+      }
+
+      // Update Document Title
+      if (doc.title) {
+        document.title = doc.title;
+      }
+
+      // Push history state
+      if (!isPopState) {
+        history.pushState({ url: targetUrl.href }, '', targetUrl.href);
+      }
+
+      // Swap Main Content & Classes
+      currentMain.className = newMain.className;
+      currentMain.id = newMain.id;
+      currentMain.innerHTML = newMain.innerHTML;
+
+      // Scroll to Top Instantly
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+      // Trigger 60fps GPU Enter Reveal via requestAnimationFrame (zion-miz pattern)
+      currentMain.classList.remove('appiex-spa-leaving');
+      currentMain.classList.add('appiex-spa-entering');
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          currentMain.classList.remove('appiex-spa-entering');
+          currentMain.classList.add('appiex-spa-revealed');
+          setTimeout(() => {
+            currentMain.classList.remove('appiex-spa-revealed');
+            isNavigating = false;
+          }, 320);
         });
       });
+
+      // Re-initialize dynamic page components
+      reinitPage(currentMain);
+
+    } catch (err) {
+      isNavigating = false;
+      if (!isPopState) window.location.href = targetUrl.href;
     }
   }
 
-  // 5. Buttery-Smooth Outgoing Fade-Out on Link Click
-  let isNavigating = false;
+  // Handle Browser Back / Forward buttons (SPA Popstate)
+  window.addEventListener('popstate', () => {
+    try {
+      const url = new URL(location.href);
+      navigateSPA(url, true);
+    } catch(e) {}
+  });
+
+  // Global Intercept on Internal Links
   document.addEventListener('click', (e) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
@@ -1197,6 +1425,11 @@
     try {
       const targetUrl = new URL(a.href, location.href);
       if (targetUrl.origin !== location.origin) return;
+
+      // Allow /admin and /gaming to use native loading
+      if (targetUrl.pathname.includes('/admin') || targetUrl.pathname.includes('/gaming')) {
+        return;
+      }
 
       // Normalize paths to compare same-page anchor links
       const normCurrent = location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '') || '/';
@@ -1222,41 +1455,9 @@
         return;
       }
 
-      // Cross-page navigation: trigger buttery fade-out curtain
+      // Trigger Instant Buttery SPA Navigation!
       e.preventDefault();
-      if (isNavigating) return;
-      isNavigating = true;
-
-      prefetch(targetUrl.href);
-      const curtain = ensureCurtainAndStyles();
-      sessionStorage.setItem('appiex_curtain_active', '1');
-
-      // Pause active videos cleanly
-      document.querySelectorAll('video').forEach(v => {
-        try { v.pause(); } catch (err) {}
-      });
-
-      // Force synchronous reflow so CSS transition from opacity: 0 -> 1 is guaranteed to run smoothly
-      if (curtain) {
-        curtain.classList.remove('is-fading', 'is-holding');
-        void curtain.offsetHeight;
-        curtain.classList.add('is-active');
-      }
-      if (document.body) {
-        document.body.classList.add('appiex-body-leaving');
-      }
-
-      // Navigate right as the smooth 210ms fade-out completes
-      setTimeout(() => {
-        window.location.href = targetUrl.href;
-      }, 210);
-
-      // Reset failsafe
-      setTimeout(() => {
-        isNavigating = false;
-        if (curtain) curtain.classList.remove('is-active');
-        if (document.body) document.body.classList.remove('appiex-body-leaving');
-      }, 950);
+      navigateSPA(targetUrl);
 
     } catch (err) {}
   });
@@ -1268,15 +1469,6 @@
     if (holdStyle && holdStyle.parentNode) holdStyle.parentNode.removeChild(holdStyle);
     document.documentElement.classList.remove('appiex-page-entering');
     if (document.body) document.body.classList.remove('appiex-body-leaving', 'appiex-body-entering');
-    const curtain = document.getElementById('appiex-cuberto-curtain');
-    if (curtain) {
-      if (e.persisted) {
-        curtain.classList.remove('is-active', 'is-holding');
-        curtain.classList.add('is-fading');
-      } else {
-        revealArrivingPage();
-      }
-    }
   });
 })();
 
