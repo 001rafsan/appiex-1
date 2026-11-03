@@ -50,8 +50,18 @@
       "permanent": true
     },
     {
+      "source": "/pages/product-design",
+      "destination": "/ui-ux-3d-design",
+      "permanent": true
+    },
+    {
       "source": "/pages/product-design.html",
       "destination": "/ui-ux-3d-design",
+      "permanent": true
+    },
+    {
+      "source": "/pages/contacts",
+      "destination": "/#contact",
       "permanent": true
     },
     {
@@ -181,6 +191,20 @@
     {
       "src": "/(?:\\.env.*|.*\\.(?:bak|sql|log|md)|scratch/.*|\\.git.*)",
       "status": 404
+    },
+    {
+      "src": "/pages/product-design(?:\\.html)?",
+      "status": 308,
+      "headers": {
+        "Location": "/ui-ux-3d-design"
+      }
+    },
+    {
+      "src": "/pages/contacts(?:\\.html)?",
+      "status": 308,
+      "headers": {
+        "Location": "/#contact"
+      }
     },
     {
       "src": "/(.*)",
