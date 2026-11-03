@@ -40,9 +40,16 @@
       "permanent": true
     },
     {
-      "source": "/legal/:path*",
-      "destination": "/privacy-policy",
-      "permanent": true
+      {
+  "source": "/legal/terms-of-service",
+  "destination": "/terms-of-service",
+  "permanent": true
+},
+{
+  "source": "/legal/privacy-policy",
+  "destination": "/privacy-policy",
+  "permanent": true
+},
     },
     {
       "source": "/:path*",
