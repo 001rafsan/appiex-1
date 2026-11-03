@@ -3999,68 +3999,6 @@
         </label>
       </div>
 
-      <!-- Group 5: Project budget (USD) (Pill Radios) -->
-      <div class="group" data-astro-cid-3n3oggwk="">
-        <div class="label" data-astro-cid-3n3oggwk="">Project budget (USD)</div>
-        <div class="checkboxes" data-astro-cid-3n3oggwk="">
-          
-          <div class="checkbox" data-astro-cid-3n3oggwk="">
-            <label class="CheckboxInput" data-astro-cid-ir7hd7z7="">
-              <input type="radio" name="budget" value="10-20k" data-astro-cid-ir7hd7z7="">
-              <span class="box" data-astro-cid-ir7hd7z7="">
-                <span class="border" data-astro-cid-ir7hd7z7=""></span>
-                <span class="ripple" data-astro-cid-ir7hd7z7=""><span data-astro-cid-ir7hd7z7=""></span></span>
-                <span class="title" data-astro-cid-ir7hd7z7=""><span data-text="10-20k" data-astro-cid-ir7hd7z7="">10-20k</span></span>
-              </span>
-            </label>
-          </div>
-
-          <div class="checkbox" data-astro-cid-3n3oggwk="">
-            <label class="CheckboxInput" data-astro-cid-ir7hd7z7="">
-              <input type="radio" name="budget" value="20-30k" data-astro-cid-ir7hd7z7="">
-              <span class="box" data-astro-cid-ir7hd7z7="">
-                <span class="border" data-astro-cid-ir7hd7z7=""></span>
-                <span class="ripple" data-astro-cid-ir7hd7z7=""><span data-astro-cid-ir7hd7z7=""></span></span>
-                <span class="title" data-astro-cid-ir7hd7z7=""><span data-text="20-30k" data-astro-cid-ir7hd7z7="">20-30k</span></span>
-              </span>
-            </label>
-          </div>
-
-          <div class="checkbox" data-astro-cid-3n3oggwk="">
-            <label class="CheckboxInput" data-astro-cid-ir7hd7z7="">
-              <input type="radio" name="budget" value="30-50k" data-astro-cid-ir7hd7z7="">
-              <span class="box" data-astro-cid-ir7hd7z7="">
-                <span class="border" data-astro-cid-ir7hd7z7=""></span>
-                <span class="ripple" data-astro-cid-ir7hd7z7=""><span data-astro-cid-ir7hd7z7=""></span></span>
-                <span class="title" data-astro-cid-ir7hd7z7=""><span data-text="30-50k" data-astro-cid-ir7hd7z7="">30-50k</span></span>
-              </span>
-            </label>
-          </div>
-
-          <div class="checkbox" data-astro-cid-3n3oggwk="">
-            <label class="CheckboxInput" data-astro-cid-ir7hd7z7="">
-              <input type="radio" name="budget" value="50-100k" data-astro-cid-ir7hd7z7="">
-              <span class="box" data-astro-cid-ir7hd7z7="">
-                <span class="border" data-astro-cid-ir7hd7z7=""></span>
-                <span class="ripple" data-astro-cid-ir7hd7z7=""><span data-astro-cid-ir7hd7z7=""></span></span>
-                <span class="title" data-astro-cid-ir7hd7z7=""><span data-text="50-100k" data-astro-cid-ir7hd7z7="">50-100k</span></span>
-              </span>
-            </label>
-          </div>
-
-          <div class="checkbox" data-astro-cid-3n3oggwk="">
-            <label class="CheckboxInput" data-astro-cid-ir7hd7z7="">
-              <input type="radio" name="budget" value="more100k" data-astro-cid-ir7hd7z7="">
-              <span class="box" data-astro-cid-ir7hd7z7="">
-                <span class="border" data-astro-cid-ir7hd7z7=""></span>
-                <span class="ripple" data-astro-cid-ir7hd7z7=""><span data-astro-cid-ir7hd7z7=""></span></span>
-                <span class="title" data-astro-cid-ir7hd7z7=""><span data-text="100k+" data-astro-cid-ir7hd7z7="">100k+</span></span>
-              </span>
-            </label>
-          </div>
-        </div>
-      </div>
-
       <!-- Group 6: File Attachment (.FileInput) -->
       <div class="group" data-astro-cid-3n3oggwk="">
         <div class="FileInput" data-astro-cid-hf2xzosz="">
@@ -4142,7 +4080,7 @@
       `👤 *Name:* ${name}\n` +
       `📧 *Email:* ${email}\n` +
       `🛠️ *Services:* ${servicesText}\n` +
-      `💰 *Budget:* ${checkedBudget}\n\n` +
+      (checkedBudget ? `💰 *Budget:* ${checkedBudget}\n\n` : '\n') +
       `📝 *Project Details:*\n${mess}`;
 
     const waNumber = '8801917354847';
@@ -4165,7 +4103,7 @@
       channel: 'Website Form',
       subject: (checkedServices.length ? checkedServices.join(', ') : 'New Digital Engineering Request') + ' (' + checkedBudget + ')',
       status: 'new',
-      priority: checkedBudget.includes('50') || checkedBudget.includes('30') ? 'urgent' : 'high',
+      priority: checkedBudget && (checkedBudget.includes('50') || checkedBudget.includes('30')) ? 'urgent' : 'high',
       assignedTo: 'Adil Al Alim',
       unreadCount: 1,
       slaDueAt: new Date(Date.now() + 4 * 3600 * 1000).toISOString(),
@@ -4190,9 +4128,9 @@
     else if (checkedServices.some(function(s) { return /ai|automation/i.test(s); })) serviceInterest = 'AI Automation';
 
     let expectedVal = 15000;
-    if (checkedBudget.includes('20-30')) expectedVal = 25000;
-    else if (checkedBudget.includes('30-50')) expectedVal = 40000;
-    else if (checkedBudget.includes('50') || checkedBudget.includes('+')) expectedVal = 65000;
+    if (checkedBudget && checkedBudget.includes('20-30')) expectedVal = 25000;
+    else if (checkedBudget && checkedBudget.includes('30-50')) expectedVal = 40000;
+    else if (checkedBudget && (checkedBudget.includes('50') || checkedBudget.includes('+'))) expectedVal = 65000;
 
     const newLead = {
       id: 'lead_' + Date.now().toString().slice(-4),
