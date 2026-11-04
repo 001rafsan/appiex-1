@@ -1261,30 +1261,30 @@
       {
         "source": "list",
         "urls": [
-          "index.html",
-          "projects.html",
-          "services.html",
-          "refer.html",
-          "partners.html",
-          "case-studies.html",
-          "web-development.html",
-          "ui-ux-3d-design.html",
-          "ai-automation.html",
-          "seo-marketing.html",
-          "gaming.html",
-          "digital-strategy.html",
-          "team.html",
-          "/"
+          "/",
+          "/projects",
+          "/services",
+          "/refer",
+          "/partners",
+          "/case-studies",
+          "/web-development",
+          "/ui-ux-3d-design",
+          "/ai-automation",
+          "/seo-marketing",
+          "/digital-strategy",
+          "/blog",
+          "/login",
+          "/team"
         ],
         "eagerness": "immediate"
-      }
-    ],
-    "prefetch": [
+      },
       {
         "source": "document",
         "where": {
           "and": [
-            { "href_matches": "/*" }
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/admin*" } },
+            { "not": { "href_matches": "/gaming*" } }
           ]
         },
         "eagerness": "moderate"
@@ -1302,101 +1302,14 @@
   <link rel="stylesheet" href="/styles/seo-links.css?v=20261031_restore">
 
   <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
-  <script id="appiex-prepaint-curtain-script">
-    (function() {
-      try {
-        if (sessionStorage.getItem('appiex_curtain_active') === '1') {
-          window.__appiexFadeCurtain = true;
-          document.documentElement.classList.add('appiex-page-entering');
-        }
-      } catch (e) {}
-    })();
-  </script>
+  
   <style id="appiex-cuberto-curtain-style">
-    @view-transition {
-      navigation: auto;
-    }
-    ::view-transition-old(root) {
-      animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-    ::view-transition-new(root) {
-      animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    @keyframes appiexVtFadeOut {
-      from { opacity: 1; transform: scale(1); }
-      to { opacity: 0; transform: scale(0.992); }
-    }
-    @keyframes appiexVtFadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    #appiex-cuberto-curtain {
-      position: fixed !important;
-      inset: 0 !important;
-      width: 100vw !important;
-      height: 100vh !important;
-      z-index: 99999999 !important;
-      background: #030408 !important;
-      background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
-      pointer-events: none !important;
-      display: block !important;
-      opacity: 0;
-      visibility: hidden;
-      transform: translate3d(0, 0, 0);
-      will-change: opacity, visibility;
-      transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
-    }
-    .appiex-curtain-ambient {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1);
-      width: min(90vw, 76rem);
-      height: 36rem;
-      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
-      filter: blur(55px);
-      pointer-events: none;
-      opacity: 0.9;
-      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    html.appiex-page-entering #appiex-cuberto-curtain,
-    #appiex-cuberto-curtain.is-holding {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transition: none !important;
-    }
-    #appiex-cuberto-curtain.is-active {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
-    }
-    #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
-      transform: translate(-50%, -50%) scale(1.06);
-    }
-    #appiex-cuberto-curtain.is-fading {
-      opacity: 0 !important;
-      visibility: hidden !important;
-      transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
-    }
-    body.appiex-body-leaving > main,
-    body.appiex-body-leaving > section,
-    body.appiex-body-leaving > article {
-      opacity: 0.25 !important;
-      transform: translate3d(0, -6px, 0) scale(0.994) !important;
-      transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
-    }
-    body.appiex-body-entering > main,
-    body.appiex-body-entering > section,
-    body.appiex-body-entering > article {
-      animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    @keyframes appiexMainReveal {
-      0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
-      100% { opacity: 1; transform: translate3d(0, 0, 0); }
-    }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: none !important; }
+    ::view-transition-new(root) { animation: none !important; }
+    #appiex-cuberto-curtain { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
   </style>
-  <script src="/scripts/instant-nav.js?v=20261031_morph_x6" defer></script>
+  <script src="/scripts/instant-nav.js?v=20261105_0001s" defer></script>
 
 
 <script>
@@ -1994,8 +1907,7 @@
     }
     // Smooth Lenis initialized with syncTouch: false for silky momentum
       const isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window);
-    const lenis = new Lenis({
-      duration: 1.2,
+    const lenis = (window.innerWidth <= 1024 || ("ontouchstart" in window)) ? null : new Lenis({ duration: 0.75,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       smoothWheel: true,

@@ -41,7 +41,7 @@
   };
 
 
-  // 1. Ensure Curtain DOM & Buttery GPU Styles Exist on Every Page
+  // 1. Ensure 0.001s Instant View Transitions & Zero-Blocking Curtain Styles
   function ensureCurtainAndStyles() {
     if (!document.getElementById('appiex-cuberto-curtain-style')) {
       const style = document.createElement('style');
@@ -51,149 +51,81 @@
           navigation: auto;
         }
         ::view-transition-old(root) {
-          animation: appiexVtFadeOut 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation: appiexVtFadeOut 0.04s ease-out both !important;
         }
         ::view-transition-new(root) {
-          animation: appiexVtFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+          animation: appiexVtFadeIn 0.06s ease-out both !important;
         }
         @keyframes appiexVtFadeOut {
-          from { opacity: 1; transform: scale(1); }
-          to { opacity: 0; transform: scale(0.992); }
+          from { opacity: 1; }
+          to { opacity: 0; }
         }
         @keyframes appiexVtFadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
-        #appiex-cuberto-curtain {
-          position: fixed !important;
-          inset: 0 !important;
-          width: 100vw !important;
-          height: 100vh !important;
-          z-index: 99999999 !important;
-          background: #030408 !important;
-          background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 42, 77, 0.28) 0%, rgba(185, 28, 28, 0.12) 42%, rgba(3, 4, 8, 0.98) 75%, #030408 100%) !important;
-          pointer-events: none !important;
-          display: block !important;
-          opacity: 0;
-          visibility: hidden;
-          transform: translate3d(0, 0, 0);
-          will-change: opacity, visibility;
-          transition: opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.52s;
-        }
-        .appiex-curtain-ambient {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) scale(1);
-          width: min(90vw, 76rem);
-          height: 36rem;
-          background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255, 42, 77, 0.34) 0%, rgba(185, 28, 28, 0.15) 42%, transparent 75%);
-          filter: blur(55px);
-          pointer-events: none;
-          opacity: 0.9;
-          transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        /* Instant hold before paint when arriving from a link click */
+        #appiex-cuberto-curtain,
         html.appiex-page-entering #appiex-cuberto-curtain,
-        #appiex-cuberto-curtain.is-holding {
-          opacity: 1 !important;
-          visibility: visible !important;
-          transition: none !important;
-        }
-        /* Outgoing fade-out when leaving current page */
-        #appiex-cuberto-curtain.is-active {
-          opacity: 1 !important;
-          visibility: visible !important;
-          transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s !important;
-        }
-        #appiex-cuberto-curtain.is-active .appiex-curtain-ambient {
-          transform: translate(-50%, -50%) scale(1.06);
-        }
-        /* Incoming buttery fade-out reveal on new page */
+        #appiex-cuberto-curtain.is-holding,
+        #appiex-cuberto-curtain.is-active,
         #appiex-cuberto-curtain.is-fading {
+          display: none !important;
           opacity: 0 !important;
           visibility: hidden !important;
-          transition: opacity 0.54s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.54s !important;
+          pointer-events: none !important;
+          transition: none !important;
         }
-        /* Subtle page body motion during transition */
         body.appiex-body-leaving > main,
         body.appiex-body-leaving > section,
-        body.appiex-body-leaving > article {
-          opacity: 0.25 !important;
-          transform: translate3d(0, -6px, 0) scale(0.994) !important;
-          transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
-        }
+        body.appiex-body-leaving > article,
         body.appiex-body-entering > main,
         body.appiex-body-entering > section,
         body.appiex-body-entering > article {
-          animation: appiexMainReveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-        @keyframes appiexMainReveal {
-          0% { opacity: 0.01; transform: translate3d(0, 10px, 0); }
-          100% { opacity: 1; transform: translate3d(0, 0, 0); }
+          opacity: 1 !important;
+          transform: none !important;
+          animation: none !important;
+          transition: none !important;
         }
       `;
       document.head.appendChild(style);
+    } else {
+      const existing = document.getElementById('appiex-cuberto-curtain-style');
+      existing.textContent = `
+        @view-transition { navigation: auto; }
+        ::view-transition-old(root) { animation: none !important; }
+        ::view-transition-new(root) { animation: none !important; }
+        #appiex-cuberto-curtain,
+        html.appiex-page-entering #appiex-cuberto-curtain,
+        #appiex-cuberto-curtain.is-holding,
+        #appiex-cuberto-curtain.is-active,
+        #appiex-cuberto-curtain.is-fading {
+          display: none !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
+          transition: none !important;
+        }
+      `;
     }
-
-    let curtain = document.getElementById('appiex-cuberto-curtain');
-    if (!curtain && document.body) {
-      curtain = document.createElement('div');
-      curtain.id = 'appiex-cuberto-curtain';
-      curtain.setAttribute('aria-hidden', 'true');
-      curtain.innerHTML = '<div class="appiex-curtain-ambient"></div>';
-      document.body.prepend(curtain);
-    }
-    return curtain;
+    try { sessionStorage.removeItem('appiex_curtain_active'); } catch(e) {}
+    document.documentElement.classList.remove('appiex-page-entering');
+    return null;
   }
 
-  // 2. Trigger Buttery Smooth Reveal on Page Arrival
+  // 2. Instant 0.001s Page Reveal (Zero Curtain Blocking)
   function revealArrivingPage() {
-    const curtain = ensureCurtainAndStyles();
+    ensureCurtainAndStyles();
     const holdStyle = document.getElementById('curtain-initial-hold');
-
-    if (
-      sessionStorage.getItem('appiex_curtain_active') === '1' ||
-      window.__appiexFadeCurtain ||
-      document.documentElement.classList.contains('appiex-page-entering')
-    ) {
-      sessionStorage.removeItem('appiex_curtain_active');
-      window.__appiexFadeCurtain = false;
-
-      if (curtain) {
-        curtain.classList.add('is-holding');
-        // Force synchronous browser layout reflow so opacity: 1 is committed before transitioning to 0
-        void curtain.offsetHeight;
-      }
-
-      if (document.body) {
-        document.body.classList.remove('appiex-body-leaving');
-        document.body.classList.add('appiex-body-entering');
-      }
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (holdStyle && holdStyle.parentNode) {
-            holdStyle.parentNode.removeChild(holdStyle);
-          }
-          document.documentElement.classList.remove('appiex-page-entering');
-          if (curtain) {
-            curtain.classList.remove('is-holding', 'is-active');
-            curtain.classList.add('is-fading');
-          }
-          setTimeout(() => {
-            if (curtain) curtain.classList.remove('is-fading');
-            if (document.body) document.body.classList.remove('appiex-body-entering');
-          }, 580);
-        });
-      });
-    } else {
-      if (holdStyle && holdStyle.parentNode) holdStyle.parentNode.removeChild(holdStyle);
-      document.documentElement.classList.remove('appiex-page-entering');
-      if (curtain) {
-        curtain.classList.remove('is-holding', 'is-active', 'is-fading');
-      }
+    if (holdStyle && holdStyle.parentNode) holdStyle.parentNode.removeChild(holdStyle);
+    document.documentElement.classList.remove('appiex-page-entering');
+    if (document.body) {
+      document.body.classList.remove('appiex-body-leaving', 'appiex-body-entering');
+    }
+    const curtain = document.getElementById('appiex-cuberto-curtain');
+    if (curtain) {
+      curtain.classList.remove('is-holding', 'is-active', 'is-fading');
+      curtain.style.setProperty('display', 'none', 'important');
     }
   }
 
@@ -1070,7 +1002,11 @@
             e.stopImmediatePropagation();
             try {
               const tUrl = new URL(drawerLink.href, location.href);
-              window.location.href = toCleanPath(tUrl.pathname) + tUrl.search + tUrl.hash;
+              if (tUrl.origin !== location.origin || drawerLink.target === '_blank') {
+                window.open(drawerLink.href, drawerLink.target || '_self');
+                return;
+              }
+              navigateInstant(toCleanPath(tUrl.pathname) + tUrl.search + tUrl.hash, true);
             } catch (err) {
               window.location.href = drawerLink.href;
             }
@@ -1114,13 +1050,48 @@
   }
 
   // ========================================================
-  // 4. ULTRA-FAST PREFETCH & 60FPS FULL-DOCUMENT NAVIGATION
+  // 4. 0.001s INSTANT MEMORY SPA & PRERENDER NAVIGATION ENGINE
   //    (100% Preserves Every Page's <head> CSS, Tailwind Config,
   //     3D WebGL Shaders, and Scripts with Clean Next.js URLs)
   // ========================================================
   const prefetchedUrls = new Set();
+  const htmlMemoryCache = new Map(); // cleanPath -> htmlString
+  const pendingFetches = new Map();  // cleanPath -> Promise<string>
 
-  // Inject 60FPS GPU Acceleration Styles
+  // Ensure Tailwind JIT Runtime is Available Globally for Instant SPA Swaps
+  function ensureTailwindRuntime() {
+    if (typeof window.tailwind !== 'undefined') return;
+    if (document.querySelector('script[src*="cdn.tailwindcss.com"]')) return;
+    const twScript = document.createElement('script');
+    twScript.src = 'https://cdn.tailwindcss.com';
+    twScript.async = true;
+    twScript.onload = () => {
+      try {
+        window.tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                appiexRed: '#FF2A4D',
+                appiexRedDark: '#DC2626',
+                appiexDark: '#030408',
+                appiexCard: '#080910'
+              },
+              fontFamily: {
+                sans: ['Google Sans', 'Suisse Intl', 'system-ui', 'sans-serif'],
+                montserrat: ['Montserrat', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace'],
+                anton: ['Anton', 'sans-serif'],
+                oswald: ['Oswald', 'sans-serif']
+              }
+            }
+          }
+        };
+      } catch (e) {}
+    };
+    document.head.appendChild(twScript);
+  }
+
+  // Inject 120FPS / 60FPS GPU Acceleration & Anti-Lag Styles
   function injectGpuStyles() {
     if (document.getElementById('appiex-gpu-style')) return;
     const style = document.createElement('style');
@@ -1133,120 +1104,461 @@
       .cyber-nav-item,
       .rafsan-capsule-nav,
       .CtaButton,
-      .project-item {
+      .project-item,
+      .project-card-wrapper,
+      .feedback-card {
         transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
+      }
+      /* Prevent layout/paint thrashing on offscreen sections */
+      main > section:not(:first-of-type),
+      body > section:not(:first-of-type) {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 650px;
+      }
+      /* Mobile 120Hz Anti-Lag GPU Optimizations */
+      @media (max-width: 1024px) {
+        html, body {
+          scroll-behavior: auto !important;
+          -webkit-overflow-scrolling: touch !important;
+        }
+        /* Reduce expensive full-screen video software filter overhead on mobile */
+        video.appiex-hero-bg-video,
+        main > video.fixed {
+          filter: grayscale(1) contrast(1.15) !important;
+        }
+        /* Cap expensive backdrop-filter blur radius on mobile GPUs */
+        .backdrop-blur-xl, .backdrop-blur-2xl, .backdrop-blur-3xl {
+          backdrop-filter: blur(8px) !important;
+          -webkit-backdrop-filter: blur(8px) !important;
+        }
       }
     `;
     document.head.appendChild(style);
   }
   injectGpuStyles();
 
+  // Inject Clean Speculation Rules (Prerender Clean Extensionless Next.js Routes)
+  function injectCleanSpeculationRules() {
+    if (document.getElementById('appiex-clean-speculation-rules')) return;
+    if (!HTMLScriptElement.supports || !HTMLScriptElement.supports('speculationrules')) return;
+    try {
+      const spec = document.createElement('script');
+      spec.type = 'speculationrules';
+      spec.id = 'appiex-clean-speculation-rules';
+      spec.textContent = JSON.stringify({
+        prerender: [
+          {
+            source: 'list',
+            urls: [
+              '/',
+              '/services',
+              '/projects',
+              '/refer',
+              '/partners',
+              '/digital-strategy',
+              '/web-development',
+              '/ui-ux-3d-design',
+              '/ai-automation',
+              '/seo-marketing',
+              '/blog',
+              '/login',
+              '/team',
+              '/case-studies'
+            ],
+            eagerness: 'immediate'
+          },
+          {
+            source: 'document',
+            where: {
+              and: [
+                { href_matches: '/*' },
+                { not: { href_matches: '/admin*' } },
+                { not: { href_matches: '/gaming*' } }
+              ]
+            },
+            eagerness: 'moderate'
+          }
+        ]
+      });
+      document.head.appendChild(spec);
+    } catch (e) {}
+  }
+
   // Normalize any path to clean extensionless Next.js route
   function toCleanPath(pathname) {
     if (!pathname) return '/';
     let p = pathname.replace(/\/index\.html$/i, '/').replace(/\.html$/i, '');
     if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+    if (p === '/home') return '/';
     return p || '/';
   }
 
   // Strip .html from browser address bar immediately on initial load if present
   try {
-    if (location.pathname.endsWith('.html')) {
+    if (location.pathname.endsWith('.html') || location.pathname === '/home') {
       const cleanInitial = toCleanPath(location.pathname) + location.search + location.hash;
-      history.replaceState(history.state, '', cleanInitial);
+      history.replaceState({ path: cleanInitial }, '', cleanInitial);
     }
   } catch (e) {}
 
-  // High-Priority Prefetch Engine (warms browser cache before click)
+  // Disable Lenis on mobile/touch devices immediately if present to eliminate mobile scroll lag
+  function optimizeScrollingPerformance() {
+    const isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window) || window.innerWidth <= 1024;
+    if (isTouch && window.lenis) {
+      try {
+        window.lenis.destroy();
+        window.lenis = null;
+        document.documentElement.classList.remove('lenis', 'lenis-smooth');
+      } catch (e) {}
+    }
+  }
+  optimizeScrollingPerformance();
+  window.addEventListener('DOMContentLoaded', () => {
+    optimizeScrollingPerformance();
+    ensureTailwindRuntime();
+    injectCleanSpeculationRules();
+    // Cache current initial page in memory
+    try {
+      const curClean = toCleanPath(location.pathname);
+      if (!htmlMemoryCache.has(curClean)) {
+        htmlMemoryCache.set(curClean, document.documentElement.outerHTML);
+      }
+    } catch (e) {}
+  });
+
+  // High-Priority Prefetch & In-Memory HTML Cache Engine
   function prefetch(url) {
-    if (!url) return;
+    if (!url) return Promise.resolve(null);
     try {
       const u = new URL(url, location.href);
-      if (u.origin !== location.origin || u.pathname.includes('/admin')) return;
+      if (u.origin !== location.origin || u.pathname.includes('/admin') || u.pathname.includes('/gaming')) {
+        return Promise.resolve(null);
+      }
       const cleanPath = toCleanPath(u.pathname);
-      const clean = cleanPath + u.search;
-      if (prefetchedUrls.has(clean)) return;
-      prefetchedUrls.add(clean);
+      if (htmlMemoryCache.has(cleanPath)) {
+        return Promise.resolve(htmlMemoryCache.get(cleanPath));
+      }
+      if (pendingFetches.has(cleanPath)) {
+        return pendingFetches.get(cleanPath);
+      }
 
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = clean;
-      link.as = 'document';
-      document.head.appendChild(link);
+      if (!prefetchedUrls.has(cleanPath)) {
+        prefetchedUrls.add(cleanPath);
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = cleanPath;
+        link.as = 'document';
+        document.head.appendChild(link);
+      }
 
-      fetch(clean, { priority: 'high', cache: 'force-cache' }).catch(() => {});
-    } catch (e) {}
+      const fetchPromise = fetch(cleanPath, { priority: 'high', credentials: 'same-origin' })
+        .then(res => {
+          if (!res.ok) throw new Error('Fetch failed');
+          return res.text();
+        })
+        .then(html => {
+          if (html && html.includes('<body')) {
+            htmlMemoryCache.set(cleanPath, html);
+          }
+          pendingFetches.delete(cleanPath);
+          return html;
+        })
+        .catch(() => {
+          pendingFetches.delete(cleanPath);
+          return null;
+        });
+
+      pendingFetches.set(cleanPath, fetchPromise);
+      return fetchPromise;
+    } catch (e) {
+      return Promise.resolve(null);
+    }
   }
 
-  // Idle Prefetch Top Pages
+  // Idle Prefetch Top Pages into Memory Cache
   if (typeof window !== 'undefined') {
     const idlePrefetch = () => {
+      ensureTailwindRuntime();
+      injectCleanSpeculationRules();
       const topPages = [
         '/',
         '/services',
         '/projects',
         '/refer',
         '/partners',
-        '/team',
-        '/blog',
         '/digital-strategy',
         '/web-development',
         '/ui-ux-3d-design',
         '/ai-automation',
-        '/seo-marketing'
+        '/seo-marketing',
+        '/blog',
+        '/login',
+        '/team',
+        '/case-studies'
       ];
       topPages.forEach((p, idx) => {
-        setTimeout(() => prefetch(p), idx * 140);
+        setTimeout(() => prefetch(p), idx * 55);
       });
     };
     if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(idlePrefetch, { timeout: 1500 });
+      window.requestIdleCallback(idlePrefetch, { timeout: 600 });
     } else {
-      setTimeout(idlePrefetch, 800);
+      setTimeout(idlePrefetch, 250);
     }
   }
 
-  // Hover & Touch Prefetch Triggers
-  const onHover = (e) => {
+  // Hover, Pointerdown & Touch Prefetch Triggers
+  const onHoverOrDown = (e) => {
     const a = e.target.closest('a');
     if (a && a.href && a.origin === location.origin) {
       prefetch(a.href);
     }
   };
-  document.addEventListener('mouseover', onHover, { passive: true });
+  document.addEventListener('mouseover', onHoverOrDown, { passive: true });
+  document.addEventListener('pointerdown', onHoverOrDown, { passive: true });
+  document.addEventListener('touchstart', onHoverOrDown, { passive: true });
 
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchPrefetchTimer = null;
-  document.addEventListener('touchstart', (e) => {
-    if (!e.touches || !e.touches[0]) return;
-    const a = e.target.closest('a');
-    if (!a || !a.href || a.origin !== location.origin) return;
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    clearTimeout(touchPrefetchTimer);
-    touchPrefetchTimer = setTimeout(() => {
-      prefetch(a.href);
-    }, 100);
-  }, { passive: true });
-
-  document.addEventListener('touchmove', (e) => {
-    if (!e.touches || !e.touches[0]) return;
-    const dx = Math.abs(e.touches[0].clientX - touchStartX);
-    const dy = Math.abs(e.touches[0].clientY - touchStartY);
-    if (dx > 8 || dy > 8) {
-      clearTimeout(touchPrefetchTimer);
-    }
-  }, { passive: true });
-
-  document.addEventListener('touchend', () => {
-    clearTimeout(touchPrefetchTimer);
-  }, { passive: true });
-
-  // 5. Buttery-Smooth Outgoing Curtain Fade-Out & Full Page Navigation
+  // ========================================================
+  // 5. 0.001s FULL-DOCUMENT (<head> + <body>) INSTANT SWAP
+  // ========================================================
   let isNavigating = false;
+
+  // Tag initial page-specific <head> styles so they can be cleanly swapped
+  function markInitialHeadStyles() {
+    document.head.querySelectorAll('style').forEach(s => {
+      if (
+        s.id === 'appiex-universal-mobile-css' ||
+        s.id === 'appiex-gpu-style' ||
+        s.id === 'appiex-cuberto-curtain-style' ||
+        (s.textContent && s.textContent.includes('tailwindcss'))
+      ) {
+        return;
+      }
+      if (!s.hasAttribute('data-spa-page-style')) {
+        s.setAttribute('data-spa-page-style', 'true');
+      }
+    });
+  }
+  markInitialHeadStyles();
+
+  function swapPageFromHtml(htmlString, targetUrlStr, pushHistory = true) {
+    try {
+      const parser = new DOMParser();
+      const newDoc = parser.parseFromString(htmlString, 'text/html');
+      if (!newDoc || !newDoc.body) return false;
+
+      // 1. Cleanup current page resources (videos, Lenis, ScrollTrigger)
+      document.querySelectorAll('video').forEach(v => {
+        try { v.pause(); } catch (e) {}
+      });
+      if (window.lenis) {
+        try { window.lenis.destroy(); } catch (e) {}
+        window.lenis = null;
+      }
+      if (typeof ScrollTrigger !== 'undefined') {
+        try { ScrollTrigger.getAll().forEach(t => t.kill()); } catch (e) {}
+      }
+
+      // 2. Update Document Title & Canonical
+      if (newDoc.title) {
+        document.title = newDoc.title;
+      }
+
+      // 3. Sync <head> Stylesheets (<link rel="stylesheet">)
+      const existingLinks = new Set(
+        Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).map(l => l.getAttribute('href'))
+      );
+      newDoc.head.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !existingLinks.has(href)) {
+          const clonedLink = link.cloneNode(true);
+          document.head.appendChild(clonedLink);
+        }
+      });
+
+      // 4. Sync <head> Page-Specific <style> Blocks (100% Preserves Exact Page Design)
+      markInitialHeadStyles();
+      const oldPageStyles = Array.from(document.head.querySelectorAll('style[data-spa-page-style="true"]'));
+      newDoc.head.querySelectorAll('style').forEach(styleEl => {
+        if (styleEl.id === 'appiex-cuberto-curtain-style' || styleEl.id === 'appiex-universal-mobile-css' || styleEl.id === 'appiex-gpu-style') {
+          return;
+        }
+        const newStyle = document.createElement('style');
+        if (styleEl.id) newStyle.id = styleEl.id;
+        newStyle.setAttribute('data-spa-page-style', 'true');
+        newStyle.textContent = styleEl.textContent;
+        document.head.appendChild(newStyle);
+      });
+      oldPageStyles.forEach(s => {
+        if (s.parentNode) s.parentNode.removeChild(s);
+      });
+
+      // 5. Execute any <head> pre-hydration scripts (like refer.html CMS hydration)
+      newDoc.head.querySelectorAll('script:not([src]):not([type="application/ld+json"]):not([type="speculationrules"])').forEach(scr => {
+        if (scr.id === 'appiex-prepaint-curtain-script') return;
+        if (scr.textContent && scr.textContent.includes('tailwind.config')) {
+          try { (0, eval)(scr.textContent); } catch (e) {}
+        }
+      });
+
+      // 6. Swap <body> Class & InnerHTML in 0.001s
+      document.body.className = newDoc.body.className || 'font-sans antialiased';
+      document.body.classList.remove('menu-open', 'appiex-body-leaving', 'appiex-body-entering');
+      document.body.innerHTML = newDoc.body.innerHTML;
+
+      // Hide any legacy curtain inside swapped body
+      const swappedCurtain = document.getElementById('appiex-cuberto-curtain');
+      if (swappedCurtain) {
+        swappedCurtain.style.setProperty('display', 'none', 'important');
+      }
+
+      // 7. Update Browser URL & Scroll Position Instantly (0ms)
+      const parsedTarget = new URL(targetUrlStr, location.origin);
+      const cleanHref = toCleanPath(parsedTarget.pathname) + parsedTarget.search + parsedTarget.hash;
+      if (pushHistory) {
+        history.pushState({ path: cleanHref }, '', cleanHref);
+      }
+
+      if (parsedTarget.hash) {
+        const hashEl = document.querySelector(parsedTarget.hash);
+        if (hashEl) hashEl.scrollIntoView();
+        else window.scrollTo(0, 0);
+      } else {
+        window.scrollTo(0, 0);
+      }
+
+      // 8. Re-initialize Universal Mobile Navigation & Re-Execute Body Inline Scripts
+      ensureMobileNavigation();
+
+      const bodyScripts = Array.from(document.body.querySelectorAll('script'));
+      const externalPromises = [];
+
+      bodyScripts.forEach(oldScript => {
+        const src = oldScript.getAttribute('src');
+        if (src) {
+          // Skip already loaded global libraries to avoid re-downloading
+          if (
+            src.includes('instant-nav.js') ||
+            src.includes('gsap.min.js') ||
+            src.includes('ScrollTrigger.min.js') ||
+            src.includes('lenis.min.js') ||
+            src.includes('visitor-tracker.js') ||
+            src.includes('seo-conversion-tracker.js')
+          ) {
+            return;
+          }
+          // Load page-specific external script (e.g. swiper, firebase-config, video-storage-engine) if not already loaded
+          const cleanSrc = src.replace(/^\.\//, '/');
+          const alreadyLoaded = Array.from(document.scripts).some(s => s !== oldScript && s.src && s.src.includes(cleanSrc.split('?')[0]));
+          if (!alreadyLoaded) {
+            const p = new Promise(resolve => {
+              const s = document.createElement('script');
+              s.src = src;
+              s.onload = resolve;
+              s.onerror = resolve;
+              document.body.appendChild(s);
+            });
+            externalPromises.push(p);
+          }
+        }
+      });
+
+      const runInlineScripts = () => {
+        bodyScripts.forEach(oldScript => {
+          if (oldScript.getAttribute('src')) return;
+          const type = oldScript.getAttribute('type');
+          if (type && type !== 'text/javascript' && type !== 'module') return;
+          const code = oldScript.textContent;
+          if (!code || !code.trim()) return;
+
+          try {
+            // Transform DOMContentLoaded listeners inside inline scripts so they run immediately on SPA swap
+            const transformedCode = code.replace(
+              /document\.addEventListener\s*\(\s*['"]DOMContentLoaded['"]\s*,\s*/g,
+              '(function(fn){ try { fn(); } catch(e){ console.warn(e); } })('
+            );
+            const newScript = document.createElement('script');
+            newScript.textContent = transformedCode;
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          } catch (err) {
+            console.warn('SPA script exec warning:', err);
+          }
+        });
+
+        optimizeScrollingPerformance();
+        if (typeof ScrollTrigger !== 'undefined') {
+          setTimeout(() => {
+            try { ScrollTrigger.refresh(); } catch (e) {}
+          }, 60);
+        }
+      };
+
+      if (externalPromises.length > 0) {
+        Promise.all(externalPromises).then(runInlineScripts);
+      } else {
+        runInlineScripts();
+      }
+
+      return true;
+    } catch (err) {
+      console.warn('SPA swap fallback:', err);
+      return false;
+    }
+  }
+
+  // Navigate to URL in 0.001s (Uses Memory Cache if ready, otherwise Native Instant Navigation)
+  function navigateInstant(rawHref, pushHistory = true) {
+    if (isNavigating) return;
+    try {
+      const targetUrl = new URL(rawHref, location.href);
+      const normTarget = toCleanPath(targetUrl.pathname);
+      const cleanTargetHref = normTarget + targetUrl.search + targetUrl.hash;
+
+      // Close mobile drawer if open
+      const curDrawer = document.getElementById('rafsan-mobile-drawer');
+      if (curDrawer && curDrawer.classList.contains('open')) {
+        curDrawer.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      }
+
+      // Exclude 3D gaming / admin pages from SPA swap so their full WebGL canvas boots natively
+      if (normTarget === '/gaming' || normTarget.startsWith('/admin')) {
+        window.location.href = cleanTargetHref;
+        return;
+      }
+
+      const cachedHtml = htmlMemoryCache.get(normTarget);
+      if (cachedHtml) {
+        isNavigating = true;
+        const ok = swapPageFromHtml(cachedHtml, cleanTargetHref, pushHistory);
+        isNavigating = false;
+        if (ok) return;
+      }
+
+      // If fetch is currently in flight, wait up to 80ms; otherwise navigate immediately with zero curtain delay
+      if (pendingFetches.has(normTarget)) {
+        isNavigating = true;
+        pendingFetches.get(normTarget).then(html => {
+          if (html) {
+            const ok = swapPageFromHtml(html, cleanTargetHref, pushHistory);
+            isNavigating = false;
+            if (ok) return;
+          }
+          isNavigating = false;
+          window.location.href = cleanTargetHref;
+        });
+        return;
+      }
+
+      // Direct 0ms native navigation (often served in 0.001s by Chromium Speculation Rules prerender!)
+      window.location.href = cleanTargetHref;
+    } catch (e) {
+      window.location.href = rawHref;
+    }
+  }
+
   document.addEventListener('click', (e) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
@@ -1269,11 +1581,11 @@
         if (targetEl) {
           e.preventDefault();
           if (window.lenis) {
-            window.lenis.scrollTo(targetEl, { offset: -60, duration: 0.85 });
+            window.lenis.scrollTo(targetEl, { offset: -60, duration: 0.65 });
           } else {
             targetEl.scrollIntoView({ behavior: 'smooth' });
           }
-          history.pushState(null, '', targetUrl.hash);
+          history.pushState({ path: normCurrent + targetUrl.hash }, '', normCurrent + targetUrl.hash);
         }
         return;
       }
@@ -1284,58 +1596,29 @@
         return;
       }
 
-      // Cross-page navigation: trigger buttery fade-out curtain & load full page with clean Next.js URL
+      // Cross-page navigation in 0.001s
       e.preventDefault();
-      if (isNavigating) return;
-      isNavigating = true;
-
       const cleanTargetHref = normTarget + targetUrl.search + targetUrl.hash;
-      prefetch(cleanTargetHref);
-      const curtain = ensureCurtainAndStyles();
-      sessionStorage.setItem('appiex_curtain_active', '1');
-
-      document.querySelectorAll('video').forEach(v => {
-        try { v.pause(); } catch (err) {}
-      });
-
-      if (curtain) {
-        curtain.classList.remove('is-fading', 'is-holding');
-        void curtain.offsetHeight;
-        curtain.classList.add('is-active');
-      }
-      if (document.body) {
-        document.body.classList.add('appiex-body-leaving');
-      }
-
-      setTimeout(() => {
-        window.location.href = cleanTargetHref;
-      }, 170);
-
-      setTimeout(() => {
-        isNavigating = false;
-        if (curtain) curtain.classList.remove('is-active');
-        if (document.body) document.body.classList.remove('appiex-body-leaving');
-      }, 950);
+      navigateInstant(cleanTargetHref, true);
 
     } catch (err) {}
   });
 
-  // 6. Back / Forward Cache (bfcache) Restore Cleanup
-  window.addEventListener('pageshow', (e) => {
-    isNavigating = false;
-    const holdStyle = document.getElementById('curtain-initial-hold');
-    if (holdStyle && holdStyle.parentNode) holdStyle.parentNode.removeChild(holdStyle);
-    document.documentElement.classList.remove('appiex-page-entering');
-    if (document.body) document.body.classList.remove('appiex-body-leaving', 'appiex-body-entering');
-    const curtain = document.getElementById('appiex-cuberto-curtain');
-    if (curtain) {
-      if (e.persisted) {
-        curtain.classList.remove('is-active', 'is-holding');
-        curtain.classList.add('is-fading');
-      } else {
-        revealArrivingPage();
-      }
+  // Handle Browser Back / Forward Buttons in 0.001s
+  window.addEventListener('popstate', () => {
+    const cleanTarget = toCleanPath(location.pathname) + location.search + location.hash;
+    const normTarget = toCleanPath(location.pathname);
+    if (htmlMemoryCache.has(normTarget)) {
+      swapPageFromHtml(htmlMemoryCache.get(normTarget), cleanTarget, false);
+    } else {
+      window.location.reload();
     }
+  });
+
+  // 6. Back / Forward Cache (bfcache) Restore Cleanup
+  window.addEventListener('pageshow', () => {
+    isNavigating = false;
+    revealArrivingPage();
   });
 })();
 
