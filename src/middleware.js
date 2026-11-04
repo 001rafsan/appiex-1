@@ -8,6 +8,14 @@ export function middleware(request) {
     return new NextResponse('Not Found', { status: 404 });
   }
 
+  // Redirect /home to /
+  if (pathname.toLowerCase() === '/home' || pathname.toLowerCase() === '/home.html') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/';
+    url.search = search;
+    return NextResponse.redirect(url, 308);
+  }
+
   // Strip .html from any direct incoming request (except Google verification files)
   if (pathname.endsWith('.html') && !/^\/google[a-zA-Z0-9]+\.html$/i.test(pathname)) {
     let cleanPath = pathname.replace(/\/index\.html$/i, '/').replace(/\.html$/i, '');
