@@ -1111,22 +1111,11 @@
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
       }
-      /* Prevent layout/paint thrashing on offscreen sections */
-      main > section:not(:first-of-type),
-      body > section:not(:first-of-type) {
-        content-visibility: auto;
-        contain-intrinsic-size: auto 650px;
-      }
       /* Mobile 120Hz Anti-Lag GPU Optimizations */
       @media (max-width: 1024px) {
         html, body {
           scroll-behavior: auto !important;
           -webkit-overflow-scrolling: touch !important;
-        }
-        /* Reduce expensive full-screen video software filter overhead on mobile */
-        video.appiex-hero-bg-video,
-        main > video.fixed {
-          filter: grayscale(1) contrast(1.15) !important;
         }
         /* Cap expensive backdrop-filter blur radius on mobile GPUs */
         .backdrop-blur-xl, .backdrop-blur-2xl, .backdrop-blur-3xl {
