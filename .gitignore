@@ -24,3 +24,7 @@ admin_source/
 temp_admin_repo/
 
 seo-operations/
+
+.next/
+public/
+out/

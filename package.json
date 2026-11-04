@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "node scripts/sync-nextjs-public.mjs && next dev",
+    "build": "node scripts/sync-nextjs-public.mjs && next build",
+    "start": "next start"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",

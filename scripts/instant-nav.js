@@ -846,7 +846,7 @@
       mobileWrap = document.createElement('div');
       mobileWrap.className = 'rafsan-mobile-wrap';
       mobileWrap.innerHTML = `
-        <a href="/login.html" class="rafsan-hire-btn" id="mobile-wrap-login-btn">Login</a>
+        <a href="/login" class="rafsan-hire-btn" id="mobile-wrap-login-btn">Login</a>
         <button type="button" class="rafsan-mobile-toggle" id="rafsan-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
           <span class="hamburger-box">
             <span class="hamburger-line line-top"></span>
@@ -885,7 +885,7 @@
       </div>
 
       <nav class="cyber-nav-list">
-        <a href="/index.html" class="cyber-nav-item active" data-section="home">
+        <a href="/" class="cyber-nav-item active" data-section="home">
           HOME
           <span class="badge-page">PAGE&#10;001</span>
         </a>
@@ -909,11 +909,11 @@
           </div>
         </div>
 
-        <a href="/refer.html" class="cyber-nav-item" data-section="refer">REFER</a>
-        <a href="/partners.html" class="cyber-nav-item" data-section="partners">PARTNERSHIP</a>
-        <a href="/projects.html" class="cyber-nav-item" data-section="projects">PROJECTS</a>
-        <a href="/index.html#contact" class="cyber-nav-item" data-section="contact">CONTACT</a>
-        <a href="/team.html" class="cyber-nav-item">ABOUT</a>
+        <a href="/refer" class="cyber-nav-item" data-section="refer">REFER</a>
+        <a href="/partners" class="cyber-nav-item" data-section="partners">PARTNERSHIP</a>
+        <a href="/projects" class="cyber-nav-item" data-section="projects">PROJECTS</a>
+        <a href="/#contact" class="cyber-nav-item" data-section="contact">CONTACT</a>
+        <a href="/team" class="cyber-nav-item">ABOUT</a>
       </nav>
 
       <div class="cyber-meta-section">
@@ -934,8 +934,8 @@
           <span>ACTIONS</span>
         </div>
         <div class="cyber-meta-content">
-          <a href="/login.html">LOGIN</a>
-          <a href="/index.html#contact">BOOK A MEETING</a>
+          <a href="/login">LOGIN</a>
+          <a href="/#contact">BOOK A MEETING</a>
         </div>
       </div>
 
@@ -1068,7 +1068,16 @@
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
-            window.location.href = drawerLink.href;
+            try {
+              const tUrl = new URL(drawerLink.href, location.href);
+              if (tUrl.origin === location.origin && !tUrl.pathname.includes('/admin') && !tUrl.pathname.includes('/gaming')) {
+                navigateSPA(tUrl);
+              } else {
+                window.location.href = toCleanPath(tUrl.pathname) + tUrl.search + tUrl.hash;
+              }
+            } catch (err) {
+              window.location.href = drawerLink.href;
+            }
             return;
           }
         }
@@ -1165,13 +1174,30 @@
   }
   injectSpaStyles();
 
+  // Normalize any path to clean extensionless Next.js route
+  function toCleanPath(pathname) {
+    if (!pathname) return '/';
+    let p = pathname.replace(/\/index\.html$/i, '/').replace(/\.html$/i, '');
+    if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+    return p || '/';
+  }
+
+  // Strip .html from browser address bar immediately on initial load if present
+  try {
+    if (location.pathname.endsWith('.html')) {
+      const cleanInitial = toCleanPath(location.pathname) + location.search + location.hash;
+      history.replaceState(history.state, '', cleanInitial);
+    }
+  } catch (e) {}
+
   // High-Priority Prefetch Engine (fetches into memory in background)
   function prefetch(url) {
     if (!url) return;
     try {
       const u = new URL(url, location.href);
       if (u.origin !== location.origin || u.pathname.includes('/admin')) return;
-      const clean = u.pathname + u.search;
+      const cleanPath = toCleanPath(u.pathname);
+      const clean = cleanPath + u.search;
       if (prefetchedUrls.has(clean)) return;
       prefetchedUrls.add(clean);
 
@@ -1208,14 +1234,13 @@
     const idlePrefetch = () => {
       const topPages = [
         '/',
-        '/index.html',
-        '/services.html',
-        '/projects.html',
-        '/refer.html',
-        '/partners.html',
-        '/team.html',
-        '/blog.html',
-        '/best-software-agency.html'
+        '/services',
+        '/projects',
+        '/refer',
+        '/partners',
+        '/team',
+        '/blog',
+        '/best-software-agency'
       ];
       topPages.forEach((p, idx) => {
         setTimeout(() => prefetch(p), idx * 120);
@@ -1324,7 +1349,9 @@
     }
 
     const currentMain = document.querySelector('main');
-    const cleanUrl = targetUrl.pathname + targetUrl.search;
+    const cleanPathname = toCleanPath(targetUrl.pathname);
+    const cleanUrl = cleanPathname + targetUrl.search;
+    const cleanFullHref = cleanPathname + targetUrl.search + targetUrl.hash;
 
     // Start 60fps GPU exit animation
     if (currentMain) {
@@ -1367,9 +1394,9 @@
         document.title = doc.title;
       }
 
-      // Push history state
+      // Push clean Next.js route (no .html) to history state
       if (!isPopState) {
-        history.pushState({ url: targetUrl.href }, '', targetUrl.href);
+        history.pushState({ url: cleanFullHref }, '', cleanFullHref);
       }
 
       // Swap Main Content & Classes

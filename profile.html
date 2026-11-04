@@ -260,7 +260,7 @@
   <!-- Top Sticky Navigation Bar -->
   <header class="relative z-30 w-full px-4 sm:px-8 py-3.5 flex items-center justify-between border-b border-white/10 bg-[#06080E]/85 backdrop-blur-xl">
     <div class="flex items-center gap-4">
-      <a href="index.html" class="flex items-center gap-2 group">
+      <a href="/" class="flex items-center gap-2 group">
         <img src="./images/appiex-wordmark-white.png" alt="Appiex" class="h-6 sm:h-7 w-auto object-contain group-hover:scale-105 transition-transform" />
       </a>
       <span class="hidden sm:inline-block w-px h-5 bg-white/15"></span>
@@ -275,7 +275,7 @@
 
     <!-- Quick Links & Actions -->
     <div class="flex items-center gap-3">
-      <a href="refer.html" class="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg hover:bg-white/5">
+      <a href="/refer" class="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg hover:bg-white/5">
         <span>Public Refer Page</span>
         <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
       </a>
@@ -1866,7 +1866,7 @@
           localStorage.removeItem('appiex_user');
           localStorage.removeItem('appiex_active_partner');
         } catch(e) {}
-        window.location.href = 'index.html';
+        window.location.href = '/';
       }
     });
 
