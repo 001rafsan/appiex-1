@@ -5,13 +5,22 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 
 function resolveHtmlPath(slugArray) {
+  // Reject path traversal or encoded separators before resolving legacy files.
+  if (slugArray && (!Array.isArray(slugArray) || slugArray.some((part) =>
+    typeof part !== 'string' || part === '.' || part === '..' ||
+    part.includes('/') || part.includes('\\') || part.includes('\0')))) {
+    return null;
+  }
   const rootDir = process.cwd();
   const publicDir = path.join(rootDir, 'public');
 
   const relPath = (!slugArray || slugArray.length === 0) ? 'index' : slugArray.join('/');
 
   // Prevent directory traversal
-  const normalized = path.posix.normalize(relPath).replace(/^(\.\.(\/|\\|$))+/, '');
+  const normalized = path.posix.normalize(relPath);
+  if (path.posix.isAbsolute(normalized) || normalized === '..' || normalized.startsWith('../')) {
+    return null;
+  }
 
   const candidates = [
     path.join(publicDir, `${normalized}.html`),
