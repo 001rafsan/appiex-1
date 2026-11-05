@@ -237,7 +237,7 @@
       justify-content: space-between;
       overflow: hidden;
       background-color: #0b0c10;
-      background-image: url('./images/python_banner_bg.jpg');
+      background-image: url('./images/python_banner_bg.webp');
       background-size: cover;
       background-position: center;
     }
@@ -730,9 +730,10 @@
   </div>
 
   <!-- Background Video Overlay (Consistent with index & services) -->
-  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center z-0" autoplay loop muted playsinline preload="none" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.48;">
-    <source src="./assets/static/vde.mp4" type="video/mp4"><source src="./assets/static/vde.webm" type="video/webm">
-  </video>
+  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center z-0" autoplay loop muted playsinline preload="metadata" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.48;" poster="./assets/posters/vde-poster.webp">
+              <source src="./assets/static/vde.webm" type="video/webm">
+              <source src="./assets/static/vde.mp4" type="video/mp4">
+            </video>
   <div class="pointer-events-none fixed inset-0 h-screen w-screen z-0" style="mix-blend-mode: color; background-color: #ff0000; opacity: 0.85;" aria-hidden="true"></div>
 
   <!-- Ambient Top Lights -->
@@ -841,17 +842,17 @@
 
       <!-- FLOATING AVATAR BUBBLE 1: RAFSAN (Left/Middle overlapping 'u' & 'r') -->
       <a href="#rafsan" class="avatar-bubble w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 left-[8%] sm:left-[16%] md:left-[20%] top-[4%] sm:top-[2%]" title="Rafsan — Full Stack Architect">
-        <img src="./images/6251456506175886234.jpg" alt="Rafsan - Full Stack Architect" class="w-full h-full object-cover" />
+        <img src="./images/6251456506175886234.jpg" alt="Rafsan - Full Stack Architect" class="w-full h-full object-cover" / loading="lazy" decoding="async">
       </a>
 
       <!-- FLOATING AVATAR BUBBLE 2: FAYAZ (Center overlapping the red dot) -->
       <a href="#fayaz" class="avatar-bubble w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 left-[44%] sm:left-[45%] md:left-[46%] -bottom-[8%] sm:-bottom-[10%]" title="Fayaz — Core Backend Engineer">
-        <img src="./images/6251456506175886236.jpg" alt="Fayaz - Backend Engineer" class="w-full h-full object-cover" />
+        <img src="./images/6251456506175886236.webp" alt="Fayaz - Backend Engineer" class="w-full h-full object-cover" / loading="lazy" decoding="async">
       </a>
 
       <!-- FLOATING AVATAR BUBBLE 3: ADIL (Right overlapping 'a' & 'm') -->
       <a href="#adil" class="avatar-bubble w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 right-[8%] sm:right-[15%] md:right-[18%] top-[10%] sm:top-[6%]" title="Adil — Growth & Marketing Lead">
-        <img src="./images/6251456506175886235.jpg" alt="Adil - Growth Marketing Lead" class="w-full h-full object-cover" />
+        <img src="./images/6251456506175886235.webp" alt="Adil - Growth Marketing Lead" class="w-full h-full object-cover" / loading="lazy" decoding="async">
       </a>
 
     </section>
@@ -878,7 +879,7 @@
       <article id="rafsan" class="team-card p-7 sm:p-8 flex flex-col justify-between group shadow-2xl">
         <!-- Full Card Portrait Photo & Vignette Overlay -->
         <div class="team-card-bg-wrap">
-          <img src="./images/6251456506175886234.jpg" alt="Rafsan - Full Stack Architect" />
+          <img src="./images/6251456506175886234.jpg" alt="Rafsan - Full Stack Architect" / loading="lazy" decoding="async">
           <div class="team-card-vignette"></div>
         </div>
 
@@ -937,7 +938,7 @@
       <article id="fayaz" class="team-card p-7 sm:p-8 flex flex-col justify-between group shadow-2xl">
         <!-- Full Card Portrait Photo & Vignette Overlay -->
         <div class="team-card-bg-wrap">
-          <img src="./images/6251456506175886236.jpg" alt="Fayaz - Core Backend Engineer" />
+          <img src="./images/6251456506175886236.webp" alt="Fayaz - Core Backend Engineer" / loading="lazy" decoding="async">
           <div class="team-card-vignette"></div>
         </div>
 
@@ -996,7 +997,7 @@
       <article id="adil" class="team-card p-7 sm:p-8 flex flex-col justify-between group shadow-2xl">
         <!-- Full Card Portrait Photo & Vignette Overlay -->
         <div class="team-card-bg-wrap">
-          <img src="./images/6251456506175886235.jpg" alt="Adil - Growth Marketing Lead" />
+          <img src="./images/6251456506175886235.webp" alt="Adil - Growth Marketing Lead" / loading="lazy" decoding="async">
           <div class="team-card-vignette"></div>
         </div>
 

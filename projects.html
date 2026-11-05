@@ -374,7 +374,7 @@
     }
     .services-mega-left {
       width: 250px !important;
-      background: linear-gradient(180deg, rgba(10, 10, 15, 0.42) 0%, rgba(5, 5, 10, 0.95) 100%), url('./images/panther_cover.png') center/cover no-repeat !important;
+      background: linear-gradient(180deg, rgba(10, 10, 15, 0.42) 0%, rgba(5, 5, 10, 0.95) 100%), url('./images/panther_cover.webp') center/cover no-repeat !important;
       padding: 28px 24px !important;
       border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
       display: flex !important;
@@ -776,10 +776,10 @@
   </div>
 
   <!-- HOMEPAGE BACKGROUND VIDEO & RED COLOR OVERLAY (EXACT SAME AS HOMEPAGE) -->
-  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center" autoplay loop muted playsinline webkit-playsinline preload="none" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.42; z-index: 0; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;">
-    <source src="./assets/static/vde.webm" type="video/webm">
-    <source src="./assets/static/vde.mp4" type="video/mp4">
-  </video>
+  <video class="pointer-events-none fixed inset-0 h-screen w-screen object-cover object-center" autoplay loop muted playsinline webkit-playsinline preload="metadata" aria-hidden="true" style="filter: grayscale(1) contrast(1.3) brightness(0.95); opacity: 0.42; z-index: 0; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;" poster="./assets/posters/vde-poster.webp">
+              <source src="./assets/static/vde.webm" type="video/webm">
+              <source src="./assets/static/vde.mp4" type="video/mp4">
+            </video>
   <div class="pointer-events-none fixed inset-0 h-screen w-screen" style="mix-blend-mode: color; background-color: #ff0000; opacity: 0.85; z-index: 0; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;" aria-hidden="true"></div>
 
   <!-- APPIEX SIGNATURE FLOATING CAPSULE NAVBAR -->
@@ -959,19 +959,18 @@
               <!-- Right Column: Video Mockup -->
               <div class="project-showcase-right relative flex items-center justify-center p-0 group overflow-hidden rounded-[1.8rem]">
                 <video
-                  src="./assets/watch24bd-showcase.mp4"
-                  poster="./images/watch24bd.jpg"
+                  poster="./assets/posters/watch24bd-poster.webp"
                   class="w-full h-auto rounded-[1.8rem] shadow-2xl object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   loop
                   muted
                   playsinline
                   webkit-playsinline
-                  autoplay
                   preload="none"
                   style="box-shadow: 0 20px 45px rgba(0,0,0,0.75);"
                 >
-                  <source src="./assets/watch24bd-showcase.mp4" type="video/mp4">
-                </video>
+              <source src="./assets/watch24bd-showcase.webm" type="video/webm">
+              <source src="./assets/watch24bd-showcase.mp4" type="video/mp4">
+            </video>
               </div>
 
             </div>
@@ -988,11 +987,11 @@
               <!-- Left Column: Image Mockup -->
               <div class="project-showcase-left relative flex items-center justify-center p-0 group overflow-hidden rounded-[1.8rem]">
                 <img
-                  src="./images/timedune.jpg"
+                  src="./images/timedune.webp"
                   alt="TimeDune Luxury Horology Store"
                   class="w-full h-auto rounded-[1.8rem] shadow-2xl object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   loading="lazy"
-                >
+                 decoding="async">
               </div>
 
               <!-- Right Column: Details & CTA -->
@@ -1077,19 +1076,18 @@
               <!-- Left Column: Video Mockup -->
               <div class="project-showcase-left relative flex items-center justify-center p-0 group overflow-hidden rounded-[1.8rem]">
                 <video
-                  src="./assets/libasnafs-showcase.mp4"
-                  poster="./images/libas-nafs.jpg"
+                  poster="./assets/posters/libasnafs-poster.webp"
                   class="w-full h-auto rounded-[1.8rem] shadow-2xl object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   loop
                   muted
                   playsinline
                   webkit-playsinline
-                  autoplay
                   preload="none"
                   style="box-shadow: 0 20px 45px rgba(0,0,0,0.75);"
                 >
-                  <source src="./assets/libasnafs-showcase.mp4" type="video/mp4">
-                </video>
+              <source src="./assets/libasnafs-showcase.webm" type="video/webm">
+              <source src="./assets/libasnafs-showcase.mp4" type="video/mp4">
+            </video>
               </div>
 
               <!-- Right Column: Details & Highlights -->
@@ -1242,19 +1240,18 @@
               <!-- Right Column: Video Mockup -->
               <div class="project-showcase-right relative flex items-center justify-center p-0 group overflow-hidden rounded-[1.8rem]">
                 <video
-                  src="./assets/mamunwifi-showcase.mp4"
-                  poster="./images/mamun-wifi.jpg"
+                  poster="./assets/posters/mamunwifi-poster.webp"
                   class="w-full h-auto rounded-[1.8rem] shadow-2xl object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   loop
                   muted
                   playsinline
                   webkit-playsinline
-                  autoplay
                   preload="none"
                   style="box-shadow: 0 20px 45px rgba(0,0,0,0.75);"
                 >
-                  <source src="./assets/mamunwifi-showcase.mp4" type="video/mp4">
-                </video>
+              <source src="./assets/mamunwifi-showcase.webm" type="video/webm">
+              <source src="./assets/mamunwifi-showcase.mp4" type="video/mp4">
+            </video>
               </div>
 
             </div>
@@ -1271,11 +1268,11 @@
               <!-- Left Column: Image Mockup -->
               <div class="project-showcase-left relative flex items-center justify-center p-0 group overflow-hidden rounded-[1.8rem]">
                 <img
-                  src="./images/ghorerbazar.jpg"
+                  src="./images/ghorerbazar.webp"
                   alt="Ghorer Bazar 2.0 Organic Superfoods"
                   class="w-full h-auto rounded-[1.8rem] shadow-2xl object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   loading="lazy"
-                >
+                 decoding="async">
               </div>
 
               <!-- Right Column: Details & Highlights -->
@@ -1413,11 +1410,11 @@
               <!-- Right Column: Image Mockup -->
               <div class="project-showcase-right relative flex items-center justify-center p-0 group overflow-hidden rounded-[1.8rem]">
                 <img
-                  src="./assets/projects/watch24/screenshot/1.jpg"
+                  src="./assets/projects/watch24/screenshot/1.webp"
                   alt="TimeHouse BD Collector Showcase"
                   class="w-full h-auto rounded-[1.8rem] shadow-2xl object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   loading="lazy"
-                >
+                 decoding="async">
               </div>
 
             </div>

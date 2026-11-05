@@ -1905,7 +1905,7 @@
                 div.className = 'item';
                 div.setAttribute('data-categories', customArt.categorySlug || 'web-development');
                 div.innerHTML = '<a class="Entry" href="/blog/view?slug=' + encodeURIComponent(customArt.slug) + '" data-astro-cid-gziigdw4="">' +
-                  '<div class="thumbnail" data-astro-cid-gziigdw4=""><img src="' + (customArt.img || './images/blog/art_2_1bfb66400a_Z1r3qOR.webp') + '" alt="' + customArt.title + '" style="width:100%;height:100%;object-fit:cover;display:block;"></div>' +
+                  '<div class="thumbnail" data-astro-cid-gziigdw4=""><img src="' + (customArt.img || './images/blog/art_2_1bfb66400a_Z1r3qOR.webp') + '" alt="' + customArt.title + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" decoding="async"></div>' +
                   '<div class="category" data-astro-cid-gziigdw4="">' + (customArt.categoryLabel || 'ENGINEERING') + '</div>' +
                   '<div class="title" data-astro-cid-gziigdw4="">' + customArt.title + '</div>' +
                   '<div class="date" data-astro-cid-gziigdw4="">Read Guide &rarr;</div>' +

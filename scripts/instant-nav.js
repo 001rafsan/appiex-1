@@ -1202,6 +1202,37 @@
         document.documentElement.classList.remove('lenis', 'lenis-smooth');
       } catch (e) {}
     }
+    initUniversalLazyVideos();
+  }
+
+  let universalVideoObserver = null;
+  function initUniversalLazyVideos() {
+    try {
+      if (!('IntersectionObserver' in window)) return;
+      if (universalVideoObserver) {
+        universalVideoObserver.disconnect();
+      }
+      universalVideoObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const v = entry.target;
+          if (entry.isIntersecting) {
+            v.dataset.inView = 'true';
+            if (v.preload === 'none') {
+              v.preload = 'metadata';
+            }
+            const p = v.play();
+            if (p !== undefined) p.catch(() => {});
+          } else {
+            v.dataset.inView = 'false';
+            try { v.pause(); } catch (e) {}
+          }
+        });
+      }, { rootMargin: '200px 0px', threshold: 0.05 });
+
+      document.querySelectorAll('video').forEach((v) => {
+        universalVideoObserver.observe(v);
+      });
+    } catch (e) {}
   }
   optimizeScrollingPerformance();
   window.addEventListener('DOMContentLoaded', () => {

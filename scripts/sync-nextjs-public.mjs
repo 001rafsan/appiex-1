@@ -11,15 +11,21 @@ const assetDirs = [
   'styles',
   'fonts',
   'scripts',
-  '_astro',
   '_nuxt',
-  'wp-content',
   'admin',
   'authors',
   'blog',
   'pages',
   '.well-known'
 ];
+
+// Clean stale directories from public/ if removed from root
+for (const staleDir of ['_astro', 'wp-content']) {
+  const stalePath = path.join(publicDir, staleDir);
+  if (fs.existsSync(stalePath)) {
+    fs.rmSync(stalePath, { recursive: true, force: true });
+  }
+}
 
 // Root static files to sync into public/
 const rootFiles = fs.readdirSync(root).filter(f => {
@@ -31,7 +37,7 @@ const rootFiles = fs.readdirSync(root).filter(f => {
     f.endsWith('.txt') ||
     f.endsWith('.webmanifest') ||
     f.startsWith('google')
-  ) && f !== 'test_curv.txt';
+  ) && f !== 'test_curv.txt' && f !== 'scratch_cuberto_live.html';
 });
 
 fs.mkdirSync(publicDir, { recursive: true });
@@ -40,6 +46,9 @@ for (const dir of assetDirs) {
   const src = path.join(root, dir);
   const dest = path.join(publicDir, dir);
   if (fs.existsSync(src)) {
+    if (fs.existsSync(dest)) {
+      fs.rmSync(dest, { recursive: true, force: true });
+    }
     fs.cpSync(src, dest, { recursive: true, force: true });
   }
 }
