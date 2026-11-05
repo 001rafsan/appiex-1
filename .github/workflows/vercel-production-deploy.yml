@@ -1,0 +1,66 @@
+name: Deploy Appiex to Vercel production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'vercel.json'
+      - 'next.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'src/**'
+      - 'blog/**'
+      - 'styles/**'
+      - 'scripts/**'
+      - 'index.html'
+      - '.github/workflows/vercel-production-deploy.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: appiex-vercel-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Verify deployment access (no credential values printed)
+        shell: bash
+        run: |
+          if [[ -z "$VERCEL_TOKEN" || -z "$VERCEL_ORG_ID" || -z "$VERCEL_PROJECT_ID" ]]; then
+            echo "::error::Vercel deployment is not connected to this GitHub repository. Set GitHub Actions secrets VERCEL_TOKEN, VERCEL_ORG_ID and VERCEL_PROJECT_ID for the actual appiex.com production project, or connect the repository in Vercel."
+            echo "## Deployment blocked" >> "$GITHUB_STEP_SUMMARY"
+            echo "Vercel credentials/project linkage are missing. No production changes were made." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+      - name: Verify Next.js configuration
+        run: node scripts/check-vercel-next-config.mjs
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest --no-audit --no-fund
+      - name: Link to the configured Vercel project
+        shell: bash
+        run: vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
+      - name: Build using production environment
+        shell: bash
+        run: vercel build --prod --token "$VERCEL_TOKEN"
+      - name: Deploy to the actual production project
+        shell: bash
+        run: |
+          set -euo pipefail
+          vercel deploy --prebuilt --prod --token "$VERCEL_TOKEN" | tee "$RUNNER_TEMP/appiex-vercel-deploy-url.txt"
+          echo "## Production deployment triggered" >> "$GITHUB_STEP_SUMMARY"
+          echo "Git SHA: \`${GITHUB_SHA}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "Verify the resulting URL and appiex.com domain assignment in Vercel." >> "$GITHUB_STEP_SUMMARY"
