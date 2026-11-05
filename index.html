@@ -3594,8 +3594,8 @@
       <div class="backdrop" data-astro-cid-hebhjodz="" onclick="document.getElementById('modal-contact-success').close()" style="position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(8px);"></div>
       <div class="content flex flex-col items-center justify-center p-8 border rounded-3xl shadow-2xl max-w-lg mx-auto my-auto text-center" style="position: fixed; inset: 0; width: 90%; max-width: 520px; height: fit-content; z-index: 99999; background: #ffffff !important; color: #000000 !important; border-color: rgba(0,0,0,0.1) !important;" data-astro-cid-hebhjodz="">
         <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-4 font-bold" style="background-color: #d1fae5 !important; border: 2.5px solid #10b981 !important; color: #059669 !important;">✓</div>
-        <div class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2" style="color: #000000 !important; font-family: 'Figtree', sans-serif !important;">Request Prepared!</div>
-        <div class="text-center text-base sm:text-lg mb-6 leading-relaxed" style="color: #111827 !important; font-weight: 600; font-family: 'Figtree', sans-serif !important;">Your project details have been formatted for our WhatsApp hotline (01917-354847). Click below to chat directly with our engineering team:</div>
+        <div class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2" style="color: #000000 !important; font-family: 'Figtree', sans-serif !important;">WhatsApp Message Ready</div>
+        <div class="text-center text-base sm:text-lg mb-6 leading-relaxed" style="color: #111827 !important; font-weight: 600; font-family: 'Figtree', sans-serif !important;">Your project details are ready for our WhatsApp hotline (01917-354847). Please press Send inside WhatsApp to deliver your enquiry. If WhatsApp did not open, use the button below:</div>
         <a id="modal-wa-btn" href="https://wa.me/8801917354847" target="_blank" rel="noopener noreferrer" class="w-full mb-3 py-3.5 px-6 rounded-full font-bold text-sm tracking-wide transition flex items-center justify-center gap-2 shadow-lg cursor-pointer" style="background-color: #25D366 !important; color: #ffffff !important; text-decoration: none;">
           <svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
           <span>Open in WhatsApp &rarr;</span>
@@ -3650,88 +3650,23 @@
     const waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(waText);
 
     // Synchronously open WhatsApp directly on user click
+    let whatsappOpened = false;
     try {
-      window.open(waUrl, '_blank');
+      const popup = window.open(waUrl, '_blank');
+      whatsappOpened = Boolean(popup);
     } catch(err) {
-      console.warn('Popup open error:', err);
+      console.warn('WhatsApp popup could not open:', err);
+    }
+    // Count intent only; no PII and no claim that WhatsApp message was sent.
+    try {
+      window.dispatchEvent(new CustomEvent('appiex:contact_prepared', { detail: { channel: 'whatsapp' } }));
+      if (whatsappOpened) window.dispatchEvent(new CustomEvent('appiex:whatsapp_handoff', { detail: { source: 'contact_form' } }));
+    } catch (err) {
+      // Analytics must not interrupt a project enquiry.
     }
 
-    // 2. Unified Inbox Record
-    const convId = 'conv_' + Date.now();
-    const newConversation = {
-      id: convId,
-      contactName: name,
-      company: name.split(' ')[0] + ' Enterprise',
-      email: email,
-      channel: 'Website Form',
-      subject: (checkedServices.length ? checkedServices.join(', ') : 'New Digital Engineering Request') + ' (' + checkedBudget + ')',
-      status: 'new',
-      priority: checkedBudget && (checkedBudget.includes('50') || checkedBudget.includes('30')) ? 'urgent' : 'high',
-      assignedTo: 'Adil Al Alim',
-      unreadCount: 1,
-      slaDueAt: new Date(Date.now() + 4 * 3600 * 1000).toISOString(),
-      lastMessageSnippet: mess.slice(0, 65) + (mess.length > 65 ? '...' : ''),
-      lastMessageAt: new Date().toISOString()
-    };
-
-    const newMessage = {
-      id: 'msg_' + Date.now(),
-      conversationId: convId,
-      sender: 'customer',
-      senderName: name,
-      body: mess + '\n\nSelected Services: ' + (checkedServices.join(', ') || 'Custom Digital Architecture') + '\nProject Budget: ' + checkedBudget,
-      timestamp: new Date().toISOString(),
-      status: 'delivered'
-    };
-
-    // 3. Leads CRM Record
-    let serviceInterest = 'Web Development';
-    if (checkedServices.some(function(s) { return /3d|ux|design|ui/i.test(s); })) serviceInterest = 'UI/UX & 3D Design';
-    else if (checkedServices.some(function(s) { return /strategy|branding/i.test(s); })) serviceInterest = 'Digital Strategy';
-    else if (checkedServices.some(function(s) { return /ai|automation/i.test(s); })) serviceInterest = 'AI Automation';
-
-    let expectedVal = 15000;
-    if (checkedBudget && checkedBudget.includes('20-30')) expectedVal = 25000;
-    else if (checkedBudget && checkedBudget.includes('30-50')) expectedVal = 40000;
-    else if (checkedBudget && (checkedBudget.includes('50') || checkedBudget.includes('+'))) expectedVal = 65000;
-
-    const newLead = {
-      id: 'lead_' + Date.now().toString().slice(-4),
-      name: name,
-      company: name.split(' ')[0] + ' Enterprise',
-      email: email,
-      phone: '',
-      country: 'Bangladesh / Global',
-      serviceInterest: serviceInterest,
-      budgetMin: Math.round(expectedVal * 0.8),
-      budgetMax: Math.round(expectedVal * 1.3),
-      currency: 'USD',
-      description: mess + (checkedServices.length ? ' [Services: ' + checkedServices.join(', ') + ']' : ''),
-      source: 'Direct',
-      stage: 'new',
-      score: 85,
-      owner: 'Adil Al Alim',
-      expectedValue: expectedVal,
-      probability: 45,
-      createdAt: new Date().toISOString(),
-      lastContactAt: new Date().toISOString(),
-      notes: 'Inquiry received via Appiex website home contact form'
-    };
-
-    // Save to shared localStorage for Appiex Admin OS
-    try {
-      const existingConvs = JSON.parse(localStorage.getItem('appiex_admin_conversations_v2') || '[]');
-      localStorage.setItem('appiex_admin_conversations_v2', JSON.stringify([newConversation, ...existingConvs]));
-
-      const existingMsgs = JSON.parse(localStorage.getItem('appiex_admin_messages_v2') || '{}');
-      existingMsgs[convId] = [newMessage];
-      localStorage.setItem('appiex_admin_messages_v2', JSON.stringify(existingMsgs));
-
-      const existingLeads = JSON.parse(localStorage.getItem('appiex_admin_leads_v2') || '[]');
-      localStorage.setItem('appiex_admin_leads_v2', JSON.stringify([newLead, ...existingLeads]));
-    } catch(err) {
-      console.warn('Admin OS local storage sync error:', err);
-    }
+    // No server-side inbox is configured. A visitor's local browser is
+    // not a shared CRM; the message is delivered only when sent in WhatsApp.
 
     const modalWaBtn = document.getElementById('modal-wa-btn');
     if (modalWaBtn) {
@@ -3742,7 +3677,7 @@
     if (modal && typeof modal.showModal === 'function') {
       modal.showModal();
     } else {
-      alert('Thank you! Your project details have been formatted and sent to our WhatsApp hotline.');
+      alert('Your WhatsApp message is ready. Please open WhatsApp and press Send to deliver your enquiry.');
     }
     e.target.reset();
     const list = document.getElementById('attachment-list');

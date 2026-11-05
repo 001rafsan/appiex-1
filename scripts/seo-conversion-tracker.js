@@ -1,13 +1,10 @@
 /**
  * Appiex SEO & Lead Conversion Analytics Tracker (GA4 / GTM DataLayer)
- * Tracks the 7 commercial conversion events without collecting any PII:
- * - generate_lead
- * - form_start
- * - form_submit
- * - click_email
- * - click_whatsapp
- * - book_consultation
- * - view_case_study
+ * Tracks engagement and WhatsApp handoff without collecting personal data.
+ * Events: form_start, form_submit, contact_form_prepared,
+ * click_email, click_whatsapp, contact_cta_click, view_case_study.
+ * generate_lead requires a confirmed server-side/CRM receipt and is
+ * intentionally not emitted from this client-only WhatsApp flow.
  */
 (function () {
   'use strict';
@@ -83,30 +80,21 @@ try {
       { passive: true }
     );
 
-    // 2. form_submit & generate_lead (fires on form submission without sending PII)
-    document.addEventListener(
-      'submit',
-      function (e) {
-        var form = e.target;
-        if (!form || form.tagName !== 'FORM') return;
-        var formId = form.id || form.getAttribute('name') || 'project_inquiry_form';
+    // 2. Form submission is an attempt, not a confirmed lead.
+    document.addEventListener('submit', function (e) {
+      var form = e.target;
+      if (!form || form.tagName !== 'FORM') return;
+      var id = form.id || form.getAttribute('name') || 'project_inquiry_form';
+      if (/login|search|filter/i.test(id + ' ' + (form.action || ''))) return;
+      trackConversionEvent('form_submit', { form_id: id });
+    }, { passive: true });
 
-        // Exclude search/login forms from generate_lead
-        var isAuthOrSearch = /login|search|filter/i.test(formId + ' ' + (form.action || ''));
-        trackConversionEvent('form_submit', {
-          form_id: formId
-        });
-
-        if (!isAuthOrSearch) {
-          trackConversionEvent('generate_lead', {
-            lead_source: formId,
-            currency: 'USD',
-            value: 1
-          });
-        }
-      },
-      { passive: true }
-    );
+    window.addEventListener('appiex:contact_prepared', function () {
+      trackConversionEvent('contact_form_prepared', { channel: 'whatsapp' });
+    });
+    window.addEventListener('appiex:whatsapp_handoff', function () {
+      trackConversionEvent('click_whatsapp', { cta_location: '/#contact', interaction_type: 'window_open' });
+    });
 
     // 3. Delegated click tracking for email, WhatsApp, consultation CTAs, and case studies
     document.addEventListener(
@@ -157,13 +145,13 @@ if (href.indexOf('mailto:') === 0) {
           return;
         }
 
-        // book_consultation
+        // CTA click indicates interest, not a confirmed consultation
         if (
           href.indexOf('#contact') !== -1 ||
           href.indexOf('/contact') !== -1 ||
           /book|consult|start a project|discuss|get a quote|strategy call|inquire/i.test(text)
         ) {
-          trackConversionEvent('book_consultation', {
+          trackConversionEvent('contact_cta_click', {
             destination_url: href || '#contact',
             cta_text: text || 'Book Consultation'
           });

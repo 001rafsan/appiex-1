@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+
+const home = fs.readFileSync('index.html', 'utf8');
+const tracker = fs.readFileSync('scripts/seo-conversion-tracker.js', 'utf8');
+const a = home.indexOf('function handleContactSubmit(e)');
+const b = home.indexOf('</script>', a);
+assert(a >= 0 && b > a, 'Contact form handler missing');
+const handler = home.slice(a, b);
+new vm.Script(handler);
+new vm.Script(tracker);
+assert(handler.includes('appiex:contact_prepared'), 'Missing contact prepared event');
+assert(handler.includes('appiex:whatsapp_handoff'), 'Missing WhatsApp handoff');
+assert(handler.includes('modal-wa-btn'), 'WhatsApp fallback missing');
+assert(!/localStorage\.(getItem|setItem)/.test(handler), 'Visitor PII should not be stored in browser CRM');
+assert(!handler.includes("status: 'delivered'"), 'Unsent draft must not appear delivered');
+assert(!tracker.includes("trackConversionEvent('generate_lead'"), 'Confirmed lead must require server-side receipt');
+assert(!tracker.includes("trackConversionEvent('book_consultation'"), 'CTA click must not count as booking');
+assert(tracker.includes("trackConversionEvent('contact_cta_click'"), 'Click intent event missing');
+assert(home.includes('Please press Send inside WhatsApp'), 'Send instructions missing');
+console.log('Lead event integrity checks passed');

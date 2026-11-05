@@ -1,0 +1,43 @@
+name: Verify live Appiex SEO deployment
+
+# Non-destructive smoke test of production. Run it manually after a deploy;
+# the daily schedule detects when production drifts from reviewed SEO content.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+
+jobs:
+  production-seo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check production homepage, sitemap, robots and priority article
+        shell: bash
+        run: |
+          set -euo pipefail
+          fetch() {
+            curl --fail --silent --show-error --location \
+              --retry 2 --max-time 25 -H "Cache-Control: no-cache" "$1" -o "$2"
+          }
+          fetch "https://appiex.com/" /tmp/home.html
+          fetch "https://appiex.com/sitemap.xml" /tmp/sitemap.xml
+          fetch "https://appiex.com/robots.txt" /tmp/robots.txt
+          fetch "https://appiex.com/blog/ai-agents-vs-n8n-automation-for-business" /tmp/guide.html
+          if ! grep -Eq 'Custom Websites (\&amp;|\&) AI Automation' /tmp/home.html; then
+            echo "::error::Live homepage still uses older copy. Check Vercel production project, GitHub branch and domain assignment."
+            exit 1
+          fi
+          if ! grep -Fq 'https://appiex.com/blog/ai-agents-vs-n8n-automation-for-business' /tmp/sitemap.xml; then
+            echo "::error::The latest indexed buyer guide is missing from the live sitemap."
+            exit 1
+          fi
+          if ! grep -Fq 'Sitemap: https://appiex.com/sitemap.xml' /tmp/robots.txt; then
+            echo "::error::robots.txt does not advertise the correct sitemap."
+            exit 1
+          fi
+          if ! grep -Fq 'AI Agents vs n8n' /tmp/guide.html; then
+            echo "::error::The new AI/n8n guide is not live as expected."
+            exit 1
+          fi
+          echo "Live SEO deployment checks passed. This does NOT prove indexing or rankings."
