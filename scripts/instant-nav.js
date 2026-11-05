@@ -53,6 +53,23 @@
         ::view-transition-old(root) {
           animation: appiexVtFadeOut 0.04s ease-out both !important;
         }
+        
+        .services-nav-wrap.services-closed .services-popup-menu,
+        .services-nav-wrap.services-closed .services-caret {
+          display: none !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
+          transform: none !important;
+        }
+        .CtaButton.-fill.-inverse,
+        .CtaButton.-inverse,
+        .CtaButton.-fill.-inverse .title span,
+        .CtaButton.-inverse .title span,
+        [data-astro-cid-s6shze65].-fill.-inverse .title span {
+          color: #000000 !important;
+        }
+  
         ::view-transition-new(root) {
           animation: appiexVtFadeIn 0.06s ease-out both !important;
         }
@@ -132,7 +149,10 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       revealArrivingPage();
-      ensureMobileNavigation();
+      
+    ensureMobileNavigation();
+    if (typeof initMegaMenuDismissal === 'function') initMegaMenuDismissal();
+
     });
   } else {
     revealArrivingPage();
@@ -1137,7 +1157,7 @@
       spec.type = 'speculationrules';
       spec.id = 'appiex-clean-speculation-rules';
       spec.textContent = JSON.stringify({
-        prerender: [
+        prefetch: [
           {
             source: 'list',
             urls: [
@@ -1297,6 +1317,42 @@
     }
   }
 
+  
+  function initMegaMenuDismissal() {
+    try {
+      document.querySelectorAll('.services-popup-menu a, .rafsan-nav-item, .services-mega-btn').forEach(link => {
+        link.addEventListener('click', () => {
+          const wrap = document.getElementById('services-nav-wrap');
+          if (wrap) {
+            wrap.classList.add('services-closed');
+            wrap.classList.remove('is-open');
+          }
+          const popup = document.getElementById('services-popup-menu');
+          if (popup) {
+            popup.style.setProperty('display', 'none', 'important');
+            popup.style.setProperty('opacity', '0', 'important');
+            popup.style.setProperty('visibility', 'hidden', 'important');
+            popup.style.setProperty('pointer-events', 'none', 'important');
+          }
+        });
+      });
+
+      const wrap = document.getElementById('services-nav-wrap');
+      if (wrap) {
+        wrap.addEventListener('mouseleave', () => {
+          wrap.classList.remove('services-closed');
+          const popup = document.getElementById('services-popup-menu');
+          if (popup) {
+            popup.style.removeProperty('display');
+            popup.style.removeProperty('opacity');
+            popup.style.removeProperty('visibility');
+            popup.style.removeProperty('pointer-events');
+          }
+        });
+      }
+    } catch(e) {}
+  }
+  
   // Idle Prefetch Top Pages into Memory Cache
   if (typeof window !== 'undefined') {
     const idlePrefetch = () => {
