@@ -40,8 +40,17 @@ jobs:
       - name: Verify deployment access (no credential values printed)
         shell: bash
         run: |
-          if [[ -z "$VERCEL_TOKEN" || -z "$VERCEL_ORG_ID" || -z "$VERCEL_PROJECT_ID" ]]; then
-            echo "::error::Vercel deployment is not connected to this GitHub repository. Set GitHub Actions secrets VERCEL_TOKEN, VERCEL_ORG_ID and VERCEL_PROJECT_ID for the actual appiex.com production project, or connect the repository in Vercel."
+          missing=0
+          for setting in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [[ -z "${!setting}" ]]; then
+              echo "::warning::Missing ${setting} GitHub Actions secret"
+              missing=1
+            else
+              echo "${setting} is configured (value hidden)"
+            fi
+          done
+          if [[ "$missing" == 1 ]]; then
+            echo "::error::Vercel deployment is not connected to this GitHub repository. Configure the missing GitHub Actions secrets for the actual appiex.com production project, or connect the repository in Vercel."
             echo "## Deployment blocked" >> "$GITHUB_STEP_SUMMARY"
             echo "Vercel credentials/project linkage are missing. No production changes were made." >> "$GITHUB_STEP_SUMMARY"
             exit 1
