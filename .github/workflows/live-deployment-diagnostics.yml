@@ -11,6 +11,9 @@ on:
       - 'src/lib/appiex-html-polish.mjs'
       - 'styles/appiex-editorial-polish.css'
       - 'vercel.json'
+      - 'index.html'
+      - 'blog/**'
+      - 'scripts/check-editorial-renderer.mjs'
 
 permissions:
   contents: read
