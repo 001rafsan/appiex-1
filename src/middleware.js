@@ -44,6 +44,7 @@ export function middleware(request) {
         }
       });
     }
+    return NextResponse.next({ headers: secureHeaders });
   }
 
   // Block sensitive dotfiles or backup extensions (OWASP / Cloudflare Security)
