@@ -648,46 +648,6 @@
 
 </style>
   <!-- Instant 0.1s Sub-Second Navigation Engine -->
-  <script type="speculationrules">
-  {
-    "prerender": [
-      {
-        "source": "list",
-        "urls": [
-          "/",
-          "/projects",
-          "/services",
-          "/refer",
-          "/partners",
-          "/case-studies",
-          "/web-development",
-          "/ui-ux-3d-design",
-          "/ai-automation",
-          "/seo-marketing",
-          "/digital-strategy",
-          "/blog",
-          "/login",
-          "/team"
-        ],
-        "eagerness": "immediate"
-      },
-      {
-        "source": "document",
-        "where": {
-          "and": [
-            { "href_matches": "/*" },
-            { "not": { "href_matches": "/admin*" } },
-            { "not": { "href_matches": "/gaming*" } }
-          ]
-        },
-        "eagerness": "moderate"
-      }
-    ]
-  }
-  </script>
-  
-  
-  
   <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
   <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
   <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight with Smooth Fadeout) -->
@@ -702,7 +662,7 @@
     ::view-transition-new(root) { animation: none !important; }
     #appiex-cuberto-curtain { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
   </style>
-  <script src="/scripts/instant-nav.js?v=20261105_v4_perf" defer></script>
+  <script src="/scripts/instant-nav.js?v=20261105_v5_speed" defer></script>
 
 <style>
 @media (min-width: 768px) {
@@ -1569,9 +1529,9 @@
   </footer>
 
   <!-- Runtime Libraries: GSAP, ScrollTrigger, Lenis -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 
   <!-- Interactive Scripts & Lenis Smooth Scroll Engine -->
   <script>

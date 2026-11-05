@@ -4,7 +4,8 @@
 // DELETE /api/visitors   -> admin only: wipe all history (fresh reset)
 import fs from 'fs';
 
-const ADMIN_KEY = process.env.ADMIN_KEY || 'rtx5090';
+import crypto from 'crypto';
+const ADMIN_KEY = process.env.ADMIN_KEY || (process.env.NODE_ENV === 'production' ? crypto.randomBytes(32).toString('hex') : 'appiex_dev_secret_local');
 // --- OWASP / CLOUDFLARE SECURITY HARDENING ---
 const rateLimitMap = new Map();
 const authFailMap = new Map();

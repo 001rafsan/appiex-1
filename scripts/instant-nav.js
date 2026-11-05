@@ -54,6 +54,14 @@
           animation: appiexVtFadeOut 0.04s ease-out both !important;
         }
         
+        
+        @media (max-width: 768px) {
+          .bg-video-fixed {
+            filter: none !important;
+            opacity: 0.35 !important;
+          }
+        }
+
         .services-nav-wrap.services-closed .services-popup-menu,
         .services-nav-wrap.services-closed .services-caret {
           display: none !important;

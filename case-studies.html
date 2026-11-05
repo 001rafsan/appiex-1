@@ -1255,46 +1255,6 @@
      ======================================================== */
 </style>
   <!-- Instant 0.1s Sub-Second Navigation Engine -->
-  <script type="speculationrules">
-  {
-    "prerender": [
-      {
-        "source": "list",
-        "urls": [
-          "/",
-          "/projects",
-          "/services",
-          "/refer",
-          "/partners",
-          "/case-studies",
-          "/web-development",
-          "/ui-ux-3d-design",
-          "/ai-automation",
-          "/seo-marketing",
-          "/digital-strategy",
-          "/blog",
-          "/login",
-          "/team"
-        ],
-        "eagerness": "immediate"
-      },
-      {
-        "source": "document",
-        "where": {
-          "and": [
-            { "href_matches": "/*" },
-            { "not": { "href_matches": "/admin*" } },
-            { "not": { "href_matches": "/gaming*" } }
-          ]
-        },
-        "eagerness": "moderate"
-      }
-    ]
-  }
-  </script>
-  
-  
-  
   <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
   <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight) -->
   <!-- Cuberto Curtain Stylesheet (Appiex Red Ambient Spotlight with Smooth Fadeout) -->
@@ -1309,7 +1269,7 @@
     ::view-transition-new(root) { animation: none !important; }
     #appiex-cuberto-curtain { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
   </style>
-  <script src="/scripts/instant-nav.js?v=20261105_v4_perf" defer></script>
+  <script src="/scripts/instant-nav.js?v=20261105_v5_speed" defer></script>
 
 
 <script>
@@ -1971,7 +1931,7 @@
 
 
 <!-- APPIEX Enterprise Media & Video Engine Integration for Case Studies -->
-<script src="./scripts/video-storage-engine.js"></script>
+<script src="./scripts/video-storage-engine.js" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', async () => {
     try {

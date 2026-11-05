@@ -500,43 +500,6 @@
 </style>
 
   <!-- Speculation Rules for Instant 0.1s Sub-Second Preloading -->
-  <script type="speculationrules">
-  {
-    "prerender": [
-      {
-        "source": "list",
-        "urls": [
-          "/",
-          "/projects",
-          "/services",
-          "/refer",
-          "/partners",
-          "/case-studies",
-          "/web-development",
-          "/ui-ux-3d-design",
-          "/ai-automation",
-          "/seo-marketing",
-          "/digital-strategy",
-          "/blog",
-          "/login",
-          "/team"
-        ],
-        "eagerness": "immediate"
-      },
-      {
-        "source": "document",
-        "where": {
-          "and": [
-            { "href_matches": "/*" },
-            { "not": { "href_matches": "/admin*" } },
-            { "not": { "href_matches": "/gaming*" } }
-          ]
-        },
-        "eagerness": "moderate"
-      }
-    ]
-  }
-  </script>
   <link rel="stylesheet" href="/styles/seo-links.css?v=20261031_restore">
 
   <!-- Buttery Smooth Page Transition Engine (Pre-Paint Curtain Hold + View Transitions) -->
@@ -547,7 +510,7 @@
     ::view-transition-new(root) { animation: none !important; }
     #appiex-cuberto-curtain { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
   </style>
-  <script src="/scripts/instant-nav.js?v=20261105_v4_perf" defer></script>
+  <script src="/scripts/instant-nav.js?v=20261105_v5_speed" defer></script>
 
   <style>.BlogSection { padding-top: 120px !important; }</style>
 <style>
@@ -1871,7 +1834,7 @@
 
 <nav id="site-explore-links" class="seo-site-links" aria-label="Explore Appiex"><div class="seo-site-links__inner"><p class="seo-site-links__label">Explore Appiex</p><a href="/">Home</a><a href="/services">Services</a><a href="/web-development">Web Development</a><a href="/ui-ux-3d-design">UI/UX &amp; 3D</a><a href="/seo-marketing">SEO</a><a href="/ai-automation">AI Automation</a><a href="/projects">Projects</a><a href="/case-studies">Case Studies</a><a href="/team">Team</a><a href="/partners">Partners</a></div></nav>
 
-  <script src="/scripts/visitor-tracker.js?v=20261029_v5" defer></script>
+  <script src="/scripts/visitor-tracker.js?v=20261029_v5" defer defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // 1. Live Search Filter
