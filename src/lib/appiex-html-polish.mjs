@@ -7,6 +7,7 @@ const BLOG_HUBS = new Set([
 
 function appendBodyClass(html, className) {
   return html.replace(/<body\b([^>]*)>/i, (tag, attrs) => {
+    if (tag.includes(className)) return tag;
     if (/\bclass\s*=/i.test(attrs)) {
       return tag.replace(/\bclass\s*=\s*(["'])(.*?)\1/i, (_match, quote, classes) =>
         'class=' + quote + classes + ' ' + className + quote);
@@ -30,8 +31,10 @@ export function improveHtml(html, slug) {
   if (!isHomepage && !isBlog) return html;
 
   // This shared stylesheet is copied into public/styles by sync-nextjs-public.mjs.
-  html = html.replace(/<\/head>/i,
-    '  <link rel="stylesheet" href="/styles/appiex-editorial-polish.css?v=20261106">\n</head>');
+  if (!html.includes('appiex-editorial-polish.css')) {
+    html = html.replace(/<\/head>/i,
+      '  <link rel="stylesheet" href="/styles/appiex-editorial-polish.css?v=20261106">\n</head>');
+  }
 
   if (isHomepage) {
     html = appendBodyClass(html, 'appiex-home-polished');
@@ -103,10 +106,14 @@ export function improveHtml(html, slug) {
   }
 
   // The meter is present in the HTML but performs no tracking or requests.
-  html = html.replace(/<body\b[^>]*>/i, match => match +
-    '\n<div class="appiex-reading-meter" aria-hidden="true"><span></span></div>');
-  html = html.replace(/<\/body>/i,
-    '  <script src="/scripts/appiex-reading-progress.js" defer></script>\n</body>');
+  if (!html.includes('class="appiex-reading-meter"')) {
+    html = html.replace(/<body\b[^>]*>/i, match => match +
+      '\n<div class="appiex-reading-meter" aria-hidden="true"><span></span></div>');
+  }
+  if (!html.includes('appiex-reading-progress.js')) {
+    html = html.replace(/<\/body>/i,
+      '  <script src="/scripts/appiex-reading-progress.js" defer></script>\n</body>');
+  }
   return html;
 }
 
