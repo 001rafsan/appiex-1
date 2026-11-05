@@ -35,9 +35,21 @@ const nextConfig = {
         destination: '/:path+',
         permanent: true
       },
+      // The middleware normalizes general legacy .html URLs, preserving Google verification.
+      // Keep explicit endpoint and high-value migrations ahead of filesystem routing.
       {
-        source: '/:path((?!google[a-zA-Z0-9]+).+)\\.html',
-        destination: '/:path',
+        source: '/api/visitors.js',
+        destination: '/api/visitors',
+        permanent: true
+      },
+      {
+        source: '/pages/product-design.html',
+        destination: '/ui-ux-3d-design',
+        permanent: true
+      },
+      {
+        source: '/pages/contacts.html',
+        destination: '/#contact',
         permanent: true
       },
       {
