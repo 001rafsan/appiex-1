@@ -9,6 +9,9 @@ on:
       - 'sitemap.xml'
       - 'scripts/check-blog-seo.mjs'
       - '.github/workflows/blog-seo-check.yml'
+      - 'seo-marketing.html'
+      - 'best-software-agency.html'
+      - 'scripts/check-site-seo.mjs'
       - 'scripts/seo-conversion-tracker.js'
       - 'scripts/check-lead-tracking.mjs'
   push:
@@ -18,6 +21,9 @@ on:
       - 'blog.html'
       - 'sitemap.xml'
       - 'scripts/check-blog-seo.mjs'
+      - 'scripts/check-site-seo.mjs'
+      - 'seo-marketing.html'
+      - 'best-software-agency.html'
       - 'scripts/seo-conversion-tracker.js'
       - 'scripts/check-lead-tracking.mjs'
       - 'index.html'
@@ -55,3 +61,13 @@ jobs:
           node-version: '22'
       - name: Check conversion events and contact form syntax
         run: node scripts/check-lead-tracking.mjs
+
+  site-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical sitemap URLs, metadata and JSON-LD
+        run: node scripts/check-site-seo.mjs

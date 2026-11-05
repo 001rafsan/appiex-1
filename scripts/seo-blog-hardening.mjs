@@ -36,7 +36,7 @@ const priorityDescriptions = {
   'ai-automation-for-small-businesses': 'A practical guide to choosing small-business AI automations, mapping workflows, keeping human approvals and measuring operating value without inflated promises.',
   'custom-software-vs-saas-which-is-better': 'Compare custom software and SaaS by ownership, implementation time, integration limits, security responsibilities and long-term operating cost.',
   'shopify-vs-custom-ecommerce-development': 'A buyer-focused comparison of Shopify and custom commerce across launch speed, extensibility, operations, checkout constraints and total cost.',
-  'technical-seo-checklist-for-business-websites': 'A technical SEO checklist for crawlability, canonical URLs, sitemaps, structured data, Core Web Vitals and Search Console verification.',
+  'technical-seo-checklist-for-business-websites': 'Check indexing, canonical URLs, sitemap validity, JavaScript rendering, internal links and Core Web Vitals with a practical technical SEO checklist for 2026.',
   'how-to-choose-a-software-development-agency': 'A due-diligence framework for evaluating a software agency, validating evidence, defining ownership and comparing proposals on equal terms.',
   'how-to-automate-customer-support-with-ai': 'Plan AI customer-support automation with source grounding, escalation rules, privacy controls, quality review and measurable service targets.',
   'complete-guide-to-custom-software-development': 'A practical guide to custom software discovery, architecture, delivery, testing, ownership, maintenance and supplier evaluation.',
