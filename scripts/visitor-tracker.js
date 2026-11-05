@@ -11,7 +11,7 @@
   var VISITOR_ID_KEY = 'appiex_visitor_uuid';
   var SESSION_ID_KEY = 'appiex_session_uuid';
   var PURGE_FLAG_KEY = 'appiex_clean_v5_applied';
-  var API_URL = '/api/visitors.js';
+  var API_URL = '/api/visitors';
 
   // Skip tracking on the admin dashboard itself or for automated search crawlers
   if (/^\/admin/.test(window.location.pathname)) return;
