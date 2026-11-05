@@ -11,7 +11,11 @@ const prioritySlugs = new Set([
   'technical-seo-checklist-for-business-websites',
   'how-to-choose-a-software-development-agency',
   'how-to-automate-customer-support-with-ai',
-  'complete-guide-to-custom-software-development'
+  'complete-guide-to-custom-software-development',
+  'website-development-cost-bangladesh',
+  'how-much-does-ai-automation-cost',
+  'how-long-does-it-take-to-build-a-saas-product',
+  'website-redesign-process'
 ]);
 
 const authorByUrl = {
@@ -34,7 +38,11 @@ const priorityDescriptions = {
   'technical-seo-checklist-for-business-websites': 'A technical SEO checklist for crawlability, canonical URLs, sitemaps, structured data, Core Web Vitals and Search Console verification.',
   'how-to-choose-a-software-development-agency': 'A due-diligence framework for evaluating a software agency, validating evidence, defining ownership and comparing proposals on equal terms.',
   'how-to-automate-customer-support-with-ai': 'Plan AI customer-support automation with source grounding, escalation rules, privacy controls, quality review and measurable service targets.',
-  'complete-guide-to-custom-software-development': 'A practical guide to custom software discovery, architecture, delivery, testing, ownership, maintenance and supplier evaluation.'
+  'complete-guide-to-custom-software-development': 'A practical guide to custom software discovery, architecture, delivery, testing, ownership, maintenance and supplier evaluation.',
+  'how-much-does-ai-automation-cost': 'Plan setup, API usage, hosting, integration and human review costs using a worked AI automation budget example.',
+  'how-long-does-it-take-to-build-a-saas-product': 'A practical SaaS MVP timeline with discovery, permissions, billing integration, testing and launch milestones.',
+  'website-redesign-process': 'Plan an SEO-safe redesign with a page inventory, permanent redirects, mobile testing, analytics and post-launch checks.',
+  'website-development-cost-bangladesh': 'Compare indicative website development costs in Bangladesh and prepare a clear project quotation.'
 };
 
 const excluded = new Set([
@@ -155,7 +163,10 @@ fs.writeFileSync(blogIndexFile, blogIndex, 'utf8');
 
 const sitemapFile = path.join(root, 'sitemap.xml');
 let sitemap = fs.readFileSync(sitemapFile, 'utf8');
-sitemap = sitemap.replace(/\s*<url>[\s\S]*?<loc>https:\/\/appiex\.com\/blog\/([^<]+)<\/loc>[\s\S]*?<\/url>/g, (block, slug) => {
+sitemap = sitemap.replace(/<url>[\s\S]*?<\/url>/g, (block) => {
+  const match = block.match(/<loc>https:\/\/appiex\.com\/blog\/([^<]+)<\/loc>/);
+  if (!match) return block;
+  const slug = match[1];
   const category = ['ai-automation', 'digital-strategy', 'seo-marketing', 'ui-ux-3d-design', 'web-development', 'gaming-3d-worlds'].includes(slug);
   return category || prioritySlugs.has(slug) ? block : '';
 });

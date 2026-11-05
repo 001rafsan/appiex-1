@@ -1,0 +1,42 @@
+name: Blog SEO checks
+on:
+  pull_request:
+    paths:
+      - 'blog/**'
+      - 'blog.html'
+      - 'index.html'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'scripts/check-blog-seo.mjs'
+      - '.github/workflows/blog-seo-check.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'blog/**'
+      - 'blog.html'
+      - 'sitemap.xml'
+      - 'scripts/check-blog-seo.mjs'
+jobs:
+  blog-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate blog indexability and sitemap
+        run: node scripts/check-blog-seo.mjs
+
+  nextjs-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install dependencies using Vercel-compatible npm install
+        run: npm install --no-audit --no-fund
+      - name: Build Next.js production bundle
+        run: npm run build
