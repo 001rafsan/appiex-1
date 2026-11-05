@@ -5,6 +5,8 @@ on:
       - 'blog/**'
       - 'blog.html'
       - 'index.html'
+      - 'vercel.json'
+      - 'scripts/check-vercel-next-config.mjs'
       - 'src/app/**'
       - 'src/lib/**'
       - 'styles/appiex-editorial-polish.css'
@@ -32,6 +34,8 @@ on:
       - 'scripts/seo-conversion-tracker.js'
       - 'scripts/check-lead-tracking.mjs'
       - 'index.html'
+      - 'vercel.json'
+      - 'scripts/check-vercel-next-config.mjs'
       - 'src/app/**'
       - 'src/lib/**'
       - 'styles/appiex-editorial-polish.css'
@@ -47,6 +51,8 @@ jobs:
           node-version: '22'
       - name: Validate blog indexability and sitemap
         run: node scripts/check-blog-seo.mjs
+      - name: Guard against old static Vercel configuration
+        run: node scripts/check-vercel-next-config.mjs
       - name: Check all blog HTML against shared editorial renderer
         run: node scripts/check-editorial-renderer.mjs
       - name: Check JavaScript syntax

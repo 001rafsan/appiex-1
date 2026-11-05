@@ -1,0 +1,74 @@
+name: Appiex live deployment diagnostics
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - fix/live-deploy-diagnostics-20261106
+    paths:
+      - '.github/workflows/live-deployment-diagnostics.yml'
+      - 'src/lib/appiex-html-polish.mjs'
+      - 'styles/appiex-editorial-polish.css'
+      - 'vercel.json'
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect deployed HTML, CSS and article response
+        shell: bash
+        run: |
+          set -u
+          echo "Repository revision: ${GITHUB_SHA}"
+          cat > /tmp/inspect.sh <<'SH'
+          inspect() {
+            local label="$1"
+            local url="$2"
+            local outfile="/tmp/appiex-${label}.body"
+            local headers="/tmp/appiex-${label}.headers"
+            local code
+            code=$(curl -sS -L --max-time 30 --retry 2 \
+              -A 'Appiex-Deployment-Diagnostics/1.0' \
+              -H 'Cache-Control: no-cache' \
+              -D "$headers" -o "$outfile" \
+              -w '%{http_code}' "$url") || code="CONNECTION_FAILED"
+            echo "### ${label}"
+            echo "URL: ${url}"
+            echo "HTTP: ${code}"
+            if test -f "$headers"; then
+              grep -Ei '^(HTTP/|x-vercel-id:|x-vercel-cache:|x-matched-path:|x-powered-by:|server:|age:|cache-control:|x-robots-tag:|location:)' "$headers" | tail -18 || true
+            fi
+            if test -f "$outfile"; then
+              echo "Bytes: $(wc -c < "$outfile")"
+              echo "Shared design CSS reference: $(grep -c 'appiex-editorial-polish.css' "$outfile" || true)"
+              echo "Updated homepage heading: $(grep -c 'Web Development, AI Automation &amp; Pricing Guides' "$outfile" || true)"
+              echo "Homepage polish class: $(grep -c 'appiex-home-polished' "$outfile" || true)"
+              echo "Old homepage title: $(grep -c 'Explore Dedicated Solutions &amp; Pricing Guides' "$outfile" || true)"
+              echo "Blog reading progress class: $(grep -c 'appiex-reading-meter' "$outfile" || true)"
+              echo "Legacy wrong H1 snippet: $(grep -c 'Complete</span>.*Guide' "$outfile" || true)"
+            fi
+            echo
+          }
+          SH
+          source /tmp/inspect.sh
+          inspect home "https://appiex.com/?appiex_check=${GITHUB_SHA}"
+          inspect www "https://www.appiex.com/?appiex_check=${GITHUB_SHA}"
+          inspect css "https://appiex.com/styles/appiex-editorial-polish.css?appiex_check=${GITHUB_SHA}"
+          inspect guide "https://appiex.com/blog/ai-agents-vs-n8n-automation-for-business?appiex_check=${GITHUB_SHA}"
+          inspect legacy "https://appiex.com/blog/how-we-reduced-website-load-time-5-2s-to-1-4s?appiex_check=${GITHUB_SHA}"
+          echo "## Production diagnosis" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Repository SHA: \`${GITHUB_SHA}\`" >> "$GITHUB_STEP_SUMMARY"
+          if grep -q 'appiex-home-polished' /tmp/appiex-home.body 2>/dev/null &&
+             grep -q 'appiex-reading-meter' /tmp/appiex-guide.body 2>/dev/null &&
+             grep -q 'Appiex 2026 polish' /tmp/appiex-css.body 2>/dev/null; then
+            echo "- **PASS:** Live home, article and CSS contain the current shared renderer." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- **DRIFT:** Production does not contain the deployed renderer and CSS; inspect Vercel project Git integration, production branch, latest deployment, build output, and domain assignment." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "- Review diagnostic logs for HTTP status and Vercel response headers." >> "$GITHUB_STEP_SUMMARY"
