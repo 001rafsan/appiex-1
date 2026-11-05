@@ -4433,10 +4433,10 @@
 
 
   <!-- BACKDROP OVERLAY FOR MODALS -->
-  <div id="modal-overlay" onclick="closeProductModal()"></div>
+  <div id="modal-overlay" onclick="closeProductModal()" style="display: none !important;"></div>
 
   <!-- PRODUCT DETAILS & ARCHITECTURE MODAL (PIC 5) -->
-  <div id="product-details-modal" role="dialog" aria-modal="true" aria-label="Project details" class="p-6 md:p-8 text-white">
+  <div id="product-details-modal" role="dialog" aria-modal="true" aria-label="Project details" class="p-6 md:p-8 text-white" style="display: none !important;">
     <!-- Header -->
     <div class="flex items-start justify-between pb-4 border-b border-white/10 mb-4">
       <div>
@@ -4688,14 +4688,22 @@
       // Open
       overlay.classList.add('open');
       modal.classList.add('open');
+      overlay.style.setProperty('display', 'block', 'important');
+      modal.style.setProperty('display', 'block', 'important');
       document.body.style.overflow = 'hidden';
     }
 
     function closeProductModal() {
       const modal = document.getElementById('product-details-modal');
       const overlay = document.getElementById('modal-overlay');
-      if (modal) modal.classList.remove('open');
-      if (overlay) overlay.classList.remove('open');
+      if (modal) {
+        modal.classList.remove('open');
+        modal.style.setProperty('display', 'none', 'important');
+      }
+      if (overlay) {
+        overlay.classList.remove('open');
+        overlay.style.setProperty('display', 'none', 'important');
+      }
       document.body.style.overflow = '';
     }
 

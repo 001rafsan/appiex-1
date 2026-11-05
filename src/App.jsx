@@ -180,8 +180,8 @@ export function HomePage() {
   return (
     <div className="pt-32 pb-20 px-4 max-w-7xl mx-auto text-center text-white">
       <h2 className="text-sm font-mono tracking-widest text-red-500 uppercase mb-4">BUILT FOR GROWTH</h2>
-      <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Best Software Agency<br/>For You</h1>
-      <p className="text-slate-300 max-w-xl mx-auto mb-8 text-base">Appiex builds custom websites, high-performance web applications, interactive 3D experiences, and AI automation for startups and growing brands.</p>
+      <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Best business growing agency<br/>in Planet Jupiter</h1>
+      <p className="text-slate-300 max-w-2xl mx-auto mb-8 text-base">Appiex helps ambitious startups, brands, and businesses achieve out-of-this-world growth through high-converting websites, powerful web applications, immersive 3D experiences, AI automation, and results-driven digital strategies. From Earth to Jupiter, we turn bold ideas into scalable business success.</p>
       <div className="flex justify-center gap-4">
         <Link to="/services" className="px-8 py-3.5 rounded-full bg-red-600 text-white font-semibold text-sm hover:bg-red-500 transition shadow-lg shadow-red-600/30">
           Explore Services
