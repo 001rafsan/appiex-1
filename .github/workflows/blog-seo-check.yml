@@ -5,6 +5,11 @@ on:
       - 'blog/**'
       - 'blog.html'
       - 'index.html'
+      - 'src/app/**'
+      - 'src/lib/**'
+      - 'styles/appiex-editorial-polish.css'
+      - 'scripts/appiex-reading-progress.js'
+      - 'scripts/check-editorial-renderer.mjs'
       - 'robots.txt'
       - 'sitemap.xml'
       - 'scripts/check-blog-seo.mjs'
@@ -27,6 +32,11 @@ on:
       - 'scripts/seo-conversion-tracker.js'
       - 'scripts/check-lead-tracking.mjs'
       - 'index.html'
+      - 'src/app/**'
+      - 'src/lib/**'
+      - 'styles/appiex-editorial-polish.css'
+      - 'scripts/appiex-reading-progress.js'
+      - 'scripts/check-editorial-renderer.mjs'
 jobs:
   blog-seo:
     runs-on: ubuntu-latest
@@ -37,6 +47,13 @@ jobs:
           node-version: '22'
       - name: Validate blog indexability and sitemap
         run: node scripts/check-blog-seo.mjs
+      - name: Check all blog HTML against shared editorial renderer
+        run: node scripts/check-editorial-renderer.mjs
+      - name: Check JavaScript syntax
+        run: |
+          node --check 'src/app/[[...slug]]/route.js'
+          node --check src/lib/appiex-html-polish.mjs
+          node --check scripts/appiex-reading-progress.js
 
   nextjs-build:
     runs-on: ubuntu-latest

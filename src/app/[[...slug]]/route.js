@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { NextResponse } from 'next/server';
+import { improveHtml } from '../../lib/appiex-html-polish.mjs';
 
 export const runtime = 'nodejs';
 
@@ -39,6 +40,7 @@ function resolveHtmlPath(slugArray) {
   return null;
 }
 
+
 export async function GET(request, context) {
   const params = await context.params;
   const slug = (params && params.slug) ? params.slug : [];
@@ -52,7 +54,7 @@ export async function GET(request, context) {
   const htmlFile = resolveHtmlPath(slug);
 
   if (htmlFile) {
-    const htmlContent = fs.readFileSync(htmlFile, 'utf8');
+    const htmlContent = improveHtml(fs.readFileSync(htmlFile, 'utf8'), slug);
     return new NextResponse(htmlContent, {
       status: 200,
       headers: {
