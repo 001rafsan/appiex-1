@@ -26,9 +26,8 @@
       (function() {
         var AUTH_KEY = 'appiex_admin_authed';
         try {
-          if (sessionStorage.getItem(AUTH_KEY) === 'rtx5090_verified' || localStorage.getItem(AUTH_KEY) === 'rtx5090_verified') {
-            document.documentElement.classList.add('admin-authorized');
-          }
+          // Auth is verified by Next.js middleware before this HTML is served.
+          document.documentElement.classList.add('admin-authorized');
         } catch(e) {}
       })();
 
@@ -356,111 +355,13 @@
       </div>
     </div>
 
-    <!-- Interactive script for 3D card tilt, authentication verification & session handling -->
+    <!-- Access is enforced by Next.js middleware; no browser-visible password. -->
     <script>
-      (function() {
-        var AUTH_KEY = 'appiex_admin_authed';
-        var REQUIRED_PASS = 'rtx5090';
-
-        window.lockAdminSession = function() {
-          try {
-            sessionStorage.removeItem(AUTH_KEY);
-            localStorage.removeItem(AUTH_KEY);
-          } catch(e) {}
-          window.location.reload();
-        };
-
-        window.togglePasswordVisibility = function() {
-          var inp = document.getElementById('adminAuthInput');
-          var eye = document.getElementById('eyeIcon');
-          if (!inp) return;
-          if (inp.type === 'password') {
-            inp.type = 'text';
-            eye.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
-          } else {
-            inp.type = 'password';
-            eye.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
-          }
-        };
-
-        // 3D Card Hover Tilt Effect
-        var cardWrapper = document.getElementById('gateCardWrapper');
-        var card = document.getElementById('gateCard');
-        if (cardWrapper && card) {
-          cardWrapper.addEventListener('mousemove', function(e) {
-            var rect = card.getBoundingClientRect();
-            var x = e.clientX - rect.left - rect.width / 2;
-            var y = e.clientY - rect.top - rect.height / 2;
-            var rotateX = (-y / rect.height) * 14;
-            var rotateY = (x / rect.width) * 14;
-            card.style.transform = 'perspective(1000px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.02, 1.02, 1.02)';
-          });
-          cardWrapper.addEventListener('mouseleave', function() {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-          });
-        }
-
-        // Autofocus input if gate is active
-        var input = document.getElementById('adminAuthInput');
-        if (input && !document.documentElement.classList.contains('admin-authorized')) {
-          setTimeout(function() { input.focus(); }, 150);
-        }
-
-        window.handleAdminAuth = function(e) {
-          if (e) e.preventDefault();
-          var pass = (input ? input.value : '').trim();
-          var errorEl = document.getElementById('gateError');
-          var submitBtn = document.getElementById('gateSubmitBtn');
-          var btnText = document.getElementById('gateBtnText');
-
-          if (pass === REQUIRED_PASS) {
-            // Success
-            if (errorEl) errorEl.style.display = 'none';
-            if (input) input.classList.remove('error');
-            if (card) {
-              card.classList.remove('shake');
-              card.classList.add('granted');
-            }
-            if (submitBtn) {
-              submitBtn.classList.add('btn-granted');
-              submitBtn.disabled = true;
-            }
-            if (btnText) {
-              btnText.innerHTML = '✓ Access Granted — Decrypting OS...';
-            }
-
-            try {
-              sessionStorage.setItem(AUTH_KEY, 'rtx5090_verified');
-              localStorage.setItem(AUTH_KEY, 'rtx5090_verified');
-            } catch(err) {}
-
-            document.documentElement.classList.add('admin-authorized');
-
-            var gate = document.getElementById('admin-auth-gate');
-            if (gate) {
-              gate.classList.add('gate-closing');
-              setTimeout(function() {
-                gate.remove();
-              }, 400);
-            }
-          } else {
-            // Failure
-            if (errorEl) {
-              errorEl.style.display = 'flex';
-            }
-            if (input) {
-              input.classList.add('error');
-              input.value = '';
-              input.focus();
-            }
-            if (card) {
-              card.classList.remove('shake');
-              void card.offsetWidth; // trigger reflow
-              card.classList.add('shake');
-            }
-          }
-        };
-      })();
+      window.lockAdminSession = function() { window.location.assign('/'); };
+      document.addEventListener('DOMContentLoaded', function() {
+        var gate = document.getElementById('admin-auth-gate');
+        if (gate) gate.remove();
+      });
     </script>
 
     <div id="root"></div>
