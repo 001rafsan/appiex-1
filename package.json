@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/sync-nextjs-public.mjs && next dev",
-    "build": "node scripts/sync-nextjs-public.mjs && next build",
-    "start": "next start"
+    "build": "node scripts/sync-nextjs-public.mjs && npm run check:migration && next build",
+    "start": "next start",
+    "check:migration": "node scripts/verify-nextjs-migration.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
