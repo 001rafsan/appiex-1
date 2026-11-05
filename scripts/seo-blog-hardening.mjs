@@ -15,7 +15,8 @@ const prioritySlugs = new Set([
   'website-development-cost-bangladesh',
   'how-much-does-ai-automation-cost',
   'how-long-does-it-take-to-build-a-saas-product',
-  'website-redesign-process'
+  'website-redesign-process',
+  'ai-agents-vs-n8n-automation-for-business'
 ]);
 
 const authorByUrl = {
@@ -42,7 +43,8 @@ const priorityDescriptions = {
   'how-much-does-ai-automation-cost': 'Plan setup, API usage, hosting, integration and human review costs using a worked AI automation budget example.',
   'how-long-does-it-take-to-build-a-saas-product': 'A practical SaaS MVP timeline with discovery, permissions, billing integration, testing and launch milestones.',
   'website-redesign-process': 'Plan an SEO-safe redesign with a page inventory, permanent redirects, mobile testing, analytics and post-launch checks.',
-  'website-development-cost-bangladesh': 'Compare indicative website development costs in Bangladesh and prepare a clear project quotation.'
+  'website-development-cost-bangladesh': 'Compare indicative website development costs in Bangladesh and prepare a clear project quotation.',
+  'ai-agents-vs-n8n-automation-for-business': 'Compare AI agents, n8n workflows and hybrid automation for CRM, leads and customer support, including costs and controls.'
 };
 
 const excluded = new Set([

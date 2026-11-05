@@ -14,7 +14,8 @@ const priority = [
   "website-development-cost-bangladesh",
   "how-much-does-ai-automation-cost",
   "how-long-does-it-take-to-build-a-saas-product",
-  "website-redesign-process"
+  "website-redesign-process",
+  "ai-agents-vs-n8n-automation-for-business"
 ];
 const problems = [];
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
