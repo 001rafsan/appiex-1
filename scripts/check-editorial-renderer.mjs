@@ -17,6 +17,10 @@ for (const file of articleFiles) {
   const original = read('blog/' + file);
   const html = improveHtml(original, ['blog', slug]);
   const title = (original.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '';
+  // The source HTML must be polished too; production may serve it without the Next.js renderer.
+  if (!original.includes('appiex-editorial-polish.css')) errors.push(slug + ': raw HTML lacks design CSS');
+  if (!original.includes('appiex-editorial-page')) errors.push(slug + ': raw HTML lacks editorial styling class');
+  if (!original.includes('appiex-reading-meter')) errors.push(slug + ': raw HTML lacks reading progress');
   const sourceRobots = (original.match(/<meta\s+name="robots"\s+content="([^"]+)"/i) || [])[1] || '';
   const resultingRobots = (html.match(/<meta\s+name="robots"\s+content="([^"]+)"/i) || [])[1] || '';
   const sourceCanonical = (original.match(/<link\s+rel="canonical"[^>]*>/i) || [])[0] || '';
@@ -43,6 +47,10 @@ for (const file of articleFiles) {
   total++;
 }
 const homeOriginal = read('index.html');
+if (!homeOriginal.includes('appiex-home-polished')) errors.push('Static homepage is missing design styling class');
+if (!homeOriginal.includes('appiex-editorial-polish.css')) errors.push('Static homepage is missing design stylesheet');
+if (!homeOriginal.includes('Web Development, AI Automation &amp; Pricing Guides'))
+  errors.push('Static homepage does not contain polished service heading');
 const home = improveHtml(homeOriginal, []);
 if (!home.includes('appiex-home-polished')) errors.push('Homepage polish class missing');
 if (!home.includes('Web Development, AI Automation &amp; Pricing Guides')) errors.push('Homepage service hub heading unchanged');
