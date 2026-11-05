@@ -1169,6 +1169,76 @@
   };
 </script>
 
+<style id="appiex-services-global-fix">
+  /* 1. All Section Headers & Headings Visibility Fix */
+  .header h2,
+  .header h2 span,
+  .FeatureSection .header h2,
+  .FeatureSection .header h2 span,
+  .StackedSection .header h2,
+  .StackedSection .header h2 span,
+  .OverviewSection .header h2,
+  .OverviewSection .header h2 span,
+  .BentoSection .header h2,
+  .BentoSection .header h2 span,
+  .LogoreelSection .header h2,
+  .LogoreelSection .header h2 span,
+  .QuickContactSection .header h2,
+  .QuickContactSection .header h2 span {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* 2. Fix Submit Button Invisible Text on White Background */
+  .CtaButton.-fill.-inverse,
+  .CtaButton.-inverse {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #030408 !important;
+    border: none !important;
+  }
+  .CtaButton.-fill.-inverse .title,
+  .CtaButton.-inverse .title {
+    color: #030408 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+  .CtaButton.-fill.-inverse .title span,
+  .CtaButton.-inverse .title span {
+    color: #030408 !important;
+    background: transparent !important;
+    display: inline-block !important;
+    font-weight: 700 !important;
+  }
+  .CtaButton.-fill.-inverse .title span::after,
+  .CtaButton.-inverse .title span::after {
+    color: #030408 !important;
+  }
+
+  /* 3. Section Gap & Layout Normalization (Prevent huge black voids) */
+  .StackedSection {
+    padding: 6rem 0 !important;
+  }
+  .StackedSection .header {
+    position: relative !important;
+    top: auto !important;
+    margin-bottom: 3.5rem !important;
+  }
+  .QuickContactSection {
+    margin: 4rem 0 !important;
+    padding: 4rem 0 0 !important;
+  }
+  .FeatureSection {
+    margin: 6rem 0 !important;
+  }
+  .OverviewSection {
+    margin: 6rem 0 !important;
+  }
+  .BentoSection {
+    margin: 6rem 0 !important;
+  }
+</style>
 </head>
 <body class="min-h-screen bg-[#030408] text-slate-100 flex flex-col justify-between relative selection:bg-red-600 selection:text-white">
   <!-- Cuberto-Style Page Transition Curtain (Appiex Red Ambient Aesthetic) -->

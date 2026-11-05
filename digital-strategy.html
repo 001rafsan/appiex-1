@@ -249,7 +249,7 @@
   position: absolute !important;
   top: 6px !important;
   height: calc(100% - 12px) !important;
-  background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+  background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%) !important;
   border-radius: 9999px !important;
   box-shadow: 0 4px 16px rgba(0, 102, 255, 0.45) !important;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -458,7 +458,7 @@
   border-radius: 9999px !important;
   font-size: 13px !important;
   font-weight: 500 !important; /* Halka bold kom */
-  background: linear-gradient(135deg, #FF2A4D 0%, #DC2626 100%) !important;
+  background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%) !important;
   color: #ffffff !important;
   text-decoration: none !important;
   box-shadow: 0 4px 16px rgba(255, 42, 77, 0.45) !important;
@@ -1165,36 +1165,74 @@
 </script>
 
 
-<style id="appiex-service-cta-visibility">
-  /* Guaranteed Button & Headline Visibility Fix */
-  .CtaButton.-fill.-inverse,
-  .CtaButton.-inverse,
-  .CtaButton.-fill.-inverse .title,
-  .CtaButton.-fill.-inverse .title span,
-  .CtaButton.-inverse .title,
-  .CtaButton.-inverse .title span {
-    color: #000000 !important;
-    background-color: #ffffff !important;
-  }
-  .CtaButton.-fill.-inverse .title span::after,
-  .CtaButton.-inverse .title span::after {
+<style id="appiex-services-global-fix">
+  /* 1. All Section Headers & Headings Visibility Fix */
+  .header h2,
+  .header h2 span,
+  .FeatureSection .header h2,
+  .FeatureSection .header h2 span,
+  .StackedSection .header h2,
+  .StackedSection .header h2 span,
+  .OverviewSection .header h2,
+  .OverviewSection .header h2 span,
+  .BentoSection .header h2,
+  .BentoSection .header h2 span,
+  .LogoreelSection .header h2,
+  .LogoreelSection .header h2 span,
+  .QuickContactSection .header h2,
+  .QuickContactSection .header h2 span {
     color: #ffffff !important;
-  }
-  /* Heading and Text Fallback Visibility */
-  .IntroSection .header h1,
-  .IntroSection .header h1 span,
-  .IntroSection .text p,
-  .IntroSection .text p span,
-  .IntroSection .action {
     opacity: 1 !important;
     visibility: visible !important;
   }
-  /* Mega menu dismissal */
-  .services-nav-wrap.services-closed .services-popup-menu {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+
+  /* 2. Fix Submit Button Invisible Text on White Background */
+  .CtaButton.-fill.-inverse,
+  .CtaButton.-inverse {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #030408 !important;
+    border: none !important;
+  }
+  .CtaButton.-fill.-inverse .title,
+  .CtaButton.-inverse .title {
+    color: #030408 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+  .CtaButton.-fill.-inverse .title span,
+  .CtaButton.-inverse .title span {
+    color: #030408 !important;
+    background: transparent !important;
+    display: inline-block !important;
+    font-weight: 700 !important;
+  }
+  .CtaButton.-fill.-inverse .title span::after,
+  .CtaButton.-inverse .title span::after {
+    color: #030408 !important;
+  }
+
+  /* 3. Section Gap & Layout Normalization (Prevent huge black voids) */
+  .StackedSection {
+    padding: 6rem 0 !important;
+  }
+  .StackedSection .header {
+    position: relative !important;
+    top: auto !important;
+    margin-bottom: 3.5rem !important;
+  }
+  .QuickContactSection {
+    margin: 4rem 0 !important;
+    padding: 4rem 0 0 !important;
+  }
+  .FeatureSection {
+    margin: 6rem 0 !important;
+  }
+  .OverviewSection {
+    margin: 6rem 0 !important;
+  }
+  .BentoSection {
+    margin: 6rem 0 !important;
   }
 </style>
 
@@ -1437,7 +1475,7 @@
       </div>
     </div>
   </div>
-</section><script type="module" src="./scripts/index.astro_astro_type_script_index_0_lang.TFLmFpR-.js" data-astro-exec=""></script><section class="QuickContactSection -fill" id="strategy-contact" data-astro-cid-qtphui2l=""><div class="fill" data-astro-cid-qtphui2l=""></div><div class="content" data-astro-cid-qtphui2l=""><div class="Container -size-lg" data-astro-cid-qtphui2l="true" data-astro-cid-7bogrbt7=""><div class="header" data-astro-cid-qtphui2l=""><h2 data-astro-cid-qtphui2l="" aria-label="Need a clear digital strategy?"><span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">Need</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">a</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">clear</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">digital</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">strategy?</span></span></h2></div><div class="main" data-astro-cid-qtphui2l="" style="opacity: 1;"><div class="bg" data-astro-cid-qtphui2l=""><img src="./images/bg.De7JisSg_KKqVj.webp" srcset="./images/bg.De7JisSg_KKqVj.webp 1x, ./images/bg.De7JisSg_Z1CnGo1.webp 2x" alt="" data-astro-cid-qtphui2l="true" loading="lazy" decoding="async" width="1120" height="498"></div><form class="form" onsubmit="handleQuickContactSubmit(event)" id="strategy-contact-form" action="#" method="post" enctype="multipart/form-data" onsubmit="handleStrategyFormSubmit(event)" data-astro-cid-qtphui2l=""><div class="grid" data-astro-cid-qtphui2l=""><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><input type="text" placeholder="Your name" aria-label="Name" name="name" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""><span class="required" data-astro-cid-zn46eyg3=""></span><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label><script type="module" src="./scripts/UnderlineInput.astro_astro_type_script_index_0_lang.C61jHRL9.js" data-astro-exec=""></script></div><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><input type="email" placeholder="Your email" aria-label="Email" name="email" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""><span class="required" data-astro-cid-zn46eyg3=""></span><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label></div><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><input type="tel" placeholder="Your phone" aria-label="Phone" name="phone" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label></div></div><div class="grid" data-astro-cid-qtphui2l=""><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><textarea rows="1" placeholder="Tell us about your project" aria-label="Description" name="mess" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""></textarea><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label></div></div><div class="grid" data-astro-cid-qtphui2l=""><div class="grid__col" data-astro-cid-qtphui2l=""><div class="FileInput -size-sm" data-validity="{&quot;size&quot;:26214400,&quot;limit&quot;:10}" data-validity-msg="{&quot;size&quot;:&quot;Size limit has been exceeded (25 mb)&quot;,&quot;limit&quot;:&quot;Attach up to 10 files&quot;}" data-astro-cid-hf2xzosz=""><input type="file" aria-label="attachment" name="attachments" multiple="true" data-astro-cid-qtphui2l="true" class="astro-hf2xzosz" data-astro-cid-hf2xzosz=""><button class="add" type="button" data-astro-cid-hf2xzosz=""><svg viewBox="0 0 18 20" data-astro-cid-hf2xzosz="true" data-astro-cid-nnxxpn6e="true"><path fill="currentColor" d="m15.43 11-1 1-4.81 4.84a4.57 4.57 0 0 1-6.46-6.46l7.75-7.75a2.74 2.74 0 1 1 3.87 3.88l-7.1 7.1a.92.92 0 0 1-1.29 0 .94.94 0 0 1 0-1.3l3.88-3.87.32-.32 1-1a.92.92 0 0 0-1.3-1.29l-1 1-.29.32L5.1 11A2.74 2.74 0 0 0 9 14.9l7.1-7.1a4.57 4.57 0 0 0-6.48-6.46L8.33 2.63 1.87 9.09a6.39 6.39 0 0 0 9 9l4.85-4.85 1-1a.92.92 0 0 0 0-1.3.91.91 0 0 0-1.29.06z" /></svg><span data-astro-cid-hf2xzosz="">Add attachment</span></button><span class="items" data-astro-cid-hf2xzosz=""></span><span class="message" data-astro-cid-hf2xzosz=""></span></div><script type="module" src="./scripts/FileInput.astro_astro_type_script_index_0_lang.DdBrEv9L.js" data-astro-exec=""></script></div><div class="grid__col" data-astro-cid-qtphui2l=""><div class="submit" data-astro-cid-qtphui2l=""><button type="submit" data-astro-cid-qtphui2l="true" data-astro-cid-s6shze65="true" class="CtaButton -size-md -fill -inverse"><span class="border" data-astro-cid-s6shze65=""></span><span class="ripple" data-astro-cid-s6shze65=""><span data-astro-cid-s6shze65=""></span></span><span class="title" data-astro-cid-s6shze65=""><span data-text="Submit" data-astro-cid-s6shze65="" style="color: #000000 !important; font-weight: 600 !important;">Submit</span></span></button></div></div></div><dialog class="MessageModal" id="modal-contact-success" style="z-index: 999999; border: none; background: transparent; padding: 0;">
+</section><script type="module" src="./scripts/index.astro_astro_type_script_index_0_lang.TFLmFpR-.js" data-astro-exec=""></script><section class="QuickContactSection -fill" id="strategy-contact" data-astro-cid-qtphui2l=""><div class="fill" data-astro-cid-qtphui2l=""></div><div class="content" data-astro-cid-qtphui2l=""><div class="Container -size-lg" data-astro-cid-qtphui2l="true" data-astro-cid-7bogrbt7=""><div class="header" data-astro-cid-qtphui2l=""><h2 data-astro-cid-qtphui2l="" aria-label="Need a clear digital strategy?"><span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">Need</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">a</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">clear</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">digital</span></span> <span aria-hidden="true" style="overflow: clip; vertical-align: top; margin: -0.2em; display: inline-block;"><span aria-hidden="true" style="padding: 0.2em; display: inline-block; translate: none; rotate: none; scale: none; will-change: auto; transform: translate(0px, 0%);">strategy?</span></span></h2></div><div class="main" data-astro-cid-qtphui2l="" style="opacity: 1;"><div class="bg" data-astro-cid-qtphui2l=""><img src="./images/bg.De7JisSg_KKqVj.webp" srcset="./images/bg.De7JisSg_KKqVj.webp 1x, ./images/bg.De7JisSg_Z1CnGo1.webp 2x" alt="" data-astro-cid-qtphui2l="true" loading="lazy" decoding="async" width="1120" height="498"></div><form class="form" onsubmit="handleQuickContactSubmit(event)" id="strategy-contact-form" action="#" method="post" enctype="multipart/form-data" onsubmit="handleStrategyFormSubmit(event)" data-astro-cid-qtphui2l=""><div class="grid" data-astro-cid-qtphui2l=""><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><input type="text" placeholder="Your name" aria-label="Name" name="name" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""><span class="required" data-astro-cid-zn46eyg3=""></span><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label><script type="module" src="./scripts/UnderlineInput.astro_astro_type_script_index_0_lang.C61jHRL9.js" data-astro-exec=""></script></div><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><input type="email" placeholder="Your email" aria-label="Email" name="email" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""><span class="required" data-astro-cid-zn46eyg3=""></span><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label></div><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><input type="tel" placeholder="Your phone" aria-label="Phone" name="phone" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label></div></div><div class="grid" data-astro-cid-qtphui2l=""><div class="grid__col" data-astro-cid-qtphui2l=""><label class="UnderlineInput -size-sm" data-astro-cid-zn46eyg3=""><textarea rows="1" placeholder="Tell us about your project" aria-label="Description" name="mess" data-astro-cid-qtphui2l="true" class="astro-zn46eyg3" data-astro-cid-zn46eyg3=""></textarea><span class="line" data-astro-cid-zn46eyg3=""></span><span class="message" data-astro-cid-zn46eyg3=""></span></label></div></div><div class="grid" data-astro-cid-qtphui2l=""><div class="grid__col" data-astro-cid-qtphui2l=""><div class="FileInput -size-sm" data-validity="{&quot;size&quot;:26214400,&quot;limit&quot;:10}" data-validity-msg="{&quot;size&quot;:&quot;Size limit has been exceeded (25 mb)&quot;,&quot;limit&quot;:&quot;Attach up to 10 files&quot;}" data-astro-cid-hf2xzosz=""><input type="file" aria-label="attachment" name="attachments" multiple="true" data-astro-cid-qtphui2l="true" class="astro-hf2xzosz" data-astro-cid-hf2xzosz=""><button class="add" type="button" data-astro-cid-hf2xzosz=""><svg viewBox="0 0 18 20" data-astro-cid-hf2xzosz="true" data-astro-cid-nnxxpn6e="true"><path fill="currentColor" d="m15.43 11-1 1-4.81 4.84a4.57 4.57 0 0 1-6.46-6.46l7.75-7.75a2.74 2.74 0 1 1 3.87 3.88l-7.1 7.1a.92.92 0 0 1-1.29 0 .94.94 0 0 1 0-1.3l3.88-3.87.32-.32 1-1a.92.92 0 0 0-1.3-1.29l-1 1-.29.32L5.1 11A2.74 2.74 0 0 0 9 14.9l7.1-7.1a4.57 4.57 0 0 0-6.48-6.46L8.33 2.63 1.87 9.09a6.39 6.39 0 0 0 9 9l4.85-4.85 1-1a.92.92 0 0 0 0-1.3.91.91 0 0 0-1.29.06z" /></svg><span data-astro-cid-hf2xzosz="">Add attachment</span></button><span class="items" data-astro-cid-hf2xzosz=""></span><span class="message" data-astro-cid-hf2xzosz=""></span></div><script type="module" src="./scripts/FileInput.astro_astro_type_script_index_0_lang.DdBrEv9L.js" data-astro-exec=""></script></div><div class="grid__col" data-astro-cid-qtphui2l=""><div class="submit" data-astro-cid-qtphui2l=""><button type="submit" data-astro-cid-qtphui2l="true" data-astro-cid-s6shze65="true" class="CtaButton -size-md -fill -inverse" style="background-color: #ffffff !important; color: #030408 !important;"><span class="border" data-astro-cid-s6shze65=""></span><span class="ripple" data-astro-cid-s6shze65=""><span data-astro-cid-s6shze65=""></span></span><span class="title" data-astro-cid-s6shze65="" style="color: #030408 !important; background: transparent !important;"><span data-text="Submit" data-astro-cid-s6shze65="" style="color: #030408 !important; font-weight: 700 !important; background: transparent !important;">Submit</span></span></button></div></div></div><dialog class="MessageModal" id="modal-contact-success" style="z-index: 999999; border: none; background: transparent; padding: 0;">
   <div class="backdrop" onclick="document.getElementById('modal-contact-success').close()" style="position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(8px);"></div>
   <div class="content" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 92%; max-width: 500px; background: #ffffff !important; border-radius: 28px; padding: 40px 32px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000000; box-sizing: border-box;">
     <div style="width: 64px; height: 64px; border-radius: 50%; background-color: #d1fae5 !important; border: 2.5px solid #10b981 !important; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #059669 !important; font-weight: 800; margin-bottom: 20px;">✓</div>
