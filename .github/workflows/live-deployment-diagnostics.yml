@@ -72,3 +72,40 @@ jobs:
             echo "- **DRIFT:** Production does not contain the deployed renderer and CSS; inspect Vercel project Git integration, production branch, latest deployment, build output, and domain assignment." >> "$GITHUB_STEP_SUMMARY"
           fi
           echo "- Review diagnostic logs for HTTP status and Vercel response headers." >> "$GITHUB_STEP_SUMMARY"
+      - name: Determine likely source repository from live HTML
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --max-time 30 https://raw.githubusercontent.com/rayat927/appiex/main/index.html -o /tmp/appiex-rayat-index.html
+          curl -fsSL --max-time 30 https://raw.githubusercontent.com/001rafsan/appiex/main/index.html -o /tmp/appiex-rafsan-index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import re
+          live = Path('/tmp/appiex-home.body').read_text(errors='replace')
+          matches = []
+          for repo, p in [('rayat927/appiex','/tmp/appiex-rayat-index.html'), ('001rafsan/appiex','/tmp/appiex-rafsan-index.html')]:
+              source = Path(p).read_text(errors='replace')
+              stride = max(1, (len(live) - 160) // 130)
+              pieces = [live[i:i+160] for i in range(0,max(1,len(live)-160),stride)]
+              score = sum(1 for piece in pieces if piece in source) / max(1,len(pieces))
+              title = re.search(r'<title[^>]*>(.*?)</title>',source,re.I|re.S)
+              matches.append((score,repo,title.group(1) if title else 'no title',len(source)))
+          live_title = re.search(r'<title[^>]*>(.*?)</title>',live,re.I|re.S)
+          print('Live title:',live_title.group(1) if live_title else 'not found')
+          for score,repo,title,size in sorted(matches,reverse=True):
+              print(f'Approximate source similarity {repo}: {score:.1%} | bytes={size} | title={title}')
+          print('This is a content comparison, not proof of Vercel project integration.')
+          PY
+      - name: Fail when production still uses an outdated deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -q 'appiex-home-polished' /tmp/appiex-home.body &&
+             grep -q 'appiex-reading-meter' /tmp/appiex-guide.body &&
+             grep -q 'Appiex 2026 polish' /tmp/appiex-css.body; then
+            echo "Production has the expected homepage, blog renderer, and CSS."
+          else
+            echo "::error::Production appiex.com is not serving the merged design/SEO fixes. Verify the exact Vercel project serving this domain, its connected Git repository and branch, build status, and deployment promotion."
+            exit 1
+          fi
