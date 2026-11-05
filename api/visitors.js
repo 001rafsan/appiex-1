@@ -246,9 +246,9 @@ export default async function handler(req, res) {
         id: sanitize(rec.id || ('VIS-' + nowMs), 60),
         visitorUUID: rec.visitorUUID,
         sessionUUID: sanitize(rec.sessionUUID, 60),
-        name: sanitize(rec.name, 120),
-        email: sanitize(rec.email, 160),
-        phone: sanitize(rec.phone, 40),
+        name: 'Visitor ' + String(rec.visitorUUID).slice(-4).toUpperCase(),
+        email: '', // Never store identities in general visitor telemetry
+        phone: '',
         page: pagePath,
         pageTitle: pageTitle,
         referrer: sanitize(rec.referrer || 'Direct Traffic', 80),
@@ -257,7 +257,7 @@ export default async function handler(req, res) {
         isRealLogin: !!rec.isRealLogin,
         isIdentified: !!rec.isIdentified,
         type: sanitize(rec.type || 'Live Visitor', 60),
-        ip: clientIp || 'Live IP',
+        ip: '', // IP is used only for rate limiting, never persisted
         city: cityHeader || sanitize(rec.city || 'Dhaka', 80),
         country: countryHeader || sanitize(rec.country || 'BD', 80),
         serverTs: nowMs,
