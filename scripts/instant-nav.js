@@ -1341,196 +1341,10 @@
   document.addEventListener('touchstart', onHoverOrDown, { passive: true });
 
   // ========================================================
-  // 5. 0.001s FULL-DOCUMENT (<head> + <body>) INSTANT SWAP
+  // 5. 0.001s NATIVE SPECULATION RULES PRERENDER & BFCACHE
   // ========================================================
-  let isNavigating = false;
-
-  // Tag initial page-specific <head> styles so they can be cleanly swapped
-  function markInitialHeadStyles() {
-    document.head.querySelectorAll('style').forEach(s => {
-      if (
-        s.id === 'appiex-universal-mobile-css' ||
-        s.id === 'appiex-gpu-style' ||
-        s.id === 'appiex-cuberto-curtain-style' ||
-        (s.textContent && s.textContent.includes('tailwindcss'))
-      ) {
-        return;
-      }
-      if (!s.hasAttribute('data-spa-page-style')) {
-        s.setAttribute('data-spa-page-style', 'true');
-      }
-    });
-  }
-  markInitialHeadStyles();
-
-  function swapPageFromHtml(htmlString, targetUrlStr, pushHistory = true) {
-    try {
-      const parser = new DOMParser();
-      const newDoc = parser.parseFromString(htmlString, 'text/html');
-      if (!newDoc || !newDoc.body) return false;
-
-      // 1. Cleanup current page resources (videos, Lenis, ScrollTrigger)
-      document.querySelectorAll('video').forEach(v => {
-        try { v.pause(); } catch (e) {}
-      });
-      if (window.lenis) {
-        try { window.lenis.destroy(); } catch (e) {}
-        window.lenis = null;
-      }
-      if (typeof ScrollTrigger !== 'undefined') {
-        try { ScrollTrigger.getAll().forEach(t => t.kill()); } catch (e) {}
-      }
-
-      // 2. Update Document Title & Canonical
-      if (newDoc.title) {
-        document.title = newDoc.title;
-      }
-
-      // 3. Sync <head> Stylesheets (<link rel="stylesheet">)
-      const existingLinks = new Set(
-        Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).map(l => l.getAttribute('href'))
-      );
-      newDoc.head.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !existingLinks.has(href)) {
-          const clonedLink = link.cloneNode(true);
-          document.head.appendChild(clonedLink);
-        }
-      });
-
-      // 4. Sync <head> Page-Specific <style> Blocks (100% Preserves Exact Page Design)
-      markInitialHeadStyles();
-      const oldPageStyles = Array.from(document.head.querySelectorAll('style[data-spa-page-style="true"]'));
-      newDoc.head.querySelectorAll('style').forEach(styleEl => {
-        if (styleEl.id === 'appiex-cuberto-curtain-style' || styleEl.id === 'appiex-universal-mobile-css' || styleEl.id === 'appiex-gpu-style') {
-          return;
-        }
-        const newStyle = document.createElement('style');
-        if (styleEl.id) newStyle.id = styleEl.id;
-        newStyle.setAttribute('data-spa-page-style', 'true');
-        newStyle.textContent = styleEl.textContent;
-        document.head.appendChild(newStyle);
-      });
-      oldPageStyles.forEach(s => {
-        if (s.parentNode) s.parentNode.removeChild(s);
-      });
-
-      // 5. Execute any <head> pre-hydration scripts (like refer.html CMS hydration)
-      newDoc.head.querySelectorAll('script:not([src]):not([type="application/ld+json"]):not([type="speculationrules"])').forEach(scr => {
-        if (scr.id === 'appiex-prepaint-curtain-script') return;
-        if (scr.textContent && scr.textContent.includes('tailwind.config')) {
-          try { (0, eval)(scr.textContent); } catch (e) {}
-        }
-      });
-
-      // 6. Swap <body> Class & InnerHTML in 0.001s
-      document.body.className = newDoc.body.className || 'font-sans antialiased';
-      document.body.classList.remove('menu-open', 'appiex-body-leaving', 'appiex-body-entering');
-      document.body.innerHTML = newDoc.body.innerHTML;
-
-      // Hide any legacy curtain inside swapped body
-      const swappedCurtain = document.getElementById('appiex-cuberto-curtain');
-      if (swappedCurtain) {
-        swappedCurtain.style.setProperty('display', 'none', 'important');
-      }
-
-      // 7. Update Browser URL & Scroll Position Instantly (0ms)
-      const parsedTarget = new URL(targetUrlStr, location.origin);
-      const cleanHref = toCleanPath(parsedTarget.pathname) + parsedTarget.search + parsedTarget.hash;
-      if (pushHistory) {
-        history.pushState({ path: cleanHref }, '', cleanHref);
-      }
-
-      if (parsedTarget.hash) {
-        const hashEl = document.querySelector(parsedTarget.hash);
-        if (hashEl) hashEl.scrollIntoView();
-        else window.scrollTo(0, 0);
-      } else {
-        window.scrollTo(0, 0);
-      }
-
-      // 8. Re-initialize Universal Mobile Navigation & Re-Execute Body Inline Scripts
-      ensureMobileNavigation();
-
-      const bodyScripts = Array.from(document.body.querySelectorAll('script'));
-      const externalPromises = [];
-
-      bodyScripts.forEach(oldScript => {
-        const src = oldScript.getAttribute('src');
-        if (src) {
-          // Skip already loaded global libraries to avoid re-downloading
-          if (
-            src.includes('instant-nav.js') ||
-            src.includes('gsap.min.js') ||
-            src.includes('ScrollTrigger.min.js') ||
-            src.includes('lenis.min.js') ||
-            src.includes('visitor-tracker.js') ||
-            src.includes('seo-conversion-tracker.js')
-          ) {
-            return;
-          }
-          // Load page-specific external script (e.g. swiper, firebase-config, video-storage-engine) if not already loaded
-          const cleanSrc = src.replace(/^\.\//, '/');
-          const alreadyLoaded = Array.from(document.scripts).some(s => s !== oldScript && s.src && s.src.includes(cleanSrc.split('?')[0]));
-          if (!alreadyLoaded) {
-            const p = new Promise(resolve => {
-              const s = document.createElement('script');
-              s.src = src;
-              s.onload = resolve;
-              s.onerror = resolve;
-              document.body.appendChild(s);
-            });
-            externalPromises.push(p);
-          }
-        }
-      });
-
-      const runInlineScripts = () => {
-        bodyScripts.forEach(oldScript => {
-          if (oldScript.getAttribute('src')) return;
-          const type = oldScript.getAttribute('type');
-          if (type && type !== 'text/javascript' && type !== 'module') return;
-          const code = oldScript.textContent;
-          if (!code || !code.trim()) return;
-
-          try {
-            // Transform DOMContentLoaded listeners inside inline scripts so they run immediately on SPA swap
-            const transformedCode = code.replace(
-              /document\.addEventListener\s*\(\s*['"]DOMContentLoaded['"]\s*,\s*/g,
-              '(function(fn){ try { fn(); } catch(e){ console.warn(e); } })('
-            );
-            const newScript = document.createElement('script');
-            newScript.textContent = transformedCode;
-            oldScript.parentNode.replaceChild(newScript, oldScript);
-          } catch (err) {
-            console.warn('SPA script exec warning:', err);
-          }
-        });
-
-        optimizeScrollingPerformance();
-        if (typeof ScrollTrigger !== 'undefined') {
-          setTimeout(() => {
-            try { ScrollTrigger.refresh(); } catch (e) {}
-          }, 60);
-        }
-      };
-
-      if (externalPromises.length > 0) {
-        Promise.all(externalPromises).then(runInlineScripts);
-      } else {
-        runInlineScripts();
-      }
-
-      return true;
-    } catch (err) {
-      console.warn('SPA swap fallback:', err);
-      return false;
-    }
-  }
-
-  // Navigate to URL in 0.001s (Uses Memory Cache if ready, otherwise Native Instant Navigation)
-  function navigateInstant(rawHref, pushHistory = true) {
-    if (isNavigating) return;
+  // Cleanly navigate to URL in 0.001s (activates Chromium prerender cache with full document lifecycle)
+  function navigateInstant(rawHref) {
     try {
       const targetUrl = new URL(rawHref, location.href);
       const normTarget = toCleanPath(targetUrl.pathname);
@@ -1543,36 +1357,6 @@
         document.body.classList.remove('menu-open');
       }
 
-      // Exclude 3D gaming / admin pages from SPA swap so their full WebGL canvas boots natively
-      if (normTarget === '/gaming' || normTarget.startsWith('/admin')) {
-        window.location.href = cleanTargetHref;
-        return;
-      }
-
-      const cachedHtml = htmlMemoryCache.get(normTarget);
-      if (cachedHtml) {
-        isNavigating = true;
-        const ok = swapPageFromHtml(cachedHtml, cleanTargetHref, pushHistory);
-        isNavigating = false;
-        if (ok) return;
-      }
-
-      // If fetch is currently in flight, wait up to 80ms; otherwise navigate immediately with zero curtain delay
-      if (pendingFetches.has(normTarget)) {
-        isNavigating = true;
-        pendingFetches.get(normTarget).then(html => {
-          if (html) {
-            const ok = swapPageFromHtml(html, cleanTargetHref, pushHistory);
-            isNavigating = false;
-            if (ok) return;
-          }
-          isNavigating = false;
-          window.location.href = cleanTargetHref;
-        });
-        return;
-      }
-
-      // Direct 0ms native navigation (often served in 0.001s by Chromium Speculation Rules prerender!)
       window.location.href = cleanTargetHref;
     } catch (e) {
       window.location.href = rawHref;
@@ -1616,29 +1400,29 @@
         return;
       }
 
-      // Cross-page navigation in 0.001s
-      e.preventDefault();
-      const cleanTargetHref = normTarget + targetUrl.search + targetUrl.hash;
-      navigateInstant(cleanTargetHref, true);
+      // Cross-page navigation in 0.001s (served by Speculation Rules prerender / browser cache)
+      const curDrawer = document.getElementById('rafsan-mobile-drawer');
+      if (curDrawer && curDrawer.classList.contains('open')) {
+        curDrawer.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      }
 
     } catch (err) {}
   });
 
-  // Handle Browser Back / Forward Buttons in 0.001s
-  window.addEventListener('popstate', () => {
-    const cleanTarget = toCleanPath(location.pathname) + location.search + location.hash;
-    const normTarget = toCleanPath(location.pathname);
-    if (htmlMemoryCache.has(normTarget)) {
-      swapPageFromHtml(htmlMemoryCache.get(normTarget), cleanTarget, false);
-    } else {
-      window.location.reload();
-    }
-  });
-
   // 6. Back / Forward Cache (bfcache) Restore Cleanup
-  window.addEventListener('pageshow', () => {
-    isNavigating = false;
+  window.addEventListener('pageshow', (event) => {
     revealArrivingPage();
+    optimizeScrollingPerformance();
+    ensureMobileNavigation();
+    if (event && event.persisted) {
+      // Cleanly re-trigger any paused videos
+      document.querySelectorAll('video').forEach(v => {
+        if (v.dataset.inView === 'true' || v.hasAttribute('autoplay')) {
+          v.play().catch(() => {});
+        }
+      });
+    }
   });
 })();
 
