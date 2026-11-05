@@ -1,0 +1,56 @@
+name: Publish Appiex polished HTML sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-editorial-html.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: appiex-editorial-source-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply shared design directly to source HTML
+        run: node scripts/materialize-editorial-html.mjs
+      - name: Validate every HTML file and preserve SEO rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/materialize-editorial-html.mjs --check
+          node scripts/check-editorial-renderer.mjs
+          node scripts/check-blog-seo.mjs
+          node scripts/check-site-seo.mjs
+          node scripts/check-vercel-next-config.mjs
+      - name: Commit validated HTML files to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html blog.html blog
+          if git diff --cached --quiet; then
+            echo "Editorial HTML already up-to-date."
+            exit 0
+          fi
+          echo "Changed files:"
+          git diff --cached --name-only | tee /tmp/appiex-changed-articles.txt
+          echo "Changed count: $(wc -l < /tmp/appiex-changed-articles.txt)"
+          git commit -m "style: materialize polished home and all blog HTML for static delivery"
+          git push origin HEAD:main
+          echo "## Static source published" >> "$GITHUB_STEP_SUMMARY"
+          echo "All changed HTML files were validated and committed to main. Vercel must still deploy main for the live domain to update." >> "$GITHUB_STEP_SUMMARY"
