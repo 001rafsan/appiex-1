@@ -14,6 +14,8 @@ on:
       - 'index.html'
       - 'blog/**'
       - 'scripts/check-editorial-renderer.mjs'
+      - 'styles/appiex-related-services.css'
+      - 'scripts/apply-sitewide-seo.mjs'
 
 permissions:
   contents: read
@@ -50,9 +52,9 @@ jobs:
             if test -f "$outfile"; then
               echo "Bytes: $(wc -c < "$outfile")"
               echo "Shared design CSS reference: $(grep -c 'appiex-editorial-polish.css' "$outfile" || true)"
-              echo "Updated homepage heading: $(grep -c 'Web Development, AI Automation &amp; Pricing Guides' "$outfile" || true)"
+              echo "Current homepage hero: $(grep -c 'AI Automation for Growth' "$outfile" || true)"
               echo "Homepage polish class: $(grep -c 'appiex-home-polished' "$outfile" || true)"
-              echo "Old homepage title: $(grep -c 'Explore Dedicated Solutions &amp; Pricing Guides' "$outfile" || true)"
+              echo "Current design marker: $(grep -c 'APPIEX HOME EDITORIAL REFRESH' "$outfile" || true)"
               echo "Blog reading progress class: $(grep -c 'appiex-reading-meter' "$outfile" || true)"
               echo "Legacy wrong H1 snippet: $(grep -c 'Complete</span>.*Guide' "$outfile" || true)"
             fi
@@ -65,11 +67,16 @@ jobs:
           inspect css "https://appiex.com/styles/appiex-editorial-polish.css?appiex_check=${GITHUB_SHA}"
           inspect guide "https://appiex.com/blog/ai-agents-vs-n8n-automation-for-business?appiex_check=${GITHUB_SHA}"
           inspect legacy "https://appiex.com/blog/how-we-reduced-website-load-time-5-2s-to-1-4s?appiex_check=${GITHUB_SHA}"
+          inspect blogcss "https://appiex.com/styles/appiex-blog-v2.css?appiex_check=${GITHUB_SHA}"
+          inspect service "https://appiex.com/web-development?appiex_check=${GITHUB_SHA}"
+          inspect relatedcss "https://appiex.com/styles/appiex-related-services.css?appiex_check=${GITHUB_SHA}"
           echo "## Production diagnosis" >> "$GITHUB_STEP_SUMMARY"
           echo "- Repository SHA: \`${GITHUB_SHA}\`" >> "$GITHUB_STEP_SUMMARY"
-          if grep -q 'appiex-home-polished' /tmp/appiex-home.body 2>/dev/null &&
-             grep -q 'appiex-reading-meter' /tmp/appiex-guide.body 2>/dev/null &&
-             grep -q 'Appiex 2026 polish' /tmp/appiex-css.body 2>/dev/null; then
+          if grep -q 'AI Automation for Growth' /tmp/appiex-home.body 2>/dev/null &&
+             grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body 2>/dev/null &&
+             grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body 2>/dev/null &&
+             grep -q 'appiex-related-services__grid' /tmp/appiex-service.body 2>/dev/null &&
+             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body 2>/dev/null; then
             echo "- **PASS:** Live home, article and CSS contain the current shared renderer." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "- **DRIFT:** Production does not contain the deployed renderer and CSS; inspect Vercel project Git integration, production branch, latest deployment, build output, and domain assignment." >> "$GITHUB_STEP_SUMMARY"
@@ -104,10 +111,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -q 'appiex-home-polished' /tmp/appiex-home.body &&
-             grep -q 'appiex-reading-meter' /tmp/appiex-guide.body &&
-             grep -q 'Appiex 2026 polish' /tmp/appiex-css.body; then
-            echo "Production has the expected homepage, blog renderer, and CSS."
+          if grep -q 'AI Automation for Growth' /tmp/appiex-home.body &&
+             grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body &&
+             grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body &&
+             grep -q 'appiex-related-services__grid' /tmp/appiex-service.body &&
+             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body; then
+            echo "Production serves the current homepage hero, modern blog template, service links, and updated CSS."
           else
             echo "::error::Production appiex.com is not serving the merged design/SEO fixes. Verify the exact Vercel project serving this domain, its connected Git repository and branch, build status, and deployment promotion."
             exit 1
