@@ -1,11 +1,12 @@
 {
   "/": {
-    "primary": "software development company in Bangladesh",
+    "primary": "digital growth agency in Bangladesh",
     "supporting": [
-      "custom websites",
-      "AI automation agency"
+      "web development and AI automation",
+      "SEO and digital marketing"
     ],
-    "description": "Appiex is a software development company in Bangladesh building business websites, ecommerce platforms, SaaS applications and AI automation for growing teams."
+    "description": "Appiex helps businesses grow with digital strategy, full-stack web development, UI/UX & 3D design, AI automation, SEO marketing and immersive gaming.",
+    "title": "Digital Growth Agency in Bangladesh | Web, AI & SEO | Appiex"
   },
   "/ai-automation": {
     "primary": "AI automation services",

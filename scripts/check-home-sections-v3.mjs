@@ -15,7 +15,7 @@ for(const id of sectionIds){
   previous=p;
 }
 assert.equal((html.match(/<h1\b/gi)||[]).length,1,'Homepage needs a single H1');
-assert(html.includes('Software Development</span><br><span class="hero-gradient-text">&amp; AI Automation for Growth'), 'Home keyword-focused H1 drift');
+assert(html.includes('Web Development, AI &amp; SEO</span><br><span class="hero-gradient-text">for Business Growth'), 'Home keyword-focused H1 drift');
 assert(html.includes('/styles/appiex-home-sections-v3.css'), 'Homepage missing V3 design CSS');
 assert(html.includes('id="contact"'), 'Homepage contact anchor missing');
 assert(html.includes('aria-labelledby="apx-solutions-title"'),'Solution heading accessibility missing');

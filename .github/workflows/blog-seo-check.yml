@@ -10,6 +10,7 @@ on:
       - 'scripts/audit-sitewide-seo.mjs'
       - 'scripts/data/page-search-intents.json'
       - 'scripts/check-search-intents.mjs'
+      - 'scripts/check-home-growth-copy.mjs'
       - 'scripts/check-blog-layout-v2.mjs'
       - 'scripts/rebuild-service-related.mjs'
       - 'scripts/check-service-related.mjs'
@@ -120,6 +121,8 @@ jobs:
         run: node scripts/apply-sitewide-seo.mjs --check
       - name: Verify mapped primary and supporting search intents for all 44 public URLs
         run: node scripts/check-search-intents.mjs
+      - name: Verify homepage business growth positioning and six service specialties
+        run: node scripts/check-home-growth-copy.mjs
       - name: Check service links, illustrated recommendations and local image availability
         run: |
           node scripts/rebuild-service-related.mjs --check
