@@ -1,0 +1,45 @@
+name: Verify homepage design and sitewide SEO
+
+on:
+  push:
+    branches:
+      - feat/refine-home-decision-sections-20261106
+    paths:
+      - '.github/workflows/home-sections-v3-qa.yml'
+      - 'index.html'
+      - 'styles/appiex-home-sections-v3.css'
+      - 'scripts/check-home-sections-v3.mjs'
+      - 'scripts/check-editorial-renderer.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  home-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Check updated homepage and internal links
+        run: |
+          node --check scripts/check-home-sections-v3.mjs
+          node scripts/check-home-sections-v3.mjs
+      - name: Verify sitewide and blog SEO
+        run: |
+          node scripts/audit-sitewide-seo.mjs --strict
+          node scripts/apply-sitewide-seo.mjs --check
+          node scripts/check-site-seo.mjs
+          node scripts/check-blog-seo.mjs
+          node scripts/check-blog-layout-v2.mjs
+          node scripts/check-editorial-renderer.mjs
+          node scripts/materialize-editorial-html.mjs --check
+          node scripts/check-lead-tracking.mjs
+      - name: Build deployable Next.js output
+        run: |
+          npm install --no-audit --no-fund
+          npm run build

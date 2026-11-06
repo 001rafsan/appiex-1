@@ -57,7 +57,9 @@ if (!homeOriginal.includes('Web Development, AI Automation &amp; Cost Guides'))
 const home = improveHtml(homeOriginal, []);
 if (!home.includes('appiex-home-polished')) errors.push('Homepage polish class missing');
 if (!home.includes('Web Development, AI Automation &amp; Cost Guides')) errors.push('Homepage service hub heading unchanged');
-if (!home.includes('More About Working With Appiex')) errors.push('Duplicate homepage FAQ heading was not differentiated');
+if (home.includes('More About Working With Appiex')) errors.push('Duplicate homepage FAQ section has returned');
+if (!home.includes('Let’s turn your next idea into')) errors.push('Single FAQ and project CTA redesign missing');
+if (!home.includes('appiex-home-sections-v3.css')) errors.push('Homepage V3 design stylesheet missing');
 if (!fs.existsSync(path.join(root, 'styles/appiex-editorial-polish.css'))) errors.push('Shared stylesheet missing');
 if (!fs.existsSync(path.join(root, 'scripts/appiex-reading-progress.js'))) errors.push('Reading meter script missing');
 if (errors.length) {
