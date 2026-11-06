@@ -1,0 +1,364 @@
+{
+  "/": {
+    "primary": "software development company in Bangladesh",
+    "supporting": [
+      "custom websites",
+      "AI automation agency"
+    ],
+    "description": "Appiex is a software development company in Bangladesh building business websites, ecommerce platforms, SaaS applications and AI automation for growing teams."
+  },
+  "/ai-automation": {
+    "primary": "AI automation services",
+    "supporting": [
+      "custom AI agents",
+      "business workflow automation"
+    ],
+    "description": "Explore Appiex AI automation services for CRM workflows, lead qualification, customer support and custom AI agents with secure integrations and human review.",
+    "title": "AI Automation Services & Custom AI Agents | Appiex"
+  },
+  "/authors/adil-alim": {
+    "primary": "Adil Alim Appiex founder",
+    "supporting": [
+      "software architecture",
+      "AI automation author"
+    ],
+    "description": "Meet Adil Alim, founder of Appiex. Read his perspectives on software engineering, web development, digital products and practical business automation.",
+    "title": "Adil Alim | Appiex Founder & Software Author"
+  },
+  "/authors/md-rafsan": {
+    "primary": "Md Rafsan AI engineer",
+    "supporting": [
+      "AI workflow engineering",
+      "Appiex author"
+    ],
+    "description": "Meet Md. Rafsan, an Appiex author focused on AI workflows, business automation, CRM integrations and the engineering of practical connected systems.",
+    "title": "Md. Rafsan | AI Automation Engineering Author | Appiex"
+  },
+  "/authors/tanvir-rahman": {
+    "primary": "Tanvir Rahman SEO author",
+    "supporting": [
+      "technical SEO",
+      "search growth"
+    ],
+    "description": "Explore technical SEO and digital growth articles by Appiex author Tanvir Rahman, covering website audits, search visibility, analytics and content architecture."
+  },
+  "/best-software-agency": {
+    "primary": "software company selection Bangladesh",
+    "supporting": [
+      "software agency comparison",
+      "development partner"
+    ],
+    "description": "Compare software companies in Bangladesh by project fit, demonstrated work, technical testing, code ownership and delivery terms with this buyer-focused checklist.",
+    "title": "How to Choose a Software Company in Bangladesh | Appiex"
+  },
+  "/blog": {
+    "primary": "web development and AI automation blog",
+    "supporting": [
+      "technical SEO guides",
+      "SaaS planning"
+    ],
+    "description": "Browse Appiex articles on website development, software costs, ecommerce, SaaS, AI agents, workflow automation and technical SEO, organized by practical topic."
+  },
+  "/blog/ai-automation": {
+    "primary": "AI automation guides",
+    "supporting": [
+      "AI agent tutorials",
+      "n8n automation"
+    ],
+    "description": "Explore AI automation and agent guides covering n8n workflows, CRM integration, support automation, operating costs and when businesses need human approval."
+  },
+  "/blog/ai-automation-for-small-businesses": {
+    "primary": "AI automation for small businesses",
+    "supporting": [
+      "workflow automation guide",
+      "AI automation checklist"
+    ],
+    "description": "Learn how small businesses can choose AI automation projects, assess data access, keep human review and measure costs and outcomes with a practical checklist."
+  },
+  "/blog/complete-guide-to-custom-software-development": {
+    "primary": "custom software development guide",
+    "supporting": [
+      "software project planning",
+      "software architecture"
+    ],
+    "description": "Plan custom software development from discovery and requirements through architecture, development, testing and handover. Includes questions about ownership and maintenance."
+  },
+  "/blog/custom-software-vs-saas-which-is-better": {
+    "primary": "custom software vs SaaS",
+    "supporting": [
+      "build vs buy software",
+      "software total cost"
+    ],
+    "description": "Compare custom software versus SaaS on workflow fit, subscription costs, integration requirements, ownership and long-term flexibility before choosing."
+  },
+  "/blog/digital-strategy": {
+    "primary": "digital strategy guides",
+    "supporting": [
+      "digital transformation planning",
+      "software roadmap"
+    ],
+    "description": "Read digital strategy guides on discovery, product roadmaps, digital transformation, software selection and how to prioritize business technology investments.",
+    "title": "Digital Strategy & Transformation Guides | Appiex"
+  },
+  "/blog/gaming-3d-worlds": {
+    "primary": "game development and 3D web guides",
+    "supporting": [
+      "WebGL development",
+      "interactive 3D design"
+    ],
+    "description": "Explore game development and interactive 3D web topics including WebGL, Three.js, product configurators, real-time rendering and design trade-offs."
+  },
+  "/blog/how-much-does-a-custom-website-cost-in-2026": {
+    "primary": "custom website development cost",
+    "supporting": [
+      "website pricing factors",
+      "business website budget"
+    ],
+    "description": "What affects custom website development cost? Compare scope, design, content, integrations and maintenance before budgeting or requesting development proposals."
+  },
+  "/blog/how-to-automate-customer-support-with-ai": {
+    "primary": "AI customer support automation",
+    "supporting": [
+      "AI chatbot workflows",
+      "human support handoff"
+    ],
+    "description": "Learn how to automate customer support with AI using approved knowledge, escalation rules, privacy safeguards, quality review and measurable pilot outcomes."
+  },
+  "/blog/how-to-choose-a-software-development-agency": {
+    "primary": "choose a software development agency",
+    "supporting": [
+      "software agency checklist",
+      "project proposal"
+    ],
+    "description": "Use a practical checklist to choose a software development agency: assess relevant work, scope, testing, delivery responsibilities, source ownership and handover."
+  },
+  "/blog/seo-marketing": {
+    "primary": "technical SEO and AI search guides",
+    "supporting": [
+      "Next.js SEO",
+      "website technical audit"
+    ],
+    "description": "Explore technical SEO and AI search guides covering indexability, JavaScript rendering, internal links, structured data, website migrations and performance checks."
+  },
+  "/blog/shopify-vs-custom-ecommerce-development": {
+    "primary": "Shopify vs custom ecommerce",
+    "supporting": [
+      "ecommerce platform comparison",
+      "online store integrations"
+    ],
+    "description": "Compare Shopify and custom ecommerce development on catalog needs, checkout, integrations, operating costs and platform ownership before choosing your store."
+  },
+  "/blog/technical-seo-checklist-for-business-websites": {
+    "primary": "technical SEO checklist",
+    "supporting": [
+      "website crawlability",
+      "Core Web Vitals SEO"
+    ],
+    "description": "Follow a technical SEO checklist covering indexing, canonical URLs, XML sitemaps, structured data, internal links, JavaScript rendering and Core Web Vitals."
+  },
+  "/blog/ui-ux-3d-design": {
+    "primary": "UI UX and 3D design guides",
+    "supporting": [
+      "web design systems",
+      "interactive product design"
+    ],
+    "description": "Explore UI/UX, product design and interactive 3D guides focused on research, accessibility, design systems, SaaS interfaces and engaging web experiences."
+  },
+  "/blog/web-development": {
+    "primary": "web development and SaaS guides",
+    "supporting": [
+      "custom software architecture",
+      "full-stack development"
+    ],
+    "description": "Explore web development and SaaS engineering guides about custom software, platform choices, cloud architecture, performance and development costs.",
+    "title": "Web Development & SaaS Engineering Guides | Appiex"
+  },
+  "/blog/website-development-cost-bangladesh": {
+    "primary": "website development cost in Bangladesh",
+    "supporting": [
+      "ecommerce website pricing",
+      "Next.js website budget"
+    ],
+    "description": "Explore website development costs in Bangladesh for business sites, ecommerce stores and custom web apps, including scope, payment integration and ongoing support."
+  },
+  "/case-studies": {
+    "primary": "Watch24 BD ecommerce case study",
+    "supporting": [
+      "ecommerce development portfolio",
+      "online store case study"
+    ],
+    "description": "Review the Watch24 BD ecommerce development case study, including website experience, product browsing and project decisions from the Appiex portfolio."
+  },
+  "/digital-strategy": {
+    "primary": "digital transformation consulting",
+    "supporting": [
+      "digital strategy Bangladesh",
+      "technology roadmap"
+    ],
+    "description": "Plan digital transformation with Appiex through discovery, product roadmaps, process review and software priorities that match actual business goals.",
+    "title": "Digital Transformation & Strategy Consulting | Appiex"
+  },
+  "/ecommerce-development": {
+    "primary": "ecommerce website development Bangladesh",
+    "supporting": [
+      "custom online store",
+      "payment gateway integration"
+    ],
+    "description": "Build an ecommerce website in Bangladesh with Appiex. Explore custom storefronts, product catalogs, checkout flows, inventory tools and payment integrations."
+  },
+  "/editorial-policy": {
+    "primary": "Appiex editorial policy",
+    "supporting": [
+      "fact checking policy",
+      "content corrections"
+    ],
+    "description": "Understand how Appiex reviews, updates and corrects its technical articles about web development, software engineering, SEO and AI automation."
+  },
+  "/isp-software-development": {
+    "primary": "ISP billing software development",
+    "supporting": [
+      "MikroTik integration",
+      "ISP subscriber portal"
+    ],
+    "description": "Explore ISP billing software development, MikroTik integrations and subscriber portals for Bangladesh internet service providers, with scoped workflow and payment needs."
+  },
+  "/n8n-automation": {
+    "primary": "n8n automation services",
+    "supporting": [
+      "n8n workflow integrations",
+      "business process automation"
+    ],
+    "description": "Connect forms, CRMs, ecommerce tools and APIs using n8n automation workflows. Appiex plans retries, approvals, monitoring and reliable handoffs."
+  },
+  "/partners": {
+    "primary": "white label web development",
+    "supporting": [
+      "agency development partner",
+      "white label AI automation"
+    ],
+    "description": "Explore white-label web development and AI automation partnerships with Appiex for agencies seeking scoped delivery, clear responsibilities and documented handover."
+  },
+  "/privacy-policy": {
+    "primary": "Appiex privacy policy",
+    "supporting": [
+      "website data privacy",
+      "personal information choices"
+    ],
+    "description": "Learn how Appiex collects, uses and protects data from website visitors, contact forms and client or partner interactions, including your privacy choices."
+  },
+  "/projects": {
+    "primary": "website development portfolio",
+    "supporting": [
+      "ecommerce projects",
+      "software case studies"
+    ],
+    "description": "Browse Appiex website development, ecommerce, web application and interactive design projects. Explore portfolio examples before planning a similar project."
+  },
+  "/refer": {
+    "primary": "digital services referral program",
+    "supporting": [
+      "website client referrals",
+      "software referral commission"
+    ],
+    "description": "Join the Appiex digital services referral program to introduce qualified website, ecommerce, software and AI automation leads. Review eligibility and commission terms.",
+    "title": "Client Referral Program for Digital Services | Appiex"
+  },
+  "/seo-marketing": {
+    "primary": "technical SEO services Bangladesh",
+    "supporting": [
+      "SEO website audit",
+      "SEO migration"
+    ],
+    "description": "Improve website search visibility with technical SEO services covering crawlability, canonical tags, structured data, site architecture, internal links and redirects."
+  },
+  "/services": {
+    "primary": "software development and AI services",
+    "supporting": [
+      "web development services",
+      "SEO consulting"
+    ],
+    "description": "Explore Appiex services for website development, ecommerce, SaaS, AI workflow automation, UI/UX design, technical SEO and digital strategy for businesses."
+  },
+  "/team": {
+    "primary": "Appiex team and leadership",
+    "supporting": [
+      "software engineering team",
+      "digital agency team"
+    ],
+    "description": "Meet the Appiex team and learn about its work across software engineering, AI workflow automation, design, strategy and digital growth.",
+    "title": "Appiex Team | Engineering, Design & Strategy"
+  },
+  "/terms-of-service": {
+    "primary": "Appiex terms of service",
+    "supporting": [
+      "website terms",
+      "digital services agreements"
+    ],
+    "description": "Read Appiex website terms governing use of the site, enquiries, referrals and general digital service engagement information."
+  },
+  "/ui-ux-3d-design": {
+    "primary": "UI UX design services",
+    "supporting": [
+      "3D web design",
+      "SaaS interface design"
+    ],
+    "description": "Explore Appiex UI/UX design services for SaaS platforms, business websites and interactive 3D experiences, from research and prototyping to design systems.",
+    "title": "UI/UX Design Services & Interactive 3D Websites | Appiex"
+  },
+  "/web-development": {
+    "primary": "website development company in Bangladesh",
+    "supporting": [
+      "custom web applications",
+      "business website development"
+    ],
+    "description": "Work with a website development company in Bangladesh for responsive business websites, custom web apps, SaaS products, integrations and structured handover."
+  },
+  "/website-redesign": {
+    "primary": "website redesign and SEO migration",
+    "supporting": [
+      "business website redesign",
+      "301 redirect planning"
+    ],
+    "description": "Redesign a business website with improved usability, mobile performance, SEO-safe redirects, accessibility and conversion tracking, guided by a clear project scope."
+  },
+  "/whatsapp-automation": {
+    "primary": "WhatsApp Business automation",
+    "supporting": [
+      "WhatsApp chatbot development",
+      "CRM messaging integration"
+    ],
+    "description": "Explore WhatsApp Business automation and chatbot development for lead handling, support workflows, CRM integration and customer handoff to human agents."
+  },
+  "/blog/how-much-does-ai-automation-cost": {
+    "primary": "AI automation cost",
+    "supporting": [
+      "AI agents pricing",
+      "automation monthly costs"
+    ],
+    "description": "Estimate AI automation setup and ongoing costs, including model APIs, hosting, integrations, quality review and maintenance with a practical budget example."
+  },
+  "/blog/how-long-does-it-take-to-build-a-saas-product": {
+    "primary": "SaaS development timeline",
+    "supporting": [
+      "SaaS MVP duration",
+      "SaaS launch planning"
+    ],
+    "description": "Learn how long SaaS development may take, from discovery and multi-tenant architecture through billing integrations, testing, launch and post-launch planning."
+  },
+  "/blog/website-redesign-process": {
+    "primary": "website redesign process",
+    "supporting": [
+      "SEO migration checklist",
+      "website redesign timeline"
+    ],
+    "description": "Follow a website redesign process covering discovery, content audit, URL mapping, redirects, accessibility, analytics and post-launch search visibility checks."
+  },
+  "/blog/ai-agents-vs-n8n-automation-for-business": {
+    "primary": "AI agents vs n8n automation",
+    "supporting": [
+      "AI workflow vs agent",
+      "business automation comparison"
+    ],
+    "description": "Compare AI agents, n8n workflows and hybrid automation by business use case, reliability, operating cost and human oversight needs."
+  }
+}

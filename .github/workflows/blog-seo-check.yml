@@ -8,6 +8,8 @@ on:
       - 'styles/appiex-related-services.css'
       - 'scripts/apply-sitewide-seo.mjs'
       - 'scripts/audit-sitewide-seo.mjs'
+      - 'scripts/data/page-search-intents.json'
+      - 'scripts/check-search-intents.mjs'
       - 'scripts/check-blog-layout-v2.mjs'
       - 'scripts/rebuild-service-related.mjs'
       - 'scripts/check-service-related.mjs'
@@ -38,6 +40,8 @@ on:
       - 'styles/appiex-related-services.css'
       - 'scripts/apply-sitewide-seo.mjs'
       - 'scripts/audit-sitewide-seo.mjs'
+      - 'scripts/data/page-search-intents.json'
+      - 'scripts/check-search-intents.mjs'
       - 'scripts/check-blog-layout-v2.mjs'
       - 'scripts/rebuild-service-related.mjs'
       - 'scripts/check-service-related.mjs'
@@ -114,6 +118,8 @@ jobs:
         run: node scripts/audit-sitewide-seo.mjs --strict
       - name: Check sitemap pages follow the approved metadata and linking policy
         run: node scripts/apply-sitewide-seo.mjs --check
+      - name: Verify mapped primary and supporting search intents for all 44 public URLs
+        run: node scripts/check-search-intents.mjs
       - name: Check service links, illustrated recommendations and local image availability
         run: |
           node scripts/rebuild-service-related.mjs --check

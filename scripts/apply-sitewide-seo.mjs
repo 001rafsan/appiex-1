@@ -18,6 +18,15 @@ const updates={
   '/blog/ui-ux-3d-design':{title:'UI/UX, 3D Web Design & Redesign Guides | Appiex'},
   '/privacy-policy':{title:'Appiex Privacy Policy | Data Use & Your Choices'}
 };
+// Page-specific search intent map: one primary query, relevant supporting
+// queries and a truthful snippet for every sitemap URL. No meta keywords tag:
+ // Google ignores it. All public URLs have unique, useful descriptions.
+const searchIntents=JSON.parse(fs.readFileSync('scripts/data/page-search-intents.json','utf8'));
+Object.assign(updates,searchIntents);
+const publicPaths=new Set(urls.map(u=>new URL(u).pathname));
+if(publicPaths.size!==Object.keys(searchIntents).length ||
+   [...publicPaths].some(p=>!searchIntents[p]))
+  throw Error('Search intent map must cover exactly the sitemap URLs');
 const related={
   '/services':[
     ['/web-development','Web & Software Development','Plan websites, SaaS apps and integrated portals.'],
@@ -125,6 +134,19 @@ for(const url of urls){
     const imageTag=html.match(/<meta\b[^>]*property=["']og:image["'][^>]*>/i)?.[0];
     html=setMeta(html,'name','twitter:card',imageTag?'summary_large_image':'summary');
     if(imageTag)html=setMeta(html,'name','twitter:image',dec(metaContent(imageTag)));
+  }
+  // Author profiles lacked breadcrumbs although the site’s other resource
+  // pages already have them. Provide truthful Home > Author structured data.
+  if(page.startsWith('/authors/') && !html.slice(0,html.indexOf('</head>')).includes('"BreadcrumbList"')){
+    const breadcrumb={
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Appiex","item":"https://appiex.com/"},
+        {"@type":"ListItem","position":2,"name":title.split('|')[0].trim(),"item":url}
+      ]
+    };
+    const script='<script type="application/ld+json">'+JSON.stringify(breadcrumb)+'</script>';
+    html=html.replace(/<\/head>/i,script+'\n</head>');
   }
   if(html!==original)metadata++;
   if(related[page]&&!html.includes('appiex-related-services__grid')){

@@ -1,0 +1,68 @@
+name: Apply Appiex search-intent SEO map
+
+on:
+  push:
+    branches: [feat/page-intent-seo-map-20261106]
+    paths:
+      - '.github/workflows/apply-page-search-intents.yml'
+      - 'scripts/data/page-search-intents.json'
+      - 'scripts/apply-sitewide-seo.mjs'
+      - 'scripts/check-search-intents.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: appiex-20261106-search-intent
+  cancel-in-progress: false
+
+jobs:
+  update-public-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Check script syntax
+        run: |
+          node --check scripts/apply-sitewide-seo.mjs
+          node --check scripts/check-search-intents.mjs
+      - name: Apply per-page search-intent metadata
+        run: node scripts/apply-sitewide-seo.mjs
+      - name: Validate title, description, canonical and page intent
+        run: |
+          node scripts/apply-sitewide-seo.mjs --check
+          node scripts/check-search-intents.mjs
+          node scripts/audit-sitewide-seo.mjs --strict
+          node scripts/check-site-seo.mjs
+          node scripts/check-blog-seo.mjs
+          node scripts/check-blog-layout-v2.mjs
+          node scripts/check-editorial-renderer.mjs
+          node scripts/check-service-related.mjs
+          node scripts/check-home-sections-v3.mjs
+          node scripts/check-lead-tracking.mjs
+          node scripts/materialize-editorial-html.mjs --check
+      - name: Build deployable Next.js app
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Commit only verified HTML changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u -- '*.html'
+          if git diff --cached --quiet; then
+            echo 'SEO pages already synchronized'
+            exit 0
+          fi
+          git diff --cached --stat
+          git commit -m 'seo: improve keyword targeting and SERP snippets across 44 public pages'
+          git push origin HEAD:feat/page-intent-seo-map-20261106
