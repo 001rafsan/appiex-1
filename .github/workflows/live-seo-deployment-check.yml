@@ -24,7 +24,7 @@ jobs:
           fetch "https://appiex.com/sitemap.xml" /tmp/sitemap.xml
           fetch "https://appiex.com/robots.txt" /tmp/robots.txt
           fetch "https://appiex.com/blog/ai-agents-vs-n8n-automation-for-business" /tmp/guide.html
-          if ! grep -Fq 'for Business Growth' /tmp/home.html || ! grep -Fq 'Digital Growth Agency in Bangladesh' /tmp/home.html; then
+          if ! grep -Fq 'From Earth to Jupiter' /tmp/home.html || ! grep -Fq 'Business Growth Agency in Bangladesh' /tmp/home.html; then
             echo "::error::Live homepage still uses older copy. Check Vercel production project, GitHub branch and domain assignment."
             exit 1
           fi

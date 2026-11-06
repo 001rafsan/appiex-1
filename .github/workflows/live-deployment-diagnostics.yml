@@ -56,7 +56,7 @@ jobs:
             if test -f "$outfile"; then
               echo "Bytes: $(wc -c < "$outfile")"
               echo "Shared design CSS reference: $(grep -c 'appiex-editorial-polish.css' "$outfile" || true)"
-              echo "Business growth hero: $(grep -c 'for Business Growth' "$outfile" || true)"
+              echo "Business growth hero: $(grep -c 'From Earth to Jupiter' "$outfile" || true)"
               echo "Homepage polish class: $(grep -c 'appiex-home-polished' "$outfile" || true)"
               echo "Current design marker: $(grep -c 'APPIEX HOME EDITORIAL REFRESH' "$outfile" || true)"
               echo "Blog reading progress class: $(grep -c 'appiex-reading-meter' "$outfile" || true)"
@@ -80,8 +80,8 @@ jobs:
           inspect homev3css "https://appiex.com/styles/appiex-home-sections-v3.css?appiex_check=${GITHUB_SHA}"
           echo "## Production diagnosis" >> "$GITHUB_STEP_SUMMARY"
           echo "- Repository SHA: \`${GITHUB_SHA}\`" >> "$GITHUB_STEP_SUMMARY"
-          if grep -q 'for Business Growth' /tmp/appiex-home.body &&
-             grep -q 'Digital Growth Agency in Bangladesh' /tmp/appiex-home.body 2>/dev/null &&
+          if grep -q 'From Earth to Jupiter' /tmp/appiex-home.body &&
+             grep -q 'Business Growth Agency in Bangladesh' /tmp/appiex-home.body 2>/dev/null &&
              grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body 2>/dev/null &&
              grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body 2>/dev/null &&
              grep -q 'appiex-related-services__grid' /tmp/appiex-service.body 2>/dev/null &&
@@ -135,8 +135,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -q 'for Business Growth' /tmp/appiex-home.body &&
-             grep -q 'Digital Growth Agency in Bangladesh' /tmp/appiex-home.body &&
+          if grep -q 'From Earth to Jupiter' /tmp/appiex-home.body &&
+             grep -q 'Business Growth Agency in Bangladesh' /tmp/appiex-home.body &&
              grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body &&
              grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body &&
              grep -q 'appiex-related-services__grid' /tmp/appiex-service.body &&

@@ -9,7 +9,7 @@ const title=plain(head.match(/<title\b[^>]*>(.*?)<\/title>/i)?.[1]);
 const description=meta('name','description');
 assert.equal(title,intents['/'].title,'Homepage title not aligned with curated search intent');
 assert.equal(description,intents['/'].description,'Homepage description differs from mapped SEO snippet');
-assert(title.includes('Digital Growth Agency'),'Growth positioning absent from SEO title');
+assert(title.includes('Business Growth Agency'),'Growth positioning absent from SEO title');
 assert(description.length>=90&&description.length<=175,'SEO description too short or too long');
 for(const [kind,key,expected] of [
  ['property','og:title',title],['name','twitter:title',title],
@@ -18,9 +18,9 @@ for(const [kind,key,expected] of [
 const hero=html.match(/<section id="home"[\s\S]*?<\/section>/)?.[0]||'';
 assert(hero,'Homepage hero section missing');
 assert.equal((hero.match(/<h1\b/gi)||[]).length,1,'Hero should contain exactly one H1');
-assert(hero.includes('Web Development, AI &amp; SEO'),'New growth headline missing');
-assert(hero.includes('for Business Growth'),'Business-growth value proposition missing');
-for(const term of ['digital strategy','full-stack web development','UI/UX','3D design','AI automation','SEO','digital marketing','gaming','immersive 3D worlds','business growth'])
+assert(hero.includes('Your Business Growth Agency'),'New growth headline missing');
+assert(hero.includes('From Earth to Jupiter'),'Business-growth value proposition missing');
+for(const term of ['digital strategy','powerful web applications','UI/UX','3D and gaming experiences','AI automation','SEO','digital marketing','gaming experiences','immersive 3D','business success'])
   assert(hero.toLowerCase().includes(term.toLowerCase()),'Six service positioning incomplete: '+term);
 const match=head.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
 assert(match,'Main JSON-LD missing');
@@ -30,7 +30,7 @@ const org=data.find(x=>x['@type']==='Organization');
 const agency=data.find(x=>x['@type']==='ProfessionalService');
 assert.equal(site?.name,title,'WebPage schema title out of sync');
 assert.equal(site?.description,description,'WebPage schema description out of sync');
-assert(agency?.description?.includes('digital growth agency'),'ProfessionalService should reflect agency positioning');
+assert(agency?.description?.includes('business growth agency'),'ProfessionalService should reflect agency positioning');
 const offered=new Set(org?.hasOfferCatalog?.itemListElement?.map(x=>x.itemOffered?.url));
 for(const route of ['/digital-strategy','/web-development','/ui-ux-3d-design','/ai-automation','/seo-marketing','/gaming'])
   assert(offered.has('https://appiex.com'+route),'Service missing from schema: '+route);
