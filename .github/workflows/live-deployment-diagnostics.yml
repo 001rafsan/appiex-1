@@ -16,6 +16,8 @@ on:
       - 'scripts/check-editorial-renderer.mjs'
       - 'styles/appiex-related-services.css'
       - 'scripts/apply-sitewide-seo.mjs'
+      - 'styles/appiex-home-sections-v3.css'
+      - 'scripts/check-home-sections-v3.mjs'
 
 permissions:
   contents: read
@@ -70,16 +72,22 @@ jobs:
           inspect blogcss "https://appiex.com/styles/appiex-blog-v2.css?appiex_check=${GITHUB_SHA}"
           inspect service "https://appiex.com/web-development?appiex_check=${GITHUB_SHA}"
           inspect relatedcss "https://appiex.com/styles/appiex-related-services.css?appiex_check=${GITHUB_SHA}"
+          inspect homev3css "https://appiex.com/styles/appiex-home-sections-v3.css?appiex_check=${GITHUB_SHA}"
           echo "## Production diagnosis" >> "$GITHUB_STEP_SUMMARY"
           echo "- Repository SHA: \`${GITHUB_SHA}\`" >> "$GITHUB_STEP_SUMMARY"
           if grep -q 'AI Automation for Growth' /tmp/appiex-home.body 2>/dev/null &&
              grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body 2>/dev/null &&
              grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body 2>/dev/null &&
              grep -q 'appiex-related-services__grid' /tmp/appiex-service.body 2>/dev/null &&
-             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body 2>/dev/null; then
-            echo "- **PASS:** Live home, article and CSS contain the current shared renderer." >> "$GITHUB_STEP_SUMMARY"
+             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body &&
+             grep -q 'apx-solution-grid' /tmp/appiex-home.body &&
+             grep -q 'apx-faq-stack' /tmp/appiex-home.body &&
+             grep -q 'apx-next-step' /tmp/appiex-home.body &&
+             grep -q 'cohesive editorial decision system' /tmp/appiex-homev3css.body &&
+             ! grep -q 'Is Appiex the Right Fit for Your Project' /tmp/appiex-home.body 2>/dev/null; then
+            echo "- **PASS:** Live homepage, V3 design CSS, blog and service links contain the latest merged source." >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "- **DRIFT:** Production does not contain the deployed renderer and CSS; inspect Vercel project Git integration, production branch, latest deployment, build output, and domain assignment." >> "$GITHUB_STEP_SUMMARY"
+            echo "- **DRIFT:** Production does not contain the latest homepage or blog design; inspect Vercel project Git integration, production branch, latest deployment, build output, and domain assignment." >> "$GITHUB_STEP_SUMMARY"
           fi
           echo "- Review diagnostic logs for HTTP status and Vercel response headers." >> "$GITHUB_STEP_SUMMARY"
       - name: Determine likely source repository from live HTML
@@ -115,8 +123,13 @@ jobs:
              grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body &&
              grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body &&
              grep -q 'appiex-related-services__grid' /tmp/appiex-service.body &&
-             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body; then
-            echo "Production serves the current homepage hero, modern blog template, service links, and updated CSS."
+             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body &&
+             grep -q 'apx-solution-grid' /tmp/appiex-home.body &&
+             grep -q 'apx-faq-stack' /tmp/appiex-home.body &&
+             grep -q 'apx-next-step' /tmp/appiex-home.body &&
+             grep -q 'cohesive editorial decision system' /tmp/appiex-homev3css.body &&
+             ! grep -q 'Is Appiex the Right Fit for Your Project' /tmp/appiex-home.body; then
+            echo "Production serves current homepage design V3, accessible FAQ, modern blog and SEO CSS."
           else
             echo "::error::Production appiex.com is not serving the merged design/SEO fixes. Verify the exact Vercel project serving this domain, its connected Git repository and branch, build status, and deployment promotion."
             exit 1
