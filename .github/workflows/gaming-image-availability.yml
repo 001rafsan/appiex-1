@@ -1,0 +1,39 @@
+name: Verify licensed gaming editorial image assets
+
+on:
+  push:
+    branches: [feat/gaming-cinematic-editorial-20261106]
+    paths:
+      - '.github/workflows/gaming-image-availability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Confirm cinematic image CDN URLs serve real image data
+        shell: bash
+        run: |
+          set -euo pipefail
+          for id in \
+            photo-1752439910625-437e68217c37 \
+            photo-1760813360432-9b5d79eb9679 \
+            photo-1728457848586-fc2c468b4689 \
+            photo-1760930380017-b0f1fdad0242 \
+            photo-1773672726538-885c0d878033
+          do
+            url="https://images.unsplash.com/$id?auto=format&fit=crop&w=400&q=50"
+            result=$(curl -sSL --max-time 25 -o "/tmp/$id.img" -w '%{http_code} %{content_type} %{size_download}' "$url")
+            echo "$id: $result"
+            code=$(echo "$result" | cut -d' ' -f1)
+            if [ "$code" != "200" ]; then
+              echo "::error::Cinematic image unavailable: $id"
+              exit 1
+            fi
+            test "$(wc -c < "/tmp/$id.img")" -gt 3000
+          done
+          echo "PASS: All five image URLs serve valid non-empty media."

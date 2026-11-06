@@ -10,6 +10,8 @@ on:
       - 'scripts/appiex-gaming.js'
       - 'styles/appiex-gaming-premium.css'
       - 'styles/appiex-gaming-studio.css'
+      - 'styles/appiex-gaming-director.css'
+      - 'scripts/check-gaming-director.mjs'
       - 'scripts/check-gaming-studio.mjs'
       - 'scripts/appiex-gaming-play.js'
       - 'scripts/check-gaming-play.mjs'
@@ -50,6 +52,9 @@ jobs:
                grep -Fq 'id="collaboration"' /tmp/appiex-gaming-live.html &&
                grep -Fq 'id="project-budget"' /tmp/appiex-gaming-live.html &&
                grep -Fq 'appiex-gaming-studio.css' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'appiex-gaming-director.css' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'gd-hero-image' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'gd-photo-art' /tmp/appiex-gaming-live.html &&
                grep -Fq 'name="robots" content="index, follow' /tmp/appiex-gaming-live.html &&
                ! grep -Fq '/_nuxt/' /tmp/appiex-gaming-live.html; then
               live=1
@@ -83,10 +88,18 @@ jobs:
           grep -Fq 'APPIEX / GAME STUDIO EXPANSION' /tmp/appiex-gaming-studio.css
           grep -Fq 'gs-concept-grid' /tmp/appiex-gaming-studio.css
           grep -Fq 'prefers-reduced-motion' /tmp/appiex-gaming-studio.css
+          curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming-director.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-director.css
+          grep -Fq "APPIEX / GAMING DIRECTOR'S CUT" /tmp/appiex-gaming-director.css
+          grep -Fq 'gd-hero-frame' /tmp/appiex-gaming-director.css
           curl -fsSL --max-time 30 "https://appiex.com/scripts/appiex-gaming-play.js?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-play.js
           grep -Fq 'Signal Run' /tmp/appiex-gaming-play.js
           grep -Fq 'requestAnimationFrame' /tmp/appiex-gaming-play.js
           grep -Fq 'togglePause' /tmp/appiex-gaming-play.js
           curl -fsSL --max-time 30 "https://appiex.com/sitemap.xml?deploy_check=$GITHUB_SHA" -o /tmp/appiex-sitemap.xml
           grep -Fq '<loc>https://appiex.com/gaming</loc>' /tmp/appiex-sitemap.xml
-          echo "PASS: Expanded Gaming studio sections, original concept visuals, playable demo and SEO sitemap verified live on both domains."
+          curl -fsSL --max-time 30 -D /tmp/appiex-gaming.headers -o /dev/null "https://appiex.com/gaming?robots_header_check=$GITHUB_SHA"
+          if grep -iE '^x-robots-tag:.*noindex' /tmp/appiex-gaming.headers; then
+            echo "::error::Gaming is still blocked by X-Robots-Tag: noindex"
+            exit 1
+          fi
+          echo "PASS: Cinematic editorial Gaming design, real licensed images, playable demo, and indexable HTTP headers confirmed live."

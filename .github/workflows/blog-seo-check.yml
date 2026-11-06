@@ -21,6 +21,8 @@ on:
       - 'scripts/check-gaming-service.mjs'
       - 'styles/appiex-gaming-studio.css'
       - 'scripts/check-gaming-studio.mjs'
+      - 'styles/appiex-gaming-director.css'
+      - 'scripts/check-gaming-director.mjs'
       - 'styles/appiex-gaming-premium.css'
       - 'scripts/appiex-gaming-play.js'
       - 'scripts/check-gaming-play.mjs'
@@ -131,6 +133,7 @@ jobs:
           node scripts/check-gaming-service.mjs
           node scripts/check-gaming-play.mjs
           node scripts/check-gaming-studio.mjs
+          node scripts/check-gaming-director.mjs
       - name: Audit SEO for all public sitemap pages
         run: node scripts/audit-sitewide-seo.mjs --strict
       - name: Check sitemap pages follow the approved metadata and linking policy

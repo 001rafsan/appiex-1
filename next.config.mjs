@@ -155,7 +155,7 @@ const nextConfig = {
         ]
       },
       {
-        source: '/:page(admin|login|profile|gaming|collections|resume|rafsan_page|scratch_cuberto_live)',
+        source: '/:page(admin|login|profile|collections|resume|rafsan_page|scratch_cuberto_live)',
         headers: [
           {
             key: 'X-Robots-Tag',
