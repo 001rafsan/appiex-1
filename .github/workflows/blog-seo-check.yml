@@ -16,16 +16,10 @@ on:
       - 'scripts/check-service-related.mjs'
       - 'blog.html'
       - 'index.html'
-      - 'styles/appiex-gaming.css'
-      - 'scripts/appiex-gaming.js'
-      - 'scripts/check-gaming-service.mjs'
-      - 'styles/appiex-gaming-studio.css'
-      - 'scripts/check-gaming-studio.mjs'
-      - 'styles/appiex-gaming-director.css'
-      - 'scripts/check-gaming-director.mjs'
-      - 'styles/appiex-gaming-premium.css'
-      - 'scripts/appiex-gaming-play.js'
-      - 'scripts/check-gaming-play.mjs'
+      - 'styles/gaming-v2.css'
+      - 'scripts/check-rift-shift.mjs'
+      - 'scripts/appiex-rift-shift.js'
+      - 'scripts/check-gaming-rebuild.mjs'
       - 'vercel.json'
       - 'scripts/check-vercel-next-config.mjs'
       - 'src/app/**'
@@ -125,15 +119,13 @@ jobs:
           node-version: '22'
       - name: Validate canonical sitemap URLs, metadata and JSON-LD
         run: node scripts/check-site-seo.mjs
-      - name: Verify gaming page, SEO and playable arcade interactions
+      - name: Verify rebuilt gaming page and original playable arcade
         run: |
-          node --check scripts/appiex-gaming.js
-          node --check scripts/appiex-gaming-play.js
-          node --check scripts/check-gaming-play.mjs
-          node scripts/check-gaming-service.mjs
-          node scripts/check-gaming-play.mjs
-          node scripts/check-gaming-studio.mjs
-          node scripts/check-gaming-director.mjs
+          node --check scripts/appiex-rift-shift.js
+          node --check scripts/appiex-gaming-lenis.js
+          node --check scripts/check-gaming-rebuild.mjs
+          node scripts/check-gaming-rebuild.mjs
+          node scripts/check-rift-shift.mjs
       - name: Audit SEO for all public sitemap pages
         run: node scripts/audit-sitewide-seo.mjs --strict
       - name: Check sitemap pages follow the approved metadata and linking policy

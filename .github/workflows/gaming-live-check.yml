@@ -1,21 +1,13 @@
-name: Gaming & 3D Worlds live SEO and design smoke test
-
+name: Gaming V2 live deployment verification
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
       - 'gaming.html'
-      - 'styles/appiex-gaming.css'
-      - 'scripts/appiex-gaming.js'
-      - 'styles/appiex-gaming-premium.css'
-      - 'styles/appiex-gaming-studio.css'
-      - 'styles/appiex-gaming-director.css'
-      - 'scripts/check-gaming-director.mjs'
-      - 'scripts/check-gaming-studio.mjs'
-      - 'scripts/appiex-gaming-play.js'
-      - 'scripts/check-gaming-play.mjs'
-      - 'sitemap.xml'
+      - 'styles/gaming-v2.css'
+      - 'scripts/appiex-rift-shift.js'
+      - 'scripts/check-gaming-rebuild.mjs'
       - '.github/workflows/gaming-live-check.yml'
 
 permissions:
@@ -26,80 +18,51 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
-      - name: Verify production HTML after automatic deployment
+      - name: Confirm the new design is actually deployed
         shell: bash
         run: |
           set -euo pipefail
-          # Vercel may still be deploying when this job starts, so verify content
-          # rather than interpreting HTTP 200 on an old release as success.
-          live=0
-          for attempt in $(seq 1 18); do
-            code=$(curl -L -sS --max-time 22 \
-              -H 'Cache-Control: no-cache' \
-              -o /tmp/appiex-gaming-live.html \
-              -w '%{http_code}' "https://appiex.com/gaming?deploy_check=$GITHUB_SHA" || true)
-            if [ "$code" = "200" ] &&
-               grep -Fq 'Game Development &amp; Interactive 3D Worlds' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'appiex-gaming.css' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'appiex-gaming-premium.css' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="play-demo"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="g-game-canvas"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="g-game-start"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="g-world-title"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="platforms"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="game-engines"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="creative-worlds"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="collaboration"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'id="project-budget"' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'appiex-gaming-studio.css' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'appiex-gaming-director.css' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'gd-hero-image' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'gd-photo-art' /tmp/appiex-gaming-live.html &&
-               grep -Fq 'name="robots" content="index, follow' /tmp/appiex-gaming-live.html &&
-               ! grep -Fq '/_nuxt/' /tmp/appiex-gaming-live.html; then
-              live=1
+          deployed=0
+          for attempt in $(seq 1 15); do
+            status=$(curl -sSL --max-time 22 -H 'Cache-Control: no-cache' \
+              -o /tmp/appiex-gaming-v2.html -w '%{http_code}' \
+              "https://appiex.com/gaming?deploy_check=$GITHUB_SHA" || true)
+            if [ "$status" = "200" ] &&
+               grep -Fq 'styles/gaming-v2.css?v=20261107-new' /tmp/appiex-gaming-v2.html &&
+               grep -Fq 'id="gx-main-title"' /tmp/appiex-gaming-v2.html &&
+               grep -Fq 'id="arcade-canvas"' /tmp/appiex-gaming-v2.html &&
+               grep -Fq 'id="arcade-start"' /tmp/appiex-gaming-v2.html &&
+               grep -Fq 'scripts/appiex-rift-shift.js' /tmp/appiex-gaming-v2.html &&
+               grep -Fq 'rel="canonical" href="https://appiex.com/gaming"' /tmp/appiex-gaming-v2.html; then
+              deployed=1
               break
             fi
-            echo "Attempt $attempt: received HTTP $code, waiting for new gaming deployment"
-            sleep 8
+            echo "Attempt $attempt: new gaming page not deployed yet (HTTP $status)"
+            sleep 10
           done
-          if [ "$live" -ne 1 ]; then
-            echo "::error::Live gaming page is still an outdated version or cannot be fetched"
+          if [ "$deployed" -ne 1 ]; then
+            echo "::error::The redesigned gaming page has not reached production; check Vercel status/limits."
             exit 1
           fi
-          echo "Gaming HTML live: semantic content, indexable metadata, new visual stylesheet reference confirmed"
-      - name: Verify both domains, CSS, enhancement and sitemap
+          echo "PASS: New gaming design and playable arcade verified in production."
+      - name: Verify actual published CSS, JavaScript and indexability
         shell: bash
         run: |
           set -euo pipefail
-          curl -fsSL --max-time 30 "https://www.appiex.com/gaming?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-www.html
-          grep -Fq 'id="g-main-title"' /tmp/appiex-gaming-www.html
-          grep -Fq 'id="g-game-canvas"' /tmp/appiex-gaming-www.html
-          grep -Fq 'id="game-engines"' /tmp/appiex-gaming-www.html
-          curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming.css
-          grep -Fq 'Appiex Gaming & 3D Worlds' /tmp/appiex-gaming.css
-          grep -Fq 'prefers-reduced-motion' /tmp/appiex-gaming.css
-          curl -fsSL --max-time 30 "https://appiex.com/scripts/appiex-gaming.js?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming.js
-          grep -Fq 'selectWorld' /tmp/appiex-gaming.js
-          curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming-premium.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-premium.css
-          grep -Fq 'Premium creative direction' /tmp/appiex-gaming-premium.css
-          grep -Fq 'g-play-console' /tmp/appiex-gaming-premium.css
-          curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming-studio.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-studio.css
-          grep -Fq 'APPIEX / GAME STUDIO EXPANSION' /tmp/appiex-gaming-studio.css
-          grep -Fq 'gs-concept-grid' /tmp/appiex-gaming-studio.css
-          grep -Fq 'prefers-reduced-motion' /tmp/appiex-gaming-studio.css
-          curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming-director.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-director.css
-          grep -Fq "APPIEX / GAMING DIRECTOR'S CUT" /tmp/appiex-gaming-director.css
-          grep -Fq 'gd-hero-frame' /tmp/appiex-gaming-director.css
-          curl -fsSL --max-time 30 "https://appiex.com/scripts/appiex-gaming-play.js?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-play.js
-          grep -Fq 'Signal Run' /tmp/appiex-gaming-play.js
-          grep -Fq 'requestAnimationFrame' /tmp/appiex-gaming-play.js
-          grep -Fq 'togglePause' /tmp/appiex-gaming-play.js
-          curl -fsSL --max-time 30 "https://appiex.com/sitemap.xml?deploy_check=$GITHUB_SHA" -o /tmp/appiex-sitemap.xml
-          grep -Fq '<loc>https://appiex.com/gaming</loc>' /tmp/appiex-sitemap.xml
-          curl -fsSL --max-time 30 -D /tmp/appiex-gaming.headers -o /dev/null "https://appiex.com/gaming?robots_header_check=$GITHUB_SHA"
-          if grep -iE '^x-robots-tag:.*noindex' /tmp/appiex-gaming.headers; then
-            echo "::error::Gaming is still blocked by X-Robots-Tag: noindex"
+          curl -fsSL --max-time 25 \
+            "https://appiex.com/styles/gaming-v2.css?v=$GITHUB_SHA" \
+            -o /tmp/appiex-gaming-v2.css
+          grep -Fq 'GAMING / APPIEX' /tmp/appiex-gaming-v2.css
+          grep -Fq 'prefers-reduced-motion' /tmp/appiex-gaming-v2.css
+          curl -fsSL --max-time 25 \
+            "https://appiex.com/scripts/appiex-rift-shift.js?v=$GITHUB_SHA" \
+            -o /tmp/appiex-rift-shift.js
+          grep -Fq 'RIFT SHIFT' /tmp/appiex-rift-shift.js
+          grep -Fq 'requestAnimationFrame' /tmp/appiex-rift-shift.js
+          curl -fsSL -D /tmp/appiex-gaming-v2.headers \
+            -o /dev/null "https://appiex.com/gaming?seo_check=$GITHUB_SHA"
+          if grep -iE '^x-robots-tag:.*noindex' /tmp/appiex-gaming-v2.headers; then
+            echo "::error::Gaming page is blocked by X-Robots-Tag."
             exit 1
           fi
-          echo "PASS: Cinematic editorial Gaming design, real licensed images, playable demo, and indexable HTTP headers confirmed live."
+          echo "PASS: New CSS, playable JS and indexable production headers."
