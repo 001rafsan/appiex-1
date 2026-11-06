@@ -1,0 +1,63 @@
+name: Generate modern Appiex article layouts
+
+on:
+  push:
+    branches:
+      - feat/modernize-all-blog-articles-20261106
+    paths:
+      - '.github/workflows/generate-modern-blog-layouts.yml'
+      - 'scripts/rebuild-blog-article-layouts.mjs'
+      - 'scripts/check-editorial-renderer.mjs'
+      - 'scripts/check-blog-layout-v2.mjs'
+      - 'src/lib/appiex-html-polish.mjs'
+      - 'styles/appiex-blog-v2.css'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Validate generator syntax
+        run: |
+          node --check scripts/rebuild-blog-article-layouts.mjs
+          node --check scripts/check-blog-layout-v2.mjs
+      - name: Rebuild legacy blog HTML as modern article guides
+        run: node scripts/rebuild-blog-article-layouts.mjs
+      - name: Validate layouts, SEO, links, calculators and CMS
+        run: |
+          node scripts/rebuild-blog-article-layouts.mjs --check
+          node scripts/check-blog-layout-v2.mjs
+          node scripts/check-editorial-renderer.mjs
+          node scripts/check-blog-seo.mjs
+          node scripts/check-site-seo.mjs
+          node scripts/materialize-editorial-html.mjs --check
+      - name: Validate Next.js production build
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Publish verified HTML into feature branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog
+          if git diff --cached --quiet; then
+            echo "All articles already use the modern layout"
+            exit 0
+          fi
+          git diff --cached --name-only | tee /tmp/updated-articles.txt
+          echo "Updated $(wc -l < /tmp/updated-articles.txt) articles"
+          git commit -m "feat(blog): migrate remaining articles to modern editorial layout"
+          git push origin HEAD:feat/modernize-all-blog-articles-20261106

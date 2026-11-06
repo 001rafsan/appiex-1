@@ -29,6 +29,9 @@ export function improveHtml(html, slug) {
   const isHomepage = route === '' || route === 'index';
   const isBlog = route === 'blog' || route.startsWith('blog/');
   if (!isHomepage && !isBlog) return html;
+  // Source-level buyer-guide redesign: these pages are already complete,
+  // and must not be rewrapped in the old three-column presentation.
+  if (/\bappiex-blog-v2\b/.test(html.match(/<body\b[^>]*>/i)?.[0] || '')) return html;
 
   // This shared stylesheet is copied into public/styles by sync-nextjs-public.mjs.
   if (!html.includes('appiex-editorial-polish.css')) {

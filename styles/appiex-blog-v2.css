@@ -1,0 +1,264 @@
+/*
+ * APPIEX EDITORIAL SYSTEM v2
+ * Inspired by the existing website-cost and AI-agent buyer-guide articles.
+ * Scoped to converted legacy blog posts. No changes to service/home pages.
+ */
+body.appiex-blog-v2 {
+  --ink:#f5f5f8;--muted:#abb4c4;--accent:#ff3557;--surface:#111015;
+  --edge:rgba(255,255,255,.13);--article-max:780px;
+  margin:0!important;padding:0!important;
+  background:#08080c!important;color:var(--ink)!important;
+  font:400 16px/1.7 'Google Sans',Inter,system-ui,-apple-system,sans-serif!important;
+  overflow-x:clip!important;
+}
+.appiex-blog-v2 *, .appiex-blog-v2 *::before, .appiex-blog-v2 *::after{box-sizing:border-box}
+.appiex-blog-v2 a{color:inherit}
+.appiex-blog-v2 a:focus-visible,.appiex-blog-v2 button:focus-visible,.appiex-blog-v2 summary:focus-visible,.appiex-blog-v2 input:focus-visible,.appiex-blog-v2 textarea:focus-visible{
+  outline:2px solid #ff6b87;outline-offset:4px
+}
+.appiex-blog-v2 .appiex-skip{position:absolute;top:-100px;left:16px;background:#fff;color:#15151a;padding:12px 16px;z-index:5000;border-radius:10px}
+.appiex-blog-v2 .appiex-skip:focus{top:12px}
+.appiex-blog-v2 .appiex-blog-ambient{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+   radial-gradient(ellipse 750px 500px at 82% 12%,rgba(209,6,44,.15),transparent 74%),
+   radial-gradient(ellipse 580px 340px at 7% 72%,rgba(165,6,38,.09),transparent 74%),
+   linear-gradient(180deg,#08070b,#0b070a 70%,#08070b)
+}
+.appiex-blog-v2 .appiex-reading-meter{position:fixed;inset:0 0 auto;z-index:1201;height:3px;pointer-events:none}
+.appiex-blog-v2 .appiex-reading-meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2b4b,#ffa384);transition:width .08s linear}
+.appiex-blog-v2 .appiex-blog-navbar{
+  position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;max-width:1530px;width:calc(100% - 44px);min-height:85px;margin:0 auto;
+  padding:13px 0;background:rgba(8,8,12,.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,.085)
+}
+.appiex-blog-v2 .appiex-blog-brand{display:inline-flex;align-items:center;flex-shrink:0}
+.appiex-blog-v2 .appiex-blog-brand img{width:116px;height:auto;max-height:34px;object-fit:contain}
+.appiex-blog-v2 .appiex-blog-navigation{display:flex;justify-content:center;align-items:center;gap:clamp(8px,1.9vw,24px);flex-wrap:wrap}
+.appiex-blog-v2 .appiex-blog-navigation a{
+  text-decoration:none;font-size:.88rem;font-weight:650;color:#cdd1d9;white-space:nowrap;
+  padding:9px 4px;transition:color .18s
+}
+.appiex-blog-v2 .appiex-blog-navigation a:hover,.appiex-blog-v2 .appiex-blog-navigation [aria-current]{color:#fff}
+.appiex-blog-v2 .appiex-blog-navigation [aria-current]{box-shadow:inset 0 -2px #ff3557}
+.appiex-blog-v2 .appiex-blog-navcta,.appiex-blog-v2 .appiex-blog-primary,.appiex-blog-v2 .appiex-blog-bottom-cta a{
+  color:#fff!important;background:#ff3456;border:1px solid #ff3456;
+  border-radius:999px;text-decoration:none;font-weight:750;display:inline-flex;
+  align-items:center;justify-content:center;gap:12px;transition:transform .2s,background .2s,box-shadow .2s
+}
+.appiex-blog-v2 .appiex-blog-navcta{padding:12px 19px;font-size:.84rem;white-space:nowrap}
+.appiex-blog-v2 .appiex-blog-primary{padding:13px 23px;font-size:.94rem}
+.appiex-blog-v2 .appiex-blog-navcta:hover,.appiex-blog-v2 .appiex-blog-primary:hover,.appiex-blog-v2 .appiex-blog-bottom-cta a:hover{
+  background:#e72246;box-shadow:0 11px 34px rgba(255,42,78,.2);transform:translateY(-1px)
+}
+.appiex-blog-v2 .appiex-blog-page{max-width:1500px;width:calc(100% - clamp(30px,5.5vw,100px));margin:0 auto;padding:52px 0 110px;min-width:0}
+.appiex-blog-v2 .appiex-blog-breadcrumb{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  color:#8894a8;font:500 .78rem/1.6 'JetBrains Mono',monospace;margin-bottom:55px
+}
+.appiex-blog-v2 .appiex-blog-breadcrumb a{color:#bac2d0;text-decoration:none}
+.appiex-blog-v2 .appiex-blog-breadcrumb a:hover{color:#ff6886}
+.appiex-blog-v2 .appiex-blog-breadcrumb [aria-current]{color:#ff6681;max-width:min(600px,100%);overflow-wrap:anywhere}
+.appiex-blog-v2 .appiex-blog-hero{max-width:1100px;margin:0 auto 50px;text-align:center}
+.appiex-blog-v2 .appiex-blog-eyebrow{
+  margin:0 0 17px;color:#ff5878;font:750 .72rem/1.6 'JetBrains Mono',monospace;
+  letter-spacing:.115em;text-transform:uppercase
+}
+.appiex-blog-v2 .appiex-blog-hero h1{
+  margin:0 auto;font:800 clamp(2.45rem,5vw,4.55rem)/1.095 'Space Grotesk',system-ui,sans-serif;
+  max-width:1100px;letter-spacing:-.052em;text-wrap:balance;color:#fff;overflow-wrap:anywhere
+}
+.appiex-blog-v2 .appiex-blog-lead{
+  max-width:790px;margin:25px auto 0;color:#bcc6d6;
+  font-size:clamp(1.025rem,1.45vw,1.24rem);line-height:1.75;text-wrap:pretty
+}
+.appiex-blog-v2 .appiex-blog-byline{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:11px;
+  margin:23px auto 0;color:#95a1b4;font-size:.83rem;font-weight:550
+}
+.appiex-blog-v2 .appiex-blog-byline a{color:#c4cbd8;text-underline-offset:4px}
+.appiex-blog-v2 .appiex-blog-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:28px}
+.appiex-blog-v2 .appiex-blog-secondary{
+  display:inline-flex;justify-content:center;align-items:center;padding:12px 23px;
+  text-decoration:none;border:1px solid rgba(255,255,255,.24);border-radius:999px;
+  color:#f1f1f4!important;font-weight:650;font-size:.94rem;background:rgba(255,255,255,.025)
+}
+.appiex-blog-v2 .appiex-blog-secondary:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.07)}
+.appiex-blog-v2 .appiex-blog-cover{
+  max-width:1130px;margin:0 auto 60px;overflow:hidden;
+  border-radius:27px;border:1px solid var(--edge);background:#0d1019
+}
+.appiex-blog-v2 .appiex-blog-cover img{display:block;width:100%;height:auto;max-height:520px;aspect-ratio:16/9;object-fit:cover}
+.appiex-blog-v2 .appiex-blog-cover figcaption{
+  padding:13px 22px;color:#9ba9ba;font-size:.76rem;letter-spacing:.04em;border-top:1px solid var(--edge)
+}
+.appiex-blog-v2 .appiex-blog-grid{
+  display:grid;grid-template-columns:minmax(0,222px) minmax(0,780px) minmax(0,240px);
+  gap:clamp(19px,3vw,45px);align-items:start;justify-content:center;min-width:0
+}
+.appiex-blog-v2 .appiex-blog-article{min-width:0;max-width:100%;color:#c5cdd9}
+.appiex-blog-v2 .appiex-blog-sidebar{min-width:0;display:grid;gap:16px;align-content:start}
+.appiex-blog-v2 .appiex-blog-sidebar-inner{
+  position:sticky;top:112px;min-width:0;padding:23px 19px;border-radius:21px;
+  border:1px solid var(--edge);background:linear-gradient(135deg,rgba(255,255,255,.047),rgba(255,255,255,.009))
+}
+.appiex-blog-v2 .appiex-blog-related .appiex-blog-sidebar-inner+.appiex-blog-sidebar-inner{position:static}
+.appiex-blog-v2 .appiex-blog-sidebar-label{
+  font:800 .7rem/1.5 'JetBrains Mono',monospace;letter-spacing:.11em;color:#ff5979;margin:0 0 16px
+}
+.appiex-blog-v2 .appiex-blog-sidebar nav{display:grid;gap:0;min-width:0}
+.appiex-blog-v2 .appiex-blog-sidebar nav a{
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:block;font-size:.83rem;line-height:1.55;text-decoration:none;color:#b6c2d1;
+  padding:10px 0;overflow-wrap:anywhere;transition:color .18s
+}
+.appiex-blog-v2 .appiex-blog-sidebar nav a:hover{color:#ff6c88}
+.appiex-blog-v2 .appiex-blog-back{display:block;margin-top:20px;color:#d6d8df!important;font-size:.82rem}
+.appiex-blog-v2 .appiex-blog-related h2{
+  font:750 1.35rem/1.27 'Space Grotesk',sans-serif;margin:0;letter-spacing:-.035em;color:#fff
+}
+.appiex-blog-v2 .appiex-blog-related p:not(.appiex-blog-sidebar-label){font-size:.88rem;line-height:1.75;color:#b7becc;margin:15px 0 18px}
+.appiex-blog-v2 .appiex-blog-sidebar-cta{
+  display:inline-flex!important;justify-content:center;padding:12px 14px;color:#fff!important;
+  background:#ff3557;border-radius:999px;text-decoration:none;font-weight:750;font-size:.87rem
+}
+.appiex-blog-v2 .appiex-blog-sidebar-cta:hover{background:#e92447}
+.appiex-blog-v2 .appiex-blog-mobile-toc{display:none}
+.appiex-blog-v2 .appiex-blog-summary{
+  border:1px solid rgba(255,53,87,.31);border-radius:23px;
+  background:linear-gradient(115deg,rgba(255,53,87,.11),rgba(15,18,27,.9));
+  padding:clamp(22px,3vw,35px);margin-bottom:50px
+}
+.appiex-blog-v2 .appiex-blog-summary-label{
+  font:800 .72rem/1.5 'JetBrains Mono',monospace;letter-spacing:.12em;color:#ff6280;margin:0 0 11px
+}
+.appiex-blog-v2 #cms-article-brief{font-weight:570;color:#f0f2f6;font-size:1.025rem;line-height:1.84;margin:0}
+.appiex-blog-v2 .appiex-blog-prose{min-width:0}
+.appiex-blog-v2 .appiex-blog-prose h2{
+  color:#fff;font:750 clamp(1.6rem,2.2vw,2.35rem)/1.23 'Space Grotesk',system-ui,sans-serif;
+  letter-spacing:-.035em;scroll-margin-top:115px;margin:58px 0 17px;text-wrap:balance
+}
+.appiex-blog-v2 .appiex-blog-prose h2:first-child{margin-top:0}
+.appiex-blog-v2 .appiex-blog-prose h3{
+  color:#f5f6fa;font:700 clamp(1.18rem,1.7vw,1.52rem)/1.37 'Space Grotesk',system-ui,sans-serif;
+  letter-spacing:-.023em;margin:29px 0 12px
+}
+.appiex-blog-v2 .appiex-blog-prose p,.appiex-blog-v2 .appiex-blog-prose li{
+  color:#c6cfdb;font-size:clamp(1rem,1.1vw,1.09rem);line-height:1.93;
+  overflow-wrap:break-word
+}
+.appiex-blog-v2 .appiex-blog-prose p{margin:14px 0 20px}
+.appiex-blog-v2 .appiex-blog-prose ul,.appiex-blog-v2 .appiex-blog-prose ol{padding-left:25px;margin:20px 0}
+.appiex-blog-v2 .appiex-blog-prose li+li{margin-top:9px}
+.appiex-blog-v2 .appiex-blog-prose a{color:#ff879f;text-underline-offset:3px;overflow-wrap:anywhere}
+.appiex-blog-v2 .appiex-blog-prose a:hover{color:#ffb0c0}
+.appiex-blog-v2 .appiex-blog-prose strong{color:#f5f7fa;font-weight:700}
+.appiex-blog-v2 .appiex-blog-prose blockquote{
+  margin:19px 0 26px;padding:19px 25px;border-radius:15px;
+  border-left:3px solid #ff486b;background:rgba(255,255,255,.04);
+  color:#d6dbe5
+}
+.appiex-blog-v2 .appiex-blog-prose blockquote p{margin:0;color:#d4dbe6!important}
+.appiex-blog-v2 .appiex-blog-prose :is(img,video,iframe,svg){max-width:100%;height:auto}
+.appiex-blog-v2 .appiex-blog-prose :is(pre,table){max-width:100%;overflow-x:auto}
+.appiex-blog-v2 .appiex-blog-prose table{
+  display:block;width:100%;border-collapse:separate;border-spacing:0;
+  border:1px solid var(--edge);border-radius:14px;overflow-x:auto;white-space:normal
+}
+.appiex-blog-v2 .appiex-blog-prose table th,.appiex-blog-v2 .appiex-blog-prose table td{
+  padding:13px 16px;min-width:120px;text-align:left;border-bottom:1px solid var(--edge);
+  font-size:.86rem;line-height:1.6;vertical-align:top
+}
+.appiex-blog-v2 .appiex-blog-prose table th{background:rgba(255,255,255,.08);color:#fff;font-weight:700}
+.appiex-blog-v2 .appiex-blog-prose table tr:last-child td{border-bottom:0}
+.appiex-blog-v2 .appiex-blog-prose :is(pre,code){font-family:'JetBrains Mono',monospace}
+.appiex-blog-v2 .appiex-blog-prose pre{padding:20px;border:1px solid var(--edge);border-radius:16px;background:#0d1119}
+.appiex-blog-v2 .appiex-blog-prose [id]{scroll-margin-top:115px}
+.appiex-blog-v2 .appiex-blog-prose #cost-calculator,
+.appiex-blog-v2 .appiex-blog-prose #free-audit-cta {
+  min-width:0;max-width:100%;margin:50px 0!important;padding:clamp(20px,3vw,35px)!important;
+  border:1px solid rgba(255,255,255,.16)!important;border-radius:23px!important;
+  background:linear-gradient(135deg,rgba(255,53,87,.11),rgba(13,14,20,.96))!important;
+  box-shadow:none!important;overflow:hidden
+}
+.appiex-blog-v2 .appiex-blog-prose #cost-calculator h3,
+.appiex-blog-v2 .appiex-blog-prose #free-audit-cta h3{font-size:clamp(1.35rem,2vw,2rem)!important;line-height:1.3!important}
+.appiex-blog-v2 .ContactSection :is(.group,.checkboxes,.buttons,.checkbox){max-width:100%;min-width:0}
+.appiex-blog-v2 .ContactSection .group{margin:20px 0!important}
+.appiex-blog-v2 .ContactSection .label{display:block;margin:0 0 12px;color:#fff!important;font-size:1.07rem!important;font-weight:700}
+.appiex-blog-v2 .ContactSection .checkboxes{display:flex;gap:10px;flex-wrap:wrap}
+.appiex-blog-v2 .ContactSection .CheckboxInput{display:inline-flex;align-items:center;gap:9px;cursor:pointer;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:12px 17px;background:rgba(255,255,255,.04)}
+.appiex-blog-v2 .ContactSection .CheckboxInput input{accent-color:#ff3557}
+.appiex-blog-v2 .ContactSection .CheckboxInput:has(input:checked){border-color:#ff3557;background:rgba(255,53,87,.13)}
+.appiex-blog-v2 .ContactSection .CheckboxInput .label{margin:0;font-size:.85rem!important}
+.appiex-blog-v2 .ContactSection .UnderlineInput{display:block;max-width:100%}
+.appiex-blog-v2 .ContactSection :is(input:not([type=hidden]):not([type=radio]),textarea,select){
+  width:100%;max-width:100%;background:rgba(255,255,255,.045);color:#fff!important;
+  border:1px solid rgba(255,255,255,.24)!important;border-radius:11px!important;
+  padding:15px 16px!important;font:inherit!important;min-height:50px
+}
+.appiex-blog-v2 .ContactSection :is(input,textarea)::placeholder{color:#a5afbd}
+.appiex-blog-v2 .ContactSection button{
+  cursor:pointer;max-width:100%;border:1px solid #ff3557;border-radius:999px;
+  color:#fff!important;background:#ff3557;padding:13px 24px!important;font:700 .95rem 'Google Sans',sans-serif
+}
+.appiex-blog-v2 .ContactSection button:hover{background:#eb2449}
+.appiex-blog-v2 .ContactSection .Button .title,.appiex-blog-v2 .ContactSection .Button .title span{color:#fff}
+.appiex-blog-v2 .appiex-blog-bottom-cta{
+  margin:100px auto 0;max-width:1100px;text-align:center;
+  padding:clamp(30px,6vw,76px);background:radial-gradient(circle at 50% 0%,rgba(255,53,87,.14),transparent 70%),rgba(255,255,255,.035);
+  border:1px solid var(--edge);border-radius:29px
+}
+.appiex-blog-v2 .appiex-blog-bottom-cta h2{
+  color:#fff;font:800 clamp(1.85rem,3.6vw,3.25rem)/1.2 'Space Grotesk',sans-serif;letter-spacing:-.045em;margin:0
+}
+.appiex-blog-v2 .appiex-blog-bottom-cta p:not(.appiex-blog-eyebrow){max-width:590px;margin:17px auto 24px;color:#bac4d3}
+.appiex-blog-v2 .appiex-blog-bottom-cta a{padding:13px 23px}
+.appiex-blog-v2 .appiex-blog-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap;
+  max-width:1500px;width:calc(100% - 60px);margin:0 auto;padding:28px 0 45px;
+  border-top:1px solid var(--edge);color:#a3adbe;font:500 .78rem/1.7 'JetBrains Mono',monospace
+}
+.appiex-blog-v2 .appiex-blog-footer nav{display:flex;gap:22px;flex-wrap:wrap}
+.appiex-blog-v2 .appiex-blog-footer a{color:#b8c0cb;text-decoration:none}
+.appiex-blog-v2 .appiex-blog-footer a:hover{color:#ff738f}
+@media(max-width:1240px){
+  .appiex-blog-v2 .appiex-blog-grid{grid-template-columns:minmax(0,1fr);max-width:830px;margin:0 auto}
+  .appiex-blog-v2 .appiex-blog-sidebar{display:none}
+  .appiex-blog-v2 .appiex-blog-mobile-toc{
+    display:block;margin:0 0 30px;border-radius:17px;border:1px solid var(--edge);
+    padding:18px 22px;background:rgba(255,255,255,.045)
+  }
+  .appiex-blog-v2 .appiex-blog-mobile-toc summary{cursor:pointer;color:#fff;font-weight:750}
+  .appiex-blog-v2 .appiex-blog-mobile-toc nav{display:grid;gap:8px;margin-top:17px}
+  .appiex-blog-v2 .appiex-blog-mobile-toc nav a{color:#c1cbd9;font-size:.9rem;text-decoration:none;padding:6px 0}
+  .appiex-blog-v2 .appiex-blog-cover{max-width:830px}
+}
+@media(max-width:850px){
+  .appiex-blog-v2 .appiex-blog-navbar{width:calc(100% - 30px);flex-wrap:wrap;justify-content:center;gap:9px;padding:13px 0}
+  .appiex-blog-v2 .appiex-blog-navigation{order:3;width:100%;justify-content:center;gap:8px 15px;overflow-x:auto}
+  .appiex-blog-v2 .appiex-blog-navigation a{font-size:.81rem;padding:3px 0}
+  .appiex-blog-v2 .appiex-blog-navcta{padding:9px 13px;font-size:.78rem}
+  .appiex-blog-v2 .appiex-blog-page{padding-top:32px}
+  .appiex-blog-v2 .appiex-blog-breadcrumb{margin-bottom:34px}
+  .appiex-blog-v2 .appiex-blog-hero{margin-bottom:35px}
+}
+@media(max-width:580px){
+  .appiex-blog-v2 .appiex-blog-navbar{position:relative}
+  .appiex-blog-v2 .appiex-blog-navigation{justify-content:space-between;gap:8px 11px}
+  .appiex-blog-v2 .appiex-blog-page{width:calc(100% - 30px);padding-bottom:60px}
+  .appiex-blog-v2 .appiex-blog-hero h1{font-size:clamp(2rem,9vw,3rem);letter-spacing:-.043em}
+  .appiex-blog-v2 .appiex-blog-lead{font-size:1rem}
+  .appiex-blog-v2 .appiex-blog-breadcrumb{font-size:.7rem;gap:6px}
+  .appiex-blog-v2 .appiex-blog-actions{display:grid;grid-template-columns:1fr}
+  .appiex-blog-v2 .appiex-blog-cover{margin-bottom:30px;border-radius:15px}
+  .appiex-blog-v2 .appiex-blog-cover img{aspect-ratio:1.65}
+  .appiex-blog-v2 .appiex-blog-summary{margin-bottom:32px;padding:22px}
+  .appiex-blog-v2 .appiex-blog-prose h2{margin-top:43px}
+  .appiex-blog-v2 .appiex-blog-bottom-cta{margin-top:65px}
+  .appiex-blog-v2 .appiex-blog-footer{justify-content:center;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .appiex-blog-v2 *, .appiex-blog-v2 *::before, .appiex-blog-v2 *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
