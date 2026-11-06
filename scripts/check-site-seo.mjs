@@ -11,7 +11,7 @@ assert(urls.every((url) => url.startsWith('https://appiex.com/')), 'Unexpected s
 
 const priority = new Set([
   '/', '/web-development', '/ai-automation', '/seo-marketing',
-  '/services', '/best-software-agency',
+  '/services', '/gaming', '/best-software-agency',
   '/blog/technical-seo-checklist-for-business-websites',
   '/blog/ai-agents-vs-n8n-automation-for-business'
 ]);

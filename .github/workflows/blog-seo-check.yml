@@ -16,6 +16,9 @@ on:
       - 'scripts/check-service-related.mjs'
       - 'blog.html'
       - 'index.html'
+      - 'styles/appiex-gaming.css'
+      - 'scripts/appiex-gaming.js'
+      - 'scripts/check-gaming-service.mjs'
       - 'vercel.json'
       - 'scripts/check-vercel-next-config.mjs'
       - 'src/app/**'
@@ -115,11 +118,15 @@ jobs:
           node-version: '22'
       - name: Validate canonical sitemap URLs, metadata and JSON-LD
         run: node scripts/check-site-seo.mjs
-      - name: Audit SEO for all 44 sitemap pages
+      - name: Verify gaming page, accessible interactions, relevant SEO and sitemap
+        run: |
+          node --check scripts/appiex-gaming.js
+          node scripts/check-gaming-service.mjs
+      - name: Audit SEO for all public sitemap pages
         run: node scripts/audit-sitewide-seo.mjs --strict
       - name: Check sitemap pages follow the approved metadata and linking policy
         run: node scripts/apply-sitewide-seo.mjs --check
-      - name: Verify mapped primary and supporting search intents for all 44 public URLs
+      - name: Verify mapped primary and supporting search intents for all indexable public URLs
         run: node scripts/check-search-intents.mjs
       - name: Verify homepage business growth positioning and six service specialties
         run: node scripts/check-home-growth-copy.mjs

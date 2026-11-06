@@ -11,7 +11,7 @@ const normalize=x=>String(x||'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').re
 const getContent=tag=>normalize(tag?.match(/\bcontent=["']([^"']+)["']/i)?.[1]||'');
 const readMeta=(head,kind,key)=>getContent([...head.matchAll(/<meta\b[^>]*>/gi)].find(m=>new RegExp('\\b'+kind+'=["\\x27]'+key+'["\\x27]','i').test(m[0]))?.[0]);
 const errors=[];
-if(paths.length!==44)errors.push('Expected 44 curated indexable URLs; got '+paths.length);
+if(paths.length<45)errors.push('Expected at least 45 curated public URLs; got '+paths.length);
 if(new Set(paths).size!==paths.length)errors.push('Duplicate sitemap URL');
 if(Object.keys(intents).length!==paths.length)errors.push('Search intent map count differs from sitemap');
 const primarySeen=new Map();
@@ -59,4 +59,4 @@ for(const p of paths){
 }
 for(const p of Object.keys(intents))if(!paths.includes(p))errors.push('Mapped URL not in sitemap: '+p);
 if(errors.length){for(const err of errors)console.error('SEO intent: '+err);process.exitCode=1;}
-else console.log('Page-specific search intent verified: 44 URLs, 44 distinct focus topics, 88 supporting queries, page descriptions, social metadata, canonicals, author breadcrumbs and indexability.');
+else console.log('Page-specific search intent verified: '+paths.length+' URLs, '+primarySeen.size+' distinct focus topics, '+(paths.length*2)+' supporting queries, page descriptions, social metadata, canonicals, author breadcrumbs and indexability.');
