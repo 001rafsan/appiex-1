@@ -52,11 +52,11 @@ for (const file of articleFiles) {
 const homeOriginal = read('index.html');
 if (!homeOriginal.includes('appiex-home-polished')) errors.push('Static homepage is missing design styling class');
 if (!homeOriginal.includes('appiex-editorial-polish.css')) errors.push('Static homepage is missing design stylesheet');
-if (!homeOriginal.includes('Web Development, AI Automation &amp; Pricing Guides'))
+if (!homeOriginal.includes('Web Development, AI Automation &amp; Cost Guides'))
   errors.push('Static homepage does not contain polished service heading');
 const home = improveHtml(homeOriginal, []);
 if (!home.includes('appiex-home-polished')) errors.push('Homepage polish class missing');
-if (!home.includes('Web Development, AI Automation &amp; Pricing Guides')) errors.push('Homepage service hub heading unchanged');
+if (!home.includes('Web Development, AI Automation &amp; Cost Guides')) errors.push('Homepage service hub heading unchanged');
 if (!home.includes('More About Working With Appiex')) errors.push('Duplicate homepage FAQ heading was not differentiated');
 if (!fs.existsSync(path.join(root, 'styles/appiex-editorial-polish.css'))) errors.push('Shared stylesheet missing');
 if (!fs.existsSync(path.join(root, 'scripts/appiex-reading-progress.js'))) errors.push('Reading meter script missing');

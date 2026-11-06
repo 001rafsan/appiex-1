@@ -47,7 +47,7 @@ export function improveHtml(html, slug) {
     html = html.replace('50+ Global Shipments', 'Selected Delivery Examples');
     html = html.replace('Dhaka &amp; Global Benchmark 2026', 'Delivery Model Overview');
     html = html.replace('Explore Dedicated Solutions &amp; Pricing Guides',
-      'Web Development, AI Automation &amp; Pricing Guides');
+      'Web Development, AI Automation &amp; Cost Guides');
     const secondFaqStart = html.indexOf('<section id="faq-knowledge-hub"');
     if (secondFaqStart >= 0) {
       html = html.slice(0, secondFaqStart) + html.slice(secondFaqStart)

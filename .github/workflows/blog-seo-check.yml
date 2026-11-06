@@ -3,6 +3,12 @@ on:
   pull_request:
     paths:
       - 'blog/**'
+      - '*.html'
+      - 'authors/**'
+      - 'styles/appiex-related-services.css'
+      - 'scripts/apply-sitewide-seo.mjs'
+      - 'scripts/audit-sitewide-seo.mjs'
+      - 'scripts/check-blog-layout-v2.mjs'
       - 'blog.html'
       - 'index.html'
       - 'vercel.json'
@@ -25,6 +31,12 @@ on:
     branches: [main]
     paths:
       - 'blog/**'
+      - '*.html'
+      - 'authors/**'
+      - 'styles/appiex-related-services.css'
+      - 'scripts/apply-sitewide-seo.mjs'
+      - 'scripts/audit-sitewide-seo.mjs'
+      - 'scripts/check-blog-layout-v2.mjs'
       - 'blog.html'
       - 'sitemap.xml'
       - 'scripts/check-blog-seo.mjs'
@@ -94,3 +106,11 @@ jobs:
           node-version: '22'
       - name: Validate canonical sitemap URLs, metadata and JSON-LD
         run: node scripts/check-site-seo.mjs
+      - name: Audit SEO for all 44 sitemap pages
+        run: node scripts/audit-sitewide-seo.mjs --strict
+      - name: Check sitemap pages follow the approved metadata and linking policy
+        run: node scripts/apply-sitewide-seo.mjs --check
+      - name: Verify all blog layouts and indexability are preserved
+        run: |
+          node scripts/check-blog-layout-v2.mjs
+          node scripts/materialize-editorial-html.mjs --check

@@ -1,0 +1,74 @@
+/* Appiex related resources: quiet, semantic internal links on commercial pages.
+   Design is intentionally self-contained to avoid disturbing legacy page CSS. */
+.appiex-related-services {
+  position:relative;z-index:9;
+  width:min(100% - 40px,1280px);
+  margin:clamp(45px,7vw,110px) auto clamp(35px,6vw,80px);
+  padding:clamp(24px,3.6vw,45px);
+  color:#f7f8fb;
+  font:400 16px/1.6 'Google Sans',system-ui,-apple-system,sans-serif;
+  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.016));
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:clamp(20px,2vw,30px);
+  isolation:isolate;
+}
+.appiex-related-services *,
+.appiex-related-services *::before,
+.appiex-related-services *::after{box-sizing:border-box}
+.appiex-related-services__eyebrow {
+  margin:0 0 9px!important;
+  text-transform:uppercase;
+  font:750 .72rem/1.5 'JetBrains Mono',monospace!important;
+  letter-spacing:.14em;
+  color:#ff637c!important;
+}
+.appiex-related-services h2 {
+  font:750 clamp(1.7rem,2.5vw,2.7rem)/1.19 'Space Grotesk',system-ui,sans-serif!important;
+  letter-spacing:-.044em!important;
+  color:#fff!important;margin:0 0 15px!important;
+  text-wrap:balance;
+}
+.appiex-related-services__intro {
+  color:#b6c1d2!important;
+  font-size:clamp(.93rem,1.2vw,1.03rem)!important;
+  max-width:660px;
+  line-height:1.8!important;margin:0 0 29px!important;
+}
+.appiex-related-services__grid {
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:clamp(12px,1.6vw,20px)!important;
+}
+.appiex-related-services__grid a {
+  min-width:0;min-height:138px;padding:clamp(18px,1.8vw,26px)!important;
+  display:flex!important;flex-direction:column;justify-content:center;
+  color:#fff!important;text-decoration:none!important;
+  background:rgba(9,10,15,.52);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:19px;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.appiex-related-services__grid a:hover {
+  background:rgba(255,45,75,.075);border-color:rgba(255,88,109,.55);
+  transform:translateY(-3px);
+}
+.appiex-related-services__grid a:focus-visible {
+  outline:2px solid #ff6f8a;outline-offset:5px;
+}
+.appiex-related-services__grid a strong {
+  color:#fff!important;font:750 clamp(.98rem,1.15vw,1.08rem)/1.35 'Space Grotesk',sans-serif!important;
+  letter-spacing:-.02em!important;margin:0 0 8px!important;
+}
+.appiex-related-services__grid a span {
+  color:#b7c1ce!important;font:400 .875rem/1.7 'Google Sans',system-ui,sans-serif!important;
+}
+@media(max-width:800px){
+  .appiex-related-services__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
+@media(max-width:550px){
+  .appiex-related-services{width:calc(100% - 26px);padding:21px;border-radius:21px}
+  .appiex-related-services__grid{grid-template-columns:minmax(0,1fr)!important}
+  .appiex-related-services__grid a{min-height:unset}
+}
+@media(prefers-reduced-motion:reduce){
+ .appiex-related-services__grid a{transition:none!important;transform:none!important}
+}

@@ -1,0 +1,67 @@
+name: Appiex sitewide SEO and design QA
+
+on:
+  push:
+    branches: [feat/sitewide-seo-visual-polish-20261106]
+    paths:
+      - '.github/workflows/sitewide-seo-refresh.yml'
+      - 'scripts/apply-sitewide-seo.mjs'
+      - 'scripts/audit-sitewide-seo.mjs'
+      - 'scripts/check-editorial-renderer.mjs'
+      - 'src/lib/appiex-html-polish.mjs'
+      - 'styles/appiex-editorial-polish.css'
+      - 'styles/appiex-related-services.css'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: appiex-sitewide-seo-refresh
+  cancel-in-progress: false
+
+jobs:
+  polish-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Materialize scoped SEO improvements in public HTML
+        run: node scripts/apply-sitewide-seo.mjs
+      - name: Validate metadata, internal links and all blog layouts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/apply-sitewide-seo.mjs --check
+          node scripts/audit-sitewide-seo.mjs --strict
+          node scripts/check-site-seo.mjs
+          node scripts/check-blog-seo.mjs
+          node scripts/check-blog-layout-v2.mjs
+          node scripts/check-editorial-renderer.mjs
+          node scripts/materialize-editorial-html.mjs --check
+          node scripts/check-lead-tracking.mjs
+      - name: Build production Next.js site
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Commit verified HTML changes into feature branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- '*.html'
+          if git diff --cached --quiet; then
+            echo "All 44 sitemap pages already have verified metadata and links."
+            exit 0
+          fi
+          git diff --cached --name-only | tee /tmp/appiex-seo-pages.txt
+          echo "Updated $(wc -l < /tmp/appiex-seo-pages.txt) source pages"
+          git commit -m "feat(seo): optimize page metadata and contextual service links across Appiex"
+          git push origin HEAD:feat/sitewide-seo-visual-polish-20261106
