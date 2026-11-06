@@ -12,6 +12,7 @@ on:
       - 'styles/appiex-editorial-polish.css'
       - 'vercel.json'
       - 'index.html'
+      - '*.html'
       - 'blog/**'
       - 'scripts/check-editorial-renderer.mjs'
       - 'styles/appiex-related-services.css'
@@ -71,6 +72,9 @@ jobs:
           inspect legacy "https://appiex.com/blog/how-we-reduced-website-load-time-5-2s-to-1-4s?appiex_check=${GITHUB_SHA}"
           inspect blogcss "https://appiex.com/styles/appiex-blog-v2.css?appiex_check=${GITHUB_SHA}"
           inspect service "https://appiex.com/web-development?appiex_check=${GITHUB_SHA}"
+          inspect strategy "https://appiex.com/digital-strategy?appiex_check=${GITHUB_SHA}"
+          inspect aibiz "https://appiex.com/ai-automation?appiex_check=${GITHUB_SHA}"
+          inspect seo "https://appiex.com/seo-marketing?appiex_check=${GITHUB_SHA}"
           inspect relatedcss "https://appiex.com/styles/appiex-related-services.css?appiex_check=${GITHUB_SHA}"
           inspect homev3css "https://appiex.com/styles/appiex-home-sections-v3.css?appiex_check=${GITHUB_SHA}"
           echo "## Production diagnosis" >> "$GITHUB_STEP_SUMMARY"
@@ -79,7 +83,17 @@ jobs:
              grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body 2>/dev/null &&
              grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body 2>/dev/null &&
              grep -q 'appiex-related-services__grid' /tmp/appiex-service.body 2>/dev/null &&
-             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body &&
+             grep -q 'Appiex editorial recommendations v2' /tmp/appiex-relatedcss.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-service.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-strategy.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-aibiz.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-seo.body &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-service.body | wc -l)" -eq 3 &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-strategy.body | wc -l)" -eq 3 &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-aibiz.body | wc -l)" -eq 3 &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-seo.body | wc -l)" -eq 3 &&
+             ! grep -q 'id="specialized-service-hubs"' /tmp/appiex-service.body &&
+             ! grep -q 'id="specialized-service-hubs"' /tmp/appiex-aibiz.body &&
              grep -q 'apx-solution-grid' /tmp/appiex-home.body &&
              grep -q 'apx-faq-stack' /tmp/appiex-home.body &&
              grep -q 'apx-next-step' /tmp/appiex-home.body &&
@@ -123,13 +137,23 @@ jobs:
              grep -q 'APPIEX HOME EDITORIAL REFRESH' /tmp/appiex-css.body &&
              grep -q 'appiex-blog-v2' /tmp/appiex-legacy.body &&
              grep -q 'appiex-related-services__grid' /tmp/appiex-service.body &&
-             grep -q 'Appiex related resources' /tmp/appiex-relatedcss.body &&
+             grep -q 'Appiex editorial recommendations v2' /tmp/appiex-relatedcss.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-service.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-strategy.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-aibiz.body &&
+             grep -q 'appiex-related-services--v2' /tmp/appiex-seo.body &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-service.body | wc -l)" -eq 3 &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-strategy.body | wc -l)" -eq 3 &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-aibiz.body | wc -l)" -eq 3 &&
+             test "$(grep -o 'class="appiex-related-article"' /tmp/appiex-seo.body | wc -l)" -eq 3 &&
+             ! grep -q 'id="specialized-service-hubs"' /tmp/appiex-service.body &&
+             ! grep -q 'id="specialized-service-hubs"' /tmp/appiex-aibiz.body &&
              grep -q 'apx-solution-grid' /tmp/appiex-home.body &&
              grep -q 'apx-faq-stack' /tmp/appiex-home.body &&
              grep -q 'apx-next-step' /tmp/appiex-home.body &&
              grep -q 'cohesive editorial decision system' /tmp/appiex-homev3css.body &&
              ! grep -q 'Is Appiex the Right Fit for Your Project' /tmp/appiex-home.body; then
-            echo "Production serves current homepage design V3, accessible FAQ, modern blog and SEO CSS."
+            echo "Production serves homepage V3, 3 illustrated recommendations per checked service, accessible FAQ and SEO CSS."
           else
             echo "::error::Production appiex.com is not serving the merged design/SEO fixes. Verify the exact Vercel project serving this domain, its connected Git repository and branch, build status, and deployment promotion."
             exit 1

@@ -1,74 +1,200 @@
-/* Appiex related resources: quiet, semantic internal links on commercial pages.
-   Design is intentionally self-contained to avoid disturbing legacy page CSS. */
-.appiex-related-services {
-  position:relative;z-index:9;
-  width:min(100% - 40px,1280px);
-  margin:clamp(45px,7vw,110px) auto clamp(35px,6vw,80px);
-  padding:clamp(24px,3.6vw,45px);
-  color:#f7f8fb;
-  font:400 16px/1.6 'Google Sans',system-ui,-apple-system,sans-serif;
-  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.016));
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:clamp(20px,2vw,30px);
-  isolation:isolate;
+/* Appiex editorial recommendations v2 — 2026-11-06
+   A compact service + illustrated reading module that respects each page theme.
+   Replace old oversized text-only cards; no external image requests required.
+*/
+.appiex-related-services--v2 {
+  --apx-r-accent:#ff5978;
+  --apx-r-tint:rgba(255,71,105,.11);
+  position:relative;isolation:isolate;
+  width:min(1280px,calc(100% - 48px))!important;max-width:1280px!important;
+  margin:clamp(34px,5.4vw,78px) auto clamp(36px,5.2vw,76px)!important;
+  padding:clamp(24px,3vw,43px)!important;
+  border-radius:clamp(22px,2.5vw,30px)!important;
+  background:linear-gradient(132deg,rgba(255,255,255,.045),rgba(255,255,255,.008) 73%),#0b0b10!important;
+  border:1px solid rgba(255,255,255,.145)!important;
+  box-shadow:0 25px 75px rgba(0,0,0,.11)!important;
+  color:#f7f8fb!important;
+  font:400 16px/1.6 'Google Sans',Inter,system-ui,-apple-system,sans-serif!important;
+  overflow:hidden;overflow:clip;
 }
-.appiex-related-services *,
-.appiex-related-services *::before,
-.appiex-related-services *::after{box-sizing:border-box}
-.appiex-related-services__eyebrow {
-  margin:0 0 9px!important;
-  text-transform:uppercase;
-  font:750 .72rem/1.5 'JetBrains Mono',monospace!important;
-  letter-spacing:.14em;
-  color:#ff637c!important;
+.appiex-related-services--v2[data-related-theme="blue"]{--apx-r-accent:#66adff;--apx-r-tint:rgba(53,114,235,.16)}
+.appiex-related-services--v2[data-related-theme="amber"]{--apx-r-accent:#ffbc68;--apx-r-tint:rgba(234,141,40,.14)}
+.appiex-related-services--v2[data-related-theme="violet"]{--apx-r-accent:#ba8dff;--apx-r-tint:rgba(142,77,231,.17)}
+.appiex-related-services--v2[data-related-theme="green"]{--apx-r-accent:#69e8ad;--apx-r-tint:rgba(46,176,112,.14)}
+.appiex-related-services--v2::before{
+  content:"";position:absolute;inset:-35% -10% auto 35%;height:380px;
+  background:radial-gradient(ellipse at 50% 30%,var(--apx-r-tint),transparent 66%);
+  pointer-events:none;z-index:-1;
 }
-.appiex-related-services h2 {
-  font:750 clamp(1.7rem,2.5vw,2.7rem)/1.19 'Space Grotesk',system-ui,sans-serif!important;
-  letter-spacing:-.044em!important;
-  color:#fff!important;margin:0 0 15px!important;
+.appiex-related-services--v2 *,
+.appiex-related-services--v2 *::before,
+.appiex-related-services--v2 *::after{box-sizing:border-box}
+.appiex-related-services--v2 :is(h2,h3,strong,small,p){margin-block:0;}
+.appiex-related-services--v2 .appiex-related-services__header{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:18px;
+  margin-bottom:25px!important;max-width:100%;flex-wrap:wrap;
+}
+.appiex-related-services--v2 .appiex-related-services__header > div{min-width:0;max-width:730px}
+.appiex-related-services--v2 .appiex-related-services__eyebrow{
+  display:block;color:var(--apx-r-accent)!important;
+  margin:0 0 10px!important;
+  font:750 .69rem/1.5 'JetBrains Mono',ui-monospace,monospace!important;
+  text-transform:uppercase;letter-spacing:.15em;
+}
+.appiex-related-services--v2 h2{
+  color:#fcfcff!important;
+  font:750 clamp(1.75rem,2.65vw,2.5rem)/1.18 'Space Grotesk','Google Sans',sans-serif!important;
+  letter-spacing:-.041em!important;
+  margin:0 0 12px!important;
   text-wrap:balance;
 }
-.appiex-related-services__intro {
-  color:#b6c1d2!important;
-  font-size:clamp(.93rem,1.2vw,1.03rem)!important;
-  max-width:660px;
-  line-height:1.8!important;margin:0 0 29px!important;
+.appiex-related-services--v2 .appiex-related-services__intro{
+  color:#acbacb!important;
+  font:400 clamp(.91rem,1.04vw,1rem)/1.7 'Google Sans',system-ui,sans-serif!important;
+  margin:0!important;max-width:690px!important;
 }
-.appiex-related-services__grid {
+.appiex-related-services--v2 :is(.appiex-related-services__all,.appiex-related-services__reading-heading > a){
+  display:inline-flex;gap:9px;align-items:center;white-space:nowrap;
+  color:var(--apx-r-accent)!important;
+  font-weight:750;text-decoration:none!important;font-size:.86rem!important;
+  padding:7px 0;
+}
+.appiex-related-services--v2 :is(.appiex-related-services__all,.appiex-related-services__reading-heading > a):hover{
+  color:#fff!important;text-decoration:underline!important;text-underline-offset:4px;
+}
+.appiex-related-services--v2 .appiex-related-services__grid{
   display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:clamp(12px,1.6vw,20px)!important;
+  gap:clamp(10px,1.4vw,17px)!important;
+  margin:0!important;padding:0!important;
 }
-.appiex-related-services__grid a {
-  min-width:0;min-height:138px;padding:clamp(18px,1.8vw,26px)!important;
-  display:flex!important;flex-direction:column;justify-content:center;
-  color:#fff!important;text-decoration:none!important;
-  background:rgba(9,10,15,.52);
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:19px;
-  transition:background .2s,border-color .2s,transform .2s;
+.appiex-related-services--v2 .appiex-related-service{
+  display:flex!important;flex-direction:row!important;align-items:center;gap:15px;
+  justify-content:flex-start!important;
+  min-width:0!important;min-height:101px!important;
+  padding:18px 20px!important;
+  border-radius:16px!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  background:rgba(5,8,13,.51)!important;
+  color:#f5f5f8!important;text-decoration:none!important;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
 }
-.appiex-related-services__grid a:hover {
-  background:rgba(255,45,75,.075);border-color:rgba(255,88,109,.55);
+.appiex-related-services--v2 .appiex-related-service__number{
+  flex:0 0 auto;color:var(--apx-r-accent)!important;
+  font:750 .7rem/1.4 'JetBrains Mono',monospace!important;
+}
+.appiex-related-services--v2 .appiex-related-service__content{
+  display:flex!important;flex-direction:column!important;
+  gap:5px;min-width:0;max-width:100%;
+}
+.appiex-related-services--v2 .appiex-related-service__content strong{
+  color:#f8f8fb!important;
+  font:750 .94rem/1.38 'Space Grotesk',sans-serif!important;
+  overflow-wrap:anywhere;
+}
+.appiex-related-services--v2 .appiex-related-service__content small{
+  color:#a5b0be!important;font:400 .78rem/1.48 'Google Sans',sans-serif!important;
+  overflow-wrap:break-word;
+}
+.appiex-related-services--v2 .appiex-related-service__arrow{
+  margin-left:auto;flex:0 0 auto;
+  font-size:1rem!important;color:var(--apx-r-accent)!important;
+  align-self:flex-start;
+}
+.appiex-related-services--v2 .appiex-related-services__reading-heading{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
+  margin:31px 0 18px!important;
+  padding-top:24px!important;
+  border-top:1px solid rgba(255,255,255,.11)!important;
+}
+.appiex-related-services--v2 .appiex-related-services__reading-heading .appiex-related-services__eyebrow{
+  margin:0 0 5px!important;
+}
+.appiex-related-services--v2 .appiex-related-services__reading-heading h3{
+  color:#f9f9fb!important;
+  font:750 clamp(1.2rem,1.7vw,1.65rem)/1.25 'Space Grotesk',sans-serif!important;
+  letter-spacing:-.028em!important;margin:0!important;
+  text-wrap:balance;
+}
+.appiex-related-services--v2 .appiex-related-services__articles{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:clamp(11px,1.4vw,18px)!important;
+}
+.appiex-related-services--v2 .appiex-related-article{
+  display:flex!important;flex-direction:column!important;
+  min-width:0;overflow:hidden;
+  color:#fff!important;background:rgba(6,8,13,.72)!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  border-radius:17px!important;text-decoration:none!important;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.appiex-related-services--v2 :is(.appiex-related-service,.appiex-related-article):hover{
   transform:translateY(-3px);
+  border-color:var(--apx-r-accent)!important;
+  box-shadow:0 15px 34px rgba(0,0,0,.22);
 }
-.appiex-related-services__grid a:focus-visible {
-  outline:2px solid #ff6f8a;outline-offset:5px;
+.appiex-related-services--v2 :is(a,nav[tabindex]):focus-visible{
+  outline:2px solid var(--apx-r-accent)!important;outline-offset:5px;
 }
-.appiex-related-services__grid a strong {
-  color:#fff!important;font:750 clamp(.98rem,1.15vw,1.08rem)/1.35 'Space Grotesk',sans-serif!important;
-  letter-spacing:-.02em!important;margin:0 0 8px!important;
+.appiex-related-services--v2 .appiex-related-article__image{
+  display:block!important;width:100%;height:auto;
+  aspect-ratio:16/8.7;overflow:hidden;
+  background:linear-gradient(145deg,#171c2b,#0b0b10);
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
-.appiex-related-services__grid a span {
-  color:#b7c1ce!important;font:400 .875rem/1.7 'Google Sans',system-ui,sans-serif!important;
+.appiex-related-services--v2 .appiex-related-article__image img{
+  display:block!important;width:100%!important;height:100%!important;
+  max-width:none!important;object-fit:cover!important;
+  transition:transform .35s ease;
 }
-@media(max-width:800px){
-  .appiex-related-services__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+.appiex-related-services--v2 .appiex-related-article:hover img{transform:scale(1.025)}
+.appiex-related-services--v2 .appiex-related-article__text{
+  display:flex!important;flex-direction:column!important;
+  align-items:flex-start;gap:9px;
+  padding:clamp(15px,1.8vw,23px)!important;
+  min-width:0;flex:1;
 }
-@media(max-width:550px){
-  .appiex-related-services{width:calc(100% - 26px);padding:21px;border-radius:21px}
-  .appiex-related-services__grid{grid-template-columns:minmax(0,1fr)!important}
-  .appiex-related-services__grid a{min-height:unset}
+.appiex-related-services--v2 .appiex-related-article__tag{
+  color:var(--apx-r-accent)!important;
+  font:700 .64rem/1.5 'JetBrains Mono',monospace!important;
+  letter-spacing:.08em;
+}
+.appiex-related-services--v2 .appiex-related-article__text strong{
+  color:#f9f9fc!important;
+  font:750 clamp(.96rem,1.12vw,1.1rem)/1.4 'Space Grotesk',sans-serif!important;
+  letter-spacing:-.018em!important;
+  overflow-wrap:break-word;text-wrap:pretty;
+}
+.appiex-related-services--v2 .appiex-related-article__desc{
+  color:#acb8c8!important;
+  font:400 .83rem/1.67 'Google Sans',system-ui,sans-serif!important;
+  overflow-wrap:break-word;
+}
+@media(max-width:980px){
+  .appiex-related-services--v2 .appiex-related-services__grid,
+  .appiex-related-services--v2 .appiex-related-services__articles{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:620px){
+  .appiex-related-services--v2{
+    width:calc(100% - 26px)!important;
+    margin:30px auto 42px!important;padding:21px!important;border-radius:20px!important;
+  }
+  .appiex-related-services--v2 .appiex-related-services__header,
+  .appiex-related-services--v2 .appiex-related-services__reading-heading{
+    flex-direction:column;align-items:flex-start;
+  }
+  .appiex-related-services--v2 .appiex-related-services__grid,
+  .appiex-related-services--v2 .appiex-related-services__articles{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  .appiex-related-services--v2 .appiex-related-service{min-height:unset!important;padding:15px!important}
+  .appiex-related-services--v2 .appiex-related-article__image{aspect-ratio:16/8.2}
+  .appiex-related-services--v2 .appiex-related-article__text{padding:18px!important}
 }
 @media(prefers-reduced-motion:reduce){
- .appiex-related-services__grid a{transition:none!important;transform:none!important}
+  .appiex-related-services--v2 :is(.appiex-related-article,.appiex-related-service),
+  .appiex-related-services--v2 .appiex-related-article__image img{
+    transition:none!important;transform:none!important;
+  }
 }
