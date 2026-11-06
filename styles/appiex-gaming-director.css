@@ -9,10 +9,10 @@
   --gs-ink:#080809;--gs-panel:#151416;--gs-frost:#b4afb0;--gs-line:rgba(255,255,255,.12);
   --gs-lime:#fb4756;--gs-teal:#fa374b;--gs-purple:#fb4756;
   color:#f6f5f3;background:#080809;
-  font-family:Inter,"Helvetica Neue",Arial,system-ui,sans-serif;
+  font-family:"Suisse Intl",Figtree,Arial,sans-serif;
 }
 .gaming-page::before{display:none}
-.gaming-page h1,.gaming-page h2,.gaming-page h3,.gaming-page strong{font-family:Inter,"Helvetica Neue",Arial,system-ui,sans-serif}
+.gaming-page h1,.gaming-page h2,.gaming-page h3,.gaming-page strong{font-family:"Suisse Intl",Figtree,Arial,sans-serif}
 .gaming-page .g-header{background:rgba(10,10,10,.9);border-bottom:1px solid rgba(255,255,255,.12);box-shadow:none}
 .gaming-page .g-header-inner{max-width:1440px;min-height:76px}
 .gaming-page .g-brand{font-size:32px;color:#fff;text-shadow:none}
@@ -325,3 +325,46 @@
  .gaming-page .gs-platform-card:hover .gd-card-image,.gaming-page .gs-concept-card:hover .gd-card-image{transform:none!important}
  .gaming-page .g-btn{transition:none!important}
 }
+
+/* APPIEX / GAMING 2026 — self-hosted font and editorial refinement */
+.gaming-page{--gd-font:"Suisse Intl",Figtree,Arial,sans-serif;font-family:var(--gd-font);font-size:16px;font-weight:400;line-height:1.6;font-synthesis:none}
+.gaming-page :is(h1,h2,h3,p,a,button,summary,li,dt,dd,strong){font-family:var(--gd-font)}
+.gaming-page :is(h1,h2,h3,strong){font-weight:600}
+.gaming-page .g-brand,.gaming-page .g-footer-brand{font-family:var(--gd-font);font-weight:700;letter-spacing:-.08em}
+.gaming-page .g-nav{background:transparent;border-color:transparent;box-shadow:none;padding:0}
+.gaming-page .g-nav>a,.gaming-page .g-nav-services>summary{font-size:13px;font-weight:500}
+.gaming-page .g-nav-services>summary.g-nav-active{background:#272125}
+.gaming-page .g-nav-cta,.gaming-page .g-nav-blog{font-size:13px;font-weight:600;border-radius:4px}
+.gaming-page .g-hero-grid{min-height:790px}
+.gaming-page .g-hero-copy{width:min(1370px,calc(100% - 100px));padding-block:135px 125px}
+.gaming-page .g-hero h1{font-weight:600;font-size:clamp(4rem,7.2vw,8.4rem);line-height:1;letter-spacing:-.071em;max-width:1100px;margin:34px 0 28px;text-wrap:balance}
+.gaming-page .g-h1-gradient{max-width:12ch;text-wrap:balance}
+.gaming-page .g-hero-statement{font-size:clamp(1.2rem,2vw,1.65rem);font-weight:500;letter-spacing:-.035em;line-height:1.32}
+.gaming-page .g-hero-statement strong{font-weight:600;color:#ff6576}
+.gaming-page .g-hero-description{font-size:clamp(1rem,1.2vw,1.125rem);line-height:1.65;max-width:660px;color:#dfd4d8;text-wrap:pretty}
+.gaming-page .g-eyebrow,.gaming-page .g-label{font-family:var(--gd-font);font-weight:600;font-size:11px;letter-spacing:.12em}
+.gaming-page .g-btn{font-family:var(--gd-font);font-size:14px;font-weight:600;min-height:53px}
+.gaming-page .g-hero-traits{border-color:rgba(255,255,255,.25);max-width:780px}
+.gaming-page .gd-hero-frame::after{background:linear-gradient(90deg,#080708 0%,rgba(8,7,8,.94) 20%,rgba(8,7,8,.63) 48%,rgba(8,7,8,.08) 86%),linear-gradient(0deg,rgba(8,7,8,.88),transparent 26%,transparent 78%,rgba(8,7,8,.24))}
+.gaming-page .gd-hero-image{object-position:64% 48%;filter:contrast(1.08) saturate(.87)}
+.gaming-page .gd-capabilities-band{background:#111012}
+.gaming-page .gs-chapter-nav{background:rgba(17,15,16,.97);border-color:rgba(255,255,255,.14)}
+.gaming-page .gs-chapter-list a{font-family:var(--gd-font);font-size:13px;font-weight:500}
+.gaming-page .gs-chapter-list a span{font-family:var(--gd-font);font-size:11px}
+.gaming-page .g-section-heading h2,.gaming-page .gs-heading h2,.gaming-page .g-world-selector h2,.gaming-page .g-why-grid h2,.gaming-page .g-faq h2,.gaming-page .gs-budget-intro h2,.gaming-page .g-conversion h2,.gaming-page .g-play-introduction h2{font-weight:600;letter-spacing:-.06em;font-size:clamp(2.95rem,5.2vw,5.9rem);line-height:1.05;text-wrap:balance}
+.gaming-page .g-section-heading p,.gaming-page .gs-heading p,.gaming-page .g-section-lede,.gaming-page .gs-budget-intro p,.gaming-page .g-why-grid p,.gaming-page .g-faq-layout>div>p{font-size:clamp(1rem,1.12vw,1.1rem);line-height:1.7;color:#c4b9bc}
+.gaming-page .g-service-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+.gaming-page .g-service-card{grid-column:span 3;display:flex;flex-direction:column;min-height:345px}
+.gaming-page .g-service-card:nth-child(-n+2){grid-column:span 6;min-height:360px;padding:clamp(36px,4vw,52px)}
+.gaming-page .g-service-card:nth-child(1){background:linear-gradient(125deg,#282026,#171316 68%)}
+.gaming-page .g-service-card:nth-child(2){background:linear-gradient(130deg,#191619,#21151a)}
+.gaming-page .g-service-card h3{font-weight:600;letter-spacing:-.04em;line-height:1.15;margin:auto 0 15px;max-width:16ch}
+.gaming-page .g-service-card:nth-child(-n+2) h3{font-size:clamp(2rem,2.6vw,3rem)}
+.gaming-page .g-service-card p{font-size:15px;line-height:1.58;margin:0;color:#c9bec2}
+.gaming-page .g-service-keywords{font-family:var(--gd-font);font-size:10px;font-weight:600;margin-top:24px}
+.gaming-page .gs-platform-content h3,.gaming-page .gs-concept-copy h3{font-weight:600;letter-spacing:-.047em}
+.gaming-page .gs-platform-content p,.gaming-page .gs-concept-copy p{font-size:15px;line-height:1.65;color:#c1b7ba}
+.gaming-page .g-faq-list summary{font-size:clamp(1rem,1.3vw,1.15rem);font-weight:600}
+@media(max-width:1100px){.gaming-page .g-hero-grid{min-height:730px}.gaming-page .g-hero-copy{width:calc(100% - 70px);padding-block:115px}.gaming-page .g-service-card{grid-column:span 6;min-height:320px}}
+@media(max-width:850px){.gaming-page .g-hero-grid{min-height:690px}.gaming-page .g-hero-copy{width:calc(100% - 48px);padding-block:105px}.gaming-page .g-hero h1{font-size:clamp(3.4rem,8.5vw,5.5rem)}}
+@media(max-width:650px){.gaming-page .g-hero-grid{min-height:0}.gaming-page .g-hero-copy{width:calc(100% - 36px);padding-block:100px}.gaming-page .g-hero h1{font-size:clamp(2.9rem,11vw,4.6rem);letter-spacing:-.068em;line-height:1.015;max-width:100%;margin:24px 0 22px}.gaming-page .g-h1-gradient{max-width:100%}.gaming-page .g-hero-statement{font-size:1.17rem}.gaming-page .g-hero-description{font-size:15px;line-height:1.66}.gaming-page .g-section-heading h2,.gaming-page .gs-heading h2,.gaming-page .g-world-selector h2,.gaming-page .g-why-grid h2,.gaming-page .g-faq h2,.gaming-page .gs-budget-intro h2,.gaming-page .g-conversion h2,.gaming-page .g-play-introduction h2{font-size:clamp(2.55rem,9.2vw,4rem)}.gaming-page .g-service-grid{grid-template-columns:1fr}.gaming-page .g-service-card,.gaming-page .g-service-card:nth-child(-n+2){grid-column:1;min-height:270px;padding:28px}.gaming-page .g-service-card h3,.gaming-page .g-service-card:nth-child(-n+2) h3{font-size:clamp(1.75rem,6.5vw,2.35rem)}}
