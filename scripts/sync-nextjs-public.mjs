@@ -61,4 +61,21 @@ for (const file of rootFiles) {
   }
 }
 
+
+/* Ship the exact installed Lenis distribution from our own Next.js server.
+ * Avoid a third-party runtime CDN and keep the JavaScript/CSS versions paired. */
+const lenisFiles = [
+  ['node_modules/lenis/dist/lenis.min.js', 'scripts/vendor/lenis.min.js'],
+  ['node_modules/lenis/dist/lenis.css', 'styles/vendor/lenis.css']
+];
+for (const [sourceFile, outputFile] of lenisFiles) {
+  const source = path.join(root, sourceFile);
+  if (!fs.existsSync(source)) {
+    throw new Error(`Lenis asset missing: ${sourceFile}. Run npm ci before building.`);
+  }
+  const destination = path.join(publicDir, outputFile);
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.copyFileSync(source, destination);
+}
+
 console.log(`[Next.js Sync] Synced ${assetDirs.length} directories and ${rootFiles.length} root files to public/`);
