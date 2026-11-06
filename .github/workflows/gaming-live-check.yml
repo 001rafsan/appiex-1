@@ -1,0 +1,64 @@
+name: Gaming & 3D Worlds live SEO and design smoke test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'gaming.html'
+      - 'styles/appiex-gaming.css'
+      - 'scripts/appiex-gaming.js'
+      - 'sitemap.xml'
+      - '.github/workflows/gaming-live-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  live-gaming:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Verify production HTML after automatic deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Vercel may still be deploying when this job starts, so verify content
+          # rather than interpreting HTTP 200 on an old release as success.
+          live=0
+          for attempt in $(seq 1 18); do
+            code=$(curl -L -sS --max-time 22 \
+              -H 'Cache-Control: no-cache' \
+              -o /tmp/appiex-gaming-live.html \
+              -w '%{http_code}' "https://appiex.com/gaming?deploy_check=$GITHUB_SHA" || true)
+            if [ "$code" = "200" ] &&
+               grep -Fq 'Game Development &amp; Interactive 3D Worlds' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'appiex-gaming.css' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'id="g-world-title"' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'name="robots" content="index, follow' /tmp/appiex-gaming-live.html &&
+               ! grep -Fq '/_nuxt/' /tmp/appiex-gaming-live.html; then
+              live=1
+              break
+            fi
+            echo "Attempt $attempt: received HTTP $code, waiting for new gaming deployment"
+            sleep 8
+          done
+          if [ "$live" -ne 1 ]; then
+            echo "::error::Live gaming page is still an outdated version or cannot be fetched"
+            exit 1
+          fi
+          echo "Gaming HTML live: semantic content, indexable metadata, new visual stylesheet reference confirmed"
+      - name: Verify both domains, CSS, enhancement and sitemap
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --max-time 30 "https://www.appiex.com/gaming?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-www.html
+          grep -Fq 'id="g-main-title"' /tmp/appiex-gaming-www.html
+          curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming.css
+          grep -Fq 'Appiex Gaming & 3D Worlds' /tmp/appiex-gaming.css
+          grep -Fq 'prefers-reduced-motion' /tmp/appiex-gaming.css
+          curl -fsSL --max-time 30 "https://appiex.com/scripts/appiex-gaming.js?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming.js
+          grep -Fq 'selectWorld' /tmp/appiex-gaming.js
+          curl -fsSL --max-time 30 "https://appiex.com/sitemap.xml?deploy_check=$GITHUB_SHA" -o /tmp/appiex-sitemap.xml
+          grep -Fq '<loc>https://appiex.com/gaming</loc>' /tmp/appiex-sitemap.xml
+          echo "PASS: Appiex gaming is live on both domains; CSS, JavaScript and indexable sitemap confirmed."
