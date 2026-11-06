@@ -8,6 +8,9 @@ on:
       - 'gaming.html'
       - 'styles/appiex-gaming.css'
       - 'scripts/appiex-gaming.js'
+      - 'styles/appiex-gaming-premium.css'
+      - 'scripts/appiex-gaming-play.js'
+      - 'scripts/check-gaming-play.mjs'
       - 'sitemap.xml'
       - '.github/workflows/gaming-live-check.yml'
 
@@ -34,6 +37,10 @@ jobs:
             if [ "$code" = "200" ] &&
                grep -Fq 'Game Development &amp; Interactive 3D Worlds' /tmp/appiex-gaming-live.html &&
                grep -Fq 'appiex-gaming.css' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'appiex-gaming-premium.css' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'id="play-demo"' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'id="g-game-canvas"' /tmp/appiex-gaming-live.html &&
+               grep -Fq 'id="g-game-start"' /tmp/appiex-gaming-live.html &&
                grep -Fq 'id="g-world-title"' /tmp/appiex-gaming-live.html &&
                grep -Fq 'name="robots" content="index, follow' /tmp/appiex-gaming-live.html &&
                ! grep -Fq '/_nuxt/' /tmp/appiex-gaming-live.html; then
@@ -54,11 +61,19 @@ jobs:
           set -euo pipefail
           curl -fsSL --max-time 30 "https://www.appiex.com/gaming?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-www.html
           grep -Fq 'id="g-main-title"' /tmp/appiex-gaming-www.html
+          grep -Fq 'id="g-game-canvas"' /tmp/appiex-gaming-www.html
           curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming.css
           grep -Fq 'Appiex Gaming & 3D Worlds' /tmp/appiex-gaming.css
           grep -Fq 'prefers-reduced-motion' /tmp/appiex-gaming.css
           curl -fsSL --max-time 30 "https://appiex.com/scripts/appiex-gaming.js?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming.js
           grep -Fq 'selectWorld' /tmp/appiex-gaming.js
+          curl -fsSL --max-time 30 "https://appiex.com/styles/appiex-gaming-premium.css?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-premium.css
+          grep -Fq 'Premium creative direction' /tmp/appiex-gaming-premium.css
+          grep -Fq 'g-play-console' /tmp/appiex-gaming-premium.css
+          curl -fsSL --max-time 30 "https://appiex.com/scripts/appiex-gaming-play.js?deploy_check=$GITHUB_SHA" -o /tmp/appiex-gaming-play.js
+          grep -Fq 'Signal Run' /tmp/appiex-gaming-play.js
+          grep -Fq 'requestAnimationFrame' /tmp/appiex-gaming-play.js
+          grep -Fq 'togglePause' /tmp/appiex-gaming-play.js
           curl -fsSL --max-time 30 "https://appiex.com/sitemap.xml?deploy_check=$GITHUB_SHA" -o /tmp/appiex-sitemap.xml
           grep -Fq '<loc>https://appiex.com/gaming</loc>' /tmp/appiex-sitemap.xml
-          echo "PASS: Appiex gaming is live on both domains; CSS, JavaScript and indexable sitemap confirmed."
+          echo "PASS: Premium playable Appiex Gaming verified on both domains, with original arcade JS, responsive CSS and indexable sitemap."
