@@ -20,6 +20,9 @@ on:
       - 'scripts/check-rift-shift.mjs'
       - 'scripts/appiex-rift-shift.js'
       - 'scripts/check-gaming-rebuild.mjs'
+      - 'scripts/gaming-cta-measure.js'
+      - 'scripts/home-cta-measure.js'
+      - 'scripts/check-gaming-conversion.mjs'
       - 'vercel.json'
       - 'scripts/check-vercel-next-config.mjs'
       - 'src/app/**'
@@ -126,6 +129,9 @@ jobs:
           node --check scripts/check-gaming-rebuild.mjs
           node scripts/check-gaming-rebuild.mjs
           node scripts/check-rift-shift.mjs
+          node --check scripts/gaming-cta-measure.js
+          node --check scripts/home-cta-measure.js
+          node scripts/check-gaming-conversion.mjs
       - name: Audit SEO for all public sitemap pages
         run: node scripts/audit-sitewide-seo.mjs --strict
       - name: Check sitemap pages follow the approved metadata and linking policy

@@ -28,7 +28,7 @@ jobs:
               -o /tmp/appiex-gaming-v2.html -w '%{http_code}' \
               "https://appiex.com/gaming?deploy_check=$GITHUB_SHA" || true)
             if [ "$status" = "200" ] &&
-               grep -Fq 'styles/gaming-v2.css?v=20261107-new' /tmp/appiex-gaming-v2.html &&
+               grep -Fq 'styles/gaming-v2.css?v=20261107-growth2' /tmp/appiex-gaming-v2.html &&
                grep -Fq 'id="gx-main-title"' /tmp/appiex-gaming-v2.html &&
                grep -Fq 'id="arcade-canvas"' /tmp/appiex-gaming-v2.html &&
                grep -Fq 'id="arcade-start"' /tmp/appiex-gaming-v2.html &&
