@@ -363,12 +363,12 @@
     "description": "Compare AI agents, n8n workflows and hybrid automation by business use case, reliability, operating cost and human oversight needs."
   },
   "/gaming": {
-    "primary": "game development and interactive 3D worlds",
+    "primary": "game development and interactive 3D experiences in Bangladesh",
     "supporting": [
-      "WebGL browser games",
-      "virtual showrooms and gamification"
+      "custom browser game development and WebGL",
+      "interactive 3D websites, virtual showrooms and brand gamification"
     ],
-    "description": "Custom game development, WebGL experiences, immersive 3D websites and virtual showrooms that engage customers and support business growth. Explore Appiex.",
-    "title": "Game Development & Interactive 3D Worlds | Appiex"
+    "description": "Appiex builds custom browser games, WebGL experiences, interactive 3D websites and virtual showrooms in Bangladesh. Play Rift Shift, our original arcade game.",
+    "title": "Game Development & 3D Experiences in Bangladesh | Appiex"
   }
 }
