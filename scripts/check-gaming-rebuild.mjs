@@ -52,7 +52,7 @@ assert(html.includes('scripts/appiex-gaming-lenis.js'),'Smooth scrolling missing
 assert(css.includes('@media(max-width:610px)'),'Small screen rules missing');
 assert(css.includes('prefers-reduced-motion:reduce'),'Reduced motion guard missing');
 assert(css.includes(':focus-visible'),'Keyboard focus styling missing');
-assert(css.length<25000,'New CSS should stay manageable');
+assert(css.replace(/\r\n/g, '\n').length<25000,'New CSS should stay manageable');
 assert(html.length<40000,'HTML size budget exceeded');
 const imgs=[...html.matchAll(/<img\b[^>]+>/gi)].map(x=>x[0]);
 assert(imgs.length>=5,'Cinematic imagery missing');

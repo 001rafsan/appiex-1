@@ -48,7 +48,7 @@ assert(css.includes('.gx-path-grid')&&css.includes('.gx-clarity-grid'),
   'Goal selector and clarity section must be styled');
 assert(css.includes('max-width:610px'),'Responsive mobile fallback missing');
 assert(css.includes('prefers-reduced-motion:reduce'),'Reduced motion safety missing');
-assert(css.length<25000,'Avoid unbounded page CSS');
+assert(css.replace(/\r\n/g, '\n').length<25000,'Avoid unbounded page CSS');
 assert(gaming.length<40000,'Avoid heavyweight HTML');
 assert(home.includes('data-text="Discuss Your Project"')&&home.includes('See Selected Projects'),
   'Homepage above-fold CTAs must state clear next steps');

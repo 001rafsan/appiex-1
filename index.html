@@ -2770,7 +2770,8 @@
   }
 </style>
   <link rel="stylesheet" href="/styles/appiex-editorial-polish.css?v=20261106">
-<link rel="stylesheet" href="/styles/appiex-home-sections-v3.css?v=20261106" media="all">
+<link rel="stylesheet" href="/styles/vendor/lenis.css?v=20261107">
+  <link rel="stylesheet" href="/styles/appiex-home-sections-v3.css?v=20261106" media="all">
 </head>
     <body class="font-sans antialiased appiex-home-polished">
   <!-- Cuberto-Style Page Transition Curtain (Appiex Red Ambient Aesthetic) -->
@@ -4677,7 +4678,7 @@
   <!-- Runtime Motion & Smooth Scroll Suite -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="/scripts/vendor/lenis.min.js?v=20261107" defer></script>
 
   <!-- ========================================================
        APPIEX HOME LENIS SMOOTH SCROLL ENGINE
@@ -4686,40 +4687,41 @@
     window.initHomeLenis = function() {
       if (window.lenis) return;
       if (typeof Lenis === 'undefined') {
-        setTimeout(window.initHomeLenis, 60);
+        setTimeout(window.initHomeLenis, 30);
         return;
       }
 
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReduced) return;
 
-      document.documentElement.classList.add('lenis');
+      document.documentElement.classList.add('lenis', 'lenis-smooth');
 
-      const isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window) || window.innerWidth <= 1024;
-      // On mobile phones/tablets, use 100% native 120Hz hardware scrolling without JS Lenis loop overhead
-      if (isTouch) {
-        document.documentElement.classList.remove('lenis', 'lenis-smooth');
-        return;
-      }
       const lenis = new Lenis({
-        duration: 0.75,
+        duration: 1.15,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.05,
+        wheelMultiplier: 1.0,
         syncTouch: false,
         touchMultiplier: 1.0,
-        infinite: false
+        infinite: false,
+        prevent: (node) => Boolean(
+          node && node.closest && (
+            node.closest('[data-lenis-prevent]') ||
+            node.closest('#rafsan-mobile-drawer') ||
+            node.closest('#product-details-modal')
+          )
+        )
       });
       window.lenis = lenis;
 
       if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        lenis && lenis.on('scroll', ScrollTrigger.update);
+        lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
           lenis.raf(time * 1000);
         });
-        gsap.ticker.lagSmoothing(500, 33);
+        gsap.ticker.lagSmoothing(0);
       } else {
         function raf(time) {
           lenis.raf(time);
@@ -4737,7 +4739,7 @@
           if (target) {
             e.preventDefault();
             if (window.lenis) {
-              window.lenis.scrollTo(target, { offset: -60, duration: 1.0 });
+              window.lenis.scrollTo(target, { offset: -70, duration: 1.1 });
             } else {
               target.scrollIntoView({ behavior: 'smooth' });
             }

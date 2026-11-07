@@ -1220,16 +1220,8 @@
     }
   } catch (e) {}
 
-  // Disable Lenis on mobile/touch devices immediately if present to eliminate mobile scroll lag
+  // Optimize scrolling and universal media loading without disrupting Lenis
   function optimizeScrollingPerformance() {
-    const isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window) || window.innerWidth <= 1024;
-    if (isTouch && window.lenis) {
-      try {
-        window.lenis.destroy();
-        window.lenis = null;
-        document.documentElement.classList.remove('lenis', 'lenis-smooth');
-      } catch (e) {}
-    }
     initUniversalLazyVideos();
   }
 

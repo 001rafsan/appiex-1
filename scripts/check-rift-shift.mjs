@@ -24,7 +24,7 @@ assert(game.includes('visibilitychange'),'Pause when tab is hidden');
 assert(game.includes('pointerup')&&game.includes('keydown'),'Touch and keyboard controls missing');
 assert(!/fetch\s*\(|XMLHttpRequest|WebSocket|setInterval\s*\(/.test(game),'Game must not send data or run background timers');
 assert(game.length < 17000, 'Game bundle exceeds source budget');
-assert(css.length < 25000, 'Full gaming design CSS exceeds source budget');
+assert(css.replace(/\r\n/g, '\n').length < 25000, 'Full gaming design CSS exceeds source budget');
 const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
 const entry=graph.find(node=>node['@type']==='VideoGame');
 assert(entry?.url==='https://appiex.com/gaming#arcade','VideoGame structured data missing');
