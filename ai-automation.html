@@ -2291,6 +2291,31 @@ function handleQuickContactSubmit(e) {
     '📞 *Phone:* ' + phone + '\n' +
     '📝 *Project Details:*\n' + mess;
 
+  // Dispatch to Appiex Admin Order Engine
+  try {
+    const orderPayload = {
+      id: 'ord_' + Date.now(),
+      name: name,
+      email: email,
+      phone: phone,
+      service: document.title.split('|')[0].trim() || 'Service Inquiry',
+      budget: '$5k-$10k',
+      message: mess,
+      channel: 'Service Page Form (' + window.location.pathname + ')',
+      status: 'new',
+      date: new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Dhaka' }) + ' ' + new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit' }),
+      timestamp: Date.now()
+    };
+    const existing = JSON.parse(localStorage.getItem('appiex_client_orders') || '[]');
+    existing.unshift(orderPayload);
+    localStorage.setItem('appiex_client_orders', JSON.stringify(existing));
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderPayload)
+    }).catch(function() {});
+  } catch(err) {}
+
   const waUrl = 'https://wa.me/8801917354847?text=' + encodeURIComponent(waText);
   try {
     window.open(waUrl, '_blank');
