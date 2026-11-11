@@ -35,10 +35,11 @@ assert(jsBundle.includes('totalAmountUSD') && jsBundle.includes('totalAmountBDT'
 assert(jsBundle.includes('confirmedUSD') && jsBundle.includes('confirmedBDT'), 'Confirmed projects total calculation missing');
 assert(jsBundle.includes('handleFinalizeMonth'), 'Finalize month handler missing');
 assert(jsBundle.includes('handleAddSale'), 'Add sale handler missing');
-assert(jsBundle.includes('appiex_monthly_sales_v2'), 'LocalStorage key missing');
+assert(jsBundle.includes('appiex_monthly_sales_v3'), 'LocalStorage key missing');
+assert(jsBundle.includes('/api/sales'), 'Shared serverless API sync missing');
 
 // 5. Check cache buster in HTML
-assert(adminHtml.includes('?v=20261112_monthly_sales_v2'), 'admin.html cache buster not updated');
-assert(adminIndexHtml.includes('?v=20261112_monthly_sales_v2'), 'admin/index.html cache buster not updated');
+assert(adminHtml.includes('?v=20261112_monthly_sales_v3'), 'admin.html cache buster not updated');
+assert(adminIndexHtml.includes('?v=20261112_monthly_sales_v3'), 'admin/index.html cache buster not updated');
 
 console.log('✅ All Monthly Sales Ledger assertions PASSED with 100% precision!');

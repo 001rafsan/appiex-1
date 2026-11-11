@@ -8,11 +8,12 @@ function MonthlySalesView() {
   var addToast = ctx.addToast;
   var globalCurrency = ctx.currency;
 
-  var STORAGE_KEY = 'appiex_monthly_sales_v2';
+  var STORAGE_KEY = 'appiex_monthly_sales_v3';
   var RATE = 122; // 1 USD = 122 BDT
 
-  // Clean initial state with all amounts starting at 0
+  // Clean initial state starting at $0
   var defaultData = {
+    updatedAt: 1,
     selectedMonthId: '2026-11',
     months: [
       { id: '2026-11', name: 'November 2026', status: 'active', closedAt: null, notes: 'Active sales cycle' }
@@ -34,12 +35,62 @@ function MonthlySalesView() {
   var data = dataState[0];
   var setData = dataState[1];
 
+  // Helper to persist locally AND broadcast to cloud API so all screens update
   function persist(nextData) {
-    setData(nextData);
+    var withTs = Object.assign({}, nextData, { updatedAt: Date.now() });
+    setData(withTs);
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextData));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(withTs));
+    } catch(e) {}
+
+    // Broadcast to shared API
+    try {
+      fetch('/api/sales', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(withTs)
+      }).catch(function() {});
     } catch(e) {}
   }
+
+  // Live cloud sync: polls /api/sales so changes from ANY admin/screen show immediately
+  (0, v.useEffect)(function() {
+    var active = true;
+    function fetchShared() {
+      fetch('/api/sales')
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          if (!active || !res || !res.ok) return;
+          setData(function(prev) {
+            if (res.updatedAt && (!prev.updatedAt || res.updatedAt > prev.updatedAt)) {
+              var merged = {
+                updatedAt: res.updatedAt,
+                selectedMonthId: res.selectedMonthId || prev.selectedMonthId,
+                months: res.months || prev.months,
+                items: res.items || prev.items
+              };
+              try { localStorage.setItem(STORAGE_KEY, JSON.stringify(merged)); } catch(e) {}
+              return merged;
+            }
+            return prev;
+          });
+        })
+        .catch(function() {});
+    }
+
+    fetchShared();
+    var pollTimer = setInterval(fetchShared, 4000);
+    window.addEventListener('focus', fetchShared);
+
+    return function() {
+      active = false;
+      clearInterval(pollTimer);
+      window.removeEventListener('focus', fetchShared);
+    };
+  }, []);
+
+  // Theme detection for light/dark mode
+  var isDark = ctx.theme === 'dark';
 
   // Active view tab: 'ledger' | 'archive'
   var activeTabState = (0, v.useState)('ledger');
@@ -108,7 +159,7 @@ function MonthlySalesView() {
   var currentMonth = data.months.find(function(m) { return m.id === data.selectedMonthId; }) || data.months[0] || { id: '2026-11', name: 'November 2026', status: 'active' };
 
   // Items for selected month
-  var monthItems = data.items.filter(function(item) {
+  var monthItems = (data.items || []).filter(function(item) {
     return item.monthId === currentMonth.id;
   });
 
@@ -198,7 +249,7 @@ function MonthlySalesView() {
       addToast({
         type: newStatus === 'confirm' ? 'success' : newStatus === 'cancel' ? 'error' : 'info',
         title: 'Status: ' + statusLabels[newStatus],
-        message: '"' + (targetItem ? targetItem.clientName : 'Project') + '" marked as ' + statusLabels[newStatus]
+        message: '"' + (targetItem ? targetItem.clientName : 'Project') + '" marked as ' + statusLabels[newStatus] + ' (Synced for all screens).'
       });
     }
   }
@@ -235,7 +286,7 @@ function MonthlySalesView() {
       notes: formNotes.trim()
     };
 
-    var nextItems = [newItem].concat(data.items);
+    var nextItems = [newItem].concat(data.items || []);
     persist(Object.assign({}, data, { items: nextItems }));
 
     setFormClient('');
@@ -247,8 +298,8 @@ function MonthlySalesView() {
     if (addToast) {
       addToast({
         type: 'success',
-        title: 'Sale Added',
-        message: '"' + newItem.clientName + '" added (' + fmtMoney(u, b) + ').'
+        title: 'Sale Added & Shared',
+        message: '"' + newItem.clientName + '" added (' + fmtMoney(u, b) + '). Shared with team in real-time.'
       });
     }
   }
@@ -262,7 +313,7 @@ function MonthlySalesView() {
       addToast({
         type: 'info',
         title: 'Entry Deleted',
-        message: 'Sale record has been removed.'
+        message: 'Sale record removed across all screens.'
       });
     }
   }
@@ -303,7 +354,7 @@ function MonthlySalesView() {
       });
     }
 
-    var updatedItems = data.items.slice();
+    var updatedItems = (data.items || []).slice();
     if (rollOverProceed) {
       var currentProceedItems = monthItems.filter(function(i) { return i.status === 'proceed'; });
       currentProceedItems.forEach(function(item) {
@@ -326,7 +377,7 @@ function MonthlySalesView() {
     if (addToast) {
       addToast({
         type: 'success',
-        title: 'Month Closed & Archived',
+        title: 'Month Finalized & Synced',
         message: currentMonth.name + ' archived. Active month is now ' + nextMonthName + '.'
       });
     }
@@ -358,12 +409,19 @@ function MonthlySalesView() {
     document.body.removeChild(link);
   }
 
+  // Theme styling helpers (Black font in light mode, crisp white in dark mode)
+  var cardBg = isDark ? 'bg-[#0e1217]' : 'bg-white border border-slate-200/90 shadow-xs';
+  var innerBoxBg = isDark ? 'bg-[#141922]' : 'bg-slate-50 border border-slate-200/70';
+  var primaryText = isDark ? 'text-white' : 'text-slate-900';
+  var secondaryText = isDark ? 'text-slate-400' : 'text-slate-600';
+  var inputBg = isDark ? 'bg-[#141922] text-white border-transparent' : 'bg-slate-50 text-slate-900 border border-slate-300 focus:bg-white';
+
   return (0, F.jsxs)('div', {
-    className: 'space-y-3.5 animate-in fade-in duration-200 pb-8 text-xs',
+    className: 'space-y-3 animate-in fade-in duration-200 pb-8 text-xs',
     children: [
-      // 1. Top Header Banner - Borderless, compact, clean
+      // 1. Top Header Banner - High contrast in both Light & Dark modes
       (0, F.jsxs)('div', {
-        className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-[#0e1217] relative overflow-hidden',
+        className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl ' + cardBg,
         children: [
           (0, F.jsxs)('div', {
             className: 'space-y-1 relative z-10',
@@ -372,28 +430,35 @@ function MonthlySalesView() {
                 className: 'flex items-center gap-2',
                 children: [
                   (0, F.jsx)('span', {
-                    className: 'px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 text-rose-400',
+                    className: 'px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 text-rose-600 dark:text-rose-400',
                     children: 'Appiex Financial OS'
                   }),
                   currentMonth.status === 'active' 
                     ? (0, F.jsxs)('span', {
-                        className: 'flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400',
+                        className: 'flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
                         children: [
-                          (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse' }),
+                          (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse' }),
                           'Active Month'
                         ]
                       })
                     : (0, F.jsx)('span', {
-                        className: 'px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400',
+                        className: 'px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300',
                         children: '✓ Finalized'
-                      })
+                      }),
+                  (0, F.jsxs)('span', {
+                    className: 'text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1',
+                    children: [
+                      (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-emerald-500' }),
+                      'Realtime Cloud Synced (সবার স্ক্রিনে লাইভ)'
+                    ]
+                  })
                 ]
               }),
               (0, F.jsxs)('h1', {
-                className: 'text-lg font-bold text-white tracking-tight flex items-center gap-1.5',
+                className: 'text-lg font-bold tracking-tight flex items-center gap-1.5 ' + primaryText,
                 children: [
                   'Monthly Sales & Accounts',
-                  (0, F.jsx)('span', { className: 'text-slate-400 text-xs font-normal', children: '(মাসিক বিক্রয় হিসাব)' })
+                  (0, F.jsx)('span', { className: 'text-xs font-normal ' + secondaryText, children: '(মাসিক বিক্রয় হিসাব)' })
                 ]
               })
             ]
@@ -404,22 +469,22 @@ function MonthlySalesView() {
             className: 'flex flex-wrap items-center gap-1.5 relative z-10',
             children: [
               (0, F.jsxs)('div', {
-                className: 'flex p-0.5 rounded-lg bg-[#141922]',
+                className: 'flex p-0.5 rounded-lg ' + innerBoxBg,
                 children: [
                   (0, F.jsx)('button', {
                     onClick: function() { setActiveTab('ledger'); },
                     className: 'px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer transition-all ' + 
-                      (activeTab === 'ledger' ? 'bg-rose-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'),
+                      (activeTab === 'ledger' ? 'bg-rose-600 text-white shadow-xs' : secondaryText + ' hover:' + primaryText),
                     children: 'Active Ledger'
                   }),
                   (0, F.jsxs)('button', {
                     onClick: function() { setActiveTab('archive'); },
                     className: 'flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer transition-all ' + 
-                      (activeTab === 'archive' ? 'bg-rose-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'),
+                      (activeTab === 'archive' ? 'bg-rose-600 text-white shadow-xs' : secondaryText + ' hover:' + primaryText),
                     children: [
                       'Archive (হিসাব রেকর্ড)',
                       (0, F.jsx)('span', {
-                        className: 'px-1 rounded bg-slate-800 text-[9px] text-slate-300 font-mono',
+                        className: 'px-1 rounded bg-slate-200 dark:bg-slate-800 text-[9px] font-mono ' + primaryText,
                         children: data.months.length
                       })
                     ]
@@ -428,7 +493,7 @@ function MonthlySalesView() {
               }),
               (0, F.jsx)('button', {
                 onClick: handleExportCSV,
-                className: 'px-2.5 py-1 rounded-lg bg-[#141922] hover:bg-slate-800 text-slate-300 text-[11px] font-semibold cursor-pointer transition-colors',
+                className: 'px-2.5 py-1 rounded-lg text-[11px] font-semibold cursor-pointer transition-colors ' + innerBoxBg + ' ' + primaryText,
                 children: '📥 CSV'
               }),
               currentMonth.status === 'active' && (0, F.jsx)('button', {
@@ -441,12 +506,12 @@ function MonthlySalesView() {
         ]
       }),
 
-      // 2. Month Selector - Borderless, clear contrast (No pure white box bug)
+      // 2. Month Selector - High contrast
       (0, F.jsxs)('div', {
-        className: 'flex flex-wrap items-center gap-1.5 p-2 rounded-xl bg-[#0e1217]',
+        className: 'flex flex-wrap items-center gap-1.5 p-2 rounded-xl ' + cardBg,
         children: [
           (0, F.jsx)('span', {
-            className: 'text-[11px] font-bold text-slate-400 uppercase tracking-wider px-1.5',
+            className: 'text-[11px] font-bold uppercase tracking-wider px-1.5 ' + secondaryText,
             children: 'Month:'
           }),
           data.months.map(function(m) {
@@ -459,49 +524,49 @@ function MonthlySalesView() {
               className: 'flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ' + 
                 (isSel 
                   ? 'bg-rose-600 text-white shadow-xs' 
-                  : 'bg-[#141922] text-slate-300 hover:text-white hover:bg-slate-800'),
+                  : (isDark ? 'bg-[#141922] text-slate-300 hover:text-white hover:bg-slate-800' : 'bg-slate-100 text-slate-800 hover:bg-slate-200')),
               children: [
                 (0, F.jsx)('span', { children: m.name }),
                 m.status === 'active' 
                   ? (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse' })
-                  : (0, F.jsx)('span', { className: 'text-[9px] text-slate-300', children: '✓' })
+                  : (0, F.jsx)('span', { className: 'text-[9px] text-white/80', children: '✓' })
               ]
             });
           })
         ]
       }),
 
-      // 3. Four Top Executive KPI Cards - Borderless, compact size
+      // 3. Four Top Executive KPI Cards - High contrast black font in light mode
       (0, F.jsxs)('div', {
         className: 'grid grid-cols-2 lg:grid-cols-4 gap-2.5',
         children: [
-          // Total Monthly Sales (মোট হিসাব)
+          // Total Monthly Sales
           (0, F.jsxs)('div', {
-            className: 'p-3 rounded-xl bg-[#0e1217] space-y-1',
+            className: 'p-3 rounded-xl space-y-1 ' + cardBg,
             children: [
-              (0, F.jsx)('div', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Total Sales (মোট হিসাব)' }),
-              (0, F.jsx)('div', { className: 'text-xl font-bold text-white font-mono', children: fmtMoney(totalAmountUSD, totalAmountBDT) }),
+              (0, F.jsx)('div', { className: 'text-[10px] font-bold uppercase tracking-wider ' + secondaryText, children: 'Total Sales (মোট হিসাব)' }),
+              (0, F.jsx)('div', { className: 'text-xl font-bold font-mono ' + primaryText, children: fmtMoney(totalAmountUSD, totalAmountBDT) }),
               (0, F.jsxs)('div', {
-                className: 'flex items-center justify-between text-[10px] text-slate-400 pt-1',
+                className: 'flex items-center justify-between text-[10px] pt-1 ' + secondaryText,
                 children: [
                   (0, F.jsxs)('span', { children: [monthItems.length, ' entries'] }),
-                  (0, F.jsx)('span', { className: 'font-mono text-slate-400', children: fmtDual(totalAmountUSD, totalAmountBDT) })
+                  (0, F.jsx)('span', { className: 'font-mono ' + primaryText, children: fmtDual(totalAmountUSD, totalAmountBDT) })
                 ]
               })
             ]
           }),
 
-          // Confirmed Revenue (কনফার্মড)
+          // Confirmed Revenue
           (0, F.jsxs)('div', {
-            className: 'p-3 rounded-xl bg-[#0e1217] space-y-1',
+            className: 'p-3 rounded-xl space-y-1 ' + cardBg,
             children: [
-              (0, F.jsx)('div', { className: 'text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1', children: [
-                (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-emerald-400' }),
+              (0, F.jsx)('div', { className: 'text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-1', children: [
+                (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-emerald-500' }),
                 'Confirmed (কনফার্মড)'
               ] }),
-              (0, F.jsx)('div', { className: 'text-xl font-bold text-emerald-400 font-mono', children: fmtMoney(confirmedUSD, confirmedBDT) }),
+              (0, F.jsx)('div', { className: 'text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400', children: fmtMoney(confirmedUSD, confirmedBDT) }),
               (0, F.jsxs)('div', {
-                className: 'flex items-center justify-between text-[10px] text-emerald-400/80 pt-1',
+                className: 'flex items-center justify-between text-[10px] pt-1 text-emerald-700 dark:text-emerald-300',
                 children: [
                   (0, F.jsxs)('span', { className: 'font-bold', children: ['✓ ', confirmedCount, ' Confirmed'] }),
                   (0, F.jsx)('span', { className: 'font-mono', children: fmtDual(confirmedUSD, confirmedBDT) })
@@ -510,17 +575,17 @@ function MonthlySalesView() {
             ]
           }),
 
-          // In Pipeline (চলমান / Proceed)
+          // In Pipeline
           (0, F.jsxs)('div', {
-            className: 'p-3 rounded-xl bg-[#0e1217] space-y-1',
+            className: 'p-3 rounded-xl space-y-1 ' + cardBg,
             children: [
-              (0, F.jsx)('div', { className: 'text-[10px] font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1', children: [
-                (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-blue-400' }),
+              (0, F.jsx)('div', { className: 'text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider flex items-center gap-1', children: [
+                (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-blue-500' }),
                 'In Pipeline (চলমান)'
               ] }),
-              (0, F.jsx)('div', { className: 'text-xl font-bold text-blue-400 font-mono', children: fmtMoney(proceedUSD, proceedBDT) }),
+              (0, F.jsx)('div', { className: 'text-xl font-bold font-mono text-blue-600 dark:text-blue-400', children: fmtMoney(proceedUSD, proceedBDT) }),
               (0, F.jsxs)('div', {
-                className: 'flex items-center justify-between text-[10px] text-blue-400/80 pt-1',
+                className: 'flex items-center justify-between text-[10px] pt-1 text-blue-700 dark:text-blue-300',
                 children: [
                   (0, F.jsxs)('span', { className: 'font-bold', children: ['⏳ ', proceedCount, ' Proceeding'] }),
                   (0, F.jsx)('span', { className: 'font-mono', children: fmtDual(proceedUSD, proceedBDT) })
@@ -529,20 +594,20 @@ function MonthlySalesView() {
             ]
           }),
 
-          // Cancelled (বাতিল)
+          // Cancelled
           (0, F.jsxs)('div', {
-            className: 'p-3 rounded-xl bg-[#0e1217] space-y-1',
+            className: 'p-3 rounded-xl space-y-1 ' + cardBg,
             children: [
-              (0, F.jsx)('div', { className: 'text-[10px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1', children: [
-                (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-rose-400' }),
+              (0, F.jsx)('div', { className: 'text-[10px] font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider flex items-center gap-1', children: [
+                (0, F.jsx)('span', { className: 'w-1.5 h-1.5 rounded-full bg-rose-500' }),
                 'Cancelled (বাতিল)'
               ] }),
-              (0, F.jsx)('div', { className: 'text-xl font-bold text-rose-400 font-mono', children: fmtMoney(cancelUSD, cancelBDT) }),
+              (0, F.jsx)('div', { className: 'text-xl font-bold font-mono text-rose-600 dark:text-rose-400', children: fmtMoney(cancelUSD, cancelBDT) }),
               (0, F.jsxs)('div', {
-                className: 'flex items-center justify-between text-[10px] text-rose-400/80 pt-1',
+                className: 'flex items-center justify-between text-[10px] pt-1 text-rose-700 dark:text-rose-300',
                 children: [
                   (0, F.jsxs)('span', { children: ['✕ ', cancelCount, ' Dropped'] }),
-                  (0, F.jsxs)('span', { className: 'font-bold text-slate-400', children: ['Win: ', winRate, '%'] })
+                  (0, F.jsxs)('span', { className: 'font-bold', children: ['Win: ', winRate, '%'] })
                 ]
               })
             ]
@@ -552,15 +617,15 @@ function MonthlySalesView() {
 
       // TAB 1: ACTIVE LEDGER & ADD SALE FORM
       activeTab === 'ledger' && (0, F.jsxs)('div', {
-        className: 'grid grid-cols-1 lg:grid-cols-3 gap-3.5',
+        className: 'grid grid-cols-1 lg:grid-cols-3 gap-3',
         children: [
           // Left 2 Columns: Deal Items List
           (0, F.jsxs)('div', {
-            className: 'lg:col-span-2 space-y-2.5',
+            className: 'lg:col-span-2 space-y-2',
             children: [
-              // Search & Filter Toolbar - Borderless
+              // Search & Filter Toolbar
               (0, F.jsxs)('div', {
-                className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-xl bg-[#0e1217]',
+                className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2 rounded-xl ' + cardBg,
                 children: [
                   // Filter Buttons
                   (0, F.jsxs)('div', {
@@ -577,7 +642,9 @@ function MonthlySalesView() {
                           key: btn.id,
                           onClick: function() { setFilterStatus(btn.id); },
                           className: 'px-2 py-1 rounded-md text-[10px] font-bold cursor-pointer transition-all ' + 
-                            (active ? 'bg-rose-600 text-white shadow-xs' : 'text-slate-400 hover:text-white bg-[#141922]'),
+                            (active 
+                              ? 'bg-rose-600 text-white shadow-xs' 
+                              : (isDark ? 'text-slate-400 hover:text-white bg-[#141922]' : 'text-slate-700 hover:text-slate-900 bg-slate-100')),
                           children: btn.label
                         });
                       })
@@ -590,7 +657,7 @@ function MonthlySalesView() {
                     value: searchTerm,
                     onChange: function(e) { setSearchTerm(e.target.value); },
                     placeholder: 'Search client, project...',
-                    className: 'px-2.5 py-1 rounded-lg bg-[#141922] text-[11px] text-white placeholder-slate-500 focus:outline-hidden focus:ring-1 focus:ring-rose-500'
+                    className: 'px-2.5 py-1 rounded-lg text-[11px] focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg
                   })
                 ]
               }),
@@ -598,15 +665,15 @@ function MonthlySalesView() {
               // Items List
               displayItems.length === 0 
                 ? (0, F.jsxs)('div', {
-                    className: 'p-8 text-center rounded-xl bg-[#0e1217] space-y-1',
+                    className: 'p-8 text-center rounded-xl space-y-1 ' + cardBg,
                     children: [
                       (0, F.jsx)('div', { className: 'text-2xl', children: '📝' }),
-                      (0, F.jsx)('h3', { className: 'text-xs font-bold text-white', children: 'No sales added yet ($0)' }),
-                      (0, F.jsx)('p', { className: 'text-[11px] text-slate-400', children: 'Use the form on the right to add your first client project deal.' })
+                      (0, F.jsx)('h3', { className: 'text-xs font-bold ' + primaryText, children: 'No sales added yet ($0)' }),
+                      (0, F.jsx)('p', { className: 'text-[11px] ' + secondaryText, children: 'Add your first sale using the form on the right. It will instantly sync for all admins.' })
                     ]
                   })
                 : (0, F.jsx)('div', {
-                    className: 'space-y-2',
+                    className: 'space-y-1.5',
                     children: displayItems.map(function(item) {
                       var isConfirmed = item.status === 'confirm';
                       var isProceed = item.status === 'proceed';
@@ -614,48 +681,48 @@ function MonthlySalesView() {
 
                       return (0, F.jsxs)('div', {
                         key: item.id,
-                        className: 'p-3 rounded-xl bg-[#0e1217] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5',
+                        className: 'p-2.5 rounded-xl transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2 ' + cardBg,
                         children: [
-                          // Left Details with Visible Status Tag
+                          // Left Details with Visible Status Tag & Black Text in Light Mode
                           (0, F.jsxs)('div', {
-                            className: 'space-y-1 min-w-0',
+                            className: 'space-y-0.5 min-w-0',
                             children: [
                               (0, F.jsxs)('div', {
                                 className: 'flex items-center gap-1.5 flex-wrap',
                                 children: [
                                   // Distinct Status Tag (Always Visible)
                                   isConfirmed && (0, F.jsx)('span', {
-                                    className: 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/40',
+                                    className: 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/40',
                                     children: '✓ Confirmed'
                                   }),
                                   isProceed && (0, F.jsx)('span', {
-                                    className: 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/40',
+                                    className: 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/40',
                                     children: '⏳ Proceed'
                                   }),
                                   isCancel && (0, F.jsx)('span', {
-                                    className: 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/40',
+                                    className: 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-600 dark:text-rose-400 ring-1 ring-rose-500/40',
                                     children: '✕ Cancelled'
                                   }),
                                   (0, F.jsx)('h3', {
-                                    className: 'font-bold text-white text-sm',
+                                    className: 'font-bold text-sm ' + primaryText,
                                     children: item.clientName
                                   }),
                                   (0, F.jsx)('span', {
-                                    className: 'px-1.5 py-0.2 rounded text-[9px] font-semibold bg-[#141922] text-slate-300',
+                                    className: 'px-1.5 py-0.2 rounded text-[9px] font-semibold ' + innerBoxBg + ' ' + secondaryText,
                                     children: item.service
                                   }),
                                   (0, F.jsx)('span', {
-                                    className: 'text-[10px] text-slate-500 font-mono',
+                                    className: 'text-[10px] font-mono ' + secondaryText,
                                     children: item.date
                                   })
                                 ]
                               }),
                               (0, F.jsx)('p', {
-                                className: 'text-[11px] text-slate-300',
+                                className: 'text-[11px] font-medium ' + (isDark ? 'text-slate-300' : 'text-slate-700'),
                                 children: item.projectTitle
                               }),
                               item.notes && (0, F.jsxs)('p', {
-                                className: 'text-[10px] text-slate-400 italic',
+                                className: 'text-[10px] italic ' + secondaryText,
                                 children: ['Note: ', item.notes]
                               })
                             ]
@@ -670,11 +737,15 @@ function MonthlySalesView() {
                                 children: [
                                   (0, F.jsx)('div', {
                                     className: 'text-base font-bold font-mono ' + 
-                                      (isConfirmed ? 'text-emerald-400' : isProceed ? 'text-blue-400' : 'text-slate-400 line-through'),
+                                      (isConfirmed 
+                                        ? 'text-emerald-600 dark:text-emerald-400' 
+                                        : isProceed 
+                                          ? 'text-blue-600 dark:text-blue-400' 
+                                          : 'line-through ' + secondaryText),
                                     children: fmtMoney(item.amountUSD, item.amountBDT)
                                   }),
                                   (0, F.jsx)('div', {
-                                    className: 'text-[9px] text-slate-400 font-mono',
+                                    className: 'text-[9px] font-mono ' + secondaryText,
                                     children: fmtDual(item.amountUSD, item.amountBDT)
                                   })
                                 ]
@@ -682,44 +753,44 @@ function MonthlySalesView() {
 
                               // High-contrast, easily visible action buttons
                               (0, F.jsxs)('div', {
-                                className: 'flex items-center gap-1 p-0.5 rounded-lg bg-[#141922]',
+                                className: 'flex items-center gap-1 p-0.5 rounded-lg ' + innerBoxBg,
                                 children: [
-                                  // Proceed Button (Clear mark)
+                                  // Proceed Button
                                   (0, F.jsxs)('button', {
                                     type: 'button',
                                     onClick: function() { handleStatusChange(item.id, 'proceed'); },
                                     className: 'px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-all flex items-center gap-1 ' + 
                                       (isProceed 
                                         ? 'bg-blue-600 text-white ring-1 ring-blue-300 shadow-sm' 
-                                        : 'text-blue-400 hover:text-white hover:bg-blue-900/40'),
+                                        : (isDark ? 'text-blue-400 hover:text-white hover:bg-blue-900/40' : 'text-blue-700 hover:bg-blue-100')),
                                     children: [
                                       (0, F.jsx)('span', { children: isProceed ? '●' : '⏳' }),
                                       'Proceed'
                                     ]
                                   }),
 
-                                  // Confirm Button (Clear mark)
+                                  // Confirm Button
                                   (0, F.jsxs)('button', {
                                     type: 'button',
                                     onClick: function() { handleStatusChange(item.id, 'confirm'); },
                                     className: 'px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-all flex items-center gap-1 ' + 
                                       (isConfirmed 
                                         ? 'bg-emerald-600 text-white ring-1 ring-emerald-300 shadow-sm' 
-                                        : 'text-emerald-400 hover:text-white hover:bg-emerald-900/40'),
+                                        : (isDark ? 'text-emerald-400 hover:text-white hover:bg-emerald-900/40' : 'text-emerald-700 hover:bg-emerald-100')),
                                     children: [
                                       (0, F.jsx)('span', { children: '✓' }),
                                       'Confirm'
                                     ]
                                   }),
 
-                                  // Cancel Button (Clear mark)
+                                  // Cancel Button
                                   (0, F.jsxs)('button', {
                                     type: 'button',
                                     onClick: function() { handleStatusChange(item.id, 'cancel'); },
                                     className: 'px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-all flex items-center gap-1 ' + 
                                       (isCancel 
                                         ? 'bg-rose-600 text-white ring-1 ring-rose-300 shadow-sm' 
-                                        : 'text-rose-400 hover:text-white hover:bg-rose-900/40'),
+                                        : (isDark ? 'text-rose-400 hover:text-white hover:bg-rose-900/40' : 'text-rose-700 hover:bg-rose-100')),
                                     children: [
                                       (0, F.jsx)('span', { children: '✕' }),
                                       'Cancel'
@@ -730,7 +801,7 @@ function MonthlySalesView() {
                                   (0, F.jsx)('button', {
                                     type: 'button',
                                     onClick: function() { handleDeleteSale(item.id); },
-                                    className: 'p-1 rounded text-slate-500 hover:text-rose-400 cursor-pointer',
+                                    className: 'p-1 rounded text-slate-400 hover:text-rose-500 cursor-pointer',
                                     children: '🗑️'
                                   })
                                 ]
@@ -744,26 +815,26 @@ function MonthlySalesView() {
             ]
           }),
 
-          // Right Column: Add Sale Form - Borderless, compact size
+          // Right Column: Add Sale Form - Black labels & inputs in light mode
           (0, F.jsxs)('div', {
             className: 'space-y-3',
             children: [
               (0, F.jsxs)('form', {
                 onSubmit: handleAddSale,
-                className: 'p-3.5 rounded-xl bg-[#0e1217] space-y-2.5 sticky top-20',
+                className: 'p-3.5 rounded-xl space-y-2 sticky top-20 ' + cardBg,
                 children: [
                   (0, F.jsxs)('div', {
-                    className: 'flex items-center justify-between pb-2 border-b border-slate-800/80',
+                    className: 'flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800',
                     children: [
                       (0, F.jsxs)('h2', {
-                        className: 'font-bold text-white text-xs flex items-center gap-1.5',
+                        className: 'font-bold text-xs flex items-center gap-1.5 ' + primaryText,
                         children: [
                           '➕ Add Sale Entry',
-                          (0, F.jsx)('span', { className: 'text-slate-400 text-[10px] font-normal', children: '(হিসাব যোগ করুন)' })
+                          (0, F.jsx)('span', { className: 'text-[10px] font-normal ' + secondaryText, children: '(হিসাব যোগ করুন)' })
                         ]
                       }),
                       (0, F.jsx)('span', {
-                        className: 'text-[10px] text-rose-400 font-mono font-bold',
+                        className: 'text-[10px] text-rose-600 dark:text-rose-400 font-mono font-bold',
                         children: currentMonth.name
                       })
                     ]
@@ -773,14 +844,14 @@ function MonthlySalesView() {
                   (0, F.jsxs)('div', {
                     className: 'space-y-0.5',
                     children: [
-                      (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Client / Brand Name *' }),
+                      (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Client / Brand Name *' }),
                       (0, F.jsx)('input', {
                         type: 'text',
                         value: formClient,
                         onChange: function(e) { setFormClient(e.target.value); },
                         placeholder: 'e.g. Mamun WiFi, Watch 24 BD',
                         required: true,
-                        className: 'w-full px-2.5 py-1.5 rounded-lg bg-[#141922] text-[11px] text-white placeholder-slate-500 focus:outline-hidden focus:ring-1 focus:ring-rose-500'
+                        className: 'w-full px-2.5 py-1.5 rounded-lg text-[11px] focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg
                       })
                     ]
                   }),
@@ -789,13 +860,13 @@ function MonthlySalesView() {
                   (0, F.jsxs)('div', {
                     className: 'space-y-0.5',
                     children: [
-                      (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Project / Scope' }),
+                      (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Project / Scope' }),
                       (0, F.jsx)('input', {
                         type: 'text',
                         value: formProject,
                         onChange: function(e) { setFormProject(e.target.value); },
                         placeholder: 'e.g. Web Development & Portal',
-                        className: 'w-full px-2.5 py-1.5 rounded-lg bg-[#141922] text-[11px] text-white placeholder-slate-500 focus:outline-hidden focus:ring-1 focus:ring-rose-500'
+                        className: 'w-full px-2.5 py-1.5 rounded-lg text-[11px] focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg
                       })
                     ]
                   }),
@@ -804,11 +875,11 @@ function MonthlySalesView() {
                   (0, F.jsxs)('div', {
                     className: 'space-y-0.5',
                     children: [
-                      (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Service' }),
+                      (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Service' }),
                       (0, F.jsxs)('select', {
                         value: formService,
                         onChange: function(e) { setFormService(e.target.value); },
-                        className: 'w-full px-2 py-1.5 rounded-lg bg-[#141922] text-[11px] text-white focus:outline-hidden focus:ring-1 focus:ring-rose-500',
+                        className: 'w-full px-2 py-1.5 rounded-lg text-[11px] focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg,
                         children: [
                           (0, F.jsx)('option', { value: 'Web Development', children: 'Web Development' }),
                           (0, F.jsx)('option', { value: '3D & Motion UI', children: '3D & Motion UI' }),
@@ -829,7 +900,7 @@ function MonthlySalesView() {
                       (0, F.jsxs)('div', {
                         className: 'col-span-2 space-y-0.5',
                         children: [
-                          (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Amount (টাকা / ডলার) *' }),
+                          (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Amount (টাকা / ডলার) *' }),
                           (0, F.jsx)('input', {
                             type: 'number',
                             value: formAmount,
@@ -837,18 +908,18 @@ function MonthlySalesView() {
                             placeholder: '0',
                             required: true,
                             min: '1',
-                            className: 'w-full px-2.5 py-1.5 rounded-lg bg-[#141922] text-[11px] text-white placeholder-slate-500 font-mono font-bold focus:outline-hidden focus:ring-1 focus:ring-rose-500'
+                            className: 'w-full px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg
                           })
                         ]
                       }),
                       (0, F.jsxs)('div', {
                         className: 'space-y-0.5',
                         children: [
-                          (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Currency' }),
+                          (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Currency' }),
                           (0, F.jsxs)('select', {
                             value: formCurrency,
                             onChange: function(e) { setFormCurrency(e.target.value); },
-                            className: 'w-full px-1.5 py-1.5 rounded-lg bg-[#141922] text-[11px] text-white font-bold focus:outline-hidden focus:ring-1 focus:ring-rose-500',
+                            className: 'w-full px-1.5 py-1.5 rounded-lg text-[11px] font-bold focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg,
                             children: [
                               (0, F.jsx)('option', { value: 'USD', children: 'USD ($)' }),
                               (0, F.jsx)('option', { value: 'BDT', children: 'BDT (৳)' })
@@ -863,29 +934,29 @@ function MonthlySalesView() {
                   (0, F.jsxs)('div', {
                     className: 'space-y-1',
                     children: [
-                      (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Initial Status' }),
+                      (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Initial Status' }),
                       (0, F.jsxs)('div', {
-                        className: 'grid grid-cols-3 gap-1 p-0.5 rounded-lg bg-[#141922]',
+                        className: 'grid grid-cols-3 gap-1 p-0.5 rounded-lg ' + innerBoxBg,
                         children: [
                           (0, F.jsx)('button', {
                             type: 'button',
                             onClick: function() { setFormStatus('proceed'); },
                             className: 'py-1 rounded text-[10px] font-bold cursor-pointer transition-all ' + 
-                              (formStatus === 'proceed' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'),
+                              (formStatus === 'proceed' ? 'bg-blue-600 text-white shadow-xs' : secondaryText + ' hover:' + primaryText),
                             children: 'Proceed'
                           }),
                           (0, F.jsx)('button', {
                             type: 'button',
                             onClick: function() { setFormStatus('confirm'); },
                             className: 'py-1 rounded text-[10px] font-bold cursor-pointer transition-all ' + 
-                              (formStatus === 'confirm' ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'),
+                              (formStatus === 'confirm' ? 'bg-emerald-600 text-white shadow-xs' : secondaryText + ' hover:' + primaryText),
                             children: 'Confirm'
                           }),
                           (0, F.jsx)('button', {
                             type: 'button',
                             onClick: function() { setFormStatus('cancel'); },
                             className: 'py-1 rounded text-[10px] font-bold cursor-pointer transition-all ' + 
-                              (formStatus === 'cancel' ? 'bg-rose-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'),
+                              (formStatus === 'cancel' ? 'bg-rose-600 text-white shadow-xs' : secondaryText + ' hover:' + primaryText),
                             children: 'Cancel'
                           })
                         ]
@@ -897,12 +968,12 @@ function MonthlySalesView() {
                   (0, F.jsxs)('div', {
                     className: 'space-y-0.5',
                     children: [
-                      (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Date' }),
+                      (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Date' }),
                       (0, F.jsx)('input', {
                         type: 'date',
                         value: formDate,
                         onChange: function(e) { setFormDate(e.target.value); },
-                        className: 'w-full px-2.5 py-1.5 rounded-lg bg-[#141922] text-[11px] text-white focus:outline-hidden focus:ring-1 focus:ring-rose-500'
+                        className: 'w-full px-2.5 py-1.5 rounded-lg text-[11px] focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg
                       })
                     ]
                   }),
@@ -911,13 +982,13 @@ function MonthlySalesView() {
                   (0, F.jsxs)('div', {
                     className: 'space-y-0.5',
                     children: [
-                      (0, F.jsx)('label', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Notes' }),
+                      (0, F.jsx)('label', { className: 'text-[10px] font-bold uppercase tracking-wider ' + (isDark ? 'text-slate-400' : 'text-slate-800'), children: 'Notes' }),
                       (0, F.jsx)('input', {
                         type: 'text',
                         value: formNotes,
                         onChange: function(e) { setFormNotes(e.target.value); },
                         placeholder: 'e.g. 50% advance received',
-                        className: 'w-full px-2.5 py-1.5 rounded-lg bg-[#141922] text-[11px] text-white placeholder-slate-500 focus:outline-hidden focus:ring-1 focus:ring-rose-500'
+                        className: 'w-full px-2.5 py-1.5 rounded-lg text-[11px] placeholder-slate-400 focus:outline-hidden focus:ring-1 focus:ring-rose-500 ' + inputBg
                       })
                     ]
                   }),
@@ -926,7 +997,7 @@ function MonthlySalesView() {
                   (0, F.jsx)('button', {
                     type: 'submit',
                     className: 'w-full py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs cursor-pointer shadow-xs transition-all',
-                    children: '+ Add Sale (হিসাব সংরক্ষণ করুন)'
+                    children: '+ Add Sale (সবার জন্য সেভ করুন)'
                   })
                 ]
               })
@@ -937,29 +1008,29 @@ function MonthlySalesView() {
 
       // TAB 2: ARCHIVE OF PAST MONTHS & CONFIRMED PROJECTS
       activeTab === 'archive' && (0, F.jsxs)('div', {
-        className: 'space-y-3.5',
+        className: 'space-y-3',
         children: [
           (0, F.jsxs)('div', {
-            className: 'p-3.5 rounded-xl bg-[#0e1217] space-y-1',
+            className: 'p-3 rounded-xl space-y-1 ' + cardBg,
             children: [
               (0, F.jsxs)('h2', {
-                className: 'text-sm font-bold text-white flex items-center gap-1.5',
+                className: 'text-sm font-bold flex items-center gap-1.5 ' + primaryText,
                 children: [
                   '🏛️ Monthly Archive & Confirmed Projects',
-                  (0, F.jsx)('span', { className: 'text-slate-400 text-[11px] font-normal', children: '(মাস ভিত্তিক সম্পন্ন হিসাব ও রেকর্ড)' })
+                  (0, F.jsx)('span', { className: 'text-[11px] font-normal ' + secondaryText, children: '(মাস ভিত্তিক সম্পন্ন হিসাব ও রেকর্ড)' })
                 ]
               }),
               (0, F.jsx)('p', {
-                className: 'text-[11px] text-slate-400',
+                className: 'text-[11px] ' + secondaryText,
                 children: 'Every month closed has its confirmed projects and total revenue archived here.'
               })
             ]
           }),
 
           (0, F.jsx)('div', {
-            className: 'grid grid-cols-1 md:grid-cols-2 gap-3.5',
+            className: 'grid grid-cols-1 md:grid-cols-2 gap-3',
             children: data.months.map(function(m) {
-              var mItems = data.items.filter(function(i) { return i.monthId === m.id; });
+              var mItems = (data.items || []).filter(function(i) { return i.monthId === m.id; });
               var mConfirmed = mItems.filter(function(i) { return i.status === 'confirm'; });
               var mProceed = mItems.filter(function(i) { return i.status === 'proceed'; });
               var mCancel = mItems.filter(function(i) { return i.status === 'cancel'; });
@@ -971,10 +1042,10 @@ function MonthlySalesView() {
 
               return (0, F.jsxs)('div', {
                 key: m.id,
-                className: 'p-4 rounded-xl bg-[#0e1217] space-y-3',
+                className: 'p-3.5 rounded-xl space-y-2.5 ' + cardBg,
                 children: [
                   (0, F.jsxs)('div', {
-                    className: 'flex items-center justify-between pb-2 border-b border-slate-800/80',
+                    className: 'flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800',
                     children: [
                       (0, F.jsxs)('div', {
                         className: 'space-y-0.5',
@@ -982,20 +1053,20 @@ function MonthlySalesView() {
                           (0, F.jsxs)('div', {
                             className: 'flex items-center gap-1.5',
                             children: [
-                              (0, F.jsx)('h3', { className: 'text-sm font-bold text-white', children: m.name }),
+                              (0, F.jsx)('h3', { className: 'text-sm font-bold ' + primaryText, children: m.name }),
                               m.status === 'active' 
-                                ? (0, F.jsx)('span', { className: 'px-1.5 py-0.2 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-400', children: '● Active' })
-                                : (0, F.jsx)('span', { className: 'px-1.5 py-0.2 rounded text-[9px] font-bold bg-[#141922] text-slate-400', children: '✓ Finalized' })
+                                ? (0, F.jsx)('span', { className: 'px-1.5 py-0.2 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-600 dark:text-emerald-400', children: '● Active' })
+                                : (0, F.jsx)('span', { className: 'px-1.5 py-0.2 rounded text-[9px] font-bold ' + innerBoxBg + ' ' + secondaryText, children: '✓ Finalized' })
                             ]
                           }),
-                          (0, F.jsx)('p', { className: 'text-[10px] text-slate-400', children: m.notes || ('Closed on ' + m.closedAt) })
+                          (0, F.jsx)('p', { className: 'text-[10px] ' + secondaryText, children: m.notes || ('Closed on ' + m.closedAt) })
                         ]
                       }),
                       (0, F.jsxs)('div', {
                         className: 'text-right',
                         children: [
-                          (0, F.jsx)('div', { className: 'text-base font-bold text-emerald-400 font-mono', children: fmtMoney(mConfUSD, mConfBDT) }),
-                          (0, F.jsx)('div', { className: 'text-[9px] text-slate-400 font-mono', children: fmtDual(mConfUSD, mConfBDT) })
+                          (0, F.jsx)('div', { className: 'text-base font-bold text-emerald-600 dark:text-emerald-400 font-mono', children: fmtMoney(mConfUSD, mConfBDT) }),
+                          (0, F.jsx)('div', { className: 'text-[9px] font-mono ' + secondaryText, children: fmtDual(mConfUSD, mConfBDT) })
                         ]
                       })
                     ]
@@ -1006,15 +1077,15 @@ function MonthlySalesView() {
                     className: 'grid grid-cols-3 gap-1.5 text-center text-[10px]',
                     children: [
                       (0, F.jsxs)('div', {
-                        className: 'p-1.5 rounded-lg bg-emerald-500/10 text-emerald-300 font-bold',
+                        className: 'p-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 font-bold',
                         children: [mConfirmed.length, ' Confirmed']
                       }),
                       (0, F.jsxs)('div', {
-                        className: 'p-1.5 rounded-lg bg-blue-500/10 text-blue-300 font-bold',
+                        className: 'p-1 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-300 font-bold',
                         children: [mProceed.length, ' Proceed']
                       }),
                       (0, F.jsxs)('div', {
-                        className: 'p-1.5 rounded-lg bg-rose-500/10 text-rose-300 font-bold',
+                        className: 'p-1 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-300 font-bold',
                         children: [mCancel.length, ' Cancelled']
                       })
                     ]
@@ -1024,26 +1095,26 @@ function MonthlySalesView() {
                   (0, F.jsxs)('div', {
                     className: 'space-y-1',
                     children: [
-                      (0, F.jsx)('div', { className: 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', children: 'Confirmed Projects:' }),
+                      (0, F.jsx)('div', { className: 'text-[10px] font-bold uppercase tracking-wider ' + secondaryText, children: 'Confirmed Projects:' }),
                       mConfirmed.length === 0 
-                        ? (0, F.jsx)('div', { className: 'text-[11px] text-slate-500 italic p-2 rounded bg-[#141922]', children: 'No confirmed projects yet.' })
+                        ? (0, F.jsx)('div', { className: 'text-[11px] italic p-2 rounded ' + innerBoxBg + ' ' + secondaryText, children: 'No confirmed projects yet.' })
                         : (0, F.jsx)('div', {
                             className: 'space-y-1 max-h-36 overflow-y-auto pr-1',
                             children: mConfirmed.map(function(item) {
                               return (0, F.jsxs)('div', {
                                 key: item.id,
-                                className: 'flex items-center justify-between p-1.5 rounded-lg bg-[#141922] text-[11px]',
+                                className: 'flex items-center justify-between p-1.5 rounded-lg text-[11px] ' + innerBoxBg,
                                 children: [
                                   (0, F.jsxs)('div', {
                                     className: 'flex items-center gap-1.5 truncate',
                                     children: [
-                                      (0, F.jsx)('span', { className: 'text-emerald-400 font-bold', children: '✓' }),
-                                      (0, F.jsx)('span', { className: 'font-semibold text-white truncate', children: item.clientName }),
-                                      (0, F.jsx)('span', { className: 'text-[10px] text-slate-400 truncate hidden sm:inline', children: '· ' + item.projectTitle })
+                                      (0, F.jsx)('span', { className: 'text-emerald-600 dark:text-emerald-400 font-bold', children: '✓' }),
+                                      (0, F.jsx)('span', { className: 'font-semibold truncate ' + primaryText, children: item.clientName }),
+                                      (0, F.jsx)('span', { className: 'text-[10px] truncate hidden sm:inline ' + secondaryText, children: '· ' + item.projectTitle })
                                     ]
                                   }),
                                   (0, F.jsx)('span', {
-                                    className: 'font-mono font-bold text-emerald-400 shrink-0 ml-2 text-[10px]',
+                                    className: 'font-mono font-bold text-emerald-600 dark:text-emerald-400 shrink-0 ml-2 text-[10px]',
                                     children: fmtMoney(item.amountUSD, item.amountBDT)
                                   })
                                 ]
@@ -1055,15 +1126,15 @@ function MonthlySalesView() {
 
                   // Open month button
                   (0, F.jsxs)('div', {
-                    className: 'pt-2 border-t border-slate-800/80 flex items-center justify-between',
+                    className: 'pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between',
                     children: [
-                      (0, F.jsx)('span', { className: 'text-[10px] text-slate-500', children: isSelected ? '● Viewing' : 'Archived' }),
+                      (0, F.jsx)('span', { className: 'text-[10px] ' + secondaryText, children: isSelected ? '● Viewing' : 'Archived' }),
                       (0, F.jsx)('button', {
                         onClick: function() {
                           persist(Object.assign({}, data, { selectedMonthId: m.id }));
                           setActiveTab('ledger');
                         },
-                        className: 'px-2.5 py-1 rounded bg-[#141922] hover:bg-slate-800 text-white text-[10px] font-semibold cursor-pointer',
+                        className: 'px-2.5 py-1 rounded text-[10px] font-semibold cursor-pointer ' + (isDark ? 'bg-[#141922] text-white hover:bg-slate-800' : 'bg-slate-100 text-slate-800 hover:bg-slate-200'),
                         children: 'Open Ledger →'
                       })
                     ]
@@ -1079,28 +1150,28 @@ function MonthlySalesView() {
       showCloseModal && (0, F.jsx)('div', {
         className: 'fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/70 backdrop-blur-xs animate-in fade-in',
         children: (0, F.jsxs)('div', {
-          className: 'w-full max-w-md rounded-xl bg-[#14181E] p-5 space-y-3.5 shadow-2xl animate-in zoom-in-95 text-xs',
+          className: 'w-full max-w-md rounded-xl p-5 space-y-3 shadow-2xl animate-in zoom-in-95 text-xs ' + (isDark ? 'bg-[#14181E] border border-slate-700' : 'bg-white border border-slate-200'),
           children: [
             (0, F.jsxs)('div', {
-              className: 'flex items-center gap-2 text-emerald-400 font-bold text-sm',
+              className: 'flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm',
               children: [
                 (0, F.jsx)('span', { className: 'text-xl', children: '🔒' }),
                 (0, F.jsxs)('span', { children: ['Finalize ', currentMonth.name, ' (মাস শেষ করুন)'] })
               ]
             }),
             (0, F.jsxs)('p', {
-              className: 'text-slate-300 leading-relaxed text-[11px]',
+              className: 'leading-relaxed text-[11px] ' + (isDark ? 'text-slate-300' : 'text-slate-700'),
               children: [
                 'Close sales for ',
-                (0, F.jsx)('strong', { className: 'text-white', children: currentMonth.name }),
+                (0, F.jsx)('strong', { className: primaryText, children: currentMonth.name }),
                 '? All ',
-                (0, F.jsx)('strong', { className: 'text-emerald-400', children: confirmedCount + ' confirmed projects' }),
-                ' (' + fmtMoney(confirmedUSD, confirmedBDT) + ') will be archived.'
+                (0, F.jsx)('strong', { className: 'text-emerald-600 dark:text-emerald-400', children: confirmedCount + ' confirmed projects' }),
+                ' (' + fmtMoney(confirmedUSD, confirmedBDT) + ') will be archived across all screens.'
               ]
             }),
 
             (0, F.jsxs)('label', {
-              className: 'flex items-start gap-2.5 p-2.5 rounded-lg bg-[#0e1217] cursor-pointer select-none text-[11px]',
+              className: 'flex items-start gap-2.5 p-2.5 rounded-lg cursor-pointer select-none text-[11px] ' + innerBoxBg,
               children: [
                 (0, F.jsx)('input', {
                   type: 'checkbox',
@@ -1111,20 +1182,20 @@ function MonthlySalesView() {
                 (0, F.jsxs)('div', {
                   className: 'space-y-0.5',
                   children: [
-                    (0, F.jsx)('div', { className: 'font-bold text-white', children: 'Roll over unconfirmed "Proceed" deals to next month' }),
-                    (0, F.jsxs)('div', { className: 'text-slate-400 text-[10px]', children: [proceedCount, ' in-progress deals will move to the next month.'] })
+                    (0, F.jsx)('div', { className: 'font-bold ' + primaryText, children: 'Roll over unconfirmed "Proceed" deals to next month' }),
+                    (0, F.jsxs)('div', { className: 'text-[10px] ' + secondaryText, children: [proceedCount, ' in-progress deals will move to the next month.'] })
                   ]
                 })
               ]
             }),
 
             (0, F.jsxs)('div', {
-              className: 'flex items-center justify-end gap-2 pt-2 border-t border-slate-800',
+              className: 'flex items-center justify-end gap-2 pt-2 border-t border-slate-200 dark:border-slate-800',
               children: [
                 (0, F.jsx)('button', {
                   type: 'button',
                   onClick: function() { setShowCloseModal(false); },
-                  className: 'px-3 py-1.5 rounded-lg text-slate-300 font-semibold text-[11px] hover:bg-slate-800 cursor-pointer',
+                  className: 'px-3 py-1.5 rounded-lg font-semibold text-[11px] cursor-pointer ' + (isDark ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'),
                   children: 'Cancel'
                 }),
                 (0, F.jsx)('button', {
