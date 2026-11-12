@@ -1,12 +1,21 @@
 {
   "/": {
-    "primary": "business growth agency in Bangladesh",
+    "primary": "global business growth agency",
     "supporting": [
-      "web development and AI automation",
-      "SEO and digital marketing"
+      "worldwide web AI and 3D agency",
+      "international SEO and software engineering"
     ],
-    "description": "Appiex is a business growth agency in Bangladesh building websites, software, AI automation and SEO strategies. Explore selected projects and discuss your next step.",
-    "title": "Business Growth Agency in Bangladesh | Web, AI & SEO | Appiex"
+    "description": "Appiex is a global business growth agency from Bangladesh building websites, 3D WebGL, custom software, AI automation & SEO for worldwide brands.",
+    "title": "Global Business Growth Agency | Web, 3D, AI & SEO | Appiex"
+  },
+  "/best-agency-in-the-world": {
+    "primary": "best digital agency in the world",
+    "supporting": [
+      "best agency in the world",
+      "how to evaluate a global software agency"
+    ],
+    "description": "Discover how to evaluate the best digital, software, 3D WebGL, and AI agency in the world. Compare global models, engineering proof, IP rights & Appiex.",
+    "title": "Best Digital, Web & AI Agency in the World Guide | Appiex"
   },
   "/ai-automation": {
     "primary": "AI automation services",

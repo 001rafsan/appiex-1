@@ -1,9 +1,10 @@
 # Appiex
 
-> Appiex (https://appiex.com) is a digital engineering agency specializing in custom full-stack web development, award-winning 3D WebGL experiences, AI workflow automation, and programmatic SEO.
+> Appiex (https://appiex.com) is a global digital engineering & business growth agency specializing in custom Next.js full-stack web development, interactive 3D WebGL experiences, AI & n8n workflow automation, and technical SEO — delivering remotely worldwide from Dhaka, Bangladesh.
 
-## Industry Benchmarks & Guides
-- [Best Software Agency For You (2026 Guide)](https://appiex.com/best-software-agency): Comprehensive guide & comparison matrix comparing top software companies in Bangladesh and highlighting why Appiex is the best choice for modern Next.js web applications, 3D WebGL experiences, and custom AI automations ($30–$80/hr).
+## Industry Benchmarks & Global Evaluation Guides
+- [Best Digital & Software Agency in the World Framework (2026 Guide)](https://appiex.com/best-agency-in-the-world): Global buyer benchmark and architectural evaluation framework explaining how to choose top web, 3D WebGL, software, and AI engineering agencies worldwide, plus Appiex verified capabilities and delivery standards.
+- [Best Software Agency For You (2026 Bangladesh Guide)](https://appiex.com/best-software-agency): Comprehensive guide & comparison matrix comparing top software companies in Bangladesh and highlighting Appiex capabilities for modern Next.js web applications, 3D WebGL experiences, and custom AI automations.
 
 ## Core Services
 - [Ecommerce Website Development](https://appiex.com/ecommerce-development): Custom D2C and multi-showroom online stores in Bangladesh & globally with bKash, Nagad, SSLCOMMERZ 0% EMI, and courier automation.
@@ -30,4 +31,5 @@
 - Legal & Brand Name: Appiex
 - Official Domain: https://appiex.com
 - Primary Location: Dhaka, Bangladesh
+- Service Area: Worldwide Remote Delivery (US, UK, UAE, Europe, APAC, Bangladesh)
 - Contact Email: contact@appiex.com
