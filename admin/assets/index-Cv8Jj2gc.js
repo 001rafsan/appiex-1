@@ -2757,57 +2757,158 @@ function MonthlySalesView() {
   var data = dataState[0];
   var setData = dataState[1];
 
+  var lastServerTsRef = (0, v.useRef)(0);
+  var deletedIdsRef = (0, v.useRef)([]);
+  var seededMountRef = (0, v.useRef)(false);
+  var syncStatusState = (0, v.useState)('syncing');
+  var syncStatus = syncStatusState[0];
+  var setSyncStatus = syncStatusState[1];
+
   // Helper to persist locally AND broadcast to cloud API so all screens update
-  function persist(nextData) {
-    var withTs = Object.assign({}, nextData, { updatedAt: Date.now() });
+  function persist(nextData, deletedId) {
+    if (deletedId && deletedIdsRef.current.indexOf(deletedId) === -1) {
+      deletedIdsRef.current = deletedIdsRef.current.concat([deletedId]).slice(-200);
+    }
+    var withTs = Object.assign({}, nextData, {
+      updatedAt: Date.now(),
+      baseUpdatedAt: lastServerTsRef.current,
+      deletedIds: deletedIdsRef.current
+    });
     setData(withTs);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(withTs));
     } catch(e) {}
 
-    // Broadcast to shared API
+    // Same-browser instant multi-tab sync
+    try {
+      var bc = new BroadcastChannel('appiex_sales_sync_v3');
+      bc.postMessage(withTs);
+      bc.close();
+    } catch(e) {}
+
+    setSyncStatus('syncing');
+    // Broadcast to shared API and adopt authoritative server state
     try {
       fetch('/api/sales', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
         body: JSON.stringify(withTs)
-      }).catch(function() {});
-    } catch(e) {}
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res && res.ok) {
+          if (res.updatedAt) lastServerTsRef.current = res.updatedAt;
+          if (Array.isArray(res.deletedIds)) deletedIdsRef.current = res.deletedIds;
+          var synced = {
+            updatedAt: res.updatedAt || withTs.updatedAt,
+            selectedMonthId: res.selectedMonthId || withTs.selectedMonthId,
+            months: Array.isArray(res.months) ? res.months : withTs.months,
+            items: Array.isArray(res.items) ? res.items : withTs.items
+          };
+          setData(synced);
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(synced)); } catch(e) {}
+          setSyncStatus('synced');
+        } else {
+          setSyncStatus('error');
+        }
+      })
+      .catch(function() { setSyncStatus('error'); });
+    } catch(e) { setSyncStatus('error'); }
   }
 
   // Live cloud sync: polls /api/sales so changes from ANY admin/screen show immediately
   (0, v.useEffect)(function() {
     var active = true;
+    var bc = null;
+    try {
+      bc = new BroadcastChannel('appiex_sales_sync_v3');
+      bc.onmessage = function(ev) {
+        if (active && ev && ev.data && Array.isArray(ev.data.items)) {
+          setData(ev.data);
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(ev.data)); } catch(e) {}
+        }
+      };
+    } catch(e) {}
+
     function fetchShared() {
-      fetch('/api/sales')
+      fetch('/api/sales?t=' + Date.now(), { cache: 'no-store' })
         .then(function(r) { return r.json(); })
         .then(function(res) {
           if (!active || !res || !res.ok) return;
-          setData(function(prev) {
-            if (res.updatedAt && (!prev.updatedAt || res.updatedAt > prev.updatedAt)) {
+          if (Array.isArray(res.deletedIds)) {
+            deletedIdsRef.current = res.deletedIds;
+          }
+          var serverItems = Array.isArray(res.items) ? res.items : [];
+
+          // If server was empty (e.g. cold start) but this browser has local items, push them to cloud via union merge
+          if (!seededMountRef.current) {
+            seededMountRef.current = true;
+            var localSaved = null;
+            try { localSaved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch(e) {}
+            if (serverItems.length === 0 && localSaved && Array.isArray(localSaved.items) && localSaved.items.length > 0) {
+              fetch('/api/sales', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  mergeMode: 'union',
+                  selectedMonthId: localSaved.selectedMonthId,
+                  months: localSaved.months,
+                  items: localSaved.items,
+                  deletedIds: deletedIdsRef.current
+                })
+              })
+              .then(function(r2) { return r2.json(); })
+              .then(function(res2) {
+                if (!active || !res2 || !res2.ok) return;
+                lastServerTsRef.current = res2.updatedAt || Date.now();
+                var merged2 = {
+                  updatedAt: res2.updatedAt,
+                  selectedMonthId: res2.selectedMonthId || '2026-11',
+                  months: res2.months || [],
+                  items: res2.items || []
+                };
+                setData(merged2);
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(merged2)); } catch(e) {}
+                setSyncStatus('synced');
+              })
+              .catch(function() {});
+              return;
+            }
+          }
+
+          if (res.updatedAt && res.updatedAt !== lastServerTsRef.current) {
+            lastServerTsRef.current = res.updatedAt;
+            setData(function(prev) {
               var merged = {
                 updatedAt: res.updatedAt,
                 selectedMonthId: res.selectedMonthId || prev.selectedMonthId,
-                months: res.months || prev.months,
-                items: res.items || prev.items
+                months: Array.isArray(res.months) && res.months.length > 0 ? res.months : prev.months,
+                items: serverItems
               };
               try { localStorage.setItem(STORAGE_KEY, JSON.stringify(merged)); } catch(e) {}
               return merged;
-            }
-            return prev;
-          });
+            });
+          }
+          setSyncStatus('synced');
         })
-        .catch(function() {});
+        .catch(function() { if (active) setSyncStatus('error'); });
+    }
+
+    function onVisChange() {
+      if (document.visibilityState === 'visible') fetchShared();
     }
 
     fetchShared();
-    var pollTimer = setInterval(fetchShared, 4000);
+    var pollTimer = setInterval(fetchShared, 3000);
     window.addEventListener('focus', fetchShared);
+    document.addEventListener('visibilitychange', onVisChange);
 
     return function() {
       active = false;
       clearInterval(pollTimer);
       window.removeEventListener('focus', fetchShared);
+      document.removeEventListener('visibilitychange', onVisChange);
+      if (bc) { try { bc.close(); } catch(e) {} }
     };
   }, []);
 
@@ -2986,7 +3087,7 @@ function MonthlySalesView() {
   function handleStatusChange(itemId, newStatus) {
     var nextItems = data.items.map(function(item) {
       if (item.id === itemId) {
-        return Object.assign({}, item, { status: newStatus });
+        return Object.assign({}, item, { status: newStatus, updatedAt: Date.now() });
       }
       return item;
     });
@@ -3092,7 +3193,7 @@ function MonthlySalesView() {
   function handleDeleteSale(itemId) {
     if (!confirm('Delete this entry?')) return;
     var nextItems = data.items.filter(function(i) { return i.id !== itemId; });
-    persist(Object.assign({}, data, { items: nextItems }));
+    persist(Object.assign({}, data, { items: nextItems }), itemId);
     if (addToast) {
       addToast({
         type: 'info',
