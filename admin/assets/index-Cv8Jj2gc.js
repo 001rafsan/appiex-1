@@ -4893,57 +4893,15 @@ function AgentHubHomeView() {
   }, []);
 
   var leftCards = [
-    {
-      id: 'research',
-      title: 'Research',
-      subtitle: visitorsCount + ' Live Visitors · GA4',
-      view: 'analytics',
-      icon: '⚗️',
-      offset: 'lg:translate-x-4'
-    },
-    {
-      id: 'orders',
-      title: 'Orders & CRM',
-      subtitle: ordersCount + ' Client Inquiries',
-      view: 'subscriptions',
-      icon: '👥',
-      offset: 'lg:-translate-x-2'
-    },
-    {
-      id: 'marketing',
-      title: 'Marketing',
-      subtitle: 'SEO & Growth Engine',
-      view: 'seo',
-      icon: '📈',
-      offset: 'lg:translate-x-4'
-    }
+    { id: 'research', title: 'Research', subtitle: visitorsCount + ' Live Visitors · GA4', view: 'analytics', icon: '⚗️', shift: 'translateX(16px)' },
+    { id: 'orders', title: 'Orders & CRM', subtitle: ordersCount + ' Client Inquiries', view: 'subscriptions', icon: '👥', shift: 'translateX(0px)' },
+    { id: 'marketing', title: 'Marketing', subtitle: 'SEO & Growth Engine', view: 'seo', icon: '📈', shift: 'translateX(16px)' }
   ];
 
   var rightCards = [
-    {
-      id: 'finance',
-      title: 'Finance',
-      subtitle: String.fromCharCode(36) + salesTotalUSD.toLocaleString('en-US') + ' Monthly Ledger',
-      view: 'monthly-sales',
-      icon: '💳',
-      offset: 'lg:-translate-x-4'
-    },
-    {
-      id: 'development',
-      title: 'Development',
-      subtitle: 'Delivery Pods & Sprints',
-      view: 'delivery-pods',
-      icon: '💻',
-      offset: 'lg:translate-x-2'
-    },
-    {
-      id: 'design',
-      title: 'Design',
-      subtitle: 'Blueprints & 3D Studio',
-      view: 'blueprint-hub',
-      icon: '🎨',
-      offset: 'lg:-translate-x-4'
-    }
+    { id: 'finance', title: 'Finance', subtitle: String.fromCharCode(36) + salesTotalUSD.toLocaleString('en-US') + ' Monthly Ledger', view: 'monthly-sales', icon: '💳', shift: 'translateX(-16px)' },
+    { id: 'development', title: 'Development', subtitle: 'Delivery Pods & Sprints', view: 'delivery-pods', icon: '💻', shift: 'translateX(0px)' },
+    { id: 'design', title: 'Design', subtitle: 'Blueprints & 3D Studio', view: 'blueprint-hub', icon: '🎨', shift: 'translateX(-16px)' }
   ];
 
   function handleMicClick() {
@@ -4972,88 +4930,197 @@ function AgentHubHomeView() {
     setQuickPrompt('');
   }
 
-  var waveHeights = [14, 24, 38, 22, 46, 30, 52, 26, 42, 18, 36, 48, 28, 40, 20, 34, 22, 14];
+  var waveHeights = [10, 18, 30, 16, 36, 22, 42, 20, 34, 14, 28, 38, 22, 32, 16, 26, 18, 10];
+
+  function renderCard(card, isRight) {
+    var isHov = hoveredId === card.id;
+    return (0, F.jsxs)('button', {
+      key: card.id,
+      type: 'button',
+      onClick: function() { setCurrentView(card.view); },
+      onMouseEnter: function() { setHoveredId(card.id); },
+      onMouseLeave: function() { setHoveredId(null); },
+      className: 'ah-card',
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        padding: '10px 14px',
+        borderRadius: '16px',
+        textAlign: 'left',
+        cursor: 'pointer',
+        width: '100%',
+        transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
+        background: isHov
+          ? 'linear-gradient(135deg, rgba(124, 58, 237, 0.32), rgba(30, 14, 62, 0.72))'
+          : 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(15, 8, 32, 0.58))',
+        border: isHov ? '1px solid rgba(192, 132, 252, 0.75)' : '1px solid rgba(168, 85, 247, 0.22)',
+        boxShadow: isHov
+          ? '0 0 28px rgba(168, 85, 247, 0.42), inset 0 1px 0 rgba(255,255,255,0.18)'
+          : '0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.08)',
+        transform: (isHov ? 'scale(1.04) ' : '') + 'var(--ah-shift, ' + card.shift + ')'
+      },
+      children: [
+        (0, F.jsx)('div', {
+          style: {
+            width: '40px',
+            height: '40px',
+            borderRadius: '12px',
+            flexShrink: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '18px',
+            background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)',
+            border: '1px solid rgba(216, 180, 254, 0.4)',
+            boxShadow: '0 0 18px rgba(139, 92, 246, 0.55)'
+          },
+          children: card.icon
+        }),
+        (0, F.jsxs)('div', {
+          style: { minWidth: 0, flex: 1 },
+          children: [
+            (0, F.jsx)('div', { style: { fontSize: '12.5px', fontWeight: 700, color: '#ffffff', letterSpacing: '0.01em' }, children: card.title }),
+            (0, F.jsx)('div', { style: { fontSize: '10.5px', color: 'rgba(216, 180, 254, 0.78)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '2px' }, children: card.subtitle })
+          ]
+        }),
+        (0, F.jsx)('span', { style: { color: isHov ? '#ffffff' : 'rgba(192,132,252,0.55)', fontSize: '13px', fontWeight: 700 }, children: '›' })
+      ]
+    });
+  }
 
   return (0, F.jsxs)('div', {
-    className: 'relative min-h-[calc(100vh-110px)] w-full rounded-3xl overflow-hidden flex flex-col justify-between p-4 sm:p-7 select-none border border-purple-500/20 shadow-[0_0_60px_rgba(124,58,237,0.18)]',
     style: {
-      background: 'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(124, 58, 237, 0.24) 0%, rgba(59, 7, 100, 0.14) 45%, #05030d 85%), #05030d'
+      position: 'relative',
+      minHeight: 'calc(100vh - 104px)',
+      width: '100%',
+      borderRadius: '24px',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      padding: '20px 26px',
+      userSelect: 'none',
+      border: '1px solid rgba(168, 85, 247, 0.25)',
+      boxShadow: '0 0 60px rgba(109, 40, 217, 0.22)',
+      background: 'radial-gradient(ellipse 68% 58% at 50% 44%, rgba(124, 58, 237, 0.28) 0%, rgba(46, 16, 101, 0.18) 46%, #05030d 84%), #05030d'
     },
     children: [
       (0, F.jsx)('style', {
-        children: '@keyframes agentOrbSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes agentOrbSpinRev{from{transform:rotate(360deg)}to{transform:rotate(0deg)}}@keyframes agentFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes eqPulse{0%,100%{transform:scaleY(0.45);opacity:0.7}50%{transform:scaleY(1);opacity:1}}.agent-orb-spin{animation:agentOrbSpin 28s linear infinite}.agent-orb-spin-rev{animation:agentOrbSpinRev 20s linear infinite}.agent-float{animation:agentFloat 4.5s ease-in-out infinite}.agent-eq-bar{animation:eqPulse 1.3s ease-in-out infinite;transform-origin:center}'
+        children: `
+          @keyframes agentOrbSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+          @keyframes agentOrbSpinRev{from{transform:rotate(360deg)}to{transform:rotate(0deg)}}
+          @keyframes agentFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+          @keyframes eqPulse{0%,100%{transform:scaleY(0.45);opacity:0.7}50%{transform:scaleY(1);opacity:1}}
+          .agent-orb-spin{animation:agentOrbSpin 28s linear infinite}
+          .agent-orb-spin-rev{animation:agentOrbSpinRev 20s linear infinite}
+          .agent-float{animation:agentFloat 4.2s ease-in-out infinite}
+          .agent-eq-bar{animation:eqPulse 1.2s ease-in-out infinite;transform-origin:center}
+          .ah-grid { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; width: 100%; max-width: 980px; margin: 0 auto; }
+          .ah-col-left { display: flex; flex-direction: column; gap: 16px; order: 2; }
+          .ah-col-center { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; order: 1; }
+          .ah-col-right { display: flex; flex-direction: column; gap: 16px; order: 3; }
+          .ah-card { --ah-shift: 0px; }
+          @media (min-width: 900px) {
+            .ah-grid { grid-template-columns: 235px 1fr 235px; gap: 20px; }
+            .ah-col-left { order: 1; }
+            .ah-col-center { order: 2; }
+            .ah-col-right { order: 3; }
+          }
+        `
       }),
 
+      // Bottom decorative violet glow & SVG wave
       (0, F.jsx)('div', {
-        className: 'pointer-events-none absolute -bottom-24 -left-24 w-[420px] h-[220px] rounded-full opacity-45 blur-3xl',
-        style: { background: 'radial-gradient(circle, rgba(168,85,247,0.55) 0%, rgba(109,40,217,0.1) 60%, transparent 100%)' }
+        style: {
+          pointerEvents: 'none', position: 'absolute', bottom: '-90px', left: '-90px', width: '420px', height: '210px',
+          borderRadius: '9999px', opacity: 0.45, filter: 'blur(55px)',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(109,40,217,0.12) 60%, transparent 100%)'
+        }
       }),
       (0, F.jsx)('div', {
-        className: 'pointer-events-none absolute -bottom-24 -right-24 w-[420px] h-[220px] rounded-full opacity-45 blur-3xl',
-        style: { background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(91,33,182,0.1) 60%, transparent 100%)' }
+        style: {
+          pointerEvents: 'none', position: 'absolute', bottom: '-90px', right: '-90px', width: '420px', height: '210px',
+          borderRadius: '9999px', opacity: 0.45, filter: 'blur(55px)',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, rgba(91,33,182,0.12) 60%, transparent 100%)'
+        }
       }),
       (0, F.jsxs)('svg', {
-        viewBox: '0 0 1200 160',
+        viewBox: '0 0 1200 140',
         preserveAspectRatio: 'none',
-        className: 'pointer-events-none absolute bottom-0 left-0 w-full h-28 opacity-40',
+        style: { pointerEvents: 'none', position: 'absolute', bottom: 0, left: 0, width: '100%', height: '95px', opacity: 0.45 },
         children: [
           (0, F.jsx)('path', {
-            d: 'M0,120 C240,30 420,150 600,90 C780,30 980,145 1200,70 L1200,160 L0,160 Z',
-            fill: 'url(#agentWaveGrad)'
+            d: 'M0,105 C240,25 430,130 600,75 C770,25 970,125 1200,55 L1200,140 L0,140 Z',
+            fill: 'url(#agentWaveGrad2)'
           }),
           (0, F.jsx)('defs', {
             children: (0, F.jsxs)('linearGradient', {
-              id: 'agentWaveGrad',
-              x1: '0%', y1: '0%', x2: '100%', y2: '0%',
+              id: 'agentWaveGrad2', x1: '0%', y1: '0%', x2: '100%', y2: '0%',
               children: [
-                (0, F.jsx)('stop', { offset: '0%', stopColor: 'rgba(168,85,247,0.38)' }),
+                (0, F.jsx)('stop', { offset: '0%', stopColor: 'rgba(168,85,247,0.42)' }),
                 (0, F.jsx)('stop', { offset: '50%', stopColor: 'rgba(139,92,246,0.06)' }),
-                (0, F.jsx)('stop', { offset: '100%', stopColor: 'rgba(168,85,247,0.38)' })
+                (0, F.jsx)('stop', { offset: '100%', stopColor: 'rgba(168,85,247,0.42)' })
               ]
             })
           })
         ]
       }),
 
+      // 1. Top Header Bar
       (0, F.jsxs)('div', {
-        className: 'relative z-10 flex items-center justify-between gap-3',
+        style: { position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' },
         children: [
           (0, F.jsxs)('div', {
-            className: 'flex items-center gap-2.5',
+            style: { display: 'flex', alignItems: 'center', gap: '10px' },
             children: [
               (0, F.jsx)('div', {
-                className: 'w-8 h-8 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white font-black text-sm shadow-[0_0_20px_rgba(168,85,247,0.65)]',
+                style: {
+                  width: '32px', height: '32px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #9333ea 0%, #c026d3 100%)', color: '#fff', fontWeight: 900, fontSize: '14px',
+                  boxShadow: '0 0 18px rgba(168,85,247,0.65)'
+                },
                 children: 'A'
               }),
               (0, F.jsxs)('div', {
                 children: [
                   (0, F.jsxs)('div', {
-                    className: 'text-sm font-bold text-white tracking-tight flex items-center gap-2',
+                    style: { fontSize: '14px', fontWeight: 700, color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' },
                     children: [
                       'Appiex AgentHub',
-                      (0, F.jsx)('span', { className: 'px-1.5 py-0.5 rounded text-[9px] font-bold bg-purple-500/20 text-purple-300 border border-purple-400/30', children: '3D OS' })
+                      (0, F.jsx)('span', {
+                        style: { fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '6px', background: 'rgba(168,85,247,0.22)', color: '#d8b4fe', border: '1px solid rgba(192,132,252,0.35)' },
+                        children: '3D OS'
+                      })
                     ]
                   }),
-                  (0, F.jsx)('div', { className: 'text-[10px] text-purple-300/70', children: 'Autonomous Agency Command Center' })
+                  (0, F.jsx)('div', { style: { fontSize: '10px', color: 'rgba(216,180,254,0.65)' }, children: 'Autonomous Agency Command Center' })
                 ]
               })
             ]
           }),
-
           (0, F.jsxs)('div', {
-            className: 'flex items-center gap-2',
+            style: { display: 'flex', alignItems: 'center', gap: '8px' },
             children: [
               (0, F.jsxs)('div', {
-                className: 'flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-[11px] font-semibold text-emerald-300',
+                style: {
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 12px', borderRadius: '9999px',
+                  background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', fontSize: '11px', fontWeight: 600, color: '#6ee7b7'
+                },
                 children: [
-                  (0, F.jsx)('span', { className: 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]' }),
+                  (0, F.jsx)('span', { style: { width: '7px', height: '7px', borderRadius: '9999px', background: '#34d399', boxShadow: '0 0 8px #34d399' } }),
                   'Online'
                 ]
               }),
               (0, F.jsx)('button', {
                 type: 'button',
                 onClick: function() { setCurrentView('overview'); },
-                className: 'px-3 py-1 rounded-full bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-[11px] font-semibold text-slate-300 hover:text-white cursor-pointer transition-all',
+                style: {
+                  padding: '4px 12px', borderRadius: '9999px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)',
+                  fontSize: '11px', fontWeight: 600, color: '#cbd5e1', cursor: 'pointer'
+                },
                 children: 'Classic Overview →'
               })
             ]
@@ -5061,71 +5128,57 @@ function AgentHubHomeView() {
         ]
       }),
 
+      // 2. Main 3-Column Spatial Layout (Left 3 Cards | Center 3D Mascot | Right 3 Cards)
       (0, F.jsxs)('div', {
-        className: 'relative z-10 grid grid-cols-1 lg:grid-cols-12 items-center gap-6 my-auto py-4',
+        className: 'ah-grid',
+        style: { position: 'relative', zIndex: 10, padding: '8px 0' },
         children: [
           (0, F.jsx)('div', {
-            className: 'lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1',
-            children: leftCards.map(function(card) {
-              var isHov = hoveredId === card.id;
-              return (0, F.jsxs)('button', {
-                key: card.id,
-                type: 'button',
-                onClick: function() { setCurrentView(card.view); },
-                onMouseEnter: function() { setHoveredId(card.id); },
-                onMouseLeave: function() { setHoveredId(null); },
-                className: 'group relative flex items-center gap-3 p-3 rounded-2xl text-left cursor-pointer transition-all duration-300 backdrop-blur-xl border ' + card.offset + ' ' +
-                  (isHov
-                    ? 'bg-purple-900/35 border-purple-400/60 shadow-[0_0_28px_rgba(168,85,247,0.35)] scale-[1.03]'
-                    : 'bg-white/[0.04] border-white/10 hover:border-purple-400/40'),
-                children: [
-                  (0, F.jsx)('div', {
-                    className: 'w-11 h-11 rounded-xl shrink-0 flex items-center justify-center text-lg bg-gradient-to-br from-purple-600/80 to-indigo-700/80 border border-purple-300/30 shadow-[0_0_18px_rgba(147,51,234,0.5)] group-hover:scale-105 transition-transform',
-                    children: card.icon
-                  }),
-                  (0, F.jsxs)('div', {
-                    className: 'min-w-0 flex-1',
-                    children: [
-                      (0, F.jsx)('div', { className: 'text-xs font-bold text-white tracking-wide', children: card.title }),
-                      (0, F.jsx)('div', { className: 'text-[10px] text-purple-200/75 truncate mt-0.5', children: card.subtitle })
-                    ]
-                  }),
-                  (0, F.jsx)('span', { className: 'text-purple-400/70 group-hover:text-white text-xs transition-colors', children: '›' })
-                ]
-              });
-            })
+            className: 'ah-col-left',
+            children: leftCards.map(function(card) { return renderCard(card, false); })
           }),
 
           (0, F.jsxs)('div', {
-            className: 'lg:col-span-6 flex flex-col items-center justify-center relative order-1 lg:order-2 py-2',
+            className: 'ah-col-center',
             children: [
               (0, F.jsxs)('div', {
-                className: 'relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center',
+                style: { position: 'relative', width: '270px', height: '270px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
                 children: [
+                  // Outer Dashed Ring
                   (0, F.jsx)('div', {
-                    className: 'agent-orb-spin absolute inset-0 rounded-full border border-dashed border-purple-400/35 shadow-[0_0_45px_rgba(168,85,247,0.25)]'
-                  }),
-                  (0, F.jsx)('div', {
-                    className: 'agent-orb-spin-rev absolute inset-4 rounded-full border-2 border-purple-500/40',
+                    className: 'agent-orb-spin',
                     style: {
-                      borderTopColor: 'rgba(216,180,254,0.9)',
-                      borderRightColor: 'transparent',
-                      borderBottomColor: 'rgba(139,92,246,0.75)',
-                      borderLeftColor: 'transparent'
+                      position: 'absolute', inset: 0, borderRadius: '9999px',
+                      border: '1px dashed rgba(192,132,252,0.45)',
+                      boxShadow: '0 0 45px rgba(168,85,247,0.28)'
                     }
                   }),
+                  // Inner Glowing Arc Ring
                   (0, F.jsx)('div', {
-                    className: 'absolute inset-8 rounded-full blur-2xl opacity-65',
-                    style: { background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(109,40,217,0.2) 60%, transparent 80%)' }
+                    className: 'agent-orb-spin-rev',
+                    style: {
+                      position: 'absolute', inset: '14px', borderRadius: '9999px',
+                      border: '2px solid transparent',
+                      borderTopColor: 'rgba(233,213,255,0.9)',
+                      borderBottomColor: 'rgba(147,51,234,0.85)'
+                    }
                   }),
-
+                  // Core Aura
                   (0, F.jsx)('div', {
-                    className: 'agent-float relative z-10 w-52 h-52 sm:w-64 sm:h-64 flex items-center justify-center',
+                    style: {
+                      position: 'absolute', inset: '28px', borderRadius: '9999px', filter: 'blur(26px)', opacity: 0.7,
+                      background: 'radial-gradient(circle, rgba(168,85,247,0.65) 0%, rgba(109,40,217,0.22) 60%, transparent 80%)'
+                    }
+                  }),
+                  // 3D Mascot Image
+                  (0, F.jsx)('div', {
+                    className: 'agent-float',
+                    style: { position: 'relative', zIndex: 10, width: '220px', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
                     children: (0, F.jsx)('img', {
                       src: '/admin/assets/appiex-mascot-3d.jpg',
                       alt: 'Appiex 3D AI Assistant',
-                      className: 'w-full h-full object-contain rounded-full select-none pointer-events-none',
                       style: {
+                        width: '100%', height: '100%', objectFit: 'contain', borderRadius: '9999px', pointerEvents: 'none',
                         mixBlendMode: 'lighten',
                         WebkitMaskImage: 'radial-gradient(circle at 50% 48%, #000 54%, transparent 76%)',
                         maskImage: 'radial-gradient(circle at 50% 48%, #000 54%, transparent 76%)',
@@ -5133,43 +5186,54 @@ function AgentHubHomeView() {
                       }
                     })
                   }),
-
+                  // Floating Speech Bubble (top-right of mascot head)
                   (0, F.jsx)('button', {
                     type: 'button',
                     onClick: handleMicClick,
                     title: 'Click to launch Appiex AI Copilot',
-                    className: 'absolute top-10 right-1 sm:right-3 z-20 px-3 py-1.5 rounded-2xl bg-purple-700/60 hover:bg-purple-600/80 backdrop-blur-xl border border-purple-300/40 shadow-[0_0_24px_rgba(168,85,247,0.6)] flex items-center gap-1 cursor-pointer transition-transform hover:scale-105',
-                    children: [8, 14, 18, 10, 16, 8].map(function(h, i) {
+                    style: {
+                      position: 'absolute', top: '42px', right: '-8px', zIndex: 20,
+                      padding: '6px 12px', borderRadius: '14px',
+                      background: 'rgba(126, 34, 206, 0.75)',
+                      backdropFilter: 'blur(12px)',
+                      border: '1px solid rgba(216, 180, 254, 0.5)',
+                      boxShadow: '0 0 22px rgba(168, 85, 247, 0.7)',
+                      display: 'flex', alignItems: 'center', gap: '3px', cursor: 'pointer'
+                    },
+                    children: [7, 13, 17, 9, 15, 7].map(function(h, i) {
                       return (0, F.jsx)('span', {
                         key: i,
-                        className: 'agent-eq-bar w-0.5 rounded-full bg-purple-100',
-                        style: { height: h + 'px', animationDelay: (i * 0.14) + 's' }
+                        className: 'agent-eq-bar',
+                        style: { width: '2.5px', height: h + 'px', borderRadius: '9999px', background: '#f3e8ff', animationDelay: (i * 0.14) + 's' }
                       });
                     })
                   })
                 ]
               }),
 
+              // Glowing Horizontal Platform Beam + Equalizer
               (0, F.jsxs)('div', {
-                className: 'relative w-full max-w-sm flex flex-col items-center -mt-3 z-20',
+                style: { width: '100%', maxWidth: '320px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-12px', zIndex: 20 },
                 children: [
                   (0, F.jsx)('div', {
-                    className: 'w-4/5 h-[2px] rounded-full',
                     style: {
+                      width: '85%', height: '2px', borderRadius: '9999px',
                       background: 'linear-gradient(90deg, transparent 0%, #a855f7 25%, #e879f9 50%, #a855f7 75%, transparent 100%)',
-                      boxShadow: '0 0 18px 2px rgba(168, 85, 247, 0.85)'
+                      boxShadow: '0 0 18px 2px rgba(168, 85, 247, 0.9)'
                     }
                   }),
                   (0, F.jsx)('div', {
-                    className: 'flex items-center justify-center gap-1 h-9 mt-2',
+                    style: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', height: '30px', marginTop: '6px' },
                     children: waveHeights.map(function(h, idx) {
                       return (0, F.jsx)('span', {
                         key: idx,
-                        className: 'agent-eq-bar w-1 rounded-full',
+                        className: 'agent-eq-bar',
                         style: {
-                          height: Math.round(h * 0.6) + 'px',
+                          width: '3.5px',
+                          height: Math.round(h * 0.65) + 'px',
+                          borderRadius: '9999px',
                           background: 'linear-gradient(180deg, #e879f9 0%, #9333ea 100%)',
-                          boxShadow: '0 0 8px rgba(192,132,252,0.7)',
+                          boxShadow: '0 0 8px rgba(192,132,252,0.75)',
                           animationDelay: (idx * 0.09) + 's'
                         }
                       });
@@ -5181,104 +5245,86 @@ function AgentHubHomeView() {
           }),
 
           (0, F.jsx)('div', {
-            className: 'lg:col-span-3 flex flex-col gap-4 order-3',
-            children: rightCards.map(function(card) {
-              var isHov = hoveredId === card.id;
-              return (0, F.jsxs)('button', {
-                key: card.id,
-                type: 'button',
-                onClick: function() { setCurrentView(card.view); },
-                onMouseEnter: function() { setHoveredId(card.id); },
-                onMouseLeave: function() { setHoveredId(null); },
-                className: 'group relative flex items-center gap-3 p-3 rounded-2xl text-left cursor-pointer transition-all duration-300 backdrop-blur-xl border ' + card.offset + ' ' +
-                  (isHov
-                    ? 'bg-purple-900/35 border-purple-400/60 shadow-[0_0_28px_rgba(168,85,247,0.35)] scale-[1.03]'
-                    : 'bg-white/[0.04] border-white/10 hover:border-purple-400/40'),
-                children: [
-                  (0, F.jsx)('div', {
-                    className: 'w-11 h-11 rounded-xl shrink-0 flex items-center justify-center text-lg bg-gradient-to-br from-purple-600/80 to-indigo-700/80 border border-purple-300/30 shadow-[0_0_18px_rgba(147,51,234,0.5)] group-hover:scale-105 transition-transform',
-                    children: card.icon
-                  }),
-                  (0, F.jsxs)('div', {
-                    className: 'min-w-0 flex-1',
-                    children: [
-                      (0, F.jsx)('div', { className: 'text-xs font-bold text-white tracking-wide', children: card.title }),
-                      (0, F.jsx)('div', { className: 'text-[10px] text-purple-200/75 truncate mt-0.5', children: card.subtitle })
-                    ]
-                  }),
-                  (0, F.jsx)('span', { className: 'text-purple-400/70 group-hover:text-white text-xs transition-colors', children: '›' })
-                ]
-              });
-            })
+            className: 'ah-col-right',
+            children: rightCards.map(function(card) { return renderCard(card, true); })
           })
         ]
       }),
 
+      // 3. Bottom Voice / AI Command Dock & 3 Action Pills
       (0, F.jsxs)('div', {
-        className: 'relative z-10 flex flex-col items-center gap-3 pt-2',
+        style: { position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', paddingTop: '4px' },
         children: [
           (0, F.jsxs)('form', {
             onSubmit: handleQuickCommand,
-            className: 'flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] backdrop-blur-xl border border-purple-400/25 shadow-[0_0_30px_rgba(124,58,237,0.22)]',
+            style: {
+              display: 'flex', alignItems: 'center', gap: '8px', padding: '5px 10px', borderRadius: '9999px',
+              background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(16px)',
+              border: '1px solid rgba(168,85,247,0.32)', boxShadow: '0 0 28px rgba(124,58,237,0.25)'
+            },
             children: [
               (0, F.jsx)('input', {
                 type: 'text',
                 value: quickPrompt,
                 onChange: function(e) { setQuickPrompt(e.target.value); },
-                placeholder: 'Jump to sales, orders, seo...',
-                className: 'w-40 sm:w-52 bg-transparent text-[11px] text-white placeholder-purple-200/50 px-2 focus:outline-hidden'
+                placeholder: 'Ask Appiex AI or jump to view...',
+                style: { width: '185px', background: 'transparent', fontSize: '11px', color: '#fff', padding: '0 8px', outline: 'none', border: 'none' }
               }),
               (0, F.jsx)('button', {
                 type: 'button',
                 onClick: handleMicClick,
-                title: 'Open Appiex Copilot',
-                className: 'w-11 h-11 rounded-full flex items-center justify-center text-base text-white cursor-pointer transition-all hover:scale-108 shadow-[0_0_24px_rgba(168,85,247,0.8)] ' +
-                  (isListening ? 'bg-fuchsia-500 animate-pulse' : 'bg-gradient-to-br from-purple-500 to-violet-700 border border-purple-300/50'),
+                title: 'Open Appiex AI Copilot',
+                style: {
+                  width: '40px', height: '40px', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '16px', color: '#fff', cursor: 'pointer', border: '1px solid rgba(216,180,254,0.5)',
+                  background: isListening ? '#d946ef' : 'linear-gradient(135deg, #9333ea 0%, #6d28d9 100%)',
+                  boxShadow: '0 0 22px rgba(168,85,247,0.85)'
+                },
                 children: '🎙️'
               }),
               (0, F.jsx)('button', {
                 type: 'submit',
-                title: 'Go',
-                className: 'px-3 py-1.5 rounded-full bg-white/5 hover:bg-purple-500/30 text-[11px] font-bold text-purple-200 hover:text-white cursor-pointer transition-all',
+                style: {
+                  padding: '6px 12px', borderRadius: '9999px', background: 'rgba(255,255,255,0.06)',
+                  fontSize: '11px', fontWeight: 700, color: '#e9d5ff', cursor: 'pointer', border: 'none'
+                },
                 children: '⚡ Ask'
               })
             ]
           }),
-
-          (0, F.jsx)('div', {
-            className: 'text-[10px] text-purple-300/60 tracking-wide',
-            children: 'Click a module or ask Appiex AI'
-          }),
-
+          (0, F.jsx)('div', { style: { fontSize: '10px', color: 'rgba(216,180,254,0.6)' }, children: 'Click a module or ask Appiex AI' }),
           (0, F.jsxs)('div', {
-            className: 'flex flex-wrap items-center justify-center gap-2.5',
+            style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '10px' },
             children: [
               (0, F.jsxs)('button', {
                 type: 'button',
                 onClick: function() { setCurrentView('monthly-sales'); },
-                className: 'flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.04] hover:bg-purple-600/25 border border-white/10 hover:border-purple-400/40 text-[11px] font-semibold text-purple-100 cursor-pointer transition-all backdrop-blur-md',
-                children: [
-                  (0, F.jsx)('span', { className: 'text-purple-400 font-bold', children: '+' }),
-                  'Add Sale Entry'
-                ]
+                style: {
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '9999px',
+                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,85,247,0.24)',
+                  fontSize: '11px', fontWeight: 600, color: '#f3e8ff', cursor: 'pointer'
+                },
+                children: [(0, F.jsx)('span', { style: { color: '#c084fc', fontWeight: 800 }, children: '+' }), 'Add Sale Entry']
               }),
               (0, F.jsxs)('button', {
                 type: 'button',
                 onClick: function() { setCurrentView('overview'); },
-                className: 'flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.04] hover:bg-purple-600/25 border border-white/10 hover:border-purple-400/40 text-[11px] font-semibold text-purple-100 cursor-pointer transition-all backdrop-blur-md',
-                children: [
-                  (0, F.jsx)('span', { children: '📊' }),
-                  'Show Performance'
-                ]
+                style: {
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '9999px',
+                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,85,247,0.24)',
+                  fontSize: '11px', fontWeight: 600, color: '#f3e8ff', cursor: 'pointer'
+                },
+                children: ['📊 Show Performance']
               }),
               (0, F.jsxs)('button', {
                 type: 'button',
                 onClick: function() { setCurrentView('daily-visitors'); },
-                className: 'flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.04] hover:bg-purple-600/25 border border-white/10 hover:border-purple-400/40 text-[11px] font-semibold text-purple-100 cursor-pointer transition-all backdrop-blur-md',
-                children: [
-                  (0, F.jsx)('span', { children: '🌐' }),
-                  'Daily Website Views'
-                ]
+                style: {
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '9999px',
+                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,85,247,0.24)',
+                  fontSize: '11px', fontWeight: 600, color: '#f3e8ff', cursor: 'pointer'
+                },
+                children: ['🌐 Daily Website Views']
               })
             ]
           })
