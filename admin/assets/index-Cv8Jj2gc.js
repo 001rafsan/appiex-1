@@ -4866,7 +4866,6 @@ function AgentHubHomeView() {
   var visitorsCount = visitorsCountState[0];
   var setVisitorsCount = visitorsCountState[1];
 
-  // Hydrate live counts for cards
   (0, v.useEffect)(function() {
     try {
       var sRaw = JSON.parse(localStorage.getItem('appiex_monthly_sales_v3') || 'null');
@@ -4924,7 +4923,7 @@ function AgentHubHomeView() {
     {
       id: 'finance',
       title: 'Finance',
-      subtitle: ',[t,n]=(0,v.useState)(!1),[r,i]=(0,v.useState)(!1),[a,o]=(0,v.useState)(!1);return(0,F.jsxs)(`div`,{className:`min-h-screen bg-slate-50/60 dark:bg-[#0B0D10] text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors`,children:[(0,F.jsxs)(`div`,{className:`flex-1 flex`,children:[(0,F.jsx)(Ut,{isOpenMobile:t,onCloseMobile:()=>n(!1)}),(0,F.jsxs)(`div`,{className:`flex-1 flex flex-col min-w-0 lg:pl-64`,children:[(0,F.jsx)(Ht,{}),(0,F.jsx)(an,{onOpenMobile:()=>n(!0),onOpenCopilot:()=>i(!0),onOpenDirectory:()=>o(!0)}),(0,F.jsx)(`main`,{className:`flex-1 p-4 lg:p-8 max-w-7xl w-full mx-auto`,children:(()=>{switch(e){case`home`:return(0,F.jsx)(AgentHubHomeView,{});case`overview`:return(0,F.jsx)(hn,{});case`monthly-sales`:return(0,F.jsx)(MonthlySalesView,{});case`subscriptions`:return(0,F.jsx)(ClientOrdersView,{});case`delivery-pods`:return(0,F.jsx)(_n,{});case`analytics`:return(0,F.jsx)(vn,{});case`refer-cms`:return(0,F.jsx)(ReferPageCMSView,{});case`daily-visitors`:return(0,F.jsx)(DailyVisitorsView,{});case`conversion-lab`:return(0,F.jsx)(yn,{});case`seo`:return(0,F.jsx)(bn,{});case`inbox`:return(0,F.jsx)(xn,{});case`leads`:return(0,F.jsx)(wn,{});case`referrals-partners`:case`referrals`:case`partners`:return(0,F.jsx)(Tn,{});case`proposals`:return(0,F.jsx)(En,{});case`marketing-campaigns`:return(0,F.jsx)(Nn,{});case`content-blog`:return(0,F.jsx)(BlogCommandCenterView,{});case`content-projects`:return(0,F.jsx)(jn,{});case`content-calendar`:return(0,F.jsx)(Mn,{});case`finance`:return(0,F.jsx)(zR,{});case`website-health`:return(0,F.jsx)(BR,{});case`automation-n8n`:return(0,F.jsx)(VR,{});case`portals`:return(0,F.jsx)(HR,{});case`integrations`:return(0,F.jsx)(UR,{});case`audit-settings`:return(0,F.jsx)(WR,{});case`blueprint-hub`:return(0,F.jsx)(XR,{});default:return(0,F.jsx)(hn,{})}})()})]})]}),(0,F.jsx)(on,{}),(0,F.jsx)(sn,{}),(0,F.jsx)(KR,{isOpen:r,onClose:()=>i(!1)}),(0,F.jsx)(JR,{isOpen:a,onClose:()=>o(!1)})]})};function QR(){return(0,F.jsx)(le,{children:(0,F.jsx)(ZR,{})})}(0,y.createRoot)(document.getElementById(`root`)).render((0,F.jsx)(QR,{})); + salesTotalUSD.toLocaleString('en-US') + ' Monthly Ledger',
+      subtitle: String.fromCharCode(36) + salesTotalUSD.toLocaleString('en-US') + ' Monthly Ledger',
       view: 'monthly-sales',
       icon: '💳',
       offset: 'lg:-translate-x-4'
@@ -4981,21 +4980,10 @@ function AgentHubHomeView() {
       background: 'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(124, 58, 237, 0.24) 0%, rgba(59, 7, 100, 0.14) 45%, #05030d 85%), #05030d'
     },
     children: [
-      // Custom CSS animations for AgentHub
       (0, F.jsx)('style', {
-        children: `
-          @keyframes agentOrbSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-          @keyframes agentOrbSpinRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-          @keyframes agentFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-7px); } }
-          @keyframes eqPulse { 0%, 100% { transform: scaleY(0.45); opacity: 0.7; } 50% { transform: scaleY(1); opacity: 1; } }
-          .agent-orb-spin { animation: agentOrbSpin 28s linear infinite; }
-          .agent-orb-spin-rev { animation: agentOrbSpinRev 20s linear infinite; }
-          .agent-float { animation: agentFloat 4.5s ease-in-out infinite; }
-          .agent-eq-bar { animation: eqPulse 1.3s ease-in-out infinite; transform-origin: center; }
-        `
+        children: '@keyframes agentOrbSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes agentOrbSpinRev{from{transform:rotate(360deg)}to{transform:rotate(0deg)}}@keyframes agentFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes eqPulse{0%,100%{transform:scaleY(0.45);opacity:0.7}50%{transform:scaleY(1);opacity:1}}.agent-orb-spin{animation:agentOrbSpin 28s linear infinite}.agent-orb-spin-rev{animation:agentOrbSpinRev 20s linear infinite}.agent-float{animation:agentFloat 4.5s ease-in-out infinite}.agent-eq-bar{animation:eqPulse 1.3s ease-in-out infinite;transform-origin:center}'
       }),
 
-      // Bottom decorative glowing purple particle waves
       (0, F.jsx)('div', {
         className: 'pointer-events-none absolute -bottom-24 -left-24 w-[420px] h-[220px] rounded-full opacity-45 blur-3xl',
         style: { background: 'radial-gradient(circle, rgba(168,85,247,0.55) 0%, rgba(109,40,217,0.1) 60%, transparent 100%)' }
@@ -5004,8 +4992,7 @@ function AgentHubHomeView() {
         className: 'pointer-events-none absolute -bottom-24 -right-24 w-[420px] h-[220px] rounded-full opacity-45 blur-3xl',
         style: { background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(91,33,182,0.1) 60%, transparent 100%)' }
       }),
-      // Subtle bottom wave SVG curve
-      (0, F.jsx)('svg', {
+      (0, F.jsxs)('svg', {
         viewBox: '0 0 1200 160',
         preserveAspectRatio: 'none',
         className: 'pointer-events-none absolute bottom-0 left-0 w-full h-28 opacity-40',
@@ -5028,7 +5015,6 @@ function AgentHubHomeView() {
         ]
       }),
 
-      // 1. Top AgentHub Header Bar
       (0, F.jsxs)('div', {
         className: 'relative z-10 flex items-center justify-between gap-3',
         children: [
@@ -5075,11 +5061,9 @@ function AgentHubHomeView() {
         ]
       }),
 
-      // 2. Main 3-Column Spatial Hub (3 Left Cards | Center 3D Mascot | 3 Right Cards)
       (0, F.jsxs)('div', {
         className: 'relative z-10 grid grid-cols-1 lg:grid-cols-12 items-center gap-6 my-auto py-4',
         children: [
-          // Left 3 Floating Glassmorphic Cards
           (0, F.jsx)('div', {
             className: 'lg:col-span-3 flex flex-col gap-4 order-2 lg:order-1',
             children: leftCards.map(function(card) {
@@ -5095,7 +5079,6 @@ function AgentHubHomeView() {
                     ? 'bg-purple-900/35 border-purple-400/60 shadow-[0_0_28px_rgba(168,85,247,0.35)] scale-[1.03]'
                     : 'bg-white/[0.04] border-white/10 hover:border-purple-400/40'),
                 children: [
-                  // Glowing Purple Icon Box
                   (0, F.jsx)('div', {
                     className: 'w-11 h-11 rounded-xl shrink-0 flex items-center justify-center text-lg bg-gradient-to-br from-purple-600/80 to-indigo-700/80 border border-purple-300/30 shadow-[0_0_18px_rgba(147,51,234,0.5)] group-hover:scale-105 transition-transform',
                     children: card.icon
@@ -5113,19 +5096,15 @@ function AgentHubHomeView() {
             })
           }),
 
-          // Centerpiece: Holographic Orbital Ring + 3D Mascot + Speech Bubble + Equalizer
           (0, F.jsxs)('div', {
             className: 'lg:col-span-6 flex flex-col items-center justify-center relative order-1 lg:order-2 py-2',
             children: [
-              // Orbital Ring Container
               (0, F.jsxs)('div', {
                 className: 'relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center',
                 children: [
-                  // Outer dashed spinning ring
                   (0, F.jsx)('div', {
                     className: 'agent-orb-spin absolute inset-0 rounded-full border border-dashed border-purple-400/35 shadow-[0_0_45px_rgba(168,85,247,0.25)]'
                   }),
-                  // Inner glowing ring
                   (0, F.jsx)('div', {
                     className: 'agent-orb-spin-rev absolute inset-4 rounded-full border-2 border-purple-500/40',
                     style: {
@@ -5135,13 +5114,11 @@ function AgentHubHomeView() {
                       borderLeftColor: 'transparent'
                     }
                   }),
-                  // Ambient purple core aura
                   (0, F.jsx)('div', {
                     className: 'absolute inset-8 rounded-full blur-2xl opacity-65',
                     style: { background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(109,40,217,0.2) 60%, transparent 80%)' }
                   }),
 
-                  // 3D Appiex Mascot Image (Seamless blend)
                   (0, F.jsx)('div', {
                     className: 'agent-float relative z-10 w-52 h-52 sm:w-64 sm:h-64 flex items-center justify-center',
                     children: (0, F.jsx)('img', {
@@ -5157,26 +5134,22 @@ function AgentHubHomeView() {
                     })
                   }),
 
-                  // Floating Speech / Voice Wave Bubble (top right of mascot)
-                  (0, F.jsxs)('button', {
+                  (0, F.jsx)('button', {
                     type: 'button',
                     onClick: handleMicClick,
                     title: 'Click to launch Appiex AI Copilot',
                     className: 'absolute top-10 right-1 sm:right-3 z-20 px-3 py-1.5 rounded-2xl bg-purple-700/60 hover:bg-purple-600/80 backdrop-blur-xl border border-purple-300/40 shadow-[0_0_24px_rgba(168,85,247,0.6)] flex items-center gap-1 cursor-pointer transition-transform hover:scale-105',
-                    children: [
-                      [8, 14, 18, 10, 16, 8].map(function(h, i) {
-                        return (0, F.jsx)('span', {
-                          key: i,
-                          className: 'agent-eq-bar w-0.5 rounded-full bg-purple-100',
-                          style: { height: h + 'px', animationDelay: (i * 0.14) + 's' }
-                        });
-                      })
-                    ]
+                    children: [8, 14, 18, 10, 16, 8].map(function(h, i) {
+                      return (0, F.jsx)('span', {
+                        key: i,
+                        className: 'agent-eq-bar w-0.5 rounded-full bg-purple-100',
+                        style: { height: h + 'px', animationDelay: (i * 0.14) + 's' }
+                      });
+                    })
                   })
                 ]
               }),
 
-              // Glowing Neon Platform Line + Audio Waveform Visualizer
               (0, F.jsxs)('div', {
                 className: 'relative w-full max-w-sm flex flex-col items-center -mt-3 z-20',
                 children: [
@@ -5187,7 +5160,6 @@ function AgentHubHomeView() {
                       boxShadow: '0 0 18px 2px rgba(168, 85, 247, 0.85)'
                     }
                   }),
-                  // Equalizer Bars
                   (0, F.jsx)('div', {
                     className: 'flex items-center justify-center gap-1 h-9 mt-2',
                     children: waveHeights.map(function(h, idx) {
@@ -5208,7 +5180,6 @@ function AgentHubHomeView() {
             ]
           }),
 
-          // Right 3 Floating Glassmorphic Cards
           (0, F.jsx)('div', {
             className: 'lg:col-span-3 flex flex-col gap-4 order-3',
             children: rightCards.map(function(card) {
@@ -5243,11 +5214,9 @@ function AgentHubHomeView() {
         ]
       }),
 
-      // 3. Bottom Interactive Command Dock & 3 Quick Action Pills
       (0, F.jsxs)('div', {
         className: 'relative z-10 flex flex-col items-center gap-3 pt-2',
         children: [
-          // Center Voice / Command Capsule
           (0, F.jsxs)('form', {
             onSubmit: handleQuickCommand,
             className: 'flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] backdrop-blur-xl border border-purple-400/25 shadow-[0_0_30px_rgba(124,58,237,0.22)]',
@@ -5281,7 +5250,6 @@ function AgentHubHomeView() {
             children: 'Click a module or ask Appiex AI'
           }),
 
-          // 3 Quick Action Pills (matching Pic 2 bottom row)
           (0, F.jsxs)('div', {
             className: 'flex flex-wrap items-center justify-center gap-2.5',
             children: [
@@ -5320,4 +5288,4 @@ function AgentHubHomeView() {
   });
 }
 
-var ZR=()=>{let{currentView:e}=I(),[t,n]=(0,v.useState)(!1),[r,i]=(0,v.useState)(!1),[a,o]=(0,v.useState)(!1);return(0,F.jsxs)(`div`,{className:`min-h-screen bg-slate-50/60 dark:bg-[#0B0D10] text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors`,children:[(0,F.jsxs)(`div`,{className:`flex-1 flex`,children:[(0,F.jsx)(Ut,{isOpenMobile:t,onCloseMobile:()=>n(!1)}),(0,F.jsxs)(`div`,{className:`flex-1 flex flex-col min-w-0 lg:pl-64`,children:[(0,F.jsx)(Ht,{}),(0,F.jsx)(an,{onOpenMobile:()=>n(!0),onOpenCopilot:()=>i(!0),onOpenDirectory:()=>o(!0)}),(0,F.jsx)(`main`,{className:`flex-1 p-4 lg:p-8 max-w-7xl w-full mx-auto`,children:(()=>{switch(e){case`overview`:return(0,F.jsx)(hn,{});case`monthly-sales`:return(0,F.jsx)(MonthlySalesView,{});case`subscriptions`:return(0,F.jsx)(ClientOrdersView,{});case`delivery-pods`:return(0,F.jsx)(_n,{});case`analytics`:return(0,F.jsx)(vn,{});case`refer-cms`:return(0,F.jsx)(ReferPageCMSView,{});case`daily-visitors`:return(0,F.jsx)(DailyVisitorsView,{});case`conversion-lab`:return(0,F.jsx)(yn,{});case`seo`:return(0,F.jsx)(bn,{});case`inbox`:return(0,F.jsx)(xn,{});case`leads`:return(0,F.jsx)(wn,{});case`referrals-partners`:case`referrals`:case`partners`:return(0,F.jsx)(Tn,{});case`proposals`:return(0,F.jsx)(En,{});case`marketing-campaigns`:return(0,F.jsx)(Nn,{});case`content-blog`:return(0,F.jsx)(BlogCommandCenterView,{});case`content-projects`:return(0,F.jsx)(jn,{});case`content-calendar`:return(0,F.jsx)(Mn,{});case`finance`:return(0,F.jsx)(zR,{});case`website-health`:return(0,F.jsx)(BR,{});case`automation-n8n`:return(0,F.jsx)(VR,{});case`portals`:return(0,F.jsx)(HR,{});case`integrations`:return(0,F.jsx)(UR,{});case`audit-settings`:return(0,F.jsx)(WR,{});case`blueprint-hub`:return(0,F.jsx)(XR,{});default:return(0,F.jsx)(hn,{})}})()})]})]}),(0,F.jsx)(on,{}),(0,F.jsx)(sn,{}),(0,F.jsx)(KR,{isOpen:r,onClose:()=>i(!1)}),(0,F.jsx)(JR,{isOpen:a,onClose:()=>o(!1)})]})};function QR(){return(0,F.jsx)(le,{children:(0,F.jsx)(ZR,{})})}(0,y.createRoot)(document.getElementById(`root`)).render((0,F.jsx)(QR,{}));
+var ZR=()=>{let{currentView:e}=I(),[t,n]=(0,v.useState)(!1),[r,i]=(0,v.useState)(!1),[a,o]=(0,v.useState)(!1);return(0,F.jsxs)(`div`,{className:`min-h-screen bg-slate-50/60 dark:bg-[#0B0D10] text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors`,children:[(0,F.jsxs)(`div`,{className:`flex-1 flex`,children:[(0,F.jsx)(Ut,{isOpenMobile:t,onCloseMobile:()=>n(!1)}),(0,F.jsxs)(`div`,{className:`flex-1 flex flex-col min-w-0 lg:pl-64`,children:[(0,F.jsx)(Ht,{}),(0,F.jsx)(an,{onOpenMobile:()=>n(!0),onOpenCopilot:()=>i(!0),onOpenDirectory:()=>o(!0)}),(0,F.jsx)(`main`,{className:`flex-1 p-4 lg:p-8 max-w-7xl w-full mx-auto`,children:(()=>{switch(e){case`home`:return(0,F.jsx)(AgentHubHomeView,{});case`overview`:return(0,F.jsx)(hn,{});case`monthly-sales`:return(0,F.jsx)(MonthlySalesView,{});case`subscriptions`:return(0,F.jsx)(ClientOrdersView,{});case`delivery-pods`:return(0,F.jsx)(_n,{});case`analytics`:return(0,F.jsx)(vn,{});case`refer-cms`:return(0,F.jsx)(ReferPageCMSView,{});case`daily-visitors`:return(0,F.jsx)(DailyVisitorsView,{});case`conversion-lab`:return(0,F.jsx)(yn,{});case`seo`:return(0,F.jsx)(bn,{});case`inbox`:return(0,F.jsx)(xn,{});case`leads`:return(0,F.jsx)(wn,{});case`referrals-partners`:case`referrals`:case`partners`:return(0,F.jsx)(Tn,{});case`proposals`:return(0,F.jsx)(En,{});case`marketing-campaigns`:return(0,F.jsx)(Nn,{});case`content-blog`:return(0,F.jsx)(BlogCommandCenterView,{});case`content-projects`:return(0,F.jsx)(jn,{});case`content-calendar`:return(0,F.jsx)(Mn,{});case`finance`:return(0,F.jsx)(zR,{});case`website-health`:return(0,F.jsx)(BR,{});case`automation-n8n`:return(0,F.jsx)(VR,{});case`portals`:return(0,F.jsx)(HR,{});case`integrations`:return(0,F.jsx)(UR,{});case`audit-settings`:return(0,F.jsx)(WR,{});case`blueprint-hub`:return(0,F.jsx)(XR,{});default:return(0,F.jsx)(hn,{})}})()})]})]}),(0,F.jsx)(on,{}),(0,F.jsx)(sn,{}),(0,F.jsx)(KR,{isOpen:r,onClose:()=>i(!1)}),(0,F.jsx)(JR,{isOpen:a,onClose:()=>o(!1)})]})};function QR(){return(0,F.jsx)(le,{children:(0,F.jsx)(ZR,{})})}(0,y.createRoot)(document.getElementById(`root`)).render((0,F.jsx)(QR,{}));
