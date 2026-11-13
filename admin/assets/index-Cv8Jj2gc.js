@@ -4842,21 +4842,45 @@ function AgentHubHomeView() {
   var setCommandOpen = ctx.setCommandOpen;
   var addToast = ctx.addToast;
 
-  var promptState = (0, v.useState)('');
-  var quickPrompt = promptState[0];
-  var setQuickPrompt = promptState[1];
-
   var listeningState = (0, v.useState)(false);
   var isListening = listeningState[0];
   var setIsListening = listeningState[1];
+
+  var speakingState = (0, v.useState)(false);
+  var isSpeaking = speakingState[0];
+  var setIsSpeaking = speakingState[1];
+
+  var mutedState = (0, v.useState)(false);
+  var isMuted = mutedState[0];
+  var setIsMuted = mutedState[1];
+
+  var transcriptState = (0, v.useState)('');
+  var transcript = transcriptState[0];
+  var setTranscript = transcriptState[1];
+
+  var replyState = (0, v.useState)('');
+  var aiReply = replyState[0];
+  var setAiReply = replyState[1];
+
+  var showTextInputState = (0, v.useState)(false);
+  var showTextInput = showTextInputState[0];
+  var setShowTextInput = showTextInputState[1];
+
+  var quickPromptState = (0, v.useState)('');
+  var quickPrompt = quickPromptState[0];
+  var setQuickPrompt = quickPromptState[1];
 
   var hoveredState = (0, v.useState)(null);
   var hoveredId = hoveredState[0];
   var setHoveredId = hoveredState[1];
 
+  var salesTotalState = (0, v.useState)(0);
+  var salesTotalUSD = salesTotalState[0];
+  var setSalesTotalUSD = salesTotalState[1];
+
   var salesCountState = (0, v.useState)(0);
-  var salesTotalUSD = salesCountState[0];
-  var setSalesTotalUSD = salesCountState[1];
+  var salesCount = salesCountState[0];
+  var setSalesCount = salesCountState[1];
 
   var ordersCountState = (0, v.useState)(0);
   var ordersCount = ordersCountState[0];
@@ -4866,12 +4890,16 @@ function AgentHubHomeView() {
   var visitorsCount = visitorsCountState[0];
   var setVisitorsCount = visitorsCountState[1];
 
+  var recognitionRef = (0, v.useRef)(null);
+
+  // Hydrate live agency metrics
   (0, v.useEffect)(function() {
     try {
       var sRaw = JSON.parse(localStorage.getItem('appiex_monthly_sales_v3') || 'null');
       if (sRaw && Array.isArray(sRaw.items)) {
-        var total = sRaw.items.filter(function(i) { return i.status !== 'cancel'; }).reduce(function(acc, i) { return acc + (Number(i.amountUSD) || 0); }, 0);
-        setSalesTotalUSD(total);
+        var activeS = sRaw.items.filter(function(i) { return i.status !== 'cancel'; });
+        setSalesCount(activeS.length);
+        setSalesTotalUSD(activeS.reduce(function(acc, i) { return acc + (Number(i.amountUSD) || 0); }, 0));
       }
     } catch(e) {}
     try {
@@ -4880,8 +4908,9 @@ function AgentHubHomeView() {
     } catch(e) {}
     fetch('/api/sales?t=' + Date.now()).then(function(r) { return r.json(); }).then(function(res) {
       if (res && res.ok && Array.isArray(res.items)) {
-        var total = res.items.filter(function(i) { return i.status !== 'cancel'; }).reduce(function(acc, i) { return acc + (Number(i.amountUSD) || 0); }, 0);
-        setSalesTotalUSD(total);
+        var activeS = res.items.filter(function(i) { return i.status !== 'cancel'; });
+        setSalesCount(activeS.length);
+        setSalesTotalUSD(activeS.reduce(function(acc, i) { return acc + (Number(i.amountUSD) || 0); }, 0));
       }
     }).catch(function() {});
     fetch('/api/orders').then(function(r) { return r.json(); }).then(function(res) {
@@ -4890,49 +4919,194 @@ function AgentHubHomeView() {
     fetch('/api/visitors').then(function(r) { return r.json(); }).then(function(res) {
       if (res && Array.isArray(res.visitors)) setVisitorsCount(res.visitors.length);
     }).catch(function() {});
+
+    return function() {
+      try { if (recognitionRef.current) recognitionRef.current.abort(); } catch(e) {}
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
+    };
   }, []);
 
-  var leftCards = [
-    { id: 'research', title: 'Research', subtitle: visitorsCount + ' Live Visitors · GA4', view: 'analytics', icon: '⚗️', shift: 'translateX(16px)' },
-    { id: 'orders', title: 'Orders & CRM', subtitle: ordersCount + ' Client Inquiries', view: 'subscriptions', icon: '👥', shift: 'translateX(0px)' },
-    { id: 'marketing', title: 'Marketing', subtitle: 'SEO & Growth Engine', view: 'seo', icon: '📈', shift: 'translateX(16px)' }
-  ];
-
-  var rightCards = [
-    { id: 'finance', title: 'Finance', subtitle: String.fromCharCode(36) + salesTotalUSD.toLocaleString('en-US') + ' Monthly Ledger', view: 'monthly-sales', icon: '💳', shift: 'translateX(-16px)' },
-    { id: 'development', title: 'Development', subtitle: 'Delivery Pods & Sprints', view: 'delivery-pods', icon: '💻', shift: 'translateX(0px)' },
-    { id: 'design', title: 'Design', subtitle: 'Blueprints & 3D Studio', view: 'blueprint-hub', icon: '🎨', shift: 'translateX(-16px)' }
-  ];
-
-  function handleMicClick() {
-    setIsListening(function(prev) { return !prev; });
-    if (setCommandOpen) {
-      setCommandOpen(true);
-    } else if (addToast) {
-      addToast({ type: 'info', title: 'Appiex AgentHub Ready', message: 'Ask Copilot or select a department card.' });
+  function speakText(text) {
+    setAiReply(text);
+    if (isMuted || typeof window === 'undefined' || !window.speechSynthesis) {
+      setIsSpeaking(true);
+      setTimeout(function() { setIsSpeaking(false); }, 2200);
+      return;
+    }
+    try {
+      window.speechSynthesis.cancel();
+      var utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 1.02;
+      utter.pitch = 1.06;
+      var voices = window.speechSynthesis.getVoices();
+      if (voices && voices.length > 0) {
+        var preferred = voices.find(function(vc) { return /google|natural|samantha|aria|jenny|zira/i.test(vc.name) && /en/i.test(vc.lang); }) || voices.find(function(vc) { return /en/i.test(vc.lang); });
+        if (preferred) utter.voice = preferred;
+      }
+      utter.onstart = function() { setIsSpeaking(true); };
+      utter.onend = function() { setIsSpeaking(false); };
+      utter.onerror = function() { setIsSpeaking(false); };
+      setIsSpeaking(true);
+      window.speechSynthesis.speak(utter);
+    } catch(e) {
+      setIsSpeaking(false);
     }
   }
 
-  function handleQuickCommand(e) {
-    if (e && e.preventDefault) e.preventDefault();
-    var q = quickPrompt.trim().toLowerCase();
-    if (!q) {
-      if (setCommandOpen) setCommandOpen(true);
+  function processVoiceOrTextQuery(rawInput) {
+    var q = String(rawInput || '').trim().toLowerCase();
+    if (!q) return;
+
+    if (q.includes('open') || q.includes('go to') || q.includes('show me') || q.includes('kholo') || q.includes('jao')) {
+      if (q.includes('sale') || q.includes('finance') || q.includes('ledger') || q.includes('hisab')) {
+        speakText('Opening your Monthly Sales Ledger. Current total is ' + salesTotalUSD + ' dollars across ' + salesCount + ' entries.');
+        setTimeout(function() { setCurrentView('monthly-sales'); }, 1400);
+        return;
+      }
+      if (q.includes('order') || q.includes('inquir') || q.includes('crm')) {
+        speakText('Opening Client Orders and Inquiries. You currently have ' + ordersCount + ' client orders.');
+        setTimeout(function() { setCurrentView('subscriptions'); }, 1400);
+        return;
+      }
+      if (q.includes('visit') || q.includes('traffic') || q.includes('view')) {
+        speakText('Opening Daily Website Visitors. You have ' + visitorsCount + ' live visitors today.');
+        setTimeout(function() { setCurrentView('daily-visitors'); }, 1400);
+        return;
+      }
+      if (q.includes('analytic') || q.includes('research') || q.includes('ga4')) {
+        speakText('Opening Website Analytics and Research.');
+        setTimeout(function() { setCurrentView('analytics'); }, 1200);
+        return;
+      }
+      if (q.includes('seo') || q.includes('market')) {
+        speakText('Opening SEO and Marketing Command.');
+        setTimeout(function() { setCurrentView('seo'); }, 1200);
+        return;
+      }
+      if (q.includes('dev') || q.includes('pod') || q.includes('sprint')) {
+        speakText('Opening Client Delivery Pods.');
+        setTimeout(function() { setCurrentView('delivery-pods'); }, 1200);
+        return;
+      }
+      if (q.includes('design') || q.includes('blueprint') || q.includes('3d')) {
+        speakText('Opening Blueprints and Design Studio.');
+        setTimeout(function() { setCurrentView('blueprint-hub'); }, 1200);
+        return;
+      }
+      if (q.includes('overview') || q.includes('performance') || q.includes('dashboard')) {
+        speakText('Opening Executive Overview performance dashboard.');
+        setTimeout(function() { setCurrentView('overview'); }, 1200);
+        return;
+      }
+    }
+
+    if (q.includes('sale') || q.includes('revenue') || q.includes('money') || q.includes('dollar') || q.includes('finance') || q.includes('koto') || q.includes('taka')) {
+      speakText('This month Appiex has ' + salesTotalUSD + ' US dollars in total sales across ' + salesCount + ' active entries.');
+    } else if (q.includes('order') || q.includes('client') || q.includes('lead')) {
+      speakText('You have ' + ordersCount + ' client orders in your Client Orders inbox.');
+    } else if (q.includes('visitor') || q.includes('traffic') || q.includes('view')) {
+      speakText('There are ' + visitorsCount + ' website views tracked today on Appiex.');
+    } else if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('kemon') || q.includes('ki khobor')) {
+      speakText('Hello! I am your Appiex AgentHub AI assistant. Right now you have ' + salesTotalUSD + ' dollars in monthly sales, ' + ordersCount + ' client orders, and ' + visitorsCount + ' daily website views. How can I help?');
+    } else if (q.includes('who are you') || q.includes('name')) {
+      speakText('I am Appiex AgentHub, your voice-enabled agency command assistant.');
+    } else {
+      speakText('Got it! You asked about ' + rawInput + '. Currently monthly sales are ' + salesTotalUSD + ' dollars with ' + visitorsCount + ' daily views. Say open sales, orders, or analytics to navigate.');
+    }
+  }
+
+  function toggleVoiceChat() {
+    if (isListening) {
+      try { if (recognitionRef.current) recognitionRef.current.stop(); } catch(e) {}
+      setIsListening(false);
       return;
     }
-    if (q.includes('sale') || q.includes('finance') || q.includes('money')) setCurrentView('monthly-sales');
-    else if (q.includes('order') || q.includes('client') || q.includes('crm')) setCurrentView('subscriptions');
-    else if (q.includes('visit') || q.includes('traffic')) setCurrentView('daily-visitors');
-    else if (q.includes('seo') || q.includes('market')) setCurrentView('seo');
-    else if (q.includes('design') || q.includes('blue')) setCurrentView('blueprint-hub');
-    else if (q.includes('dev') || q.includes('pod')) setCurrentView('delivery-pods');
-    else if (setCommandOpen) setCommandOpen(true);
+
+    var SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRec) {
+      setShowTextInput(true);
+      speakText('Voice recognition is not supported in this browser, please type your command below.');
+      return;
+    }
+
+    try {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      var rec = new SpeechRec();
+      rec.lang = 'en-US';
+      rec.interimResults = true;
+      rec.maxAlternatives = 1;
+      recognitionRef.current = rec;
+
+      var finalSaid = '';
+      rec.onstart = function() {
+        setIsListening(true);
+        setTranscript('Listening... speak now');
+      };
+      rec.onresult = function(event) {
+        var text = '';
+        for (var i = event.resultIndex; i < event.results.length; i++) {
+          text += event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalSaid = text;
+          }
+        }
+        setTranscript('"' + text + '"');
+      };
+      rec.onerror = function(ev) {
+        setIsListening(false);
+        if (ev.error === 'not-allowed') {
+          setTranscript('Microphone permission blocked. Allow mic or type below.');
+          setShowTextInput(true);
+        } else {
+          setTranscript('Tap mic and speak again');
+        }
+      };
+      rec.onend = function() {
+        setIsListening(false);
+        if (finalSaid && finalSaid.trim()) {
+          processVoiceOrTextQuery(finalSaid.trim());
+        }
+      };
+      rec.start();
+    } catch(err) {
+      setIsListening(false);
+      setShowTextInput(true);
+    }
+  }
+
+  function handleQuickTextSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!quickPrompt.trim()) return;
+    setTranscript('"' + quickPrompt.trim() + '"');
+    processVoiceOrTextQuery(quickPrompt.trim());
     setQuickPrompt('');
   }
 
-  var waveHeights = [10, 18, 30, 16, 36, 22, 42, 20, 34, 14, 28, 38, 22, 32, 16, 26, 18, 10];
+  // Clean SVG line icons matching Pic 2
+  function getSvgIcon(type) {
+    if (type === 'research') return (0, F.jsx)('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#ffffff', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', children: [(0, F.jsx)('path', { d: 'M9 3h6' }), (0, F.jsx)('path', { d: 'M10 3v6l-4.5 8.5A2 2 0 0 0 7.2 20h9.6a2 2 0 0 0 1.7-2.5L14 9V3' }), (0, F.jsx)('path', { d: 'M8 14h8' })] });
+    if (type === 'orders') return (0, F.jsx)('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#ffffff', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', children: [(0, F.jsx)('path', { d: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' }), (0, F.jsx)('circle', { cx: 9, cy: 7, r: 4 }), (0, F.jsx)('path', { d: 'M22 21v-2a4 4 0 0 0-3-3.87' }), (0, F.jsx)('path', { d: 'M16 3.13a4 4 0 0 1 0 7.75' })] });
+    if (type === 'marketing') return (0, F.jsx)('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#ffffff', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', children: [(0, F.jsx)('polyline', { points: '22 7 13.5 15.5 8.5 10.5 2 17' }), (0, F.jsx)('polyline', { points: '16 7 22 7 22 13' })] });
+    if (type === 'finance') return (0, F.jsx)('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#ffffff', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', children: [(0, F.jsx)('rect', { x: 2, y: 5, width: 20, height: 14, rx: 3 }), (0, F.jsx)('line', { x1: 2, y1: 10, x2: 22, y2: 10 })] });
+    if (type === 'development') return (0, F.jsx)('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#ffffff', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', children: [(0, F.jsx)('polyline', { points: '16 18 22 12 16 6' }), (0, F.jsx)('polyline', { points: '8 6 2 12 8 18' })] });
+    return (0, F.jsx)('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#ffffff', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', children: [(0, F.jsx)('circle', { cx: 13.5, cy: 6.5, r: 0.5, fill: '#fff' }), (0, F.jsx)('circle', { cx: 17.5, cy: 10.5, r: 0.5, fill: '#fff' }), (0, F.jsx)('circle', { cx: 8.5, cy: 7.5, r: 0.5, fill: '#fff' }), (0, F.jsx)('circle', { cx: 6.5, cy: 12.5, r: 0.5, fill: '#fff' }), (0, F.jsx)('path', { d: 'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z' })] });
+  }
 
-  function renderCard(card, isRight) {
+  var leftCards = [
+    { id: 'research', title: 'Research', subtitle: visitorsCount + ' Live Views · GA4', view: 'analytics', arcClass: 'ah-arc-in-left' },
+    { id: 'orders', title: 'Orders & CRM', subtitle: ordersCount + ' Client Inquiries', view: 'subscriptions', arcClass: '' },
+    { id: 'marketing', title: 'Marketing', subtitle: 'SEO & Growth', view: 'seo', arcClass: 'ah-arc-in-left' }
+  ];
+
+  var rightCards = [
+    { id: 'finance', title: 'Finance', subtitle: String.fromCharCode(36) + salesTotalUSD.toLocaleString('en-US') + ' Monthly Sales', view: 'monthly-sales', arcClass: 'ah-arc-in-right' },
+    { id: 'development', title: 'Development', subtitle: 'Delivery Pods', view: 'delivery-pods', arcClass: '' },
+    { id: 'design', title: 'Design', subtitle: 'Blueprints & 3D', view: 'blueprint-hub', arcClass: 'ah-arc-in-right' }
+  ];
+
+  var waveHeights = [8, 14, 24, 14, 34, 20, 44, 26, 38, 16, 32, 42, 22, 36, 18, 28, 14, 8];
+
+  function renderCard(card) {
     var isHov = hoveredId === card.id;
     return (0, F.jsxs)('button', {
       key: card.id,
@@ -4940,13 +5114,13 @@ function AgentHubHomeView() {
       onClick: function() { setCurrentView(card.view); },
       onMouseEnter: function() { setHoveredId(card.id); },
       onMouseLeave: function() { setHoveredId(null); },
-      className: 'ah-card',
+      className: 'ah-card ' + card.arcClass,
       style: {
         display: 'flex',
         alignItems: 'center',
-        gap: '12px',
-        padding: '10px 14px',
-        borderRadius: '16px',
+        gap: '11px',
+        padding: '8px 12px',
+        borderRadius: '14px',
         textAlign: 'left',
         cursor: 'pointer',
         width: '100%',
@@ -4954,39 +5128,36 @@ function AgentHubHomeView() {
         backdropFilter: 'blur(18px)',
         WebkitBackdropFilter: 'blur(18px)',
         background: isHov
-          ? 'linear-gradient(135deg, rgba(124, 58, 237, 0.32), rgba(30, 14, 62, 0.72))'
-          : 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(15, 8, 32, 0.58))',
-        border: isHov ? '1px solid rgba(192, 132, 252, 0.75)' : '1px solid rgba(168, 85, 247, 0.22)',
+          ? 'linear-gradient(135deg, rgba(124, 58, 237, 0.36), rgba(30, 14, 62, 0.78))'
+          : 'linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(14, 8, 28, 0.68))',
+        border: isHov ? '1px solid rgba(192, 132, 252, 0.8)' : '1px solid rgba(168, 85, 247, 0.22)',
         boxShadow: isHov
-          ? '0 0 28px rgba(168, 85, 247, 0.42), inset 0 1px 0 rgba(255,255,255,0.18)'
-          : '0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.08)',
-        transform: (isHov ? 'scale(1.04) ' : '') + 'var(--ah-shift, ' + card.shift + ')'
+          ? '0 0 26px rgba(168, 85, 247, 0.45), inset 0 1px 0 rgba(255,255,255,0.2)'
+          : '0 8px 22px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.08)'
       },
       children: [
         (0, F.jsx)('div', {
           style: {
-            width: '40px',
-            height: '40px',
-            borderRadius: '12px',
+            width: '38px',
+            height: '38px',
+            borderRadius: '11px',
             flexShrink: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '18px',
-            background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)',
-            border: '1px solid rgba(216, 180, 254, 0.4)',
-            boxShadow: '0 0 18px rgba(139, 92, 246, 0.55)'
+            background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)',
+            border: '1px solid rgba(216, 180, 254, 0.42)',
+            boxShadow: '0 0 18px rgba(139, 92, 246, 0.6)'
           },
-          children: card.icon
+          children: getSvgIcon(card.id)
         }),
         (0, F.jsxs)('div', {
           style: { minWidth: 0, flex: 1 },
           children: [
-            (0, F.jsx)('div', { style: { fontSize: '12.5px', fontWeight: 700, color: '#ffffff', letterSpacing: '0.01em' }, children: card.title }),
-            (0, F.jsx)('div', { style: { fontSize: '10.5px', color: 'rgba(216, 180, 254, 0.78)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '2px' }, children: card.subtitle })
+            (0, F.jsx)('div', { style: { fontSize: '12px', fontWeight: 700, color: '#ffffff', letterSpacing: '0.01em' }, children: card.title }),
+            (0, F.jsx)('div', { style: { fontSize: '10px', color: 'rgba(216, 180, 254, 0.75)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '1px' }, children: card.subtitle })
           ]
-        }),
-        (0, F.jsx)('span', { style: { color: isHov ? '#ffffff' : 'rgba(192,132,252,0.55)', fontSize: '13px', fontWeight: 700 }, children: '›' })
+        })
       ]
     });
   }
@@ -4994,82 +5165,93 @@ function AgentHubHomeView() {
   return (0, F.jsxs)('div', {
     style: {
       position: 'relative',
-      minHeight: 'calc(100vh - 104px)',
+      minHeight: 'calc(100vh - 102px)',
       width: '100%',
-      borderRadius: '24px',
+      borderRadius: '22px',
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      padding: '20px 26px',
+      padding: '18px 24px',
       userSelect: 'none',
-      border: '1px solid rgba(168, 85, 247, 0.25)',
-      boxShadow: '0 0 60px rgba(109, 40, 217, 0.22)',
-      background: 'radial-gradient(ellipse 68% 58% at 50% 44%, rgba(124, 58, 237, 0.28) 0%, rgba(46, 16, 101, 0.18) 46%, #05030d 84%), #05030d'
+      border: '1px solid rgba(168, 85, 247, 0.22)',
+      boxShadow: '0 0 65px rgba(109, 40, 217, 0.2)',
+      background: 'radial-gradient(ellipse 62% 54% at 50% 42%, rgba(124, 58, 237, 0.28) 0%, rgba(46, 16, 101, 0.16) 46%, #05030b 84%), #05030b'
     },
     children: [
       (0, F.jsx)('style', {
         children: `
           @keyframes agentOrbSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
           @keyframes agentOrbSpinRev{from{transform:rotate(360deg)}to{transform:rotate(0deg)}}
-          @keyframes agentFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-          @keyframes eqPulse{0%,100%{transform:scaleY(0.45);opacity:0.7}50%{transform:scaleY(1);opacity:1}}
+          @keyframes agentFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+          @keyframes eqPulse{0%,100%{transform:scaleY(0.45);opacity:0.72}50%{transform:scaleY(1);opacity:1}}
           .agent-orb-spin{animation:agentOrbSpin 28s linear infinite}
           .agent-orb-spin-rev{animation:agentOrbSpinRev 20s linear infinite}
-          .agent-float{animation:agentFloat 4.2s ease-in-out infinite}
-          .agent-eq-bar{animation:eqPulse 1.2s ease-in-out infinite;transform-origin:center}
-          .ah-grid { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; width: 100%; max-width: 980px; margin: 0 auto; }
-          .ah-col-left { display: flex; flex-direction: column; gap: 16px; order: 2; }
+          .agent-float{animation:agentFloat 4s ease-in-out infinite}
+          .agent-eq-bar{animation:eqPulse 1.15s ease-in-out infinite;transform-origin:center}
+          .agent-eq-fast{animation:eqPulse 0.45s ease-in-out infinite;transform-origin:center}
+          .ah-grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: center; width: 100%; max-width: 920px; margin: 0 auto; }
+          .ah-col-left { display: flex; flex-direction: column; gap: 18px; order: 2; }
           .ah-col-center { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; order: 1; }
-          .ah-col-right { display: flex; flex-direction: column; gap: 16px; order: 3; }
-          .ah-card { --ah-shift: 0px; }
+          .ah-col-right { display: flex; flex-direction: column; gap: 18px; order: 3; }
           @media (min-width: 900px) {
-            .ah-grid { grid-template-columns: 235px 1fr 235px; gap: 20px; }
+            .ah-grid { grid-template-columns: 215px 1fr 215px; gap: 18px; }
             .ah-col-left { order: 1; }
             .ah-col-center { order: 2; }
             .ah-col-right { order: 3; }
+            .ah-arc-in-left { transform: translateX(26px); }
+            .ah-arc-in-left:hover { transform: translateX(26px) scale(1.04); }
+            .ah-arc-in-right { transform: translateX(-26px); }
+            .ah-arc-in-right:hover { transform: translateX(-26px) scale(1.04); }
           }
         `
       }),
 
-      // Bottom decorative violet glow & SVG wave
+      // Bottom Glowing Purple Particle Wave Arcs
       (0, F.jsx)('div', {
         style: {
-          pointerEvents: 'none', position: 'absolute', bottom: '-90px', left: '-90px', width: '420px', height: '210px',
-          borderRadius: '9999px', opacity: 0.45, filter: 'blur(55px)',
-          background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(109,40,217,0.12) 60%, transparent 100%)'
+          pointerEvents: 'none', position: 'absolute', bottom: '-95px', left: '-70px', width: '430px', height: '210px',
+          borderRadius: '9999px', opacity: 0.5, filter: 'blur(55px)',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.65) 0%, rgba(109,40,217,0.12) 60%, transparent 100%)'
         }
       }),
       (0, F.jsx)('div', {
         style: {
-          pointerEvents: 'none', position: 'absolute', bottom: '-90px', right: '-90px', width: '420px', height: '210px',
-          borderRadius: '9999px', opacity: 0.45, filter: 'blur(55px)',
-          background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, rgba(91,33,182,0.12) 60%, transparent 100%)'
+          pointerEvents: 'none', position: 'absolute', bottom: '-95px', right: '-70px', width: '430px', height: '210px',
+          borderRadius: '9999px', opacity: 0.5, filter: 'blur(55px)',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.65) 0%, rgba(91,33,182,0.12) 60%, transparent 100%)'
         }
       }),
       (0, F.jsxs)('svg', {
         viewBox: '0 0 1200 140',
         preserveAspectRatio: 'none',
-        style: { pointerEvents: 'none', position: 'absolute', bottom: 0, left: 0, width: '100%', height: '95px', opacity: 0.45 },
+        style: { pointerEvents: 'none', position: 'absolute', bottom: 0, left: 0, width: '100%', height: '105px', opacity: 0.55 },
         children: [
           (0, F.jsx)('path', {
-            d: 'M0,105 C240,25 430,130 600,75 C770,25 970,125 1200,55 L1200,140 L0,140 Z',
-            fill: 'url(#agentWaveGrad2)'
+            d: 'M0,105 C230,15 410,132 600,78 C790,22 970,130 1200,48 L1200,140 L0,140 Z',
+            fill: 'url(#agentWaveGrad3)'
+          }),
+          (0, F.jsx)('path', {
+            d: 'M0,98 C230,10 410,126 600,72 C790,18 970,124 1200,42',
+            fill: 'none',
+            stroke: 'rgba(216,180,254,0.45)',
+            strokeWidth: '1.5',
+            strokeDasharray: '3 7'
           }),
           (0, F.jsx)('defs', {
             children: (0, F.jsxs)('linearGradient', {
-              id: 'agentWaveGrad2', x1: '0%', y1: '0%', x2: '100%', y2: '0%',
+              id: 'agentWaveGrad3', x1: '0%', y1: '0%', x2: '100%', y2: '0%',
               children: [
-                (0, F.jsx)('stop', { offset: '0%', stopColor: 'rgba(168,85,247,0.42)' }),
-                (0, F.jsx)('stop', { offset: '50%', stopColor: 'rgba(139,92,246,0.06)' }),
-                (0, F.jsx)('stop', { offset: '100%', stopColor: 'rgba(168,85,247,0.42)' })
+                (0, F.jsx)('stop', { offset: '0%', stopColor: 'rgba(168,85,247,0.48)' }),
+                (0, F.jsx)('stop', { offset: '50%', stopColor: 'rgba(139,92,246,0.04)' }),
+                (0, F.jsx)('stop', { offset: '100%', stopColor: 'rgba(168,85,247,0.48)' })
               ]
             })
           })
         ]
       }),
 
-      // 1. Top Header Bar
+      // 1. Top Header Bar (Matching Pic 2: AgentHub on left, Online pill on right)
       (0, F.jsxs)('div', {
         style: { position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' },
         children: [
@@ -5078,27 +5260,13 @@ function AgentHubHomeView() {
             children: [
               (0, F.jsx)('div', {
                 style: {
-                  width: '32px', height: '32px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #9333ea 0%, #c026d3 100%)', color: '#fff', fontWeight: 900, fontSize: '14px',
-                  boxShadow: '0 0 18px rgba(168,85,247,0.65)'
+                  width: '28px', height: '28px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #9333ea 0%, #c026d3 100%)', color: '#fff', fontWeight: 900, fontSize: '13px',
+                  boxShadow: '0 0 16px rgba(168,85,247,0.7)'
                 },
                 children: 'A'
               }),
-              (0, F.jsxs)('div', {
-                children: [
-                  (0, F.jsxs)('div', {
-                    style: { fontSize: '14px', fontWeight: 700, color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' },
-                    children: [
-                      'Appiex AgentHub',
-                      (0, F.jsx)('span', {
-                        style: { fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '6px', background: 'rgba(168,85,247,0.22)', color: '#d8b4fe', border: '1px solid rgba(192,132,252,0.35)' },
-                        children: '3D OS'
-                      })
-                    ]
-                  }),
-                  (0, F.jsx)('div', { style: { fontSize: '10px', color: 'rgba(216,180,254,0.65)' }, children: 'Autonomous Agency Command Center' })
-                ]
-              })
+              (0, F.jsx)('div', { style: { fontSize: '15px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.01em' }, children: 'AgentHub' })
             ]
           }),
           (0, F.jsxs)('div', {
@@ -5121,36 +5289,36 @@ function AgentHubHomeView() {
                   padding: '4px 12px', borderRadius: '9999px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)',
                   fontSize: '11px', fontWeight: 600, color: '#cbd5e1', cursor: 'pointer'
                 },
-                children: 'Classic Overview →'
+                children: 'Overview →'
               })
             ]
           })
         ]
       }),
 
-      // 2. Main 3-Column Spatial Layout (Left 3 Cards | Center 3D Mascot | Right 3 Cards)
+      // 2. Center 3-Column Arc Layout
       (0, F.jsxs)('div', {
         className: 'ah-grid',
-        style: { position: 'relative', zIndex: 10, padding: '8px 0' },
+        style: { position: 'relative', zIndex: 10, padding: '4px 0' },
         children: [
           (0, F.jsx)('div', {
             className: 'ah-col-left',
-            children: leftCards.map(function(card) { return renderCard(card, false); })
+            children: leftCards.map(renderCard)
           }),
 
           (0, F.jsxs)('div', {
             className: 'ah-col-center',
             children: [
               (0, F.jsxs)('div', {
-                style: { position: 'relative', width: '270px', height: '270px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+                style: { position: 'relative', width: '264px', height: '264px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
                 children: [
-                  // Outer Dashed Ring
+                  // Outer Dashed Orbital Ring
                   (0, F.jsx)('div', {
                     className: 'agent-orb-spin',
                     style: {
                       position: 'absolute', inset: 0, borderRadius: '9999px',
-                      border: '1px dashed rgba(192,132,252,0.45)',
-                      boxShadow: '0 0 45px rgba(168,85,247,0.28)'
+                      border: '1px dashed ' + (isListening ? 'rgba(232,121,249,0.85)' : 'rgba(192,132,252,0.45)'),
+                      boxShadow: isListening ? '0 0 55px rgba(217,70,239,0.5)' : '0 0 45px rgba(168,85,247,0.28)'
                     }
                   }),
                   // Inner Glowing Arc Ring
@@ -5159,21 +5327,21 @@ function AgentHubHomeView() {
                     style: {
                       position: 'absolute', inset: '14px', borderRadius: '9999px',
                       border: '2px solid transparent',
-                      borderTopColor: 'rgba(233,213,255,0.9)',
-                      borderBottomColor: 'rgba(147,51,234,0.85)'
+                      borderTopColor: 'rgba(233,213,255,0.92)',
+                      borderBottomColor: 'rgba(147,51,234,0.88)'
                     }
                   }),
                   // Core Aura
                   (0, F.jsx)('div', {
                     style: {
-                      position: 'absolute', inset: '28px', borderRadius: '9999px', filter: 'blur(26px)', opacity: 0.7,
-                      background: 'radial-gradient(circle, rgba(168,85,247,0.65) 0%, rgba(109,40,217,0.22) 60%, transparent 80%)'
+                      position: 'absolute', inset: '26px', borderRadius: '9999px', filter: 'blur(26px)', opacity: isSpeaking || isListening ? 0.9 : 0.68,
+                      background: 'radial-gradient(circle, rgba(168,85,247,0.7) 0%, rgba(109,40,217,0.22) 60%, transparent 80%)'
                     }
                   }),
-                  // 3D Mascot Image
+                  // 3D Appiex Cat Mascot
                   (0, F.jsx)('div', {
                     className: 'agent-float',
-                    style: { position: 'relative', zIndex: 10, width: '220px', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+                    style: { position: 'relative', zIndex: 10, width: '216px', height: '216px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
                     children: (0, F.jsx)('img', {
                       src: '/admin/assets/appiex-mascot-3d.jpg',
                       alt: 'Appiex 3D AI Assistant',
@@ -5182,44 +5350,44 @@ function AgentHubHomeView() {
                         mixBlendMode: 'lighten',
                         WebkitMaskImage: 'radial-gradient(circle at 50% 48%, #000 54%, transparent 76%)',
                         maskImage: 'radial-gradient(circle at 50% 48%, #000 54%, transparent 76%)',
-                        filter: 'drop-shadow(0 0 28px rgba(168,85,247,0.45))'
+                        filter: 'drop-shadow(0 0 28px rgba(168,85,247,0.5))'
                       }
                     })
                   }),
-                  // Floating Speech Bubble (top-right of mascot head)
+                  // Floating Speech Bubble (top-right next to ear)
                   (0, F.jsx)('button', {
                     type: 'button',
-                    onClick: handleMicClick,
-                    title: 'Click to launch Appiex AI Copilot',
+                    onClick: toggleVoiceChat,
+                    title: 'Click to talk with Appiex AI',
                     style: {
-                      position: 'absolute', top: '42px', right: '-8px', zIndex: 20,
+                      position: 'absolute', top: '42px', right: '-6px', zIndex: 20,
                       padding: '6px 12px', borderRadius: '14px',
-                      background: 'rgba(126, 34, 206, 0.75)',
+                      background: isSpeaking || isListening ? 'rgba(192, 38, 211, 0.85)' : 'rgba(126, 34, 206, 0.78)',
                       backdropFilter: 'blur(12px)',
-                      border: '1px solid rgba(216, 180, 254, 0.5)',
-                      boxShadow: '0 0 22px rgba(168, 85, 247, 0.7)',
+                      border: '1px solid rgba(233, 213, 255, 0.55)',
+                      boxShadow: '0 0 22px rgba(168, 85, 247, 0.75)',
                       display: 'flex', alignItems: 'center', gap: '3px', cursor: 'pointer'
                     },
                     children: [7, 13, 17, 9, 15, 7].map(function(h, i) {
                       return (0, F.jsx)('span', {
                         key: i,
-                        className: 'agent-eq-bar',
-                        style: { width: '2.5px', height: h + 'px', borderRadius: '9999px', background: '#f3e8ff', animationDelay: (i * 0.14) + 's' }
+                        className: isSpeaking || isListening ? 'agent-eq-fast' : 'agent-eq-bar',
+                        style: { width: '2.5px', height: h + 'px', borderRadius: '9999px', background: '#f5f3ff', animationDelay: (i * 0.12) + 's' }
                       });
                     })
                   })
                 ]
               }),
 
-              // Glowing Horizontal Platform Beam + Equalizer
+              // Glowing Horizontal Platform Line + Equalizer Bars
               (0, F.jsxs)('div', {
-                style: { width: '100%', maxWidth: '320px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-12px', zIndex: 20 },
+                style: { width: '100%', maxWidth: '310px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-12px', zIndex: 20 },
                 children: [
                   (0, F.jsx)('div', {
                     style: {
-                      width: '85%', height: '2px', borderRadius: '9999px',
+                      width: '86%', height: '2px', borderRadius: '9999px',
                       background: 'linear-gradient(90deg, transparent 0%, #a855f7 25%, #e879f9 50%, #a855f7 75%, transparent 100%)',
-                      boxShadow: '0 0 18px 2px rgba(168, 85, 247, 0.9)'
+                      boxShadow: '0 0 18px 2px rgba(168, 85, 247, 0.92)'
                     }
                   }),
                   (0, F.jsx)('div', {
@@ -5227,14 +5395,14 @@ function AgentHubHomeView() {
                     children: waveHeights.map(function(h, idx) {
                       return (0, F.jsx)('span', {
                         key: idx,
-                        className: 'agent-eq-bar',
+                        className: isSpeaking || isListening ? 'agent-eq-fast' : 'agent-eq-bar',
                         style: {
-                          width: '3.5px',
-                          height: Math.round(h * 0.65) + 'px',
+                          width: '3px',
+                          height: Math.round(h * 0.68) + 'px',
                           borderRadius: '9999px',
-                          background: 'linear-gradient(180deg, #e879f9 0%, #9333ea 100%)',
-                          boxShadow: '0 0 8px rgba(192,132,252,0.75)',
-                          animationDelay: (idx * 0.09) + 's'
+                          background: isSpeaking ? 'linear-gradient(180deg, #f0abfc 0%, #c026d3 100%)' : 'linear-gradient(180deg, #e879f9 0%, #9333ea 100%)',
+                          boxShadow: '0 0 8px rgba(192,132,252,0.8)',
+                          animationDelay: (idx * 0.08) + 's'
                         }
                       });
                     })
@@ -5246,53 +5414,110 @@ function AgentHubHomeView() {
 
           (0, F.jsx)('div', {
             className: 'ah-col-right',
-            children: rightCards.map(function(card) { return renderCard(card, true); })
+            children: rightCards.map(renderCard)
           })
         ]
       }),
 
-      // 3. Bottom Voice / AI Command Dock & 3 Action Pills
+      // 3. Bottom Voice Control Capsule (exact match to Pic 2: [Speaker/Mute] (Mic) [+]) + Live Voice Caption + 3 Pills
       (0, F.jsxs)('div', {
-        style: { position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', paddingTop: '4px' },
+        style: { position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', paddingTop: '2px' },
         children: [
-          (0, F.jsxs)('form', {
-            onSubmit: handleQuickCommand,
+          // Voice Transcript / AI Reply Bubble (shows only when speaking/listening/replied)
+          (transcript || aiReply) && (0, F.jsxs)('div', {
             style: {
-              display: 'flex', alignItems: 'center', gap: '8px', padding: '5px 10px', borderRadius: '9999px',
-              background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(16px)',
-              border: '1px solid rgba(168,85,247,0.32)', boxShadow: '0 0 28px rgba(124,58,237,0.25)'
+              maxWidth: '520px', padding: '6px 14px', borderRadius: '12px', textAlign: 'center',
+              background: 'rgba(88, 28, 135, 0.35)', border: '1px solid rgba(192, 132, 252, 0.35)',
+              backdropFilter: 'blur(12px)', fontSize: '11px', color: '#f3e8ff'
             },
+            children: [
+              transcript && (0, F.jsx)('div', { style: { color: '#d8b4fe', fontWeight: 600 }, children: transcript }),
+              aiReply && (0, F.jsx)('div', { style: { color: '#ffffff', marginTop: transcript ? '2px' : 0 }, children: aiReply })
+            ]
+          }),
+
+          // Exact Pic 2 Mic Capsule: [Mute/Sound] (Big Glowing Mic) [+]
+          (0, F.jsxs)('div', {
+            style: {
+              position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              width: '210px', height: '42px', padding: '0 14px', borderRadius: '9999px',
+              background: 'rgba(18, 12, 34, 0.85)', backdropFilter: 'blur(16px)',
+              border: '1px solid rgba(168,85,247,0.32)', boxShadow: '0 0 28px rgba(124,58,237,0.28)'
+            },
+            children: [
+              // Left: Mute/Unmute Speaker
+              (0, F.jsx)('button', {
+                type: 'button',
+                onClick: function() {
+                  var next = !isMuted;
+                  setIsMuted(next);
+                  if (next && window.speechSynthesis) window.speechSynthesis.cancel();
+                },
+                title: isMuted ? 'Unmute AI Voice' : 'Mute AI Voice',
+                style: { background: 'transparent', border: 'none', cursor: 'pointer', color: isMuted ? '#f43f5e' : '#a78bfa', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px' },
+                children: (0, F.jsx)('svg', { width: 15, height: 15, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', children: isMuted ? [(0, F.jsx)('path', { d: 'M11 5L6 9H2v6h4l5 4V5z' }), (0, F.jsx)('line', { x1: 23, y1: 9, x2: 17, y2: 15 }), (0, F.jsx)('line', { x1: 17, y1: 9, x2: 23, y2: 15 })] : [(0, F.jsx)('polygon', { points: '11 5 6 9 2 9 2 15 6 15 11 19 11 5' }), (0, F.jsx)('path', { d: 'M15.54 8.46a5 5 0 0 1 0 7.07' })] })
+              }),
+
+              // Center: Large Glowing Circular Mic Button
+              (0, F.jsx)('button', {
+                type: 'button',
+                onClick: toggleVoiceChat,
+                title: isListening ? 'Stop Listening' : 'Tap to Talk by Voice',
+                style: {
+                  width: '48px', height: '48px', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  cursor: 'pointer', border: '1.5px solid rgba(233,213,255,0.65)',
+                  background: isListening ? 'linear-gradient(135deg, #ec4899 0%, #9333ea 100%)' : 'linear-gradient(135deg, #9333ea 0%, #5b21b6 100%)',
+                  boxShadow: isListening ? '0 0 32px rgba(236,72,153,0.95)' : '0 0 24px rgba(168,85,247,0.85)',
+                  transform: isListening ? 'scale(1.1)' : 'scale(1)',
+                  transition: 'all 0.2s ease'
+                },
+                children: (0, F.jsx)('svg', {
+                  width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: '#ffffff', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round',
+                  children: [
+                    (0, F.jsx)('path', { d: 'M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z' }),
+                    (0, F.jsx)('path', { d: 'M19 10v2a7 7 0 0 1-14 0v-2' }),
+                    (0, F.jsx)('line', { x1: 12, y1: 19, x2: 12, y2: 22 })
+                  ]
+                })
+              }),
+
+              // Right: + Type Command / Open Copilot
+              (0, F.jsx)('button', {
+                type: 'button',
+                onClick: function() { setShowTextInput(function(p) { return !p; }); },
+                title: 'Type a command',
+                style: { background: 'transparent', border: 'none', cursor: 'pointer', color: '#a78bfa', fontSize: '18px', fontWeight: 700, lineHeight: 1, padding: '4px' },
+                children: '+'
+              })
+            ]
+          }),
+
+          // Optional quick text box if user clicks +
+          showTextInput && (0, F.jsxs)('form', {
+            onSubmit: handleQuickTextSubmit,
+            style: { display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '9999px', background: 'rgba(18,12,34,0.9)', border: '1px solid rgba(168,85,247,0.4)' },
             children: [
               (0, F.jsx)('input', {
                 type: 'text',
                 value: quickPrompt,
                 onChange: function(e) { setQuickPrompt(e.target.value); },
-                placeholder: 'Ask Appiex AI or jump to view...',
-                style: { width: '185px', background: 'transparent', fontSize: '11px', color: '#fff', padding: '0 8px', outline: 'none', border: 'none' }
-              }),
-              (0, F.jsx)('button', {
-                type: 'button',
-                onClick: handleMicClick,
-                title: 'Open Appiex AI Copilot',
-                style: {
-                  width: '40px', height: '40px', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '16px', color: '#fff', cursor: 'pointer', border: '1px solid rgba(216,180,254,0.5)',
-                  background: isListening ? '#d946ef' : 'linear-gradient(135deg, #9333ea 0%, #6d28d9 100%)',
-                  boxShadow: '0 0 22px rgba(168,85,247,0.85)'
-                },
-                children: '🎙️'
+                placeholder: 'Ask: total sales, orders, open finance...',
+                style: { width: '210px', background: 'transparent', color: '#fff', fontSize: '11px', outline: 'none', border: 'none' }
               }),
               (0, F.jsx)('button', {
                 type: 'submit',
-                style: {
-                  padding: '6px 12px', borderRadius: '9999px', background: 'rgba(255,255,255,0.06)',
-                  fontSize: '11px', fontWeight: 700, color: '#e9d5ff', cursor: 'pointer', border: 'none'
-                },
-                children: '⚡ Ask'
+                style: { padding: '3px 10px', borderRadius: '9999px', background: '#7c3aed', color: '#fff', fontSize: '10px', fontWeight: 700, border: 'none', cursor: 'pointer' },
+                children: 'Send'
               })
             ]
           }),
-          (0, F.jsx)('div', { style: { fontSize: '10px', color: 'rgba(216,180,254,0.6)' }, children: 'Click a module or ask Appiex AI' }),
+
+          (0, F.jsx)('div', {
+            style: { fontSize: '10px', color: isListening ? '#f0abfc' : 'rgba(216,180,254,0.58)', fontWeight: isListening ? 600 : 400 },
+            children: isListening ? 'Listening... Say "Total sales" or "Open orders"' : 'Click mic to talk or choose an action'
+          }),
+
+          // 3 Bottom Quick Action Pills
           (0, F.jsxs)('div', {
             style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '10px' },
             children: [
@@ -5301,30 +5526,36 @@ function AgentHubHomeView() {
                 onClick: function() { setCurrentView('monthly-sales'); },
                 style: {
                   display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '9999px',
-                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,85,247,0.24)',
-                  fontSize: '11px', fontWeight: 600, color: '#f3e8ff', cursor: 'pointer'
+                  background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(168,85,247,0.22)',
+                  fontSize: '11px', fontWeight: 600, color: '#e9d5ff', cursor: 'pointer'
                 },
-                children: [(0, F.jsx)('span', { style: { color: '#c084fc', fontWeight: 800 }, children: '+' }), 'Add Sale Entry']
+                children: [(0, F.jsx)('span', { style: { color: '#c084fc', fontWeight: 800 }, children: '+' }), 'Create a new sale']
               }),
               (0, F.jsxs)('button', {
                 type: 'button',
                 onClick: function() { setCurrentView('overview'); },
                 style: {
                   display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '9999px',
-                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,85,247,0.24)',
-                  fontSize: '11px', fontWeight: 600, color: '#f3e8ff', cursor: 'pointer'
+                  background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(168,85,247,0.22)',
+                  fontSize: '11px', fontWeight: 600, color: '#e9d5ff', cursor: 'pointer'
                 },
-                children: ['📊 Show Performance']
+                children: [
+                  (0, F.jsx)('svg', { width: 12, height: 12, viewBox: '0 0 24 24', fill: 'none', stroke: '#c084fc', strokeWidth: 2, children: [(0, F.jsx)('line', { x1: 18, y1: 20, x2: 18, y2: 10 }), (0, F.jsx)('line', { x1: 12, y1: 20, x2: 12, y2: 4 }), (0, F.jsx)('line', { x1: 6, y1: 20, x2: 6, y2: 14 })] }),
+                  'Show performance'
+                ]
               }),
               (0, F.jsxs)('button', {
                 type: 'button',
                 onClick: function() { setCurrentView('daily-visitors'); },
                 style: {
                   display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '9999px',
-                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,85,247,0.24)',
-                  fontSize: '11px', fontWeight: 600, color: '#f3e8ff', cursor: 'pointer'
+                  background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(168,85,247,0.22)',
+                  fontSize: '11px', fontWeight: 600, color: '#e9d5ff', cursor: 'pointer'
                 },
-                children: ['🌐 Daily Website Views']
+                children: [
+                  (0, F.jsx)('svg', { width: 12, height: 12, viewBox: '0 0 24 24', fill: 'none', stroke: '#c084fc', strokeWidth: 2, children: [(0, F.jsx)('rect', { x: 3, y: 4, width: 18, height: 18, rx: 2 }), (0, F.jsx)('line', { x1: 16, y1: 2, x2: 16, y2: 6 }), (0, F.jsx)('line', { x1: 8, y1: 2, x2: 8, y2: 6 }), (0, F.jsx)('line', { x1: 3, y1: 10, x2: 21, y2: 10 })] }),
+                  'Daily visitors'
+                ]
               })
             ]
           })
