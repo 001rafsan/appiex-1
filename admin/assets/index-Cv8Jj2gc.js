@@ -4854,6 +4854,10 @@ function AgentHubHomeView() {
   var isMuted = mutedState[0];
   var setIsMuted = mutedState[1];
 
+  var langState = (0, v.useState)('en-US');
+  var voiceLang = langState[0];
+  var setVoiceLang = langState[1];
+
   var transcriptState = (0, v.useState)('');
   var transcript = transcriptState[0];
   var setTranscript = transcriptState[1];
@@ -4936,11 +4940,15 @@ function AgentHubHomeView() {
     try {
       window.speechSynthesis.cancel();
       var utter = new SpeechSynthesisUtterance(text);
+      var isBanglaText = /[\u0980-\u09FF]/.test(text);
+      utter.lang = isBanglaText ? 'bn-BD' : 'en-US';
       utter.rate = 1.02;
-      utter.pitch = 1.06;
+      utter.pitch = 1.04;
       var voices = window.speechSynthesis.getVoices();
       if (voices && voices.length > 0) {
-        var preferred = voices.find(function(vc) { return /google|natural|samantha|aria|jenny|zira/i.test(vc.name) && /en/i.test(vc.lang); }) || voices.find(function(vc) { return /en/i.test(vc.lang); });
+        var preferred = isBanglaText
+          ? (voices.find(function(vc) { return /bn/i.test(vc.lang); }) || voices[0])
+          : (voices.find(function(vc) { return /google|natural|samantha|aria|jenny|zira/i.test(vc.name) && /en/i.test(vc.lang); }) || voices.find(function(vc) { return /en/i.test(vc.lang); }));
         if (preferred) utter.voice = preferred;
       }
       utter.onstart = function() { setIsSpeaking(true); };
@@ -4953,7 +4961,7 @@ function AgentHubHomeView() {
     }
   }
 
-  function processVoiceOrTextQuery(rawInput) {
+  async function processVoiceOrTextQuery(rawInput) {
     var q = String(rawInput || '').trim().toLowerCase();
     if (!q) return;
 
@@ -5000,22 +5008,43 @@ function AgentHubHomeView() {
       }
     }
 
-    if (q.includes('sale') || q.includes('revenue') || q.includes('money') || q.includes('dollar') || q.includes('finance') || q.includes('koto') || q.includes('taka')) {
+    setAiReply('Thinking...');
+    try {
+      var res = await fetch('/api/agent-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: rawInput,
+          lang: voiceLang,
+          stats: {
+            salesTotalUSD: salesTotalUSD,
+            salesCount: salesCount,
+            ordersCount: ordersCount,
+            visitorsCount: visitorsCount
+          }
+        })
+      });
+      if (res.ok) {
+        var data = await res.json();
+        if (data && data.reply) {
+          speakText(data.reply);
+          return;
+        }
+      }
+    } catch(e) {}
+
+    if (q.includes('sale') || q.includes('revenue') || q.includes('dollar') || q.includes('finance') || q.includes('koto') || q.includes('taka')) {
       speakText('This month Appiex has ' + salesTotalUSD + ' US dollars in total sales across ' + salesCount + ' active entries.');
     } else if (q.includes('order') || q.includes('client') || q.includes('lead')) {
       speakText('You have ' + ordersCount + ' client orders in your Client Orders inbox.');
     } else if (q.includes('visitor') || q.includes('traffic') || q.includes('view')) {
       speakText('There are ' + visitorsCount + ' website views tracked today on Appiex.');
-    } else if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('kemon') || q.includes('ki khobor')) {
-      speakText('Hello! I am your Appiex AgentHub AI assistant. Right now you have ' + salesTotalUSD + ' dollars in monthly sales, ' + ordersCount + ' client orders, and ' + visitorsCount + ' daily website views. How can I help?');
-    } else if (q.includes('who are you') || q.includes('name')) {
-      speakText('I am Appiex AgentHub, your voice-enabled agency command assistant.');
     } else {
-      speakText('Got it! You asked about ' + rawInput + '. Currently monthly sales are ' + salesTotalUSD + ' dollars with ' + visitorsCount + ' daily views. Say open sales, orders, or analytics to navigate.');
+      speakText('I heard ' + rawInput + '. Currently monthly sales are ' + salesTotalUSD + ' dollars with ' + visitorsCount + ' daily views.');
     }
   }
 
-  function toggleVoiceChat() {
+  async function toggleVoiceChat() {
     if (isListening) {
       try { if (recognitionRef.current) recognitionRef.current.stop(); } catch(e) {}
       setIsListening(false);
@@ -5029,10 +5058,22 @@ function AgentHubHomeView() {
       return;
     }
 
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try {
+        var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach(function(tr) { tr.stop(); });
+      } catch(permErr) {
+        setIsListening(false);
+        setTranscript('Mic blocked. Click the lock/tune icon next to the URL to Allow Microphone, or type below.');
+        setShowTextInput(true);
+        return;
+      }
+    }
+
     try {
       if (window.speechSynthesis) window.speechSynthesis.cancel();
       var rec = new SpeechRec();
-      rec.lang = 'en-US';
+      rec.lang = voiceLang;
       rec.interimResults = true;
       rec.maxAlternatives = 1;
       recognitionRef.current = rec;
@@ -5040,7 +5081,7 @@ function AgentHubHomeView() {
       var finalSaid = '';
       rec.onstart = function() {
         setIsListening(true);
-        setTranscript('Listening... speak now');
+        setTranscript(voiceLang === 'bn-BD' ? 'শুনছি... এখন কথা বলুন' : 'Listening... speak now');
       };
       rec.onresult = function(event) {
         var text = '';
@@ -5054,8 +5095,8 @@ function AgentHubHomeView() {
       };
       rec.onerror = function(ev) {
         setIsListening(false);
-        if (ev.error === 'not-allowed') {
-          setTranscript('Microphone permission blocked. Allow mic or type below.');
+        if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
+          setTranscript('Mic blocked. Click the lock/tune icon next to the URL to Allow Microphone, or type below.');
           setShowTextInput(true);
         } else {
           setTranscript('Tap mic and speak again');
@@ -5481,13 +5522,28 @@ function AgentHubHomeView() {
                 })
               }),
 
-              // Right: + Type Command / Open Copilot
-              (0, F.jsx)('button', {
-                type: 'button',
-                onClick: function() { setShowTextInput(function(p) { return !p; }); },
-                title: 'Type a command',
-                style: { background: 'transparent', border: 'none', cursor: 'pointer', color: '#a78bfa', fontSize: '18px', fontWeight: 700, lineHeight: 1, padding: '4px' },
-                children: '+'
+              // Right: EN/BN Language Toggle + Type Command
+              (0, F.jsxs)('div', {
+                style: { display: 'flex', alignItems: 'center', gap: '6px' },
+                children: [
+                  (0, F.jsx)('button', {
+                    type: 'button',
+                    onClick: function() { setVoiceLang(function(l) { return l === 'en-US' ? 'bn-BD' : 'en-US'; }); },
+                    title: 'Switch Voice Language (English / Bengali)',
+                    style: {
+                      background: 'rgba(139,92,246,0.2)', border: '1px solid rgba(168,85,247,0.4)', borderRadius: '9999px',
+                      cursor: 'pointer', color: '#e9d5ff', fontSize: '9px', fontWeight: 700, padding: '2px 6px'
+                    },
+                    children: voiceLang === 'bn-BD' ? 'BN' : 'EN'
+                  }),
+                  (0, F.jsx)('button', {
+                    type: 'button',
+                    onClick: function() { setShowTextInput(function(p) { return !p; }); },
+                    title: 'Type a command',
+                    style: { background: 'transparent', border: 'none', cursor: 'pointer', color: '#a78bfa', fontSize: '18px', fontWeight: 700, lineHeight: 1, padding: '4px' },
+                    children: '+'
+                  })
+                ]
               })
             ]
           }),
